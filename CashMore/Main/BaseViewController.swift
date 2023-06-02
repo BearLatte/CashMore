@@ -28,6 +28,12 @@ class BaseViewController: UIViewController {
         }
     }
     
+    var isLightBack = false {
+        didSet {
+            backBtn.setImage(isLightBack ? R.image.back_arrow() : R.image.back_arrow_dark(), for: .normal)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configUI()
@@ -40,7 +46,7 @@ class BaseViewController: UIViewController {
     
     private let backBtn = {
         let btn = UIButton()
-        btn.setImage(R.image.back_arrow(), for: .normal)
+        btn.setImage(R.image.back_arrow_dark(), for: .normal)
         return btn
     }()
     

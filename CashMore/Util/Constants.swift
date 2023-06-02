@@ -68,13 +68,15 @@ extension Constants {
     /// main text color
     static var themeTitleColor      = DynamicColor(hexString: "#333333")
     /// product title color
-    static var themeProductTitleColor    = DynamicColor(hexString: "#040101")
+    static var themeProductTitleColor = DynamicColor(hexString: "#040101")
     /// secondary text color
     static var themeSubtitleColor   = DynamicColor(hexString: "#999999")
     /// placeholder text color
     static var placeholderTextColor = DynamicColor(hexString: "#c7c7c7")
     /// form title text color
     static var formTitleTextColor   = DynamicColor(hexString: "#b4b4b4")
+    /// dark btn background color
+    static var darkBtnBgColor       = DynamicColor(hexString: "#3D4455")
 }
 
 // MARK: - method
@@ -106,6 +108,13 @@ extension Constants {
     /// - Returns: PingFangSC-Regular font
     static func pingFangSCRegularFont(_ size: CGFloat) -> UIFont {
         return UIFont(name: "PingFangSC-Regular", size: size) ?? UIFont.systemFont(ofSize: size)
+    }
+
+    /// return a PingFangSC-Semibold font
+    /// - Parameter size: size
+    /// - Returns: PingFangSC-Semibold font
+    static func pingFangSCSemiboldFont(_ size: CGFloat) -> UIFont {
+        return UIFont(name: "PingFangSC-Semibold", size: size) ?? UIFont.systemFont(ofSize: size)
     }
     
     /// Randomly generate a color value for test

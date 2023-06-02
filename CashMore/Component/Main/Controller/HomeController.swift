@@ -66,7 +66,7 @@ extension HomeController : HomeHeaderViewDelegate {
     }
     
     func headerViewMeTapAction(headerView: HomeHeaderView) {
-        Constants.debugLog(headerView)
+        navigationController?.pushViewController(PersonalCenterController(), animated: true)
     }
     
     

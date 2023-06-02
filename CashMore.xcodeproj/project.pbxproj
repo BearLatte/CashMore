@@ -22,6 +22,10 @@
 		22CE9DC32A289624006C5153 /* HomeProductHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CE9DC22A289624006C5153 /* HomeProductHeaderView.swift */; };
 		22CE9DC52A289AEC006C5153 /* HomeProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CE9DC42A289AEC006C5153 /* HomeProductCell.swift */; };
 		22CE9DC72A28A83E006C5153 /* ProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CE9DC62A28A83E006C5153 /* ProductModel.swift */; };
+		22CE9DCD2A298A99006C5153 /* PersonalCenterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CE9DCC2A298A99006C5153 /* PersonalCenterController.swift */; };
+		22CE9DCF2A298F8F006C5153 /* BaseTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CE9DCE2A298F8F006C5153 /* BaseTableController.swift */; };
+		22CE9DD12A29B58D006C5153 /* AboutUsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CE9DD02A29B58D006C5153 /* AboutUsController.swift */; };
+		22CE9DD32A29BA21006C5153 /* Bundle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CE9DD22A29BA21006C5153 /* Bundle+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +45,10 @@
 		22CE9DC22A289624006C5153 /* HomeProductHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeProductHeaderView.swift; sourceTree = "<group>"; };
 		22CE9DC42A289AEC006C5153 /* HomeProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeProductCell.swift; sourceTree = "<group>"; };
 		22CE9DC62A28A83E006C5153 /* ProductModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductModel.swift; sourceTree = "<group>"; };
+		22CE9DCC2A298A99006C5153 /* PersonalCenterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalCenterController.swift; sourceTree = "<group>"; };
+		22CE9DCE2A298F8F006C5153 /* BaseTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableController.swift; sourceTree = "<group>"; };
+		22CE9DD02A29B58D006C5153 /* AboutUsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsController.swift; sourceTree = "<group>"; };
+		22CE9DD22A29BA21006C5153 /* Bundle+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extension.swift"; sourceTree = "<group>"; };
 		885EE3408E4A382C87599EAC /* Pods_CashMore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CashMore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		98FC385BFB5E6C5522B0D1CF /* Pods-CashMore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CashMore.release.xcconfig"; path = "Target Support Files/Pods-CashMore/Pods-CashMore.release.xcconfig"; sourceTree = "<group>"; };
 		A857C5B77B3D73AE87CCA890 /* Pods-CashMore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CashMore.debug.xcconfig"; path = "Target Support Files/Pods-CashMore/Pods-CashMore.debug.xcconfig"; sourceTree = "<group>"; };
@@ -93,6 +101,7 @@
 			children = (
 				2210F9362A27572F00577DC9 /* AppDelegate.swift */,
 				2210F94C2A275ABD00577DC9 /* BaseViewController.swift */,
+				22CE9DCE2A298F8F006C5153 /* BaseTableController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -119,6 +128,7 @@
 		22CE9DAB2A285107006C5153 /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				22CE9DC82A298A57006C5153 /* PersonalCenter */,
 				22CE9DB42A286AC8006C5153 /* Main */,
 			);
 			path = Component;
@@ -129,6 +139,7 @@
 			children = (
 				22CE9DB22A28670A006C5153 /* UIView+Extension.swift */,
 				22CE9DC02A287D0A006C5153 /* UIButton+Extension.swift */,
+				22CE9DD22A29BA21006C5153 /* Bundle+Extension.swift */,
 				22CE9DB02A2866DA006C5153 /* Prefix.swift */,
 			);
 			path = Extensions;
@@ -168,6 +179,39 @@
 				22CE9DC62A28A83E006C5153 /* ProductModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		22CE9DC82A298A57006C5153 /* PersonalCenter */ = {
+			isa = PBXGroup;
+			children = (
+				22CE9DC92A298A72006C5153 /* Controller */,
+				22CE9DCA2A298A72006C5153 /* Model */,
+				22CE9DCB2A298A72006C5153 /* View */,
+			);
+			path = PersonalCenter;
+			sourceTree = "<group>";
+		};
+		22CE9DC92A298A72006C5153 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				22CE9DD02A29B58D006C5153 /* AboutUsController.swift */,
+				22CE9DCC2A298A99006C5153 /* PersonalCenterController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		22CE9DCA2A298A72006C5153 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		22CE9DCB2A298A72006C5153 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		72DF2B2107695A4E8A47C033 /* Frameworks */ = {
@@ -326,6 +370,10 @@
 				22CE9DB62A286AF0006C5153 /* HomeController.swift in Sources */,
 				22CE9DC52A289AEC006C5153 /* HomeProductCell.swift in Sources */,
 				22CE9DB12A2866DA006C5153 /* Prefix.swift in Sources */,
+				22CE9DCF2A298F8F006C5153 /* BaseTableController.swift in Sources */,
+				22CE9DCD2A298A99006C5153 /* PersonalCenterController.swift in Sources */,
+				22CE9DD32A29BA21006C5153 /* Bundle+Extension.swift in Sources */,
+				22CE9DD12A29B58D006C5153 /* AboutUsController.swift in Sources */,
 				2210F94D2A275ABD00577DC9 /* BaseViewController.swift in Sources */,
 				22CE9DC12A287D0A006C5153 /* UIButton+Extension.swift in Sources */,
 				22CE9DC72A28A83E006C5153 /* ProductModel.swift in Sources */,
@@ -485,7 +533,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = org.cocoapods.CashMore;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -515,7 +563,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = org.cocoapods.CashMore;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
