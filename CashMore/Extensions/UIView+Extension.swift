@@ -32,6 +32,7 @@ extension TM where Base : UIView {
     
     /// add a bottom border
     func bottomBorder(width: CGFloat, borderColor: UIColor) {
+        base.layoutIfNeeded()
         let rect = CGRect(x: 0, y: base.bounds.height - width, width: base.bounds.width, height: width)
         drawBorder(rect: rect, color: borderColor)
     }

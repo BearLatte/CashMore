@@ -8,6 +8,10 @@
 import UIKit
 import SnapKit
 
+enum AttendPattern {
+    case push, present
+}
+
 class BaseViewController: UIViewController {
     
     override var title: String? {
@@ -33,6 +37,8 @@ class BaseViewController: UIViewController {
             backBtn.setImage(isLightBack ? R.image.back_arrow() : R.image.back_arrow_dark(), for: .normal)
         }
     }
+    
+    var pattern : AttendPattern = .push
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,7 +71,7 @@ class BaseViewController: UIViewController {
             make.top.equalTo(Constants.topSafeArea + 15)
             make.left.equalTo(15)
         }
-        backBtn.addTarget(self, action: #selector(pop2parant), for: .touchUpInside)
+        backBtn.addTarget(self, action: #selector(goBack), for: .touchUpInside)
         
         
         view.addSubview(titleLabel)
@@ -75,7 +81,11 @@ class BaseViewController: UIViewController {
         }
     }
     
-    @objc func pop2parant() {
-        navigationController?.popViewController(animated: true)
+    @objc func goBack() {
+        if pattern == .push {
+            navigationController?.popViewController(animated: true)
+        } else {
+            dismiss(animated: true)
+        }
     }
 }

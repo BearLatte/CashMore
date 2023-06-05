@@ -59,6 +59,8 @@ extension Constants {
 extension Constants {
     /// theme color
     static var themeColor           = DynamicColor(hexString: "#FF5300")
+    /// theme disabled color
+    static var themeDisabledColor   = DynamicColor(hexString: "#c7c7c7")
     /// theme dark color
     static var themeDarkColor       = DynamicColor(hexString: "#3D4455")
     /// theme background color
@@ -77,6 +79,7 @@ extension Constants {
     static var formTitleTextColor   = DynamicColor(hexString: "#b4b4b4")
     /// dark btn background color
     static var darkBtnBgColor       = DynamicColor(hexString: "#3D4455")
+    static var borderColor          = DynamicColor(hexString: "#E6E6E6")
 }
 
 // MARK: - method

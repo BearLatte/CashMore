@@ -123,13 +123,16 @@ extension PersonalCenterController {
             cellContent.text  = title
             cellContent.image = icon
             cellContent.textProperties.font = Constants.pingFangSCRegularFont(18)
+            cellContent.textProperties.color = Constants.themeTitleColor
             cell.contentConfiguration = cellContent
         } else {
             cell.textLabel?.text = title
+            cell.textLabel?.textColor = Constants.themeTitleColor
             cell.textLabel?.font = Constants.pingFangSCRegularFont(18)
             cell.imageView?.image = icon
         }
         cell.accessoryView = UIImageView(image: indicator)
+        cell.backgroundColor = .clear
         return cell
     }
     

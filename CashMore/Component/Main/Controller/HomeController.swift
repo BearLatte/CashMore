@@ -58,11 +58,18 @@ extension HomeController : HomeHeaderViewDelegate {
     }
     
     func headerViewFeedbackTapAction(headerView: HomeHeaderView) {
-        Constants.debugLog(headerView)
+        if Constants.isLogin {
+            navigationController?.pushViewController(FeedbackController(), animated: true)
+        } else {
+            let login = LoginController()
+            login.pattern = .present
+            login.modalPresentationStyle = .fullScreen
+            self.present(login, animated: true)
+        }
     }
     
     func headerViewOdersTapAction(headerView: HomeHeaderView) {
-        Constants.debugLog(headerView)
+
     }
     
     func headerViewMeTapAction(headerView: HomeHeaderView) {
@@ -84,6 +91,18 @@ extension HomeController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProductCell", for: indexPath) as! HomeProductCell
         cell.product = products[indexPath.row]
+        cell.loanAction = { [weak self] in
+            if Constants.isLogin && Constants.isCertified {
+                
+            } else if !Constants.isLogin {
+                let loginView = LoginController()
+                loginView.pattern = .present
+                loginView.modalPresentationStyle = .fullScreen
+                self?.present(loginView, animated: true)
+            } else if !Constants.isCertified {
+                
+            }
+        }
         return cell
     }
     

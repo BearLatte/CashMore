@@ -20,6 +20,9 @@ class HomeProductCell: UITableViewCell {
         }
     }
     
+    /// loan now button click action
+    var loanAction : (() -> Void)?
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         selectionStyle = .none
@@ -97,6 +100,10 @@ class HomeProductCell: UITableViewCell {
         }
     }
     
+    @objc func loanBtnDidClick() {
+        loanAction?()
+    }
+    
     private lazy var container : UIView = {
         let view = UIView()
         view.backgroundColor = Constants.pureWhite
@@ -153,6 +160,7 @@ class HomeProductCell: UITableViewCell {
         btn.setTitle("Loan now", for: .normal)
         btn.setTitleColor(Constants.pureWhite, for: .normal)
         btn.layer.cornerRadius = 22
+        btn.addTarget(self, action: #selector(loanBtnDidClick), for: .touchUpInside)
         return btn
     }()
     

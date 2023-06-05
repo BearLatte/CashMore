@@ -6,6 +6,7 @@ target 'CashMore' do
   pod 'R.swift'
   pod 'SnapKit'
   pod 'DynamicColor'
+  pod 'IQKeyboardManagerSwift'
 end
 
 post_install do |installer|
