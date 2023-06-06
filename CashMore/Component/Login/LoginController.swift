@@ -6,32 +6,22 @@
 //
 
 import UIKit
+import IQKeyboardManagerSwift
+
 
 class LoginController: BaseViewController {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        view.endEditing(true)
+    }
+    
     override func configUI() {
         super.configUI()
         isLightBack = true
         view.layer.contents = R.image.login_bg()?.cgImage
-        
-//        let scrollView = UIScrollView()
-//        scrollView.showsVerticalScrollIndicator = false
-//        scrollView.showsHorizontalScrollIndicator = false
-//        view.addSubview(scrollView)
-//        scrollView.snp.makeConstraints { make in
-//            make.edges.equalTo(UIEdgeInsets.zero)
-//        }
-//
-//        let contentView = UIView()
-//        contentView.backgroundColor = Constants.random
-//        scrollView.addSubview(contentView)
-//        contentView.snp.makeConstraints { make in
-//            make.top.left.right.bottom.equalToSuperview()
-//            make.size.equalTo(Constants.screenBounds.size)
-//        }
-        
         let card = UIView()
         card.backgroundColor = Constants.pureWhite
-        view.addSubview(card)
+        view.insertSubview(card, at: 0)
         card.snp.makeConstraints { make in
             make.size.equalTo(CGSize(width: 335, height: 600))
             make.center.equalToSuperview()
@@ -154,11 +144,6 @@ class LoginController: BaseViewController {
         }
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesBegan(touches, with: event)
-        view.endEditing(true)
-    }
-    
     private weak var phoneInputField : UITextField!
     private weak var sendOtpBtn : CaptchaButton!
     private lazy var boxField  = {
@@ -174,6 +159,7 @@ class LoginController: BaseViewController {
         field.textFont     = Constants.pingFangSCMediumFont(20)
         field.textColor    = Constants.themeTitleColor
         field.trackTintColor = Constants.themeColor
+        field.autoResignFirstResponseWhenInputFinished = true
         return field
     }()
     
@@ -184,14 +170,7 @@ class LoginController: BaseViewController {
         return btn
     }()
     
-    private lazy var loginBtn = {
-        let loginBtn = UIButton(type: .custom)
-        loginBtn.setTitle("Login now", for: .normal)
-        loginBtn.backgroundColor = Constants.themeColor
-        loginBtn.layer.cornerRadius = 25
-        loginBtn.titleLabel?.font = Constants.pingFangSCMediumFont(18)
-        return loginBtn
-    }()
+    private lazy var loginBtn = Constants.themeBtn(with: "Login Now")
     
     @objc func phoneInputTextChanged(textField: UITextField) {
         guard let mobleNumber = textField.text else {

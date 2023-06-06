@@ -9,6 +9,7 @@ import UIKit
 
 extension TM where Base : UIButton {
     func centerImageAndButton(_ gap: CGFloat, imageOnTop: Bool) {
+        base.layoutIfNeeded()
         guard let imageView = base.currentImage,
             let titleLabel = base.titleLabel?.text else { return }
 

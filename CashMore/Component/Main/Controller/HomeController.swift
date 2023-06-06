@@ -100,7 +100,7 @@ extension HomeController : UITableViewDataSource {
                 loginView.modalPresentationStyle = .fullScreen
                 self?.present(loginView, animated: true)
             } else if !Constants.isCertified {
-                
+                self?.navigationController?.pushViewController(KYCInfoController(), animated: true)
             }
         }
         return cell

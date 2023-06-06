@@ -20,6 +20,18 @@
 		226208822A2D8A35005E1F5C /* StringTrimExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2262087B2A2D8A35005E1F5C /* StringTrimExtension.swift */; };
 		226208832A2D8A35005E1F5C /* ActiveBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2262087C2A2D8A35005E1F5C /* ActiveBuilder.swift */; };
 		226208842A2D8A35005E1F5C /* ActiveType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2262087D2A2D8A35005E1F5C /* ActiveType.swift */; };
+		226208882A2D9EE5005E1F5C /* BaseScrollController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226208872A2D9EE5005E1F5C /* BaseScrollController.swift */; };
+		2262088A2A2D9FB2005E1F5C /* KYCInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226208892A2D9FB2005E1F5C /* KYCInfoController.swift */; };
+		2262088C2A2DBCD7005E1F5C /* FormInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2262088B2A2DBCD7005E1F5C /* FormInputView.swift */; };
+		226208912A2DCA25005E1F5C /* GenderChooseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226208902A2DCA25005E1F5C /* GenderChooseView.swift */; };
+		226208932A2DD7CF005E1F5C /* FormMultipleTextInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226208922A2DD7CF005E1F5C /* FormMultipleTextInputView.swift */; };
+		226208952A2DD88A005E1F5C /* UITextView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226208942A2DD88A005E1F5C /* UITextView+Extension.swift */; };
+		226208972A2DE679005E1F5C /* PhotoTipSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226208962A2DE679005E1F5C /* PhotoTipSheet.swift */; };
+		226208992A2DF3CB005E1F5C /* PersonalnfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226208982A2DF3CB005E1F5C /* PersonalnfoController.swift */; };
+		2262089B2A2ECB12005E1F5C /* ContactInfoInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2262089A2A2ECB12005E1F5C /* ContactInfoInputView.swift */; };
+		2262089D2A2ED3D6005E1F5C /* ContactInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2262089C2A2ED3D6005E1F5C /* ContactInfoController.swift */; };
+		2262089F2A2ED8C6005E1F5C /* BankInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2262089E2A2ED8C6005E1F5C /* BankInfoController.swift */; };
+		226208A12A2EDCAB005E1F5C /* TipsSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226208A02A2EDCAB005E1F5C /* TipsSheet.swift */; };
 		22CE9DA72A28395F006C5153 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CE9DA62A28395F006C5153 /* R.generated.swift */; };
 		22CE9DAA2A283C03006C5153 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CE9DA92A283C03006C5153 /* Constants.swift */; };
 		22CE9DB12A2866DA006C5153 /* Prefix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CE9DB02A2866DA006C5153 /* Prefix.swift */; };
@@ -55,6 +67,18 @@
 		2262087B2A2D8A35005E1F5C /* StringTrimExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringTrimExtension.swift; sourceTree = "<group>"; };
 		2262087C2A2D8A35005E1F5C /* ActiveBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActiveBuilder.swift; sourceTree = "<group>"; };
 		2262087D2A2D8A35005E1F5C /* ActiveType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActiveType.swift; sourceTree = "<group>"; };
+		226208872A2D9EE5005E1F5C /* BaseScrollController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseScrollController.swift; sourceTree = "<group>"; };
+		226208892A2D9FB2005E1F5C /* KYCInfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCInfoController.swift; sourceTree = "<group>"; };
+		2262088B2A2DBCD7005E1F5C /* FormInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormInputView.swift; sourceTree = "<group>"; };
+		226208902A2DCA25005E1F5C /* GenderChooseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderChooseView.swift; sourceTree = "<group>"; };
+		226208922A2DD7CF005E1F5C /* FormMultipleTextInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormMultipleTextInputView.swift; sourceTree = "<group>"; };
+		226208942A2DD88A005E1F5C /* UITextView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+Extension.swift"; sourceTree = "<group>"; };
+		226208962A2DE679005E1F5C /* PhotoTipSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoTipSheet.swift; sourceTree = "<group>"; };
+		226208982A2DF3CB005E1F5C /* PersonalnfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalnfoController.swift; sourceTree = "<group>"; };
+		2262089A2A2ECB12005E1F5C /* ContactInfoInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInfoInputView.swift; sourceTree = "<group>"; };
+		2262089C2A2ED3D6005E1F5C /* ContactInfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInfoController.swift; sourceTree = "<group>"; };
+		2262089E2A2ED8C6005E1F5C /* BankInfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankInfoController.swift; sourceTree = "<group>"; };
+		226208A02A2EDCAB005E1F5C /* TipsSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipsSheet.swift; sourceTree = "<group>"; };
 		22CE9DA62A28395F006C5153 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		22CE9DA92A283C03006C5153 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		22CE9DB02A2866DA006C5153 /* Prefix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Prefix.swift; sourceTree = "<group>"; };
@@ -126,6 +150,7 @@
 				2210F9362A27572F00577DC9 /* AppDelegate.swift */,
 				2210F94C2A275ABD00577DC9 /* BaseViewController.swift */,
 				22CE9DCE2A298F8F006C5153 /* BaseTableController.swift */,
+				226208872A2D9EE5005E1F5C /* BaseScrollController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -163,6 +188,46 @@
 			path = ActiveLabel;
 			sourceTree = "<group>";
 		};
+		226208862A2D9E49005E1F5C /* Certification */ = {
+			isa = PBXGroup;
+			children = (
+				2262088E2A2DCA09005E1F5C /* Controller */,
+				2262088F2A2DCA09005E1F5C /* Model */,
+				2262088D2A2DCA09005E1F5C /* View */,
+			);
+			path = Certification;
+			sourceTree = "<group>";
+		};
+		2262088D2A2DCA09005E1F5C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				226208962A2DE679005E1F5C /* PhotoTipSheet.swift */,
+				2262088B2A2DBCD7005E1F5C /* FormInputView.swift */,
+				226208902A2DCA25005E1F5C /* GenderChooseView.swift */,
+				2262089A2A2ECB12005E1F5C /* ContactInfoInputView.swift */,
+				226208922A2DD7CF005E1F5C /* FormMultipleTextInputView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		2262088E2A2DCA09005E1F5C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				226208892A2D9FB2005E1F5C /* KYCInfoController.swift */,
+				2262089E2A2ED8C6005E1F5C /* BankInfoController.swift */,
+				226208982A2DF3CB005E1F5C /* PersonalnfoController.swift */,
+				2262089C2A2ED3D6005E1F5C /* ContactInfoController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		2262088F2A2DCA09005E1F5C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		22CE9DA82A283BE1006C5153 /* Util */ = {
 			isa = PBXGroup;
 			children = (
@@ -170,6 +235,7 @@
 				226208712A2D794D005E1F5C /* VerifyBoxField */,
 				22CE9DA92A283C03006C5153 /* Constants.swift */,
 				22CE9DDD2A29E4DE006C5153 /* CaptchaButton.swift */,
+				226208A02A2EDCAB005E1F5C /* TipsSheet.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -180,6 +246,7 @@
 				22CE9DD42A29BF4A006C5153 /* Login */,
 				22CE9DB42A286AC8006C5153 /* Main */,
 				22CE9DD72A29C602006C5153 /* Feedback */,
+				226208862A2D9E49005E1F5C /* Certification */,
 				22CE9DC82A298A57006C5153 /* PersonalCenter */,
 			);
 			path = Component;
@@ -192,6 +259,7 @@
 				22CE9DC02A287D0A006C5153 /* UIButton+Extension.swift */,
 				22CE9DD22A29BA21006C5153 /* Bundle+Extension.swift */,
 				22CE9DDF2A29ED7D006C5153 /* UIImage+Extension.swift */,
+				226208942A2DD88A005E1F5C /* UITextView+Extension.swift */,
 				22CE9DB02A2866DA006C5153 /* Prefix.swift */,
 			);
 			path = Extensions;
@@ -443,28 +511,40 @@
 			files = (
 				226208812A2D8A35005E1F5C /* RegexParser.swift in Sources */,
 				226208802A2D8A35005E1F5C /* ActiveLabel.swift in Sources */,
+				226208912A2DCA25005E1F5C /* GenderChooseView.swift in Sources */,
 				2210F9372A27572F00577DC9 /* AppDelegate.swift in Sources */,
 				226208772A2D794D005E1F5C /* VerifyBoxFieldTextRange.swift in Sources */,
 				22CE9DDE2A29E4DE006C5153 /* CaptchaButton.swift in Sources */,
 				22CE9DB32A28670A006C5153 /* UIView+Extension.swift in Sources */,
 				22CE9DB62A286AF0006C5153 /* HomeController.swift in Sources */,
+				2262088C2A2DBCD7005E1F5C /* FormInputView.swift in Sources */,
 				22CE9DC52A289AEC006C5153 /* HomeProductCell.swift in Sources */,
+				2262089F2A2ED8C6005E1F5C /* BankInfoController.swift in Sources */,
+				226208972A2DE679005E1F5C /* PhotoTipSheet.swift in Sources */,
 				22CE9DB12A2866DA006C5153 /* Prefix.swift in Sources */,
 				22CE9DCF2A298F8F006C5153 /* BaseTableController.swift in Sources */,
 				22CE9DE02A29ED7D006C5153 /* UIImage+Extension.swift in Sources */,
 				22CE9DCD2A298A99006C5153 /* PersonalCenterController.swift in Sources */,
 				226208832A2D8A35005E1F5C /* ActiveBuilder.swift in Sources */,
+				226208952A2DD88A005E1F5C /* UITextView+Extension.swift in Sources */,
 				22CE9DD32A29BA21006C5153 /* Bundle+Extension.swift in Sources */,
 				22CE9DD12A29B58D006C5153 /* AboutUsController.swift in Sources */,
 				2210F94D2A275ABD00577DC9 /* BaseViewController.swift in Sources */,
+				2262089D2A2ED3D6005E1F5C /* ContactInfoController.swift in Sources */,
 				22CE9DC12A287D0A006C5153 /* UIButton+Extension.swift in Sources */,
 				22CE9DD62A29BF68006C5153 /* LoginController.swift in Sources */,
 				226208762A2D794D005E1F5C /* VerifyBoxFieldTextPosition.swift in Sources */,
 				226208822A2D8A35005E1F5C /* StringTrimExtension.swift in Sources */,
+				226208932A2DD7CF005E1F5C /* FormMultipleTextInputView.swift in Sources */,
+				226208A12A2EDCAB005E1F5C /* TipsSheet.swift in Sources */,
 				22CE9DC72A28A83E006C5153 /* ProductModel.swift in Sources */,
 				226208842A2D8A35005E1F5C /* ActiveType.swift in Sources */,
+				226208882A2D9EE5005E1F5C /* BaseScrollController.swift in Sources */,
+				2262088A2A2D9FB2005E1F5C /* KYCInfoController.swift in Sources */,
+				226208992A2DF3CB005E1F5C /* PersonalnfoController.swift in Sources */,
 				22CE9DA72A28395F006C5153 /* R.generated.swift in Sources */,
 				22CE9DDA2A29C631006C5153 /* FeedbackController.swift in Sources */,
+				2262089B2A2ECB12005E1F5C /* ContactInfoInputView.swift in Sources */,
 				22CE9DAA2A283C03006C5153 /* Constants.swift in Sources */,
 				22CE9DBD2A28716D006C5153 /* HomeHeaderView.swift in Sources */,
 				22CE9DC32A289624006C5153 /* HomeProductHeaderView.swift in Sources */,

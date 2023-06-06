@@ -6,13 +6,14 @@
 //
 
 import Foundation
-import DynamicColor
+@_exported import DynamicColor
 
 struct Constants {
     static let IS_LOGIN = "IS_LOGIN"
     static let IS_CERTIFIED = "IS_CERTIFIED"
     static var isLogin : Bool {
-        UserDefaults.standard.bool(forKey: IS_LOGIN)
+        true
+//        UserDefaults.standard.bool(forKey: IS_LOGIN)
     }
     static var isCertified : Bool {
         UserDefaults.standard.bool(forKey: IS_CERTIFIED)
@@ -84,6 +85,15 @@ extension Constants {
 
 // MARK: - method
 extension Constants {
+    /// Form page label indicator for camera
+    static var indicatorLabel : UILabel {
+        let lb = UILabel()
+        lb.text = "Clear & original documents"
+        lb.font = Constants.pingFangSCRegularFont(14)
+        lb.textColor = Constants.themeSubtitleColor
+        return lb
+    }
+    
     /// debug environment log
     /// - Parameters:
     ///   - file: file name
@@ -124,4 +134,38 @@ extension Constants {
     static var random : UIColor {
         UIColor(red: CGFloat(arc4random() % 256) / 255.0, green: CGFloat(arc4random() % 256) / 255.0, blue: CGFloat(arc4random() % 256) / 255.0, alpha: 1)
     }
+    
+    /// Create a UIButton with an image on top
+    static func imageOnTopBtn(with image: UIImage?, title: String) -> UIButton {
+        let btn = UIButton(type: .custom)
+        btn.setTitle(title, for: .normal)
+        btn.setImage(image, for: .normal)
+        btn.setTitleColor(Constants.pureWhite, for: .normal)
+        btn.titleLabel?.font = Constants.pingFangSCRegularFont(14)
+        if #available(iOS 15.0, *) {
+            var btnConfig = UIButton.Configuration.borderedProminent()
+            btnConfig.baseBackgroundColor = Constants.themeColor
+            btnConfig.imagePadding = 5
+            btnConfig.imagePlacement = .top
+            btn.configuration = btnConfig
+        } else {
+            btn.tm.centerImageAndButton(0, imageOnTop: true)
+            btn.backgroundColor = Constants.themeColor
+            btn.layer.cornerRadius = 10
+        }
+        
+        return btn
+    }
+    
+    static func themeBtn(with title: String) -> UIButton {
+        let btn = UIButton(type: .custom)
+        btn.setTitle(title, for: .normal)
+        btn.backgroundColor = Constants.themeColor
+        btn.layer.cornerRadius = 25
+        btn.titleLabel?.font = Constants.pingFangSCMediumFont(18)
+        btn.setTitleColor(pureWhite, for: .normal)
+        return btn
+    }
+    
+    
 }
