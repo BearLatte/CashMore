@@ -32,6 +32,16 @@
 		2262089D2A2ED3D6005E1F5C /* ContactInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2262089C2A2ED3D6005E1F5C /* ContactInfoController.swift */; };
 		2262089F2A2ED8C6005E1F5C /* BankInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2262089E2A2ED8C6005E1F5C /* BankInfoController.swift */; };
 		226208A12A2EDCAB005E1F5C /* TipsSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226208A02A2EDCAB005E1F5C /* TipsSheet.swift */; };
+		226208A32A2EFE00005E1F5C /* OrderPagingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226208A22A2EFE00005E1F5C /* OrderPagingController.swift */; };
+		226208A52A2F0AB3005E1F5C /* OrderListTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226208A42A2F0AB3005E1F5C /* OrderListTitleCell.swift */; };
+		226208A72A2F102B005E1F5C /* OrderListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226208A62A2F102B005E1F5C /* OrderListController.swift */; };
+		226208B42A2F365F005E1F5C /* UIButton+PagingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226208B32A2F365F005E1F5C /* UIButton+PagingView.swift */; };
+		226208B62A2F3796005E1F5C /* UIScreen+PageingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226208B52A2F3796005E1F5C /* UIScreen+PageingView.swift */; };
+		226208C02A2F3827005E1F5C /* PagingContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226208BF2A2F3827005E1F5C /* PagingContentView.swift */; };
+		226208C22A2F395B005E1F5C /* PagingContentScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226208C12A2F395B005E1F5C /* PagingContentScrollView.swift */; };
+		226208C42A2F3CAB005E1F5C /* PagingContentCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226208C32A2F3CAB005E1F5C /* PagingContentCollectionView.swift */; };
+		226208C62A2F3FEC005E1F5C /* PagingTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226208C52A2F3FEC005E1F5C /* PagingTitleView.swift */; };
+		226208C82A2F401A005E1F5C /* PagingTitleViewConfigure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226208C72A2F401A005E1F5C /* PagingTitleViewConfigure.swift */; };
 		22CE9DA72A28395F006C5153 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CE9DA62A28395F006C5153 /* R.generated.swift */; };
 		22CE9DAA2A283C03006C5153 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CE9DA92A283C03006C5153 /* Constants.swift */; };
 		22CE9DB12A2866DA006C5153 /* Prefix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CE9DB02A2866DA006C5153 /* Prefix.swift */; };
@@ -79,6 +89,16 @@
 		2262089C2A2ED3D6005E1F5C /* ContactInfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInfoController.swift; sourceTree = "<group>"; };
 		2262089E2A2ED8C6005E1F5C /* BankInfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankInfoController.swift; sourceTree = "<group>"; };
 		226208A02A2EDCAB005E1F5C /* TipsSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipsSheet.swift; sourceTree = "<group>"; };
+		226208A22A2EFE00005E1F5C /* OrderPagingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderPagingController.swift; sourceTree = "<group>"; };
+		226208A42A2F0AB3005E1F5C /* OrderListTitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderListTitleCell.swift; sourceTree = "<group>"; };
+		226208A62A2F102B005E1F5C /* OrderListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderListController.swift; sourceTree = "<group>"; };
+		226208B32A2F365F005E1F5C /* UIButton+PagingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+PagingView.swift"; sourceTree = "<group>"; };
+		226208B52A2F3796005E1F5C /* UIScreen+PageingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+PageingView.swift"; sourceTree = "<group>"; };
+		226208BF2A2F3827005E1F5C /* PagingContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingContentView.swift; sourceTree = "<group>"; };
+		226208C12A2F395B005E1F5C /* PagingContentScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingContentScrollView.swift; sourceTree = "<group>"; };
+		226208C32A2F3CAB005E1F5C /* PagingContentCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingContentCollectionView.swift; sourceTree = "<group>"; };
+		226208C52A2F3FEC005E1F5C /* PagingTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingTitleView.swift; sourceTree = "<group>"; };
+		226208C72A2F401A005E1F5C /* PagingTitleViewConfigure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingTitleViewConfigure.swift; sourceTree = "<group>"; };
 		22CE9DA62A28395F006C5153 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		22CE9DA92A283C03006C5153 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		22CE9DB02A2866DA006C5153 /* Prefix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Prefix.swift; sourceTree = "<group>"; };
@@ -228,9 +248,48 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		226208AF2A2F364B005E1F5C /* PagingView */ = {
+			isa = PBXGroup;
+			children = (
+				226208B02A2F364B005E1F5C /* Extentsion */,
+				226208B12A2F364B005E1F5C /* Content */,
+				226208B22A2F364B005E1F5C /* PagingTitle */,
+			);
+			path = PagingView;
+			sourceTree = "<group>";
+		};
+		226208B02A2F364B005E1F5C /* Extentsion */ = {
+			isa = PBXGroup;
+			children = (
+				226208B32A2F365F005E1F5C /* UIButton+PagingView.swift */,
+				226208B52A2F3796005E1F5C /* UIScreen+PageingView.swift */,
+			);
+			path = Extentsion;
+			sourceTree = "<group>";
+		};
+		226208B12A2F364B005E1F5C /* Content */ = {
+			isa = PBXGroup;
+			children = (
+				226208BF2A2F3827005E1F5C /* PagingContentView.swift */,
+				226208C12A2F395B005E1F5C /* PagingContentScrollView.swift */,
+				226208C32A2F3CAB005E1F5C /* PagingContentCollectionView.swift */,
+			);
+			path = Content;
+			sourceTree = "<group>";
+		};
+		226208B22A2F364B005E1F5C /* PagingTitle */ = {
+			isa = PBXGroup;
+			children = (
+				226208C52A2F3FEC005E1F5C /* PagingTitleView.swift */,
+				226208C72A2F401A005E1F5C /* PagingTitleViewConfigure.swift */,
+			);
+			path = PagingTitle;
+			sourceTree = "<group>";
+		};
 		22CE9DA82A283BE1006C5153 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				226208AF2A2F364B005E1F5C /* PagingView */,
 				226208782A2D8A35005E1F5C /* ActiveLabel */,
 				226208712A2D794D005E1F5C /* VerifyBoxField */,
 				22CE9DA92A283C03006C5153 /* Constants.swift */,
@@ -279,6 +338,8 @@
 			isa = PBXGroup;
 			children = (
 				22CE9DB52A286AF0006C5153 /* HomeController.swift */,
+				226208A22A2EFE00005E1F5C /* OrderPagingController.swift */,
+				226208A62A2F102B005E1F5C /* OrderListController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -289,6 +350,7 @@
 				22CE9DBC2A28716D006C5153 /* HomeHeaderView.swift */,
 				22CE9DC22A289624006C5153 /* HomeProductHeaderView.swift */,
 				22CE9DC42A289AEC006C5153 /* HomeProductCell.swift */,
+				226208A42A2F0AB3005E1F5C /* OrderListTitleCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -509,6 +571,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				226208C82A2F401A005E1F5C /* PagingTitleViewConfigure.swift in Sources */,
+				226208B62A2F3796005E1F5C /* UIScreen+PageingView.swift in Sources */,
 				226208812A2D8A35005E1F5C /* RegexParser.swift in Sources */,
 				226208802A2D8A35005E1F5C /* ActiveLabel.swift in Sources */,
 				226208912A2DCA25005E1F5C /* GenderChooseView.swift in Sources */,
@@ -517,7 +581,9 @@
 				22CE9DDE2A29E4DE006C5153 /* CaptchaButton.swift in Sources */,
 				22CE9DB32A28670A006C5153 /* UIView+Extension.swift in Sources */,
 				22CE9DB62A286AF0006C5153 /* HomeController.swift in Sources */,
+				226208C22A2F395B005E1F5C /* PagingContentScrollView.swift in Sources */,
 				2262088C2A2DBCD7005E1F5C /* FormInputView.swift in Sources */,
+				226208A32A2EFE00005E1F5C /* OrderPagingController.swift in Sources */,
 				22CE9DC52A289AEC006C5153 /* HomeProductCell.swift in Sources */,
 				2262089F2A2ED8C6005E1F5C /* BankInfoController.swift in Sources */,
 				226208972A2DE679005E1F5C /* PhotoTipSheet.swift in Sources */,
@@ -525,14 +591,18 @@
 				22CE9DCF2A298F8F006C5153 /* BaseTableController.swift in Sources */,
 				22CE9DE02A29ED7D006C5153 /* UIImage+Extension.swift in Sources */,
 				22CE9DCD2A298A99006C5153 /* PersonalCenterController.swift in Sources */,
+				226208C02A2F3827005E1F5C /* PagingContentView.swift in Sources */,
 				226208832A2D8A35005E1F5C /* ActiveBuilder.swift in Sources */,
 				226208952A2DD88A005E1F5C /* UITextView+Extension.swift in Sources */,
 				22CE9DD32A29BA21006C5153 /* Bundle+Extension.swift in Sources */,
 				22CE9DD12A29B58D006C5153 /* AboutUsController.swift in Sources */,
 				2210F94D2A275ABD00577DC9 /* BaseViewController.swift in Sources */,
+				226208B42A2F365F005E1F5C /* UIButton+PagingView.swift in Sources */,
 				2262089D2A2ED3D6005E1F5C /* ContactInfoController.swift in Sources */,
 				22CE9DC12A287D0A006C5153 /* UIButton+Extension.swift in Sources */,
 				22CE9DD62A29BF68006C5153 /* LoginController.swift in Sources */,
+				226208A72A2F102B005E1F5C /* OrderListController.swift in Sources */,
+				226208A52A2F0AB3005E1F5C /* OrderListTitleCell.swift in Sources */,
 				226208762A2D794D005E1F5C /* VerifyBoxFieldTextPosition.swift in Sources */,
 				226208822A2D8A35005E1F5C /* StringTrimExtension.swift in Sources */,
 				226208932A2DD7CF005E1F5C /* FormMultipleTextInputView.swift in Sources */,
@@ -545,7 +615,9 @@
 				22CE9DA72A28395F006C5153 /* R.generated.swift in Sources */,
 				22CE9DDA2A29C631006C5153 /* FeedbackController.swift in Sources */,
 				2262089B2A2ECB12005E1F5C /* ContactInfoInputView.swift in Sources */,
+				226208C62A2F3FEC005E1F5C /* PagingTitleView.swift in Sources */,
 				22CE9DAA2A283C03006C5153 /* Constants.swift in Sources */,
+				226208C42A2F3CAB005E1F5C /* PagingContentCollectionView.swift in Sources */,
 				22CE9DBD2A28716D006C5153 /* HomeHeaderView.swift in Sources */,
 				22CE9DC32A289624006C5153 /* HomeProductHeaderView.swift in Sources */,
 				226208752A2D794D005E1F5C /* VerifyBoxField.swift in Sources */,

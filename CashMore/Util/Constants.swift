@@ -80,6 +80,7 @@ extension Constants {
     static var formTitleTextColor   = DynamicColor(hexString: "#b4b4b4")
     /// dark btn background color
     static var darkBtnBgColor       = DynamicColor(hexString: "#3D4455")
+    static var darkBgColor          = DynamicColor(hexString: "#41465A")
     static var borderColor          = DynamicColor(hexString: "#E6E6E6")
 }
 

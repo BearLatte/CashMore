@@ -17,7 +17,7 @@ class LoginController: BaseViewController {
     
     override func configUI() {
         super.configUI()
-        isLightBack = true
+        isLightStyle = true
         view.layer.contents = R.image.login_bg()?.cgImage
         let card = UIView()
         card.backgroundColor = Constants.pureWhite

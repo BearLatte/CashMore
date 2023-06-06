@@ -8,7 +8,6 @@
 import UIKit
 
 class BaseTableController: BaseViewController {
-    
 
     lazy var tableView : UITableView = {
         let tb = UITableView(frame: .zero, style: .grouped)

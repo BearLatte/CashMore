@@ -32,11 +32,18 @@ class BaseViewController: UIViewController {
         }
     }
     
-    var isLightBack = false {
+    var isLightStyle = false {
         didSet {
-            backBtn.setImage(isLightBack ? R.image.back_arrow() : R.image.back_arrow_dark(), for: .normal)
+            if isLightStyle {
+                backBtn.setImage(R.image.back_arrow(), for: .normal)
+                titleLabel.textColor = Constants.pureWhite
+            } else {
+                backBtn.setImage(R.image.back_arrow_dark(), for: .normal)
+                titleLabel.textColor = Constants.themeTitleColor
+            }
         }
     }
+    
     
     var pattern : AttendPattern = .push
     

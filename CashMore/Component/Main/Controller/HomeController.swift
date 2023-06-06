@@ -69,7 +69,14 @@ extension HomeController : HomeHeaderViewDelegate {
     }
     
     func headerViewOdersTapAction(headerView: HomeHeaderView) {
-
+        if Constants.isLogin {
+            navigationController?.pushViewController(OrderPagingController(), animated: true)
+        } else {
+            let login = LoginController()
+            login.pattern = .present
+            login.modalPresentationStyle = .fullScreen
+            self.present(login, animated: true)
+        }
     }
     
     func headerViewMeTapAction(headerView: HomeHeaderView) {
