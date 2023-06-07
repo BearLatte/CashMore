@@ -28,6 +28,12 @@ class HomeController: BaseViewController {
             make.bottom.equalToSuperview().priority(.high)
         }
         tableView.layoutIfNeeded()
+        
+        
+//        NTTool.fetch(API.Home.productList,parameters: [:])
+//            .success { JSON in
+//                Constants.debugLog("请求成功了\(JSON)")
+//            }
     }
     
     private lazy var tableView : UITableView = { [weak self] in

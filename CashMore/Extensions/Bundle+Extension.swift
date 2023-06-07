@@ -13,4 +13,8 @@ extension TM where Base : Bundle {
     static var productVersion : String {
             (Base.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String) ?? ""
     }
+    
+    static var bundleId : String {
+        Base.main.bundleIdentifier ?? ""
+    }
 }

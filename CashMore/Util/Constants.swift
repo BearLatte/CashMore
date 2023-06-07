@@ -6,17 +6,49 @@
 //
 
 import Foundation
+import AdSupport
+import Adjust
 @_exported import DynamicColor
 
 struct Constants {
-    static let IS_LOGIN = "IS_LOGIN"
-    static let IS_CERTIFIED = "IS_CERTIFIED"
+    static let IS_LOGIN     = "kIS_LOGIN"
+    static let IS_CERTIFIED = "kIS_CERTIFIED"
+    static let ACCESS_TOKEN = "kACCESS_TOKEN"
+    static let ADJUST_APP_TOKEN = "94ai1nsbc1ds"
+    static var ADJUST_ENVIROMENT : String {
+        #if DEBUG
+        return ADJEnvironmentSandbox
+        #else
+        return ADJEnvironmentProduction
+        #endif
+    }
+    
     static var isLogin : Bool {
         true
 //        UserDefaults.standard.bool(forKey: IS_LOGIN)
     }
+    
     static var isCertified : Bool {
         UserDefaults.standard.bool(forKey: IS_CERTIFIED)
+    }
+    
+    static var token : String? {
+        UserDefaults.standard.string(forKey: ACCESS_TOKEN)
+    }
+    
+    static var deviceInfo : [String : Any] {
+        var dict : [String : Any] = [:]
+        dict["appVersion"] = Bundle.tm.productVersion
+        dict["bag"]   = Bundle.tm.bundleId
+        dict["brand"] = "Apple"
+        dict["deviceModel"] = UIDevice.current.model
+        dict["osVersion"] =  UIDevice.current.systemVersion
+        dict["operationSys"] = UIDevice.current.systemName
+        dict["advertising_id"] = ASIdentifierManager.shared().advertisingIdentifier.uuidString
+        dict["udid"] = UIDevice.current.identifierForVendor?.uuidString
+        dict["channel"] = "AppStore"
+        dict["mac"] = ""
+        return dict
     }
 }
 
@@ -55,6 +87,8 @@ extension Constants {
 extension Constants {
     static var pageTitleFont = pingFangSCMediumFont(18)
 }
+
+
 
 // MARK: - colors
 extension Constants {
@@ -136,6 +170,7 @@ extension Constants {
         UIColor(red: CGFloat(arc4random() % 256) / 255.0, green: CGFloat(arc4random() % 256) / 255.0, blue: CGFloat(arc4random() % 256) / 255.0, alpha: 1)
     }
     
+    
     /// Create a UIButton with an image on top
     static func imageOnTopBtn(with image: UIImage?, title: String) -> UIButton {
         let btn = UIButton(type: .custom)
@@ -167,6 +202,5 @@ extension Constants {
         btn.setTitleColor(pureWhite, for: .normal)
         return btn
     }
-    
     
 }
