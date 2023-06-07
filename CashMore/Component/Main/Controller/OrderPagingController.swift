@@ -48,7 +48,8 @@ class OrderPagingController: BaseViewController {
         titleViewConfig.color = UIColor(white: 1, alpha: 0.48)
         titleViewConfig.selectedColor = Constants.pureWhite
         titleViewConfig.indicatorColor = Constants.themeColor
-        titleViewConfig.indicatorScrollStyle = .Half
+        titleViewConfig.indicatorType = .Fixed
+        
         let titles = ["All Orders", "Disbursing", "To be Repaid", "Denied", "Repaid", "Overdue", "Pending"]
         let frame = CGRect(x: 14, y: tipsLabel.frame.maxY + 14, width: Constants.screenWidth - 28, height: 46)
         let pagingTitleView = PagingTitleView(frame: frame, titles: titles, configure: titleViewConfig)

@@ -42,7 +42,7 @@ struct PagingTitleViewConfigure {
     var indicatorBorderWidth: CGFloat = 0.0
     var indicatorBorderColor: UIColor = .clear
     var indicatorAdditionalWidth: CGFloat = 0.0
-    var indicatorFixedWidth: CGFloat = 20.0
+    var indicatorFixedWidth: CGFloat = 30.0
     var indicatorDynamicWidth: CGFloat = 20.0
     var indicatorToBottomDistance: CGFloat = 0.0
     var indicatorType: IndicatorType = .Default

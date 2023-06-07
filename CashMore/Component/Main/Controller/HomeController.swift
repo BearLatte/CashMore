@@ -42,13 +42,13 @@ class HomeController: BaseViewController {
         return table
     }()
     
-    let products = [
+    let products : [ProductModel] = [
         ProductModel(amount: "20000", amountTip: "Loan amount", desc: "Fee 0.1% / day 200 days", productName: "Freecash", score: "5.0"),
         ProductModel(amount: "20000", amountTip: "Loan amount", desc: "Fee 0.1% / day 200 days", productName: "Freecash", score: "4.7"),
         ProductModel(amount: "20000", amountTip: "Loan amount", desc: "Fee 0.1% / day 200 days", productName: "Freecash", score: "4.5"),
         ProductModel(amount: "20000", amountTip: "Loan amount", desc: "Fee 0.1% / day 200 days", productName: "Freecash", score: "4.9"),
         ProductModel(amount: "20000", amountTip: "Loan amount", desc: "Fee 0.1% / day 200 days", productName: "Freecash", score: "5.0"),
-        ProductModel(amount: "20000", amountTip: "Loan amount", desc: "Fee 0.1% / day 200 days", productName: "Freecash", score: "4.5"),
+        ProductModel(amount: "20000", amountTip: "Loan amount", desc: "Fee 0.1% / day 200 days", productName: "Freecash", score: "4.5")
     ]
 }
 

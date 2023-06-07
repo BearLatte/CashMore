@@ -10,7 +10,7 @@ import UIKit
 class BaseTableController: BaseViewController {
 
     lazy var tableView : UITableView = {
-        let tb = UITableView(frame: .zero, style: .grouped)
+        let tb = UITableView(frame: .zero, style: .plain)
         tb.showsVerticalScrollIndicator = false
         tb.showsHorizontalScrollIndicator = false
         tb.backgroundColor = .clear

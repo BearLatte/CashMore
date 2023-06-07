@@ -71,7 +71,7 @@ class HomeHeaderView: UIView {
     
     private lazy var banerView : UIImageView = {
         let imgView = UIImageView()
-        imgView.image = Constants.isLogin && Constants.isCertified ? R.image.certified() : R.image.uncertified()
+        imgView.image = Constants.isLogin && Constants.isLogin ? R.image.certified() : R.image.uncertified()
         imgView.isUserInteractionEnabled = true
         return imgView
     }()
