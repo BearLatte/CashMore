@@ -86,6 +86,8 @@ class BaseViewController: UIViewController {
             make.centerY.equalTo(backBtn)
             make.left.equalTo(backBtn.snp.right)
         }
+        
+        loadData()
     }
     
     @objc func goBack() {
@@ -94,5 +96,9 @@ class BaseViewController: UIViewController {
         } else {
             dismiss(animated: true)
         }
+    }
+    
+    func loadData() {
+        
     }
 }

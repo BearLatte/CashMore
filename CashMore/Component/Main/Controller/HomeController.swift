@@ -6,19 +6,22 @@
 //
 
 import UIKit
+import PullToRefresh
 
-class HomeController: BaseViewController {
+class HomeController: BaseTableController {
 
     override func configUI() {
         super.configUI()
         title = "Home Page"
         isHiddenBackBtn = true
-        view.addSubview(tableView)
-        tableView.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(10)
-            make.left.right.bottom.equalToSuperview()
-        }
-        
+        tableView.register(HomeProductHeaderView.self, forHeaderFooterViewReuseIdentifier: "SectionHeader")
+        tableView.register(HomeProductCell.self, forCellReuseIdentifier: "ProductCell")
+//        view.addSubview(tableView)
+//        tableView.snp.makeConstraints { make in
+//            make.top.equalTo(titleLabel.snp.bottom).offset(10)
+//            make.left.right.bottom.equalToSuperview()
+//        }
+//
         let headerView = HomeHeaderView()
         headerView.delegate = self
         tableView.tableHeaderView = headerView
@@ -29,38 +32,40 @@ class HomeController: BaseViewController {
         }
         tableView.layoutIfNeeded()
         
-        
-//        NTTool.fetch(API.Home.productList,parameters: [:])
-//            .success { JSON in
-//                Constants.debugLog("请求成功了\(JSON)")
-//            }
+        let refresher = PullToRefresh()
+        refresher.setEnable(isEnabled: true)
+        tableView.addPullToRefresh(refresher) { [weak self] in
+            self?.loadData()
+        }
     }
     
-    private lazy var tableView : UITableView = { [weak self] in
-        let table = UITableView(frame: .zero, style: .grouped)
-        table.showsVerticalScrollIndicator = false
-        table.backgroundColor = .clear
-        table.delegate = self
-        table.dataSource = self
-        table.separatorStyle = .none
-        table.register(HomeProductHeaderView.self, forHeaderFooterViewReuseIdentifier: "SectionHeader")
-        table.register(HomeProductCell.self, forCellReuseIdentifier: "ProductCell")
-        return table
-    }()
+    override func loadData() {
+        APIService.standered.fetchList(api: API.Home.productList, type: ProductModel(), listPath: "loanProductList") { [weak self] products in
+            self?.products = products
+            self?.tableView.reloadData()
+            self?.tableView.endRefreshing(at: .top)
+        }
+    }
     
-    let products : [ProductModel] = [
-        ProductModel(amount: "20000", amountTip: "Loan amount", desc: "Fee 0.1% / day 200 days", productName: "Freecash", score: "5.0"),
-        ProductModel(amount: "20000", amountTip: "Loan amount", desc: "Fee 0.1% / day 200 days", productName: "Freecash", score: "4.7"),
-        ProductModel(amount: "20000", amountTip: "Loan amount", desc: "Fee 0.1% / day 200 days", productName: "Freecash", score: "4.5"),
-        ProductModel(amount: "20000", amountTip: "Loan amount", desc: "Fee 0.1% / day 200 days", productName: "Freecash", score: "4.9"),
-        ProductModel(amount: "20000", amountTip: "Loan amount", desc: "Fee 0.1% / day 200 days", productName: "Freecash", score: "5.0"),
-        ProductModel(amount: "20000", amountTip: "Loan amount", desc: "Fee 0.1% / day 200 days", productName: "Freecash", score: "4.5")
-    ]
+//    private lazy var tableView : UITableView = { [weak self] in
+//        let table = UITableView(frame: .zero, style: .grouped)
+//        table.showsVerticalScrollIndicator = false
+//        table.backgroundColor = .clear
+//        table.delegate = self
+//        table.dataSource = self
+//        table.separatorStyle = .none
+//        table.register(HomeProductHeaderView.self, forHeaderFooterViewReuseIdentifier: "SectionHeader")
+//        table.register(HomeProductCell.self, forCellReuseIdentifier: "ProductCell")
+//        return table
+//    }()
+    
+    var products : [ProductModel?] = []
 }
 
 extension HomeController : HomeHeaderViewDelegate {
     func headerViewBanerTapAction(headerView: HomeHeaderView) {
         Constants.debugLog(headerView)
+
     }
     
     func headerViewFeedbackTapAction(headerView: HomeHeaderView) {
@@ -92,21 +97,15 @@ extension HomeController : HomeHeaderViewDelegate {
     
 }
 
-extension HomeController : UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return products.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+extension HomeController {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {products.count}
+
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProductCell", for: indexPath) as! HomeProductCell
         cell.product = products[indexPath.row]
         cell.loanAction = { [weak self] in
             if Constants.isLogin && Constants.isCertified {
-                
+
             } else if !Constants.isLogin {
                 let loginView = LoginController()
                 loginView.pattern = .present
@@ -119,9 +118,6 @@ extension HomeController : UITableViewDataSource {
         return cell
     }
     
-}
-
-extension HomeController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "SectionHeader") as? HomeProductHeaderView
         header?.title = "Top recommendation"

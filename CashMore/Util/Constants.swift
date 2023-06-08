@@ -203,4 +203,33 @@ extension Constants {
         return btn
     }
     
+    
+    static func configParameters(_ parameters: [String : Any]?) -> [String : Any] {
+        var body = parameters ?? [:]
+        body["noncestr"] = String.tm.randomString(with: 30)
+        // 生成一个参数进行验签
+        var  keyString : String
+        #if DEBUG
+        keyString = String.tm.sortedDictionary(with: body) + "&" + "indiakey=6ShEUmiNSp9sQWgBzS8N831zyJXlKEKrjqlcZBZN"
+        #else
+        keyString = ""
+        #endif
+        Constants.debugLog("加密前" + keyString)
+        let signStr = keyString.tm.md5.uppercased()
+        Constants.debugLog("加密后" + signStr)
+        body["sign"] = signStr
+        
+        return body
+    }
+    
+    static func topViewController(_ vc: UIViewController) -> UIViewController {
+        if vc.isKind(of: UITabBarController.self) {
+            return topViewController((vc as! UITabBarController).selectedViewController!)
+        } else if vc.isKind(of: UINavigationController.self) {
+            return topViewController((vc as! UINavigationController).topViewController!)
+        } else {
+            return vc
+        }
+    }
+    
 }

@@ -32,7 +32,7 @@ struct APIItem : APIProtocol {
     
     private let URLPath : String
     
-    init(_ path: String, desc: String, extra: String? = nil, method: ApiHTTPMethod = .get) {
+    init(_ path: String, desc: String, extra: String? = nil, method: ApiHTTPMethod = .post) {
         self.URLPath = path
         self.description = desc
         self.extra = extra

@@ -26,16 +26,17 @@ class NetworkRequest {
     // MARK: - Handler
 
     /// Handle request response
-    func handleResponse(response: AFDataResponse<Any>) {
+    func handleResponse(response: AFDataResponse<String>) {
         switch response.result {
         case .failure(let error):
             if let closure = failedHandler {
                 let hwe = NetworkError(code: error.responseCode ?? -1, localizedDescription: error.localizedDescription)
                 closure(hwe)
             }
-        case .success(let JSON):
-            if let closure = successHandler {
-                closure(JSON)
+        case .success(let jsonString):
+            if let baseModel = JSONDeserializer<BaseModel>.deserializeFrom(json: jsonString),
+               let closure = successHandler {
+                closure(baseModel)
             }
         }
         clearReference()

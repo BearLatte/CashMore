@@ -8,7 +8,10 @@ target 'CashMore' do
   pod 'SnapKit'
   pod 'Alamofire'
   pod 'HandyJSON'
+  pod 'ProgressHUD'
   pod 'DynamicColor'
+  pod 'KingfisherWebP'
+  pod 'PullToRefresher'
   pod 'EmptyDataSet-Swift'
   pod 'IQKeyboardManagerSwift'
 end

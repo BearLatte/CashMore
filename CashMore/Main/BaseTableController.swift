@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import PullToRefresh
 
 class BaseTableController: BaseViewController {
 
@@ -15,18 +16,28 @@ class BaseTableController: BaseViewController {
         tb.showsHorizontalScrollIndicator = false
         tb.backgroundColor = .clear
         tb.separatorStyle = .none
-        tb.dataSource = self
-        tb.delegate   = self
         return tb
     }()
     
     override func configUI() {
         super.configUI()
+        let pull2refresh = PullToRefresh()
+        pull2refresh.setEnable(isEnabled: true)
+        tableView.addPullToRefresh(pull2refresh) {
+            self.loadData()
+        }
+        
+        tableView.dataSource = self
+        tableView.delegate   = self
         view.addSubview(tableView)
         tableView.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(10)
             make.left.right.bottom.equalToSuperview()
         }
+    }
+    
+    deinit {
+        tableView.removeAllPullToRefresh()
     }
 }
 

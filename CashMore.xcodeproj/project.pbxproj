@@ -56,6 +56,9 @@
 		226208F52A3086C8005E1F5C /* AppTrackingTransparency.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 226208F42A3086C8005E1F5C /* AppTrackingTransparency.framework */; };
 		226208F92A30A472005E1F5C /* RandomKeyString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226208F82A30A472005E1F5C /* RandomKeyString.swift */; };
 		226208FB2A30A9E2005E1F5C /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226208FA2A30A9E2005E1F5C /* String+Extension.swift */; };
+		226208FF2A318A77005E1F5C /* BaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226208FE2A318A77005E1F5C /* BaseModel.swift */; };
+		226209012A31A1E2005E1F5C /* Codable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226209002A31A1E2005E1F5C /* Codable+Extension.swift */; };
+		226209032A31B350005E1F5C /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226209022A31B350005E1F5C /* APIService.swift */; };
 		22CE9DA72A28395F006C5153 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CE9DA62A28395F006C5153 /* R.generated.swift */; };
 		22CE9DAA2A283C03006C5153 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CE9DA92A283C03006C5153 /* Constants.swift */; };
 		22CE9DB12A2866DA006C5153 /* Prefix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CE9DB02A2866DA006C5153 /* Prefix.swift */; };
@@ -129,6 +132,9 @@
 		226208F62A3086D1005E1F5C /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		226208F82A30A472005E1F5C /* RandomKeyString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomKeyString.swift; sourceTree = "<group>"; };
 		226208FA2A30A9E2005E1F5C /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		226208FE2A318A77005E1F5C /* BaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseModel.swift; sourceTree = "<group>"; };
+		226209002A31A1E2005E1F5C /* Codable+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codable+Extension.swift"; sourceTree = "<group>"; };
+		226209022A31B350005E1F5C /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		22CE9DA62A28395F006C5153 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		22CE9DA92A283C03006C5153 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		22CE9DB02A2866DA006C5153 /* Prefix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Prefix.swift; sourceTree = "<group>"; };
@@ -325,12 +331,14 @@
 		226208D12A305428005E1F5C /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				226208E62A306B9A005E1F5C /* API.swift */,
+				226209022A31B350005E1F5C /* APIService.swift */,
 				226208E02A305EA7005E1F5C /* NetworkApi.swift */,
 				226208E22A305FEE005E1F5C /* NetworkTool.swift */,
 				226208DC2A305C77005E1F5C /* NetworkError.swift */,
 				226208DE2A305CFB005E1F5C /* NetworkMultipartData.swift */,
 				226208E42A3066E0005E1F5C /* NetworkRequest.swift */,
-				226208E62A306B9A005E1F5C /* API.swift */,
+				226208FE2A318A77005E1F5C /* BaseModel.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -364,13 +372,14 @@
 		22CE9DAF2A28669A006C5153 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				22CE9DB02A2866DA006C5153 /* Prefix.swift */,
 				22CE9DB22A28670A006C5153 /* UIView+Extension.swift */,
 				22CE9DC02A287D0A006C5153 /* UIButton+Extension.swift */,
 				22CE9DD22A29BA21006C5153 /* Bundle+Extension.swift */,
 				22CE9DDF2A29ED7D006C5153 /* UIImage+Extension.swift */,
 				226208942A2DD88A005E1F5C /* UITextView+Extension.swift */,
-				22CE9DB02A2866DA006C5153 /* Prefix.swift */,
 				226208FA2A30A9E2005E1F5C /* String+Extension.swift */,
+				226209002A31A1E2005E1F5C /* Codable+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -656,11 +665,13 @@
 				22CE9DCD2A298A99006C5153 /* PersonalCenterController.swift in Sources */,
 				226208C02A2F3827005E1F5C /* PagingContentView.swift in Sources */,
 				226208832A2D8A35005E1F5C /* ActiveBuilder.swift in Sources */,
+				226209012A31A1E2005E1F5C /* Codable+Extension.swift in Sources */,
 				226208952A2DD88A005E1F5C /* UITextView+Extension.swift in Sources */,
 				22CE9DD32A29BA21006C5153 /* Bundle+Extension.swift in Sources */,
 				22CE9DD12A29B58D006C5153 /* AboutUsController.swift in Sources */,
 				2210F94D2A275ABD00577DC9 /* BaseViewController.swift in Sources */,
 				226208B42A2F365F005E1F5C /* UIButton+PagingView.swift in Sources */,
+				226208FF2A318A77005E1F5C /* BaseModel.swift in Sources */,
 				2262089D2A2ED3D6005E1F5C /* ContactInfoController.swift in Sources */,
 				22CE9DC12A287D0A006C5153 /* UIButton+Extension.swift in Sources */,
 				226208FB2A30A9E2005E1F5C /* String+Extension.swift in Sources */,
@@ -671,6 +682,7 @@
 				226208762A2D794D005E1F5C /* VerifyBoxFieldTextPosition.swift in Sources */,
 				226208822A2D8A35005E1F5C /* StringTrimExtension.swift in Sources */,
 				226208DF2A305CFB005E1F5C /* NetworkMultipartData.swift in Sources */,
+				226209032A31B350005E1F5C /* APIService.swift in Sources */,
 				226208CA2A302612005E1F5C /* OrderModel.swift in Sources */,
 				226208932A2DD7CF005E1F5C /* FormMultipleTextInputView.swift in Sources */,
 				226208A12A2EDCAB005E1F5C /* TipsSheet.swift in Sources */,

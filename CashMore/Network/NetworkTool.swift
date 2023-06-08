@@ -8,7 +8,7 @@
 import Foundation
 import Alamofire
 
-typealias SuccessClosure = (_ JSON: Any) -> Void
+typealias SuccessClosure = (_ networkModel: BaseModel) -> Void
 typealias FailedClosure  = (_ error: NetworkError) -> Void
 typealias ProgressClosure = (Progress) -> Void
 
@@ -56,14 +56,16 @@ class NetworkTool {
         
         // config parameters
         
-
-        task.request = sessionManager.request(url,method: method, parameters: parameters, encoding: encoding, headers: h).validate().responseJSON { [weak self] response in
-            task.handleResponse(response: response)
-
-            if let index = self?.taskQueue.firstIndex(of: task) {
-                self?.taskQueue.remove(at: index)
+        Constants.debugLog("请求地址: \(url)\n请求头:\(headers ?? [:])\n请求体: \(parameters ?? [:])\n请求方式: \(method)\n ")
+        sessionManager
+            .request(url, method: method, parameters: parameters, encoding: encoding, headers: h)
+            .validate()
+            .responseString { [weak self] response in
+                task.handleResponse(response: response)
+                if let index = self?.taskQueue.firstIndex(of: task) {
+                    self?.taskQueue.remove(at: index)
+                }
             }
-        }
         taskQueue.append(task)
         return task
     }
@@ -75,8 +77,8 @@ class NetworkTool {
         if let tempHeaders = headers {
             h = HTTPHeaders(tempHeaders)
         }
-
-        task.request = sessionManager.upload(multipartFormData: { (multipartData) in
+        
+        sessionManager.upload(multipartFormData: { (multipartData) in
             // 1.参数 parameters
             if let parameters = parameters {
                 for p in parameters {
@@ -87,15 +89,16 @@ class NetworkTool {
             for d in datas {
                 multipartData.append(d.data, withName: d.name, fileName: d.fileName, mimeType: d.mimeType)
             }
-        }, to: url, method: method, headers: h).uploadProgress(queue: .main, closure: { (progress) in
+        }, to: url, method: method, headers: h).uploadProgress(queue: .main) { progress in
             task.handleProgress(progress: progress)
-        }).validate().responseJSON(completionHandler: { [weak self] response in
+        }
+        .validate()
+        .responseString { [weak self] response in
             task.handleResponse(response: response)
-
             if let index = self?.taskQueue.firstIndex(of: task) {
                 self?.taskQueue.remove(at: index)
             }
-        })
+        }
         taskQueue.append(task)
         return task
     }

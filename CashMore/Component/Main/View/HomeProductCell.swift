@@ -6,16 +6,19 @@
 //
 
 import UIKit
+import KingfisherWebP
 
 class HomeProductCell: UITableViewCell {
     
     var product : ProductModel? {
         didSet {
-            productNameLabel.text = product?.productName
-            descLabel.text = product?.desc
-            scoreBadge.setTitle(product?.score, for: .normal)
-            amountNumLabel.text = "INR \(product?.amount ?? "")"
-            amountTipLabel.text = product?.amountTip
+            guard let pr = product else {
+                return
+            }
+            productImgView.kf.setImage(with: URL(string: pr.logo ?? ""), options: [.processor(WebPProcessor.default), .cacheSerializer(WebPSerializer.default)])
+            productNameLabel.text = pr.loanName
+            descLabel.text = "Fee \(pr.loanRate) / day \(pr.loanDate) days"
+            amountNumLabel.text = String(format: "INR %.02f", pr.loanAmount)
             layoutIfNeeded()
         }
     }
@@ -115,7 +118,6 @@ class HomeProductCell: UITableViewCell {
         let view = UIImageView()
         view.layer.cornerRadius = 20
         view.layer.masksToBounds = true
-        view.backgroundColor = Constants.random
         return view
     }()
     
@@ -149,6 +151,7 @@ class HomeProductCell: UITableViewCell {
     
     private lazy var amountTipLabel = {
         let lb = UILabel()
+        lb.text = "Loan amount"
         lb.textColor = Constants.themeSubtitleColor
         lb.font = Constants.pingFangSCRegularFont(14)
         return lb
