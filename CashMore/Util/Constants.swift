@@ -5,9 +5,8 @@
 //  Created by Tim on 2023/6/1.
 //
 
-import Foundation
-import AdSupport
 import Adjust
+import AdSupport
 @_exported import DynamicColor
 
 struct Constants {
@@ -22,10 +21,11 @@ struct Constants {
         return ADJEnvironmentProduction
         #endif
     }
+    static let IS_FIRST_LAUNCH = "kIS_FIRST_LAUNCH"
+    static let UID_KEY = "kUID_KEY"
     
     static var isLogin : Bool {
-        true
-//        UserDefaults.standard.bool(forKey: IS_LOGIN)
+        UserDefaults.standard.bool(forKey: IS_LOGIN)
     }
     
     static var isCertified : Bool {
@@ -34,6 +34,20 @@ struct Constants {
     
     static var token : String? {
         UserDefaults.standard.string(forKey: ACCESS_TOKEN)
+    }
+    
+    static var uid : String {
+        UserDefaults.standard.string(forKey: UID_KEY) ?? "Please login in"
+    }
+    
+    static var isFirstLaunch : Bool {
+        if !UserDefaults.standard.bool(forKey: IS_FIRST_LAUNCH) {
+            // first launch
+            UserDefaults.standard.setValue(true, forKey: IS_FIRST_LAUNCH)
+            return true
+        } else {
+            return false
+        }
     }
     
     static var deviceInfo : [String : Any] {
@@ -50,6 +64,12 @@ struct Constants {
         dict["mac"] = ""
         return dict
     }
+}
+
+// MARK: - Notification
+extension Constants {
+    static let loginSuccessNotification  = Notification.Name("kLoginSuccessNotification")
+    static let logoutSuccessNotification = Notification.Name("kLogoutSuccessNotification")
 }
 
 

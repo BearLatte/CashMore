@@ -3,12 +3,13 @@ inhibit_all_warnings!
 
 target 'CashMore' do
   use_frameworks!
+  pod 'PKHUD'
   pod 'Adjust'
   pod 'R.swift'
   pod 'SnapKit'
   pod 'Alamofire'
   pod 'HandyJSON'
-  pod 'ProgressHUD'
+  pod 'AliyunOSSiOS'
   pod 'DynamicColor'
   pod 'KingfisherWebP'
   pod 'PullToRefresher'

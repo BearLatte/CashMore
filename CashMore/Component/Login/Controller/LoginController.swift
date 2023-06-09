@@ -7,6 +7,7 @@
 
 import UIKit
 import IQKeyboardManagerSwift
+@_exported import PKHUD
 
 
 class LoginController: BaseViewController {
@@ -142,6 +143,7 @@ class LoginController: BaseViewController {
             make.bottom.equalTo(-20)
             make.height.equalTo(50)
         }
+        loginBtn.addTarget(self, action: #selector(loginAction), for: .touchUpInside)
     }
     
     private weak var phoneInputField : UITextField!
@@ -183,10 +185,54 @@ class LoginController: BaseViewController {
     }
     
     @objc func sendOtpAction() {
-        sendOtpBtn.codeCountdown(isCodeTimer: true)
+        guard let phone = phoneInputField.text, !phone.tm.isBlank, !(phone.count < 10) else {
+            HUD.flash(.label("Please enter a 10-digit mobile number"), delay: 1.0)
+            return
+        }
+        
+        APIService.standered.normalRequest(api: API.Login.sendSMS, parameters: ["phone": phone]) {
+            self.sendOtpBtn.codeCountdown(isCodeTimer: true)
+        }
+        
+        
     }
     
     @objc func changeCheckBoxState() {
         checkBox.isSelected.toggle()
+    }
+    
+    @objc func loginAction() {
+        guard let phone = phoneInputField.text, !phone.tm.isBlank, !(phone.count < 10) else {
+            HUD.flash(.label("Please enter a 10-digit mobile number"), delay: 1.0)
+            return
+        }
+        
+        
+        guard var passcode = boxField.text, !passcode.tm.isBlank else {
+            HUD.flash(.label("Please enter correct OTP"), delay: 1.0)
+            return
+        }
+        
+        if !checkBox.isSelected {
+            HUD.flash(.label("Please agree with our policy to continue"), delay: 1.0)
+            return
+        }
+        
+        #if DEBUG
+        passcode = "821350"
+        #endif
+        
+        APIService.standered.fetchModel(api: API.Login.login, parameters: ["phone" : phone, "code" : passcode], type: LoginSuccessModel.self) { model in
+            HUD.flash(.labeledSuccess(title: nil, subtitle: "Login Success"), delay: 1.0) { isFinished in
+                if isFinished {
+                    UserDefaults.standard.setValue(true, forKey: Constants.IS_LOGIN)
+                    UserDefaults.standard.setValue(model.token, forKey: Constants.ACCESS_TOKEN)
+                    UserDefaults.standard.setValue(model.uid, forKey: Constants.UID_KEY)
+                    NotificationCenter.default.post(name: Constants.loginSuccessNotification, object: nil)
+                    self.goBack()
+                }
+            }
+        }
+        
     }
 }

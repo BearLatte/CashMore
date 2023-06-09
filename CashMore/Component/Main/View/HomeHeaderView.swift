@@ -71,7 +71,6 @@ class HomeHeaderView: UIView {
     
     private lazy var banerView : UIImageView = {
         let imgView = UIImageView()
-        imgView.image = Constants.isLogin && Constants.isLogin ? R.image.certified() : R.image.uncertified()
         imgView.isUserInteractionEnabled = true
         return imgView
     }()
@@ -112,5 +111,9 @@ class HomeHeaderView: UIView {
     }
     @objc func meBtnClicked() {
         (delegate as? HomeHeaderViewDelegate)?.headerViewMeTapAction(headerView: self)
+    }
+    
+    func reloadBanner() {
+        banerView.image = Constants.isLogin ? R.image.certified() : R.image.uncertified()
     }
 }

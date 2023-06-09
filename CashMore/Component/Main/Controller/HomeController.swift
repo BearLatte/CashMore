@@ -16,12 +16,7 @@ class HomeController: BaseTableController {
         isHiddenBackBtn = true
         tableView.register(HomeProductHeaderView.self, forHeaderFooterViewReuseIdentifier: "SectionHeader")
         tableView.register(HomeProductCell.self, forCellReuseIdentifier: "ProductCell")
-//        view.addSubview(tableView)
-//        tableView.snp.makeConstraints { make in
-//            make.top.equalTo(titleLabel.snp.bottom).offset(10)
-//            make.left.right.bottom.equalToSuperview()
-//        }
-//
+
         let headerView = HomeHeaderView()
         headerView.delegate = self
         tableView.tableHeaderView = headerView
@@ -30,13 +25,21 @@ class HomeController: BaseTableController {
             make.width.equalTo(Constants.screenWidth)
             make.bottom.equalToSuperview().priority(.high)
         }
+        headerView.reloadBanner()
         tableView.layoutIfNeeded()
+        self.headerView = headerView
         
         let refresher = PullToRefresh()
         refresher.setEnable(isEnabled: true)
         tableView.addPullToRefresh(refresher) { [weak self] in
             self?.loadData()
         }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(didReceiveLoginSuccessNotification), name: Constants.loginSuccessNotification, object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     override func loadData() {
@@ -47,25 +50,18 @@ class HomeController: BaseTableController {
         }
     }
     
-//    private lazy var tableView : UITableView = { [weak self] in
-//        let table = UITableView(frame: .zero, style: .grouped)
-//        table.showsVerticalScrollIndicator = false
-//        table.backgroundColor = .clear
-//        table.delegate = self
-//        table.dataSource = self
-//        table.separatorStyle = .none
-//        table.register(HomeProductHeaderView.self, forHeaderFooterViewReuseIdentifier: "SectionHeader")
-//        table.register(HomeProductCell.self, forCellReuseIdentifier: "ProductCell")
-//        return table
-//    }()
+    @objc func didReceiveLoginSuccessNotification(_ not: Notification) {
+        headerView.reloadBanner()
+        tableView.reloadData()
+    }
     
-    var products : [ProductModel?] = []
+    private var products : [ProductModel?] = []
+    private weak var headerView : HomeHeaderView!
 }
 
 extension HomeController : HomeHeaderViewDelegate {
     func headerViewBanerTapAction(headerView: HomeHeaderView) {
         Constants.debugLog(headerView)
-
     }
     
     func headerViewFeedbackTapAction(headerView: HomeHeaderView) {
@@ -104,16 +100,7 @@ extension HomeController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProductCell", for: indexPath) as! HomeProductCell
         cell.product = products[indexPath.row]
         cell.loanAction = { [weak self] in
-            if Constants.isLogin && Constants.isCertified {
-
-            } else if !Constants.isLogin {
-                let loginView = LoginController()
-                loginView.pattern = .present
-                loginView.modalPresentationStyle = .fullScreen
-                self?.present(loginView, animated: true)
-            } else if !Constants.isCertified {
-                self?.navigationController?.pushViewController(KYCInfoController(), animated: true)
-            }
+            self?.loanAction()
         }
         return cell
     }
@@ -122,5 +109,27 @@ extension HomeController {
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "SectionHeader") as? HomeProductHeaderView
         header?.title = "Top recommendation"
         return header
+    }
+}
+
+extension HomeController {
+    func loanAction() {
+        if !Constants.isLogin {
+            let loginView = LoginController()
+            loginView.pattern = .present
+            loginView.modalPresentationStyle = .fullScreen
+            present(loginView, animated: true)
+            return
+        }
+        
+        APIService.standered.fetchModel(api: API.Certification.info, parameters: ["type" : "1"], type: CertificationInfoModel.self) { model in
+            if !model.authStatus {
+                let kycController = KYCInfoController()
+                kycController.pattern = .present
+                let nav = UINavigationController(rootViewController: kycController)
+                nav.modalPresentationStyle = .fullScreen
+                self.present(nav, animated: true)
+            }
+        }
     }
 }

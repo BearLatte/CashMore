@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class KYCInfoController: BaseScrollController {
 
@@ -119,11 +120,60 @@ class KYCInfoController: BaseScrollController {
     
     @objc func frontBtnAction() {
         PhotoTipSheet.showTipSheet {
-            Constants.debugLog("okBtn Did clicked")
+            
+            self.checkoutCameraPrivary()
         }
     }
     
     @objc func nextBtnTapAction() {
         navigationController?.pushViewController(PersonalnfoController(), animated: true)
+    }
+    
+    private func checkoutCameraPrivary() {
+        let authStatus = AVCaptureDevice.authorizationStatus(for: .video)
+        switch authStatus {
+        case .authorized:
+           openCamera()
+        case .notDetermined:
+            AVCaptureDevice.requestAccess(for: .video) { (res) in
+                if res {
+                    self.openCamera()
+                }
+            }
+        default:
+            openPermissions()
+        }
+    }
+    
+    
+    private func openPermissions(){
+        let settingUrl = NSURL(string: UIApplication.openSettingsURLString)!
+        if UIApplication.shared.canOpenURL(settingUrl as URL)
+        {
+            UIApplication.shared.open(settingUrl as URL, options: [:], completionHandler: { (istrue) in
+                
+            })
+        }
+    }
+    
+    private func openCamera() {
+        let camera = UIImagePickerController()
+        camera.sourceType = .camera
+        camera.allowsEditing = false
+        camera.delegate = self
+        present(camera, animated: true)
+    }
+}
+
+extension KYCInfoController : UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        picker.dismiss(animated: true)
+        guard let img = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else {
+            return
+        }
+        
+        APIService.standered.ocrService(imgData: img.tm.compressImage(maxLength: 1024 * 200), type: .cardFront) { model in
+            
+        }
     }
 }

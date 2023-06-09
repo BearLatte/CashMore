@@ -8,19 +8,6 @@
 import Foundation
 
 struct APIItem : APIProtocol {
-    var headers: [String : String]? = {
-        var header : [String : String] = [:]
-        header["lang"] = "id"
-        header["token"] = Constants.token
-        guard let data = try? JSONSerialization.data(withJSONObject: Constants.deviceInfo),
-              let deviceInfoStr = String(data: data, encoding: .utf8) else {
-            return header
-        }
-        
-        header["deviceInfo"] = deviceInfoStr
-        return header
-    }()
-    
     
     var url: String { API.DOMIN + URLPath}
     
@@ -51,16 +38,20 @@ struct API {
         static var productList = APIItem("/PZJqjz/Ypleh", desc: "before login product list")
     }
     
-    struct Cerification {
-        
+    struct Certification {
+        static var info = APIItem("/PZJqjz/RrKrKN/bdlcP", desc: "get the all certification info")
+        static var ossParams = APIItem("/PZJqjz/RrKrKN/UHbCO", desc: "get the oss parameters")
+        static var ocr  = APIItem("/PZJqjz/RrKrKN/LxUNR", desc: "OCR")
     }
     
     struct Login {
-        
+        static var sendSMS = APIItem("/PZJqjz/YDnMb", desc: "login send sms")
+        static var login   = APIItem("/PZJqjz/JLPCu", desc: "login")
+        static var logOut  = APIItem("/PZJqjz/YzXli", desc: "logout")
     }
     
     struct Me {
-        
+        static var userInfo = APIItem("/PZJqjz/RrKrKN/OQRvo", desc: "get user info")
     }
     
     struct Feedback {

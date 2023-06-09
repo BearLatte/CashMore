@@ -13,39 +13,17 @@ class PersonalCenterController: BaseTableController {
         super.configUI()
         view.backgroundColor = Constants.pureWhite
         title = "Personal center"
+        tableView.removePullToRefresh(at: .top)
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "ItemCell")
-        let headerView = UIView()
         tableView.tableHeaderView = headerView
         headerView.snp.makeConstraints { make in
-            make.top.left.right.equalToSuperview()
-            make.bottom.equalToSuperview().priority(.high)
+            make.top.left.equalToSuperview()
+            make.width.equalTo(Constants.screenWidth)
         }
-        
-        let headImg = UIImageView(image: R.image.personal_head())
-        headerView.addSubview(headImg)
-        headImg.snp.makeConstraints { make in
-            make.top.equalToSuperview()
-            make.left.equalTo(10)
-            make.right.equalTo(-10)
-            make.width.equalTo(Constants.screenWidth - 20)
-        }
-        
-        headerView.addSubview(logoView)
-        logoView.snp.makeConstraints { make in
-            make.top.equalTo(headImg.snp.bottom).offset(40)
-            make.size.equalTo(CGSize(width: 66, height: 66))
-            make.centerX.equalToSuperview()
-        }
-        
-        headerView.addSubview(uidLabel)
-        uidLabel.snp.makeConstraints { make in
-            make.top.equalTo(logoView.snp.bottom).offset(6)
-            make.centerX.equalTo(logoView)
-            make.bottom.equalToSuperview().offset(-25).priority(.high)
-        }
+        headerView.layoutIfNeeded()
+        headerView.reloadData()
 
-        let footerView = UIView()
-        footerView.backgroundColor = Constants.random
+        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: Constants.screenWidth, height: 90))
         tableView.tableFooterView = footerView
 
         footerView.addSubview(logoutBtn)
@@ -58,40 +36,42 @@ class PersonalCenterController: BaseTableController {
         logoutBtn.tm.setCorner(25)
 
         tableView.layoutIfNeeded()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(didReceiveLoginSuccessNotification), name: Constants.loginSuccessNotification, object: nil)
     }
     
-    private lazy var logoView = {
-        let logo = UIImageView(image: R.image.logo())
-        logo.alpha = 0.3
-        logo.layer.cornerRadius = 33
-        logo.layer.masksToBounds = true
-        return logo
-    }()
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
     
-    private lazy var uidLabel = {
-        let lb = UILabel()
-        lb.textColor = Constants.themeTitleColor
-        lb.font = Constants.pingFangSCSemiboldFont(20)
-        lb.text = "Please log in"
-        return lb
-    }()
+    private lazy var headerView = PersonalCenterHeaderView()
+   
     
     private lazy var logoutBtn = {
         let btn = UIButton(type: .custom)
-        btn.isHidden = true
+        btn.isHidden = !Constants.isLogin
         btn.setTitle("Logout", for: .normal)
         btn.backgroundColor = Constants.darkBtnBgColor
         btn.setTitleColor(Constants.pureWhite, for: .normal)
         btn.titleLabel?.font = Constants.pingFangSCMediumFont(18)
+        btn.addTarget(self, action: #selector(logoutAction), for: .touchUpInside)
         return btn
     }()
     
-    private var isLogin = UserDefaults.standard.bool(forKey: Constants.IS_LOGIN) {
-        didSet {
-            logoView.alpha = isLogin ? 1 : 0.3
-            uidLabel.text  = isLogin ? "" : "Please log in"
-            logoutBtn.isHidden = !isLogin
+    @objc func logoutAction() {
+        APIService.standered.normalRequest(api: API.Login.logOut) {
+            UserDefaults.standard.setValue(false, forKey: Constants.IS_LOGIN)
+            UserDefaults.standard.setValue(nil, forKey: Constants.ACCESS_TOKEN)
+            UserDefaults.standard.setValue(nil, forKey: Constants.UID_KEY)
+            NotificationCenter.default.post(name: Constants.logoutSuccessNotification, object: nil)
+            self.headerView.reloadData()
+            self.logoutBtn.isHidden = true
         }
+    }
+    
+    @objc func didReceiveLoginSuccessNotification(_ not: Notification) {
+        headerView.reloadData()
+        logoutBtn.isHidden = false
     }
     
 }

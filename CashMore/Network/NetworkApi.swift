@@ -21,8 +21,6 @@ protocol APIProtocol {
     var extra: String? { get }
     /// Type representing HTTP methods.
     var method: ApiHTTPMethod { get }
-    /// headers
-    var headers : [String : String]? { get set }
 }
 
 extension APIProtocol {
@@ -53,6 +51,19 @@ extension APIProtocol {
     func fetch(_ parameters: [String: Any]? = nil, headers: [String: Any]? = nil) -> NetworkRequest {
         NTTool.fetch(self, parameters: parameters)
     }
+    
+    func fetchHeaders() -> [String : String]? {
+        var header : [String : String] = [:]
+        header["lang"] = "id"
+        header["token"] = Constants.token
+        guard let data = try? JSONSerialization.data(withJSONObject: Constants.deviceInfo),
+              let deviceInfoStr = String(data: data, encoding: .utf8) else {
+            return header
+        }
+        
+        header["deviceInfo"] = deviceInfoStr
+        return header
+    }
 }
 
 /// 为了`APIProtocol`给`NetworkTool`扩展的网络请求方法
@@ -63,7 +74,7 @@ extension NetworkTool {
     @discardableResult
     func fetch(_ api: APIProtocol, parameters: [String: Any]? = nil) -> NetworkRequest {
         let method = methodWith(api.method)
-        let task = request(url: api.url, method: method, parameters: parameters, headers: api.headers)
+        let task = request(url: api.url, method: method, parameters: parameters, headers: api.fetchHeaders())
         task.description = api.description
         task.extra = api.extra
         return task

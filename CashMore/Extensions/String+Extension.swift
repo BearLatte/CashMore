@@ -45,9 +45,9 @@ extension TM where Base: ExpressibleByStringLiteral{
             let key = keys[index] as String
             if let value = parameters[key] as? String, !value.tm.isBlank {
                 if index != keys.count - 1 {
-                    paramsStr += String(format: "%@=%@&", key, value)
+                    paramsStr += String(format: "%@=%@&", key, String(value))
                 } else {
-                    paramsStr += String(format: "%@=%@", key, value)
+                    paramsStr += String(format: "%@=%@", key, String(value))
                 }
             }
             

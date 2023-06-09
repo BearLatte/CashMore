@@ -55,7 +55,6 @@ class NetworkTool {
         }
         
         // config parameters
-        
         Constants.debugLog("请求地址: \(url)\n请求头:\(headers ?? [:])\n请求体: \(parameters ?? [:])\n请求方式: \(method)\n ")
         sessionManager
             .request(url, method: method, parameters: parameters, encoding: encoding, headers: h)
