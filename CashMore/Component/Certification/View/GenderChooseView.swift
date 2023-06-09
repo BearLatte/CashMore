@@ -10,12 +10,22 @@ import UIKit
 class GenderChooseView: UIView {
     
     var selectedGender : String? {
-        if maleBtn.isSelected {
-            return "male"
-        } else if femaleBtn.isSelected {
-            return "female"
-        } else {
-            return nil
+        get {
+            if maleBtn.isSelected {
+                return "male"
+            } else if femaleBtn.isSelected {
+                return "female"
+            } else {
+                return nil
+            }
+        }
+        
+        set {
+            if newValue == "male" {
+                maleBtn.isSelected = true
+            } else {
+                femaleBtn.isSelected = true
+            }
         }
     }
     

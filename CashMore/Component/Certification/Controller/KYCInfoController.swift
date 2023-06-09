@@ -15,19 +15,19 @@ class KYCInfoController: BaseScrollController {
         title = "KYC Info"
         
         setIndicator(current: 1, count: 4)
-        contentView.addSubview(cardFrontBtn)
-        cardFrontBtn.addTarget(self, action: #selector(frontBtnAction), for: .touchUpInside)
-        cardFrontBtn.snp.makeConstraints { make in
+        contentView.addSubview(cardFrontActionView)
+        cardFrontActionView.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.size.equalTo(CGSize(width: 175, height: 95))
             make.centerX.equalToSuperview()
         }
+        cardFrontActionView.tm.setCorner(10)
         
         let frontIndicatorLabel = Constants.indicatorLabel
         contentView.addSubview(frontIndicatorLabel)
         frontIndicatorLabel.snp.makeConstraints { make in
-            make.top.equalTo(cardFrontBtn.snp.bottom).offset(6)
-            make.centerX.equalTo(cardFrontBtn)
+            make.top.equalTo(cardFrontActionView.snp.bottom).offset(6)
+            make.centerX.equalTo(cardFrontActionView)
         }
         
         contentView.addSubview(adhaarNameInputView)
@@ -44,8 +44,8 @@ class KYCInfoController: BaseScrollController {
         }
         
         
-        contentView.addSubview(genderChooseVIew)
-        genderChooseVIew.snp.makeConstraints { make in
+        contentView.addSubview(genderChooseView)
+        genderChooseView.snp.makeConstraints { make in
             make.top.equalTo(adhaarNumInputView.snp.bottom)
             make.left.right.equalTo(adhaarNameInputView)
             
@@ -53,20 +53,21 @@ class KYCInfoController: BaseScrollController {
         
         contentView.addSubview(dateOfBirthInputView)
         dateOfBirthInputView.snp.makeConstraints { make in
-            make.top.equalTo(genderChooseVIew.snp.bottom)
+            make.top.equalTo(genderChooseView.snp.bottom)
             make.left.right.equalTo(adhaarNameInputView)
         }
         
-        contentView.addSubview(cardBackBtn)
-        cardBackBtn.snp.makeConstraints { make in
+        contentView.addSubview(cardBackActionView)
+        cardBackActionView.snp.makeConstraints { make in
             make.top.equalTo(dateOfBirthInputView.snp.bottom).offset(30)
-            make.size.centerX.equalTo(cardFrontBtn)
+            make.size.centerX.equalTo(cardFrontActionView)
         }
+        cardBackActionView.tm.setCorner(10)
         
         let backIndicatorLabel = Constants.indicatorLabel
         contentView.addSubview(backIndicatorLabel)
         backIndicatorLabel.snp.makeConstraints { make in
-            make.top.equalTo(cardBackBtn.snp.bottom).offset(6)
+            make.top.equalTo(cardBackActionView.snp.bottom).offset(6)
             make.centerX.equalTo(frontIndicatorLabel)
         }
         
@@ -99,11 +100,21 @@ class KYCInfoController: BaseScrollController {
         nextBtn.addTarget(self, action: #selector(nextBtnTapAction), for: .touchUpInside)
     }
     
-    private lazy var cardFrontBtn = Constants.imageOnTopBtn(with: R.image.camera_small(), title: "Aadhaar Card Front")
-    private lazy var cardBackBtn  = Constants.imageOnTopBtn(with: R.image.camera_small(), title: "Aadhaar Card Back")
+    private lazy var cardFrontActionView = OCRInputActionView(title: "Aadhaar Card Front", image: R.image.camera_small()) { [weak self] in
+        self?.ocrType = .cardFront
+        PhotoTipSheet.showTipSheet {
+            self?.checkoutCameraPrivary()
+        }
+    }
+    
+    private lazy var cardBackActionView = OCRInputActionView(title: "Aadhaar Card Back", image: R.image.camera_small()) { [weak self] in
+        self?.ocrType = .cardBack
+        self?.checkoutCameraPrivary()
+    }
+    
     private lazy var adhaarNameInputView  = FormInputView(title: "Aadhaar Name", placeholder: "Aadhaar Name")
     private lazy var adhaarNumInputView   = FormInputView(title: "Aadhaar Number", placeholder: "Aadhaar Number")
-    private lazy var genderChooseVIew     = GenderChooseView()
+    private lazy var genderChooseView     = GenderChooseView()
     private lazy var dateOfBirthInputView = FormInputView(title: "Date of Birth", placeholder: "Date of Birth", isInputEnabel: false) {
         Constants.debugLog("choose birth action")
     }
@@ -116,14 +127,8 @@ class KYCInfoController: BaseScrollController {
     }
     
     private lazy var nextBtn = Constants.themeBtn(with: "Next")
+    private var ocrType = OCRType.cardFront
     
-    
-    @objc func frontBtnAction() {
-        PhotoTipSheet.showTipSheet {
-            
-            self.checkoutCameraPrivary()
-        }
-    }
     
     @objc func nextBtnTapAction() {
         navigationController?.pushViewController(PersonalnfoController(), animated: true)
@@ -172,7 +177,23 @@ extension KYCInfoController : UIImagePickerControllerDelegate & UINavigationCont
             return
         }
         
-        APIService.standered.ocrService(imgData: img.tm.compressImage(maxLength: 1024 * 200), type: .cardFront) { model in
+        if ocrType == .cardFront {
+            cardFrontActionView.backgroundImage = img
+        } else {
+            cardBackActionView.backgroundImage = img
+        }
+        
+        APIService.standered.ocrService(imgData: img.tm.compressImage(maxLength: 1024 * 200), type: ocrType) { model in
+            if self.ocrType == .cardFront {
+                let curModel = model as? CardFrontModel
+                self.adhaarNameInputView.inputText = curModel?.aadharName
+                self.adhaarNumInputView.inputText = curModel?.aadharNumber
+                self.dateOfBirthInputView.inputText = curModel?.dateOfBirth
+                self.genderChooseView.selectedGender = curModel?.gender
+            } else {
+                let curModel = model as? CardBackModel
+                self.addressInputView.inputText = curModel?.addressAll
+            }
             
         }
     }

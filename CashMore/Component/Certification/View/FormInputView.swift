@@ -10,7 +10,13 @@ import UIKit
 class FormInputView: UIView {
 
     var inputText : String? {
-        inputField.text
+        get {
+            inputField.text
+        }
+        set {
+            inputField.text = newValue
+        }
+        
     }
     
     convenience init(title: String, placeholder: String, isInputEnabel: Bool = true, rightViewTapAction: (() -> Void)? = nil) {

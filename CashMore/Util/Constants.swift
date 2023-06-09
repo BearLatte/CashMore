@@ -198,17 +198,19 @@ extension Constants {
         btn.setImage(image, for: .normal)
         btn.setTitleColor(Constants.pureWhite, for: .normal)
         btn.titleLabel?.font = Constants.pingFangSCRegularFont(14)
-        if #available(iOS 15.0, *) {
-            var btnConfig = UIButton.Configuration.borderedProminent()
-            btnConfig.baseBackgroundColor = Constants.themeColor
-            btnConfig.imagePadding = 5
-            btnConfig.imagePlacement = .top
-            btn.configuration = btnConfig
-        } else {
+//        if #available(iOS 15.0, *) {
+//            var btnConfig = UIButton.Configuration.borderedProminent()
+//            btnConfig.baseBackgroundColor = Constants.themeColor
+//            btnConfig.imagePadding = 5
+//            btnConfig.imagePlacement = .top
+//            btnConfig.background = UIBackgroundConfiguration
+//            btn.configuration = btnConfig
+            
+//        } else {
             btn.tm.centerImageAndButton(0, imageOnTop: true)
             btn.backgroundColor = Constants.themeColor
             btn.layer.cornerRadius = 10
-        }
+//        }
         
         return btn
     }

@@ -10,7 +10,13 @@ import UIKit
 class FormMultipleTextInputView: UIView {
     
     var inputText : String? {
-        return textView.text
+        get {
+            return textView.text
+        }
+        
+        set {
+            textView.text = newValue
+        }
     }
     
     convenience init(title: String, placeholder: String?) {
