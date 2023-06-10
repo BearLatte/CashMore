@@ -9,12 +9,15 @@ import UIKit
 
 class ContactInfoInputView: UIView {
     
-    var number : String? {
-        return numInputField.text
-    }
-    
-    var name   : String? {
-        return nameInputField.text
+    var contact : ContactModel? {
+        get {
+            currentContact
+        }
+        set {
+            nameInputField.text = newValue?.name
+            numInputField.text = newValue?.phoneNumber
+            currentContact = newValue!
+        }
     }
     
     convenience init(title: String, contactBookTapAction: (() -> Void)? = nil) {
@@ -100,6 +103,7 @@ class ContactInfoInputView: UIView {
         field.leftView = leftView
         field.leftViewMode = .always
         field.keyboardType = .numberPad
+        field.delegate = self
         return field
     }()
     
@@ -119,6 +123,7 @@ class ContactInfoInputView: UIView {
         let leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 34))
         field.leftView = leftView
         field.leftViewMode = .always
+        field.delegate = self
         return field
     }()
     
@@ -130,7 +135,19 @@ class ContactInfoInputView: UIView {
     
     private var contactAction : (() -> Void)?
     
+    private var currentContact = ContactModel(name: "", phone: "")
+    
     @objc func contactBookBtnClicked() {
         contactAction?()
+    }
+}
+
+extension ContactInfoInputView : UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField == nameInputField {
+            currentContact.name = textField.text ?? ""
+        } else {
+            currentContact.phoneNumber = textField.text ?? ""
+        }
     }
 }

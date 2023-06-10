@@ -8,6 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		12F3B0B6C04D6226287B864D /* Pods_CashMore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 885EE3408E4A382C87599EAC /* Pods_CashMore.framework */; };
+		220E1A442A3440DE0054EEA8 /* EASpinnerLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220E1A3D2A3440DE0054EEA8 /* EASpinnerLayer.swift */; };
+		220E1A452A3440DE0054EEA8 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220E1A3E2A3440DE0054EEA8 /* Enums.swift */; };
+		220E1A462A3440DE0054EEA8 /* EAAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220E1A3F2A3440DE0054EEA8 /* EAAlertView.swift */; };
+		220E1A472A3440DE0054EEA8 /* EASpinnerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220E1A402A3440DE0054EEA8 /* EASpinnerButton.swift */; };
+		220E1A482A3440DE0054EEA8 /* EAAlertViewResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220E1A412A3440DE0054EEA8 /* EAAlertViewResponder.swift */; };
+		220E1A492A3440DE0054EEA8 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220E1A422A3440DE0054EEA8 /* Extension.swift */; };
+		220E1A4A2A3440DE0054EEA8 /* EAButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220E1A432A3440DE0054EEA8 /* EAButton.swift */; };
+		220E1A4C2A3458EE0054EEA8 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220E1A4B2A3458EE0054EEA8 /* Date+Extension.swift */; };
+		220E1A522A34619E0054EEA8 /* ListSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220E1A512A34619E0054EEA8 /* ListSelectionView.swift */; };
+		220E1A542A3461AE0054EEA8 /* Selectionable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220E1A532A3461AE0054EEA8 /* Selectionable.swift */; };
+		220E1A562A3468240054EEA8 /* MarriageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220E1A552A3468240054EEA8 /* MarriageModel.swift */; };
+		220E1A582A346FEA0054EEA8 /* SelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220E1A572A346FEA0054EEA8 /* SelectionCell.swift */; };
+		220E1A5A2A347C6C0054EEA8 /* EducationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220E1A592A347C6C0054EEA8 /* EducationModel.swift */; };
+		220E1A5C2A349AC20054EEA8 /* ContactModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220E1A5B2A349AC20054EEA8 /* ContactModel.swift */; };
 		2210F9372A27572F00577DC9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2210F9362A27572F00577DC9 /* AppDelegate.swift */; };
 		2210F9402A27573000577DC9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2210F93F2A27573000577DC9 /* Assets.xcassets */; };
 		2210F9432A27573000577DC9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2210F9412A27573000577DC9 /* LaunchScreen.storyboard */; };
@@ -53,7 +67,6 @@
 		226208EF2A308695005E1F5C /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 226208EE2A308695005E1F5C /* AdSupport.framework */; };
 		226208F12A3086AA005E1F5C /* AdServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 226208F02A3086A9005E1F5C /* AdServices.framework */; };
 		226208F52A3086C8005E1F5C /* AppTrackingTransparency.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 226208F42A3086C8005E1F5C /* AppTrackingTransparency.framework */; };
-		226208F92A30A472005E1F5C /* RandomKeyString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226208F82A30A472005E1F5C /* RandomKeyString.swift */; };
 		226208FB2A30A9E2005E1F5C /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226208FA2A30A9E2005E1F5C /* String+Extension.swift */; };
 		226208FF2A318A77005E1F5C /* BaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226208FE2A318A77005E1F5C /* BaseModel.swift */; };
 		226209012A31A1E2005E1F5C /* Codable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226209002A31A1E2005E1F5C /* Codable+Extension.swift */; };
@@ -88,6 +101,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		220E1A3D2A3440DE0054EEA8 /* EASpinnerLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EASpinnerLayer.swift; sourceTree = "<group>"; };
+		220E1A3E2A3440DE0054EEA8 /* Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		220E1A3F2A3440DE0054EEA8 /* EAAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EAAlertView.swift; sourceTree = "<group>"; };
+		220E1A402A3440DE0054EEA8 /* EASpinnerButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EASpinnerButton.swift; sourceTree = "<group>"; };
+		220E1A412A3440DE0054EEA8 /* EAAlertViewResponder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EAAlertViewResponder.swift; sourceTree = "<group>"; };
+		220E1A422A3440DE0054EEA8 /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		220E1A432A3440DE0054EEA8 /* EAButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EAButton.swift; sourceTree = "<group>"; };
+		220E1A4B2A3458EE0054EEA8 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		220E1A512A34619E0054EEA8 /* ListSelectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListSelectionView.swift; sourceTree = "<group>"; };
+		220E1A532A3461AE0054EEA8 /* Selectionable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Selectionable.swift; sourceTree = "<group>"; };
+		220E1A552A3468240054EEA8 /* MarriageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarriageModel.swift; sourceTree = "<group>"; };
+		220E1A572A346FEA0054EEA8 /* SelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionCell.swift; sourceTree = "<group>"; };
+		220E1A592A347C6C0054EEA8 /* EducationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationModel.swift; sourceTree = "<group>"; };
+		220E1A5B2A349AC20054EEA8 /* ContactModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactModel.swift; sourceTree = "<group>"; };
 		2210F9332A27572F00577DC9 /* CashMore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CashMore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2210F9362A27572F00577DC9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2210F93F2A27573000577DC9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -137,7 +164,6 @@
 		226208F02A3086A9005E1F5C /* AdServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdServices.framework; path = System/Library/Frameworks/AdServices.framework; sourceTree = SDKROOT; };
 		226208F42A3086C8005E1F5C /* AppTrackingTransparency.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppTrackingTransparency.framework; path = System/Library/Frameworks/AppTrackingTransparency.framework; sourceTree = SDKROOT; };
 		226208F62A3086D1005E1F5C /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
-		226208F82A30A472005E1F5C /* RandomKeyString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomKeyString.swift; sourceTree = "<group>"; };
 		226208FA2A30A9E2005E1F5C /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		226208FE2A318A77005E1F5C /* BaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseModel.swift; sourceTree = "<group>"; };
 		226209002A31A1E2005E1F5C /* Codable+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codable+Extension.swift"; sourceTree = "<group>"; };
@@ -192,6 +218,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		220E1A3C2A3440DE0054EEA8 /* EAAlertView */ = {
+			isa = PBXGroup;
+			children = (
+				220E1A3D2A3440DE0054EEA8 /* EASpinnerLayer.swift */,
+				220E1A3E2A3440DE0054EEA8 /* Enums.swift */,
+				220E1A3F2A3440DE0054EEA8 /* EAAlertView.swift */,
+				220E1A402A3440DE0054EEA8 /* EASpinnerButton.swift */,
+				220E1A412A3440DE0054EEA8 /* EAAlertViewResponder.swift */,
+				220E1A422A3440DE0054EEA8 /* Extension.swift */,
+				220E1A432A3440DE0054EEA8 /* EAButton.swift */,
+			);
+			path = EAAlertView;
+			sourceTree = "<group>";
+		};
+		220E1A4D2A3460610054EEA8 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				22CE9DA92A283C03006C5153 /* Constants.swift */,
+				226208A02A2EDCAB005E1F5C /* TipsSheet.swift */,
+				220E1A502A34619E0054EEA8 /* ListSelectionView */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		220E1A502A34619E0054EEA8 /* ListSelectionView */ = {
+			isa = PBXGroup;
+			children = (
+				220E1A512A34619E0054EEA8 /* ListSelectionView.swift */,
+				220E1A572A346FEA0054EEA8 /* SelectionCell.swift */,
+				220E1A532A3461AE0054EEA8 /* Selectionable.swift */,
+			);
+			path = ListSelectionView;
+			sourceTree = "<group>";
+		};
 		2210F92A2A27572F00577DC9 = {
 			isa = PBXGroup;
 			children = (
@@ -213,6 +273,7 @@
 		2210F9352A27572F00577DC9 /* CashMore */ = {
 			isa = PBXGroup;
 			children = (
+				220E1A4D2A3460610054EEA8 /* Common */,
 				22CE9DA82A283BE1006C5153 /* Util */,
 				2210F94A2A275A3400577DC9 /* Main */,
 				226208D12A305428005E1F5C /* Network */,
@@ -308,6 +369,9 @@
 				2262090E2A330090005E1F5C /* CertificationInfoModel.swift */,
 				226209102A33193A005E1F5C /* OSSParameters.swift */,
 				226209172A332E05005E1F5C /* OCRModel.swift */,
+				220E1A552A3468240054EEA8 /* MarriageModel.swift */,
+				220E1A592A347C6C0054EEA8 /* EducationModel.swift */,
+				220E1A5B2A349AC20054EEA8 /* ContactModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -384,13 +448,11 @@
 		22CE9DA82A283BE1006C5153 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				220E1A3C2A3440DE0054EEA8 /* EAAlertView */,
 				226208AF2A2F364B005E1F5C /* PagingView */,
 				226208782A2D8A35005E1F5C /* ActiveLabel */,
 				226208712A2D794D005E1F5C /* VerifyBoxField */,
-				22CE9DA92A283C03006C5153 /* Constants.swift */,
 				22CE9DDD2A29E4DE006C5153 /* CaptchaButton.swift */,
-				226208A02A2EDCAB005E1F5C /* TipsSheet.swift */,
-				226208F82A30A472005E1F5C /* RandomKeyString.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -418,6 +480,7 @@
 				226208942A2DD88A005E1F5C /* UITextView+Extension.swift */,
 				226208FA2A30A9E2005E1F5C /* String+Extension.swift */,
 				226209002A31A1E2005E1F5C /* Codable+Extension.swift */,
+				220E1A4B2A3458EE0054EEA8 /* Date+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -683,6 +746,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				226208C82A2F401A005E1F5C /* PagingTitleViewConfigure.swift in Sources */,
+				220E1A472A3440DE0054EEA8 /* EASpinnerButton.swift in Sources */,
 				226208B62A2F3796005E1F5C /* UIScreen+PageingView.swift in Sources */,
 				226208812A2D8A35005E1F5C /* RegexParser.swift in Sources */,
 				226208802A2D8A35005E1F5C /* ActiveLabel.swift in Sources */,
@@ -703,8 +767,8 @@
 				2262090B2A32E853005E1F5C /* UserModel.swift in Sources */,
 				226208972A2DE679005E1F5C /* PhotoTipSheet.swift in Sources */,
 				22CE9DB12A2866DA006C5153 /* Prefix.swift in Sources */,
+				220E1A482A3440DE0054EEA8 /* EAAlertViewResponder.swift in Sources */,
 				226208CE2A303926005E1F5C /* OrderDetailController.swift in Sources */,
-				226208F92A30A472005E1F5C /* RandomKeyString.swift in Sources */,
 				22CE9DCF2A298F8F006C5153 /* BaseTableController.swift in Sources */,
 				22CE9DE02A29ED7D006C5153 /* UIImage+Extension.swift in Sources */,
 				22CE9DCD2A298A99006C5153 /* PersonalCenterController.swift in Sources */,
@@ -714,21 +778,29 @@
 				226209182A332E05005E1F5C /* OCRModel.swift in Sources */,
 				226208952A2DD88A005E1F5C /* UITextView+Extension.swift in Sources */,
 				22CE9DD32A29BA21006C5153 /* Bundle+Extension.swift in Sources */,
+				220E1A462A3440DE0054EEA8 /* EAAlertView.swift in Sources */,
 				22CE9DD12A29B58D006C5153 /* AboutUsController.swift in Sources */,
 				2210F94D2A275ABD00577DC9 /* BaseViewController.swift in Sources */,
 				226208B42A2F365F005E1F5C /* UIButton+PagingView.swift in Sources */,
 				22DC94442A33944700E621C8 /* OCRInputActionView.swift in Sources */,
 				226208FF2A318A77005E1F5C /* BaseModel.swift in Sources */,
+				220E1A562A3468240054EEA8 /* MarriageModel.swift in Sources */,
 				226209112A33193A005E1F5C /* OSSParameters.swift in Sources */,
+				220E1A4C2A3458EE0054EEA8 /* Date+Extension.swift in Sources */,
 				2262089D2A2ED3D6005E1F5C /* ContactInfoController.swift in Sources */,
+				220E1A442A3440DE0054EEA8 /* EASpinnerLayer.swift in Sources */,
 				22CE9DC12A287D0A006C5153 /* UIButton+Extension.swift in Sources */,
 				226208FB2A30A9E2005E1F5C /* String+Extension.swift in Sources */,
 				226208E12A305EA7005E1F5C /* NetworkApi.swift in Sources */,
+				220E1A582A346FEA0054EEA8 /* SelectionCell.swift in Sources */,
 				226208A72A2F102B005E1F5C /* OrderListController.swift in Sources */,
 				226208A52A2F0AB3005E1F5C /* OrderCell.swift in Sources */,
 				2262090F2A330090005E1F5C /* CertificationInfoModel.swift in Sources */,
 				226208762A2D794D005E1F5C /* VerifyBoxFieldTextPosition.swift in Sources */,
+				220E1A522A34619E0054EEA8 /* ListSelectionView.swift in Sources */,
 				226208822A2D8A35005E1F5C /* StringTrimExtension.swift in Sources */,
+				220E1A492A3440DE0054EEA8 /* Extension.swift in Sources */,
+				220E1A542A3461AE0054EEA8 /* Selectionable.swift in Sources */,
 				226208DF2A305CFB005E1F5C /* NetworkMultipartData.swift in Sources */,
 				226209032A31B350005E1F5C /* APIService.swift in Sources */,
 				226208CA2A302612005E1F5C /* OrderModel.swift in Sources */,
@@ -739,8 +811,10 @@
 				226208882A2D9EE5005E1F5C /* BaseScrollController.swift in Sources */,
 				2262088A2A2D9FB2005E1F5C /* KYCInfoController.swift in Sources */,
 				226208E32A305FEE005E1F5C /* NetworkTool.swift in Sources */,
+				220E1A5C2A349AC20054EEA8 /* ContactModel.swift in Sources */,
 				226208DD2A305C77005E1F5C /* NetworkError.swift in Sources */,
 				2262090D2A32F24D005E1F5C /* PersonalCenterHeaderView.swift in Sources */,
+				220E1A5A2A347C6C0054EEA8 /* EducationModel.swift in Sources */,
 				226209092A32E2D1005E1F5C /* LoginSuccessModel.swift in Sources */,
 				226208992A2DF3CB005E1F5C /* PersonalnfoController.swift in Sources */,
 				22CE9DA72A28395F006C5153 /* R.generated.swift in Sources */,
@@ -751,7 +825,9 @@
 				226208C42A2F3CAB005E1F5C /* PagingContentCollectionView.swift in Sources */,
 				22CE9DBD2A28716D006C5153 /* HomeHeaderView.swift in Sources */,
 				22CE9DC32A289624006C5153 /* HomeProductHeaderView.swift in Sources */,
+				220E1A452A3440DE0054EEA8 /* Enums.swift in Sources */,
 				226208752A2D794D005E1F5C /* VerifyBoxField.swift in Sources */,
+				220E1A4A2A3440DE0054EEA8 /* EAButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -898,6 +974,7 @@
 				INFOPLIST_FILE = CashMore/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Cash More";
 				INFOPLIST_KEY_NSCameraUsageDescription = "CashMore App must obtain your camera permission to take photos and upload";
+				INFOPLIST_KEY_NSContactsUsageDescription = "Please allow CashMore visit your Contacts";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Please allow CashMore visit your photo library";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Please allow CashMore visit your photo library";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -936,6 +1013,7 @@
 				INFOPLIST_FILE = CashMore/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Cash More";
 				INFOPLIST_KEY_NSCameraUsageDescription = "CashMore App must obtain your camera permission to take photos and upload";
+				INFOPLIST_KEY_NSContactsUsageDescription = "Please allow CashMore visit your Contacts";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Please allow CashMore visit your photo library";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Please allow CashMore visit your photo library";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

@@ -19,13 +19,17 @@ class FormInputView: UIView {
         
     }
     
-    convenience init(title: String, placeholder: String, isInputEnabel: Bool = true, rightViewTapAction: (() -> Void)? = nil) {
+    convenience init(title: String, placeholder: String, showsRightView: Bool = false, keyboardType: UIKeyboardType = .default, tapAction: (() -> Void)? = nil) {
         self.init(frame: .zero)
         self.titleLabel.text = title
         self.inputField.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [.foregroundColor : Constants.placeholderTextColor])
-        self.inputField.isEnabled = isInputEnabel
-        self.inputField.rightViewMode = rightViewTapAction == nil ? .never : .always
-        self.rightAction = rightViewTapAction
+        self.inputField.rightViewMode = showsRightView ? .always : .never
+        self.inputField.keyboardType = keyboardType
+        self.tapAction = tapAction
+        if tapAction != nil {
+            let tap = UITapGestureRecognizer(target: self, action: #selector(inputFieldTapped))
+            self.inputField.addGestureRecognizer(tap)
+        }
     }
     
     override init(frame: CGRect) {
@@ -78,13 +82,24 @@ class FormInputView: UIView {
         downArrow.frame = rightView.bounds
         rightView.addSubview(downArrow)
         field.rightView = rightView
-        downArrow.addTarget(self, action: #selector(downArrowClicked), for: .touchUpInside)
+        field.delegate = self
         return field
     }()
     
-    private var rightAction : (() -> Void)?
+    private var tapAction : (() -> Void)?
     
-    @objc func downArrowClicked() {
-        rightAction?()
+    @objc func inputFieldTapped() {
+        tapAction?()
+    }
+}
+
+extension FormInputView : UITextFieldDelegate {
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        if tapAction != nil {
+            tapAction!()
+            return false
+        } else {
+            return true
+        }
     }
 }

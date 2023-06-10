@@ -7,6 +7,7 @@
 
 import Adjust
 import AdSupport
+import AVFoundation
 @_exported import DynamicColor
 
 struct Constants {
@@ -198,19 +199,18 @@ extension Constants {
         btn.setImage(image, for: .normal)
         btn.setTitleColor(Constants.pureWhite, for: .normal)
         btn.titleLabel?.font = Constants.pingFangSCRegularFont(14)
-//        if #available(iOS 15.0, *) {
-//            var btnConfig = UIButton.Configuration.borderedProminent()
-//            btnConfig.baseBackgroundColor = Constants.themeColor
-//            btnConfig.imagePadding = 5
-//            btnConfig.imagePlacement = .top
-//            btnConfig.background = UIBackgroundConfiguration
-//            btn.configuration = btnConfig
+        if #available(iOS 15.0, *) {
+            var btnConfig = UIButton.Configuration.borderedProminent()
+            btnConfig.baseBackgroundColor = Constants.themeColor
+            btnConfig.imagePadding = 5
+            btnConfig.imagePlacement = .top
+            btn.configuration = btnConfig
             
-//        } else {
+        } else {
             btn.tm.centerImageAndButton(0, imageOnTop: true)
             btn.backgroundColor = Constants.themeColor
             btn.layer.cornerRadius = 10
-//        }
+        }
         
         return btn
     }
@@ -251,6 +251,36 @@ extension Constants {
             return topViewController((vc as! UINavigationController).topViewController!)
         } else {
             return vc
+        }
+    }
+    
+    static func checkoutCameraPrivary(target: (UIImagePickerControllerDelegate & UINavigationControllerDelegate)?) {
+        let authStatus = AVCaptureDevice.authorizationStatus(for: .video)
+        switch authStatus {
+        case .authorized:
+            let camera = UIImagePickerController()
+            camera.sourceType = .camera
+            camera.allowsEditing = false
+            camera.delegate = target
+            (target as? UIViewController)?.present(camera, animated: true)
+        case .notDetermined:
+            AVCaptureDevice.requestAccess(for: .video) { (res) in
+                if res {
+                    let camera = UIImagePickerController()
+                    camera.sourceType = .camera
+                    camera.allowsEditing = false
+                    camera.delegate = target
+                    (target as? UIViewController)?.present(camera, animated: true)
+                }
+            }
+        default:
+            let settingUrl = NSURL(string: UIApplication.openSettingsURLString)!
+            if UIApplication.shared.canOpenURL(settingUrl as URL)
+            {
+                UIApplication.shared.open(settingUrl as URL, options: [:], completionHandler: { (istrue) in
+                    
+                })
+            }
         }
     }
     

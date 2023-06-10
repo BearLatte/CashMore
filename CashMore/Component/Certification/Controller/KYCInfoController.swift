@@ -103,27 +103,28 @@ class KYCInfoController: BaseScrollController {
     private lazy var cardFrontActionView = OCRInputActionView(title: "Aadhaar Card Front", image: R.image.camera_small()) { [weak self] in
         self?.ocrType = .cardFront
         PhotoTipSheet.showTipSheet {
-            self?.checkoutCameraPrivary()
+            Constants.checkoutCameraPrivary(target: self)
         }
     }
     
     private lazy var cardBackActionView = OCRInputActionView(title: "Aadhaar Card Back", image: R.image.camera_small()) { [weak self] in
         self?.ocrType = .cardBack
-        self?.checkoutCameraPrivary()
+        Constants.checkoutCameraPrivary(target: self)
     }
     
     private lazy var adhaarNameInputView  = FormInputView(title: "Aadhaar Name", placeholder: "Aadhaar Name")
-    private lazy var adhaarNumInputView   = FormInputView(title: "Aadhaar Number", placeholder: "Aadhaar Number")
+    private lazy var adhaarNumInputView   = FormInputView(title: "Aadhaar Number", placeholder: "Aadhaar Number", keyboardType: .numberPad)
     private lazy var genderChooseView     = GenderChooseView()
-    private lazy var dateOfBirthInputView = FormInputView(title: "Date of Birth", placeholder: "Date of Birth", isInputEnabel: false) {
-        Constants.debugLog("choose birth action")
+    private lazy var dateOfBirthInputView = FormInputView(title: "Date of Birth", placeholder: "Date of Birth", showsRightView: true) { [weak self] in
+        self?.showDatePicker()
     }
+    
     private lazy var addressInputView     = FormMultipleTextInputView(title: "Detail Address", placeholder: "Detail Address")
-    private lazy var marriageStatusInputView = FormInputView(title: "Marriage Status", placeholder: "Marriage Status", isInputEnabel: false) {
-        Constants.debugLog("choose marriage status")
+    private lazy var marriageStatusInputView = FormInputView(title: "Marriage Status", placeholder: "Marriage Status",showsRightView: true) { [weak self] in
+        self?.showMarriageStatusPicker()
     }
-    private lazy var educationInputView = FormInputView(title: "Education", placeholder: "Education", isInputEnabel: false) {
-        Constants.debugLog("choose Education")
+    private lazy var educationInputView = FormInputView(title: "Education", placeholder: "Education", showsRightView: true) {  [weak self] in
+        self?.showEducationPicker()
     }
     
     private lazy var nextBtn = Constants.themeBtn(with: "Next")
@@ -131,42 +132,116 @@ class KYCInfoController: BaseScrollController {
     
     
     @objc func nextBtnTapAction() {
+        guard let name = adhaarNameInputView.inputText, !name.tm.isBlank else {
+            HUD.flash(.label("Aadhaar Name cannot be empty"), delay: 1.0)
+            return
+        }
+        
+        guard let number = adhaarNumInputView.inputText, !number.tm.isBlank else {
+            HUD.flash(.label("Adhaar Number cannot be empty"), delay: 1.0)
+            return
+        }
+        
+        guard let gender = genderChooseView.selectedGender, !gender.tm.isBlank else {
+            HUD.flash(.label("Please choose your gender"), delay: 1.0)
+            return
+        }
+        
+        guard let birth = dateOfBirthInputView.inputText, !birth.tm.isBlank else {
+            HUD.flash(.label("Please choose your birth"), delay: 1.0)
+            return
+        }
+        
+        guard let adress = addressInputView.inputText, !adress.tm.isBlank else {
+            HUD.flash(.label("Detail Address cannot be empty"), delay: 1.0)
+            return
+        }
+        
+        guard let marriageStatus = marriageStatusInputView.inputText, !marriageStatus.tm.isBlank else {
+            HUD.flash(.label("Please choose your Marriage Status"), delay: 1.0)
+            return
+        }
+        
+        guard let education = educationInputView.inputText, !education.tm.isBlank else {
+            HUD.flash(.label("Please choose your Education Background"), delay: 1.0)
+            return
+        }
+        
         navigationController?.pushViewController(PersonalnfoController(), animated: true)
     }
     
-    private func checkoutCameraPrivary() {
-        let authStatus = AVCaptureDevice.authorizationStatus(for: .video)
-        switch authStatus {
-        case .authorized:
-           openCamera()
-        case .notDetermined:
-            AVCaptureDevice.requestAccess(for: .video) { (res) in
-                if res {
-                    self.openCamera()
-                }
-            }
-        default:
-            openPermissions()
-        }
-    }
-    
-    
-    private func openPermissions(){
-        let settingUrl = NSURL(string: UIApplication.openSettingsURLString)!
-        if UIApplication.shared.canOpenURL(settingUrl as URL)
-        {
-            UIApplication.shared.open(settingUrl as URL, options: [:], completionHandler: { (istrue) in
-                
-            })
-        }
-    }
+
     
     private func openCamera() {
-        let camera = UIImagePickerController()
-        camera.sourceType = .camera
-        camera.allowsEditing = false
-        camera.delegate = self
-        present(camera, animated: true)
+        
+    }
+}
+
+// update the formdate in page
+extension KYCInfoController {
+    private func showDatePicker() {
+        view.endEditing(true)
+        let picker = UIDatePicker(frame: CGRect(x: 0, y: 0, width: Constants.screenWidth * 0.8, height: 200))
+        if #available(iOS 13.0, *) {
+            picker.overrideUserInterfaceStyle = .light
+        } else {
+            // Fallback on earlier versions
+        }
+        picker.date = Date()
+        picker.datePickerMode = .date
+        if #available(iOS 13.4, *) {
+            picker.preferredDatePickerStyle = .wheels
+        } else {
+           
+        }
+        let appearance = EAAlertView.EAAppearance(
+            kTitleHeight: 20,
+            kButtonHeight:44,
+            kTitleFont: Constants.pingFangSCSemiboldFont(18),
+            showCloseButton: false,
+            shouldAutoDismiss: false,
+            buttonsLayout: .horizontal)
+        let alert = EAAlertView(appearance: appearance)
+        alert.customSubview = picker
+        alert.circleBG.removeFromSuperview()
+        alert.addButton(backgroundImage: UIImage.tm.createImage(Constants.themeColor), "select") { [weak self] in
+            self?.dateOfBirthInputView.inputText = Date.tm.date2string(date: picker.date, dateFormat: "dd-MM-yyyy")
+            alert.hideView()
+        }
+        alert.addButton(backgroundImage: UIImage.tm.createImage(Constants.themeDisabledColor), "Done") {
+            alert.hideView()
+        }
+        alert.show("Date of Birth", subTitle: "", animationStyle: .bottomToTop)
+    }
+    
+    private func showMarriageStatusPicker() {
+        view.endEditing(true)
+        let listContent = [
+            MarriageModel(isSelected: false, displayText: "married"),
+            MarriageModel(isSelected: false, displayText: "unmarried")
+        ]
+        
+        ListSelectionView(title: "Marriage Status", unselectedIndicatorText: "Please choose your Marriage Status", contentList: listContent) { [weak self] model in
+            self?.marriageStatusInputView.inputText = (model as! MarriageModel).displayText
+        }
+    }
+    
+    private func showEducationPicker() {
+        view.endEditing(true)
+        let listContent = [
+            EducationModel(isSelected: false, displayText: "Primary school education "),
+            EducationModel(isSelected: false, displayText: "Junior high school education"),
+            EducationModel(isSelected: false, displayText: "Higher school education"),
+            EducationModel(isSelected: false, displayText: "technical secondary school"),
+            EducationModel(isSelected: false, displayText: "junior college student"),
+            EducationModel(isSelected: false, displayText: "undergraduate education"),
+            EducationModel(isSelected: false, displayText: "graduate education"),
+            EducationModel(isSelected: false, displayText: "graduate education")
+        ]
+        
+        ListSelectionView(title: "Education", unselectedIndicatorText: "Please choose your Education", contentList: listContent) { [weak self] model in
+            self?.educationInputView.inputText = model.displayText
+        }
     }
 }
 

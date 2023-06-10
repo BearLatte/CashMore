@@ -57,6 +57,22 @@ class BankInfoController: BaseScrollController {
     private lazy var submitBtn         = Constants.themeBtn(with: "Submit")
     
     @objc func submitBtnClicked() {
+        
+        guard let bankName = bankNameInputView.inputText, !bankName.tm.isBlank else {
+            HUD.flash(.label("Bank Name cannot be empty"), delay: 1.0)
+            return
+        }
+        
+        guard let account = accountInputView.inputText, !account.tm.isBlank else {
+            HUD.flash(.label("Account Number cannot be empty"), delay: 1.0)
+            return
+        }
+        
+        guard let ifsc = ifscInputView.inputText, !ifsc.tm.isBlank else {
+            HUD.flash(.label("IFSC Code cannot be empty"), delay: 1.0)
+            return
+        }
+        
         TipsSheet.show(isHiddenTitle: false, message: "The information cannot be changed after submission. Please fill in the correct information.", confirmAction:  {
             Constants.debugLog("Sure action")
         })
