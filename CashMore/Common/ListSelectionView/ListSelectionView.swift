@@ -57,17 +57,17 @@ class ListSelectionView : UIView {
             make.height.equalTo(0.5)
         }
         
-        okBtn.snp.makeConstraints { make in
+        doneBtn.snp.makeConstraints { make in
             make.left.equalTo(10)
             make.right.equalTo(bgView.snp.centerX).offset(-5)
             make.height.equalTo(44)
             make.bottom.equalToSuperview().offset(-10)
         }
         
-        doneBtn.snp.makeConstraints { make in
+        okBtn.snp.makeConstraints { make in
             make.left.equalTo(bgView.snp.centerX).offset(5)
             make.right.equalTo(-10)
-            make.height.bottom.equalTo(okBtn)
+            make.height.bottom.equalTo(doneBtn)
         }
         
         listView.snp.makeConstraints { make in
@@ -138,7 +138,7 @@ class ListSelectionView : UIView {
     private lazy var doneBtn = {
         let btn = UIButton(type: .custom)
         btn.backgroundColor = Constants.themeDisabledColor
-        btn.setTitle("Done", for: .normal)
+        btn.setTitle("Cancel", for: .normal)
         btn.titleLabel?.font = Constants.pingFangSCSemiboldFont(18)
         btn.titleLabel?.textColor = Constants.pureWhite
         btn.addTarget(self, action: #selector(cancelSelect), for: .touchUpInside)

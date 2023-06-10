@@ -204,13 +204,15 @@ extension KYCInfoController {
         let alert = EAAlertView(appearance: appearance)
         alert.customSubview = picker
         alert.circleBG.removeFromSuperview()
+        alert.addButton(backgroundImage: UIImage.tm.createImage(Constants.themeDisabledColor), "Cancel") {
+            alert.hideView()
+        }
+        
         alert.addButton(backgroundImage: UIImage.tm.createImage(Constants.themeColor), "select") { [weak self] in
             self?.dateOfBirthInputView.inputText = Date.tm.date2string(date: picker.date, dateFormat: "dd-MM-yyyy")
             alert.hideView()
         }
-        alert.addButton(backgroundImage: UIImage.tm.createImage(Constants.themeDisabledColor), "Done") {
-            alert.hideView()
-        }
+        
         alert.show("Date of Birth", subTitle: "", animationStyle: .bottomToTop)
     }
     
