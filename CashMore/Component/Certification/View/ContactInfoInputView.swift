@@ -104,6 +104,7 @@ class ContactInfoInputView: UIView {
         field.leftViewMode = .always
         field.keyboardType = .numberPad
         field.delegate = self
+        field.isEnabled = false
         return field
     }()
     
@@ -124,6 +125,7 @@ class ContactInfoInputView: UIView {
         field.leftView = leftView
         field.leftViewMode = .always
         field.delegate = self
+        field.isEnabled = false
         return field
     }()
     

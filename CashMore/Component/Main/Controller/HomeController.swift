@@ -36,6 +36,12 @@ class HomeController: BaseTableController {
         }
         
         NotificationCenter.default.addObserver(self, selector: #selector(didReceiveLoginSuccessNotification), name: Constants.loginSuccessNotification, object: nil)
+        
+//        let testBtn = UIButton(type: .custom)
+//        testBtn.backgroundColor = .cyan
+//        testBtn.frame = CGRect(x: 100, y: 500, width: 200, height: 100)
+//        view.addSubview(testBtn)
+//        testBtn.addTarget(self, action: #selector(testNetworkProt), for: .touchUpInside)
     }
     
     deinit {
@@ -53,6 +59,11 @@ class HomeController: BaseTableController {
     @objc func didReceiveLoginSuccessNotification(_ not: Notification) {
         headerView.reloadBanner()
         tableView.reloadData()
+    }
+    
+    @objc func testNetworkProt() {
+        APIService.standered.fetchModel(api: API.Certification.info, parameters: ["type": "2", "step" : "loanapiUserBasic"], type: CertificationPersonalInfoModel.self) { model in
+        }
     }
     
     private var products : [ProductModel?] = []
@@ -126,6 +137,7 @@ extension HomeController {
             if !model.authStatus {
                 let kycController = KYCInfoController()
                 kycController.pattern = .present
+                kycController.certificationModel = model
                 let nav = UINavigationController(rootViewController: kycController)
                 nav.modalPresentationStyle = .fullScreen
                 self.present(nav, animated: true)

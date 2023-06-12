@@ -8,8 +8,14 @@
 import UIKit
 import AVFoundation
 
+enum OptionType {
+    case marriage, education, industry, salary, workTitle
+}
+
 class KYCInfoController: BaseScrollController {
 
+    var certificationModel : CertificationInfoModel?
+    
     override func configUI() {
         super.configUI()
         title = "KYC Info"
@@ -121,64 +127,133 @@ class KYCInfoController: BaseScrollController {
     
     private lazy var addressInputView     = FormMultipleTextInputView(title: "Detail Address", placeholder: "Detail Address")
     private lazy var marriageStatusInputView = FormInputView(title: "Marriage Status", placeholder: "Marriage Status",showsRightView: true) { [weak self] in
-        self?.showMarriageStatusPicker()
+        self?.showOptionPicker(type: .marriage)
     }
     private lazy var educationInputView = FormInputView(title: "Education", placeholder: "Education", showsRightView: true) {  [weak self] in
-        self?.showEducationPicker()
+        self?.showOptionPicker(type: .education)
     }
     
     private lazy var nextBtn = Constants.themeBtn(with: "Next")
     private var ocrType = OCRType.cardFront
     
-    
-    @objc func nextBtnTapAction() {
-        guard let name = adhaarNameInputView.inputText, !name.tm.isBlank else {
-            HUD.flash(.label("Aadhaar Name cannot be empty"), delay: 1.0)
-            return
+    private var cardFront : CardFrontModel = CardFrontModel() {
+        didSet {
+            adhaarNameInputView.inputText   = cardFront.aadharName
+            adhaarNumInputView.inputText    = cardFront.aadharNumber
+            dateOfBirthInputView.inputText  = cardFront.dateOfBirth
+            genderChooseView.selectedGender = cardFront.gender
         }
-        
-        guard let number = adhaarNumInputView.inputText, !number.tm.isBlank else {
-            HUD.flash(.label("Adhaar Number cannot be empty"), delay: 1.0)
-            return
-        }
-        
-        guard let gender = genderChooseView.selectedGender, !gender.tm.isBlank else {
-            HUD.flash(.label("Please choose your gender"), delay: 1.0)
-            return
-        }
-        
-        guard let birth = dateOfBirthInputView.inputText, !birth.tm.isBlank else {
-            HUD.flash(.label("Please choose your birth"), delay: 1.0)
-            return
-        }
-        
-        guard let adress = addressInputView.inputText, !adress.tm.isBlank else {
-            HUD.flash(.label("Detail Address cannot be empty"), delay: 1.0)
-            return
-        }
-        
-        guard let marriageStatus = marriageStatusInputView.inputText, !marriageStatus.tm.isBlank else {
-            HUD.flash(.label("Please choose your Marriage Status"), delay: 1.0)
-            return
-        }
-        
-        guard let education = educationInputView.inputText, !education.tm.isBlank else {
-            HUD.flash(.label("Please choose your Education Background"), delay: 1.0)
-            return
-        }
-        
-        navigationController?.pushViewController(PersonalnfoController(), animated: true)
     }
     
-
-    
-    private func openCamera() {
-        
+    private var cardBack  : CardBackModel = CardBackModel() {
+        didSet {
+            addressInputView.inputText = cardBack.addressAll
+        }
     }
+    
+    private var optionsModel : OptionsModel = OptionsModel()
+    private var kycModel : CertificationKYCModel? {
+        didSet {
+            adhaarNameInputView.inputText = kycModel?.firstName
+            adhaarNumInputView.inputText  = kycModel?.aadharNumber
+            genderChooseView.selectedGender = kycModel?.gender
+            dateOfBirthInputView.inputText = kycModel?.dateOfBirth
+            addressInputView.inputText = kycModel?.residenceDetailAddress
+            marriageStatusInputView.inputText = kycModel?.marriageStatus
+            educationInputView.inputText = kycModel?.education
+            cardFrontActionView.backgroundImageView.kf.setImage(with: URL(string: kycModel?.frontImg ?? ""))
+            cardFront.imageUrl = kycModel?.frontImg ?? ""
+            cardBack.imageUrl  = kycModel?.backImg ?? ""
+            cardBackActionView.backgroundImageView.kf.setImage(with: URL(string: kycModel?.backImg ?? ""))
+        }
+    }
+    
+    private var optionType : OptionType = .marriage
 }
 
 // update the formdate in page
 extension KYCInfoController {
+    override func loadData() {
+        APIService.standered.fetchModel(api: API.Certification.options, type: OptionsModel.self) { options in
+            self.optionsModel = options
+        }
+        
+        if certificationModel?.loanapiUserIdentity == true {
+            APIService.standered.fetchModel(api: API.Certification.info, parameters: ["type": "2", "step" : "loanapiUserIdentity"], type: CertificationKYCModel.self) { model in
+                self.kycModel = model
+            }
+        }
+    }
+    
+    
+    @objc func nextBtnTapAction() {
+        guard !cardFront.imageUrl.tm.isBlank else {
+            HUD.flash(.label("Please upload Aadhaar card photo."), delay: 1.0)
+            return
+        }
+        
+        guard let name = adhaarNameInputView.inputText, !name.tm.isBlank else {
+            HUD.flash(.label("Please fill in all the information"), delay: 1.0)
+            return
+        }
+        
+        guard let number = adhaarNumInputView.inputText, !number.tm.isBlank else {
+            HUD.flash(.label("Please fill in all the information"), delay: 1.0)
+            return
+        }
+        
+        guard let gender = genderChooseView.selectedGender, !gender.tm.isBlank else {
+            HUD.flash(.label("Please fill in all the information"), delay: 1.0)
+            return
+        }
+        
+        guard let birth = dateOfBirthInputView.inputText, !birth.tm.isBlank else {
+            HUD.flash(.label("Please fill in all the information"), delay: 1.0)
+            return
+        }
+        
+        guard !cardBack.imageUrl.tm.isBlank else {
+            HUD.flash(.label("Please upload Aadhaar card photo."), delay: 1.0)
+            return
+        }
+        
+        guard let adress = addressInputView.inputText, !adress.tm.isBlank else {
+            HUD.flash(.label("Please fill in all the information"), delay: 1.0)
+            return
+        }
+        
+        guard let marriageStatus = marriageStatusInputView.inputText, !marriageStatus.tm.isBlank else {
+            HUD.flash(.label("Please fill in all the information"), delay: 1.0)
+            return
+        }
+        
+        guard let education = educationInputView.inputText, !education.tm.isBlank else {
+            HUD.flash(.label("Please fill in all the information"), delay: 1.0)
+            return
+        }
+        
+        var params : [String : Any] = [:]
+        params["frontImg"]  = cardFront.imageUrl
+        params["backImg"]   = cardBack.imageUrl
+        params["firstName"] = name
+        params["aadharNumber"] = number
+        params["adNumberPaste"] = "0"
+        params["gender"]    = gender
+        params["dateOfBirth"] = birth
+        params["education"]   = education
+        params["marriageStatus"] = marriageStatus
+        params["residenceDetailAddress"] = adress
+        params["residenceDetailAddressPaste"] = "0"
+
+        APIService.standered.normalRequest(api: API.Certification.kycAuth, parameters: params) {
+            let personalInfoVC = PersonalnfoController()
+            personalInfoVC.certificationModel = self.certificationModel
+            personalInfoVC.opstionsModel = self.optionsModel
+            self.navigationController?.pushViewController(personalInfoVC, animated: true)
+        }
+        
+    }
+    
     private func showDatePicker() {
         view.endEditing(true)
         let picker = UIDatePicker(frame: CGRect(x: 0, y: 0, width: Constants.screenWidth * 0.8, height: 200))
@@ -216,33 +291,20 @@ extension KYCInfoController {
         alert.show("Date of Birth", subTitle: "", animationStyle: .bottomToTop)
     }
     
-    private func showMarriageStatusPicker() {
+    private func showOptionPicker(type: OptionType) {
         view.endEditing(true)
-        let listContent = [
-            MarriageModel(isSelected: false, displayText: "married"),
-            MarriageModel(isSelected: false, displayText: "unmarried")
-        ]
-        
-        ListSelectionView(title: "Marriage Status", unselectedIndicatorText: "Please choose your Marriage Status", contentList: listContent) { [weak self] model in
-            self?.marriageStatusInputView.inputText = (model as! MarriageModel).displayText
+        var options : [OptionModel] = []
+        for option in (type == .marriage ? optionsModel.marryList : optionsModel.eduList) {
+            options.append(OptionModel(isSelected: false, displayText: option))
         }
-    }
-    
-    private func showEducationPicker() {
-        view.endEditing(true)
-        let listContent = [
-            EducationModel(isSelected: false, displayText: "Primary school education "),
-            EducationModel(isSelected: false, displayText: "Junior high school education"),
-            EducationModel(isSelected: false, displayText: "Higher school education"),
-            EducationModel(isSelected: false, displayText: "technical secondary school"),
-            EducationModel(isSelected: false, displayText: "junior college student"),
-            EducationModel(isSelected: false, displayText: "undergraduate education"),
-            EducationModel(isSelected: false, displayText: "graduate education"),
-            EducationModel(isSelected: false, displayText: "graduate education")
-        ]
         
-        ListSelectionView(title: "Education", unselectedIndicatorText: "Please choose your Education", contentList: listContent) { [weak self] model in
-            self?.educationInputView.inputText = model.displayText
+        ListSelectionView(title: type == .marriage ? "Marriage Status" : "Education" , unselectedIndicatorText: type == .marriage ? "Please choose your Marriage Status" : "Please choose your Education", contentList: options) { [weak self] model in
+            if type == .marriage {
+                self?.marriageStatusInputView.inputText = (model as! OptionModel).displayText
+            } else {
+                self?.educationInputView.inputText = (model as! OptionModel).displayText
+            }
+            
         }
     }
 }
@@ -255,23 +317,17 @@ extension KYCInfoController : UIImagePickerControllerDelegate & UINavigationCont
         }
         
         if ocrType == .cardFront {
-            cardFrontActionView.backgroundImage = img
+            cardFrontActionView.backgroundImageView.image = img
         } else {
-            cardBackActionView.backgroundImage = img
+            cardBackActionView.backgroundImageView.image = img
         }
         
         APIService.standered.ocrService(imgData: img.tm.compressImage(maxLength: 1024 * 200), type: ocrType) { model in
             if self.ocrType == .cardFront {
-                let curModel = model as? CardFrontModel
-                self.adhaarNameInputView.inputText = curModel?.aadharName
-                self.adhaarNumInputView.inputText = curModel?.aadharNumber
-                self.dateOfBirthInputView.inputText = curModel?.dateOfBirth
-                self.genderChooseView.selectedGender = curModel?.gender
+                self.cardFront = model as! CardFrontModel
             } else {
-                let curModel = model as? CardBackModel
-                self.addressInputView.inputText = curModel?.addressAll
+                self.cardBack  = model as! CardBackModel
             }
-            
         }
     }
 }

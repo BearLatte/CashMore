@@ -8,6 +8,7 @@
 import UIKit
 
 class BankInfoController: BaseScrollController {
+    var certificationModel : CertificationInfoModel?
     override func configUI() {
         super.configUI()
         title = "Bank Info"
@@ -52,29 +53,49 @@ class BankInfoController: BaseScrollController {
     }
     
     private lazy var bankNameInputView = FormInputView(title: "Bank Name", placeholder: "Bank Name")
-    private lazy var accountInputView  = FormInputView(title: "Account Number", placeholder: "Account Number")
+    private lazy var accountInputView  = FormInputView(title: "Account Number", placeholder: "Account Number", keyboardType: .numberPad)
     private lazy var ifscInputView     = FormInputView(title: "IFSC Code", placeholder: "IFSC Code")
     private lazy var submitBtn         = Constants.themeBtn(with: "Submit")
     
+    
+}
+
+extension BankInfoController {
     @objc func submitBtnClicked() {
         
         guard let bankName = bankNameInputView.inputText, !bankName.tm.isBlank else {
-            HUD.flash(.label("Bank Name cannot be empty"), delay: 1.0)
-            return
+            return HUD.flash(.label("Bank Name cannot be empty"), delay: 2.0)
         }
         
         guard let account = accountInputView.inputText, !account.tm.isBlank else {
-            HUD.flash(.label("Account Number cannot be empty"), delay: 1.0)
-            return
+            return HUD.flash(.label("Account Number cannot be empty"), delay: 2.0)
         }
         
         guard let ifsc = ifscInputView.inputText, !ifsc.tm.isBlank else {
-            HUD.flash(.label("IFSC Code cannot be empty"), delay: 1.0)
-            return
+            return HUD.flash(.label("IFSC Code cannot be empty"), delay: 2.0)
         }
         
         TipsSheet.show(isHiddenTitle: false, message: "The information cannot be changed after submission. Please fill in the correct information.", confirmAction:  {
-            Constants.debugLog("Sure action")
+            self.authBank()
         })
+    }
+    
+    
+    private func authBank() {
+        guard let bankName = bankNameInputView.inputText, !bankName.tm.isBlank else {
+            return HUD.flash(.label("Bank Name cannot be empty"), delay: 2.0)
+        }
+        guard let bankAccount = accountInputView.inputText, !bankAccount.tm.isBlank else {
+            return HUD.flash(.label("Account Number cannot be empty"), delay: 2.0)
+        }
+        guard let ifscCode = ifscInputView.inputText, !ifscCode.tm.isBlank else {
+            return HUD.flash(.label("IFSC should be in 11 digit numbers or letters"), delay: 2.0)
+        }
+        let params = ["bankName": bankName, "bankCardNo" : bankAccount, "bankCardNoPaste" : "0", "ifscCode" : ifscCode]
+        APIService.standered.normalRequest(api: API.Certification.bankAuth, parameters: params) {
+            self.navigationController?.dismiss(animated: true, completion: {
+                HUD.flash(.labeledSuccess(title: nil, subtitle: "Success"), delay: 2.0)
+            })
+        }
     }
 }

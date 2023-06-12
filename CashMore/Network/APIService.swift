@@ -18,13 +18,18 @@ struct APIService {
     static let standered = APIService()
     
     func fetchList<T: HandyJSON>(api: APIProtocol, type: T, listPath: String, parameters: [String : Any]? = nil, success: @escaping ([T?]) -> Void) {
-        HUD.show(.labeledProgress(title: nil, subtitle: "loading"))
+        DispatchQueue.main.async {
+            HUD.show(.labeledProgress(title: nil, subtitle: "loading"))
+        }
+        
         NTTool.fetch(API.Home.productList, parameters: Constants.configParameters(parameters))
             .success { networkModel in
                 HUD.hide()
                 switch networkModel.code {
                 case 0:
-                    HUD.flash(.labeledError(title: "Failed", subtitle: networkModel.msg), delay: 1.0)
+                    DispatchQueue.main.async {
+                        HUD.flash(.labeledError(title: "Failed", subtitle: networkModel.msg), delay: 2.0)
+                    }
                 case 1:
                     guard let baseContent = networkModel.response.cont,
                           let dictList = baseContent[listPath] as? [[String : Any]],
@@ -39,20 +44,27 @@ struct APIService {
                 }
             }
             .failed { error in
-                HUD.flash(.labeledError(title: nil, subtitle: error.localizedDescription), delay: 1.0)
-                Constants.debugLog(error.localizedDescription)
+                DispatchQueue.main.async {
+                    HUD.flash(.labeledError(title: nil, subtitle: error.localizedDescription), delay: 2.0)
+                }
             }
     }
     
     func fetchModel<T: HandyJSON>(api: APIProtocol, parameters: [String : Any]? = nil, type: T.Type, success: @escaping ((T) -> Void)) {
-        HUD.show(.labeledProgress(title: nil, subtitle: "loading"))
+        DispatchQueue.main.async {
+            HUD.show(.labeledProgress(title: nil, subtitle: "loading"))
+        }
         NTTool.fetch(api, parameters: Constants.configParameters(parameters))
             .success { networkModel in
                 HUD.hide()
                 switch networkModel.code {
                 case 0:
-                    HUD.flash(.labeledError(title: "Failed", subtitle: networkModel.msg), delay: 1.0)
+                    DispatchQueue.main.async {
+                        HUD.flash(.labeledError(title: "Failed", subtitle: networkModel.msg), delay: 2.0)
+                    }
+                    
                 case 1:
+                    Constants.debugLog(networkModel.response.cont)
                     guard let baseContent = networkModel.response.cont,
                           let model = T.deserialize(from: baseContent) else {
                         return
@@ -64,19 +76,25 @@ struct APIService {
                 }
             }
             .failed { error in
-                HUD.flash(.labeledError(title: nil, subtitle: error.localizedDescription), delay: 1.0)
+                DispatchQueue.main.async {
+                    HUD.flash(.labeledError(title: nil, subtitle: error.localizedDescription), delay: 2.0)
+                }
                 Constants.debugLog(error.localizedDescription)
             }
     }
     
     func normalRequest(api: APIProtocol, parameters: [String : Any]? = nil, success: @escaping (() -> Void)) {
-        HUD.show(.labeledProgress(title: nil, subtitle: "loading"))
+        DispatchQueue.main.async {
+            HUD.show(.labeledProgress(title: nil, subtitle: "loading"))
+        }
         NTTool.fetch(api, parameters: Constants.configParameters(parameters))
             .success { networkModel in
                 HUD.hide()
                 switch networkModel.code {
                 case 0:
-                    HUD.flash(.labeledError(title: "Failed", subtitle: networkModel.msg), delay: 1.0)
+                    DispatchQueue.main.async {
+                        HUD.flash(.labeledError(title: "Failed", subtitle: networkModel.msg), delay: 2.0)
+                    }
                 case 1:
                     success()
                 case -1:
@@ -85,12 +103,16 @@ struct APIService {
                 }
             }
             .failed { error in
-                HUD.flash(.labeledError(title: nil, subtitle: error.localizedDescription), delay: 1.0)
+                DispatchQueue.main.async {
+                    HUD.flash(.labeledError(title: nil, subtitle: error.localizedDescription), delay: 2.0)
+                }
             }
     }
     
     func ocrService(imgData: Data, type: OCRType, success: @escaping (_ ocrResult : HandyJSON) -> Void) {
-        HUD.show(.labeledProgress(title: nil, subtitle: "loading"))
+        DispatchQueue.main.async {
+            HUD.show(.labeledProgress(title: nil, subtitle: "loading"))
+        }
         var ossParams : OSSParameters = OSSParameters()
         var uploadedImgUrl : String = ""
         
@@ -114,6 +136,15 @@ struct APIService {
                 DispatchQueue.main.async {
                     HUD.hide()
                 }
+                switch type {
+                case .cardFront:
+                    (ocrModel as? CardFrontModel)?.imageUrl = uploadedImgUrl
+                case .cardBack:
+                    (ocrModel as? CardBackModel)?.imageUrl  = uploadedImgUrl
+                case .panFront:
+                    (ocrModel as? PanFrontModel)?.imageUrl  = uploadedImgUrl
+                }
+                
                 success(ocrModel)
                 semaphore.signal()
             }
@@ -132,7 +163,7 @@ extension APIService {
                 switch networkModel.code {
                 case 0:
                     DispatchQueue.main.async {
-                        HUD.flash(.labeledError(title: "Failed", subtitle: networkModel.msg), delay: 1.0)
+                        HUD.flash(.labeledError(title: "Failed", subtitle: networkModel.msg), delay: 2.0)
                     }
                 case 1:
                     guard let params = OSSParameters.deserialize(from: networkModel.response.cont) else {
@@ -148,7 +179,7 @@ extension APIService {
             }
             .failed { error in
                 DispatchQueue.main.async {
-                    HUD.flash(.labeledError(title: nil, subtitle: error.localizedDescription), delay: 1.0)
+                    HUD.flash(.labeledError(title: nil, subtitle: error.localizedDescription), delay: 2.0)
                 }
             }
     }
@@ -166,13 +197,9 @@ extension APIService {
         let client = OSSClient(endpoint: params.url, credentialProvider: credential)
         let put = OSSPutObjectRequest()
         put.bucketName = params.bucket
-        let fullPath = "inida/img/\(String.tm.randomString(with: 10)).jpg"
+        let fullPath = "india/img/\(Date().tm.toString(format: "yyyy-MM-dd"))/\(String.tm.randomString(with: 32)).jpg"
         put.objectKey  = fullPath
         put.uploadingData = imgData
-        put.callbackParam["callbackBody"] = "test"
-        put.uploadProgress = { bytesSent, totalByteSent, totalBytesExpectedToSend in
-            Constants.debugLog("本次发送: \(bytesSent), 已发送了：\(totalByteSent), 总大小:\(totalBytesExpectedToSend)")
-        }
         let putTask = client.putObject(put)
         
         putTask.continue({ (task) -> Any? in
@@ -192,7 +219,7 @@ extension APIService {
                 switch networkModel.code {
                 case 0:
                     DispatchQueue.main.async {
-                        HUD.flash(.labeledError(title: "Failed", subtitle: networkModel.msg), delay: 1.0)
+                        HUD.flash(.labeledError(title: "Failed", subtitle: networkModel.msg), delay: 2.0)
                     }
                 case 1:
                     var modelType : HandyJSON.Type?
@@ -221,7 +248,7 @@ extension APIService {
             }
             .failed { error in
                 DispatchQueue.main.async {
-                    HUD.flash(.labeledError(title: nil, subtitle: error.localizedDescription), delay: 1.0)
+                    HUD.flash(.labeledError(title: nil, subtitle: error.localizedDescription), delay: 2.0)
                 }
             }
     }

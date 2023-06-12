@@ -27,19 +27,10 @@ class OCRInputActionView: UIView {
         }
     }
     
-    var backgroundImage: UIImage? {
-        get {
-            bgView.image
-        }
-        set {
-            bgView.image = newValue
-        }
-    }
     
-    convenience init(title: String?, image: UIImage?, backgroundImage: UIImage? = nil, tapAction: (() -> Void)?) {
+    convenience init(title: String?, image: UIImage?,  tapAction: (() -> Void)?) {
         self.init(frame: .zero)
         self.titleLabel.text = title
-        self.bgView.image = backgroundImage
         self.iconView.image = image
         self.tapAction = tapAction
     }
@@ -48,9 +39,10 @@ class OCRInputActionView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = Constants.themeColor
-        bgView.contentMode = .scaleAspectFill
-        bgView.layer.masksToBounds = true
-        addSubview(bgView)
+        backgroundImageView.contentMode = .scaleAspectFill
+        backgroundImageView.layer.masksToBounds = true
+        backgroundImageView.image = UIImage.tm.createImage(Constants.themeColor)
+        addSubview(backgroundImageView)
         iconView.contentMode = .scaleAspectFit
         addSubview(iconView)
         addSubview(titleLabel)
@@ -64,7 +56,7 @@ class OCRInputActionView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        bgView.snp.makeConstraints { make in
+        backgroundImageView.snp.makeConstraints { make in
             make.edges.equalTo(UIEdgeInsets.zero)
         }
         
@@ -82,7 +74,7 @@ class OCRInputActionView: UIView {
         }
     }
     
-    private lazy var bgView = UIImageView()
+    lazy var backgroundImageView = UIImageView()
     private lazy var iconView = UIImageView()
     private lazy var titleLabel : UILabel = {
         let lb = UILabel()

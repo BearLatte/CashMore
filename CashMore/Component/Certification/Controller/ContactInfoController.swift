@@ -9,6 +9,7 @@ import UIKit
 import Contacts
 
 class ContactInfoController : BaseScrollController {
+    var certificationModel : CertificationInfoModel?
     override func configUI() {
         super.configUI()
         title = "Contact info"
@@ -71,12 +72,28 @@ class ContactInfoController : BaseScrollController {
         self?.checkContactStoreAuth()
     }
     
+    private var contactModel : CertificationContactModel = CertificationContactModel() {
+        didSet {
+            parentItem.contact = ContactModel(name: contactModel.brotherOrSisterName, phone: contactModel.brotherOrSisterNumber)
+            familyItem.contact = ContactModel(name: contactModel.familyName, phone: contactModel.familyNumber)
+            colleagueItem.contact = ContactModel(name: contactModel.colleagueName, phone: contactModel.colleagueNumber)
+        }
+    }
+    
     private var nextBtn = Constants.themeBtn(with: "Next")
 }
 
 
 // MARK: - Private method
 extension ContactInfoController {
+    override func loadData() {
+        if certificationModel?.loanapiUserLinkMan == true {
+            APIService.standered.fetchModel(api: API.Certification.info, parameters: ["type": "2", "step" : "loanapiUserLinkMan"], type: CertificationContactModel.self) { model in
+                self.contactModel = model
+            }
+        }
+    }
+    
     private func showAlert(with message: String?) {
         let appearance = EAAlertView.EAAppearance(
             kTitleHeight: 0,
@@ -182,22 +199,29 @@ extension ContactInfoController {
     
     
     @objc func nextBtnAction() {
-        guard let parentsContact = parentItem.contact, !parentsContact.name.tm.isBlank, !parentsContact.phoneNumber.tm.isBlank else {
-            HUD.flash(.label("Please check the Parents Contact"), delay: 1.0)
-            return
+        guard let bortherContact = parentItem.contact, !bortherContact.phoneNumber.tm.isBlank, !bortherContact.name.tm.isBlank else {
+            return HUD.flash(.label("Please check the Parents Contact"), delay: 1.0)
         }
-
-        guard let familyContact = familyItem.contact, !familyContact.name.tm.isBlank, !familyContact.phoneNumber.tm.isBlank else {
-            HUD.flash(.label("Please check the Family Contact"), delay: 1.0)
-            return
+        guard let familyContact = familyItem.contact, !familyContact.phoneNumber.tm.isBlank, !familyContact.name.tm.isBlank else {
+            return HUD.flash(.label("Please check the family Contact"), delay: 1.0)
         }
-
-        guard let colleagueContact = colleagueItem.contact, !colleagueContact.name.tm.isBlank, !colleagueContact.phoneNumber.tm.isBlank else {
-            HUD.flash(.label("Please check the Colleague Contact"), delay: 1.0)
-            return
+        guard let colleagueContact = colleagueItem.contact, !colleagueContact.phoneNumber.tm.isBlank, !colleagueContact.name.tm.isBlank else {
+            return HUD.flash(.label("Please check the Colleague Contact"), delay: 1.0)
         }
         
-        navigationController?.pushViewController(BankInfoController(), animated: true)
+        let params = [
+            "brotherOrSisterName" : bortherContact.name,
+            "brotherOrSisterNumber" : bortherContact.phoneNumber,
+            "familyName" : familyContact.name,
+            "familyNumber" : familyContact.phoneNumber,
+            "colleagueName" : colleagueContact.name,
+            "colleagueNumber" : colleagueContact.phoneNumber,
+        ]
+        APIService.standered.normalRequest(api: API.Certification.contactAuth, parameters: params) {
+            let bankInfoVC = BankInfoController()
+            bankInfoVC.certificationModel = self.certificationModel
+            self.navigationController?.pushViewController(bankInfoVC, animated: true)
+        }
     }
        
 }

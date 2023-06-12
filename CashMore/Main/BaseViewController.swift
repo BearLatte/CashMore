@@ -98,7 +98,11 @@ class BaseViewController: UIViewController {
         }
     }
     
-    func loadData() {
+    
+}
+
+extension BaseViewController {
+    @objc func loadData() {
         
     }
 }

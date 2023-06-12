@@ -39,9 +39,14 @@ struct API {
     }
     
     struct Certification {
-        static var info = APIItem("/PZJqjz/RrKrKN/bdlcP", desc: "get the all certification info")
-        static var ossParams = APIItem("/PZJqjz/RrKrKN/UHbCO", desc: "get the oss parameters")
         static var ocr  = APIItem("/PZJqjz/RrKrKN/LxUNR", desc: "OCR")
+        static var info = APIItem("/PZJqjz/RrKrKN/bdlcP", desc: "get the all certification info")
+        static var kycAuth   = APIItem("/PZJqjz/RrKrKN/GlgHJ", desc: "KYC Page auth")
+        static var options   = APIItem("/PZJqjz/RrKrKN/iqXUn", desc: "Dropdown menu content")
+        static var bankAuth  = APIItem("/PZJqjz/RrKrKN/KrzRo", desc: "Bank info auth")
+        static var ossParams = APIItem("/PZJqjz/RrKrKN/UHbCO", desc: "get the oss parameters")
+        static var contactAuth      = APIItem("/PZJqjz/RrKrKN/zNXee", desc: "Contact auth")
+        static var prosonalInfoAuth = APIItem("/PZJqjz/RrKrKN/cobZb", desc: "Personal Info auth")
     }
     
     struct Login {

@@ -7,17 +7,23 @@
 
 import Foundation
 
-struct CardFrontModel : HandyJSON {
+class CardFrontModel : HandyJSON {
+    var imageUrl     : String = ""
     var aadharNumber : String = ""
     var aadharName   : String = ""
     var dateOfBirth  : String = ""
     var gender       : String = ""
+    required init() {}
 }
 
-struct CardBackModel : HandyJSON {
+class CardBackModel : HandyJSON {
+    var imageUrl     : String = ""
     var addressAll : String = ""
+    required init() {}
 }
 
-struct PanFrontModel : HandyJSON {
+class PanFrontModel : HandyJSON {
+    var imageUrl     : String = ""
     var panNumber : String = ""
+    required init() {}
 }
