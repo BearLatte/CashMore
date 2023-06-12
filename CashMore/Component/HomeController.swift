@@ -49,10 +49,18 @@ class HomeController: BaseTableController {
     }
     
     override func loadData() {
-        APIService.standered.fetchList(api: API.Home.productList, type: ProductModel(), listPath: "loanProductList") { [weak self] products in
-            self?.products = products
-            self?.tableView.reloadData()
-            self?.tableView.endRefreshing(at: .top)
+        if Constants.isLogin {
+            APIService.standered.fetchModel(api: API.Me.userInfo, type: UserInfoModel.self) { [weak self] userInfo in
+                self?.products = userInfo.loanProductList
+                self?.tableView.reloadData()
+                self?.tableView.endRefreshing(at: .top)
+            }
+        } else {
+            APIService.standered.fetchList(api: API.Home.productList, type: ProductModel(), listPath: "loanProductList") { [weak self] products in
+                self?.products = products
+                self?.tableView.reloadData()
+                self?.tableView.endRefreshing(at: .top)
+            }
         }
     }
     
@@ -141,6 +149,9 @@ extension HomeController {
                 let nav = UINavigationController(rootViewController: kycController)
                 nav.modalPresentationStyle = .fullScreen
                 self.present(nav, animated: true)
+            } else {
+                let purchaseVC = PurchaseController()
+                self.navigationController?.pushViewController(purchaseVC, animated: true)
             }
         }
     }
