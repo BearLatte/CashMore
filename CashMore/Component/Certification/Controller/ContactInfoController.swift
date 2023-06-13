@@ -52,10 +52,7 @@ class ContactInfoController : BaseScrollController {
     
     private var currentContactType : ContactType = .parents
     
-    lazy var contactStore: CNContactStore = {
-        let cn:CNContactStore = CNContactStore()
-        return cn
-    }()
+    private lazy var contactStore: CNContactStore = CNContactStore()
     
     private lazy var parentItem = ContactInfoInputView(title: "Parents Contact"){ [weak self] in
         self?.currentContactType = .parents

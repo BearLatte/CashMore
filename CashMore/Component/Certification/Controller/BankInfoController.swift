@@ -95,6 +95,7 @@ extension BankInfoController {
         APIService.standered.normalRequest(api: API.Certification.bankAuth, parameters: params) {
             self.navigationController?.dismiss(animated: true, completion: {
                 HUD.flash(.labeledSuccess(title: nil, subtitle: "Success"), delay: 2.0)
+                NotificationCenter.default.post(name: Constants.CertificationSuccessNotification, object: nil)
             })
         }
     }

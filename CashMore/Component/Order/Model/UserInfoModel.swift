@@ -7,7 +7,8 @@
 
 struct UserInfoModel : HandyJSON {
     var phone            : String = ""
-    var userStatus       : Bool = false//用户状态   1未认证 2已认证
+    /// //用户状态 1未认证   2可借款（金融产品信息）  3待审核  4待放款  5被拒绝  6待还款  7已逾期
+    var userStatus       : Int = 0
     var gpsContent       : String = ""
     var photoContent     : String = ""
     /// 通讯录

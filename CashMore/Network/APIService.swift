@@ -151,7 +151,56 @@ struct APIService {
         }
     }
     
+    // 图片上传
+    func uploadImageService(_ image: UIImage?, success: @escaping (_ imageURL: String) -> Void) {
+        DispatchQueue.main.async {
+            HUD.show(.labeledProgress(title: nil, subtitle: "loading"))
+        }
+        
+        let dispatchQueue = DispatchQueue(label: "serial")
+        let semaphore = DispatchSemaphore(value: 0)
+        
+        dispatchQueue.async {
+            var ossParams : OSSParameters = OSSParameters()
+            fetchOssParams { params in
+                ossParams = params
+                semaphore.signal()
+            }
+            
+            semaphore.wait()
+            guard let imgData = image?.tm.compressImage(maxLength: 1024 * 200) else {
+                DispatchQueue.main.async {
+                    HUD.flash(.label("Photo cannot be empty"), delay: 2.0)
+                }
+                return
+            }
+            uploadImageWithOssParams(imgData: imgData, params: ossParams) { imgUrl in
+                semaphore.signal()
+                success(imgUrl)
+                DispatchQueue.main.async {
+                    HUD.flash(.labeledSuccess(title: "Upload Success", subtitle: nil))
+                }
+            }
+        }
+    }
     
+    // 用户人脸信息认证
+    func faceVerifyService(_ image: UIImage?, success: @escaping () -> Void) {
+        let dispatchQueue = DispatchQueue(label: "serial")
+        let semaphore = DispatchSemaphore(value: 0)
+        dispatchQueue.async {
+            var imgUrl : String = ""
+            uploadImageService(image) { imageURL in
+                imgUrl = imageURL
+                semaphore.signal()
+            }
+            
+            semaphore.wait()
+            normalRequest(api: API.Certification.faceAuth, parameters: ["livenessImg":imgUrl]) {
+                success()
+            }
+        }
+    }
 }
 
 

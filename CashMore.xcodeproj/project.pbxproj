@@ -72,7 +72,6 @@
 		226209032A31B350005E1F5C /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226209022A31B350005E1F5C /* APIService.swift */; };
 		226209062A32E2B5005E1F5C /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226209052A32E2B5005E1F5C /* LoginController.swift */; };
 		226209092A32E2D1005E1F5C /* LoginSuccessModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226209082A32E2D1005E1F5C /* LoginSuccessModel.swift */; };
-		2262090B2A32E853005E1F5C /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2262090A2A32E853005E1F5C /* UserModel.swift */; };
 		2262090D2A32F24D005E1F5C /* PersonalCenterHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2262090C2A32F24D005E1F5C /* PersonalCenterHeaderView.swift */; };
 		2262090F2A330090005E1F5C /* CertificationInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2262090E2A330090005E1F5C /* CertificationInfoModel.swift */; };
 		226209112A33193A005E1F5C /* OSSParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226209102A33193A005E1F5C /* OSSParameters.swift */; };
@@ -83,6 +82,9 @@
 		229939292A372665000309DE /* PurchaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229939282A372665000309DE /* PurchaseController.swift */; };
 		2299392B2A372C8E000309DE /* UserInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2299392A2A372C8E000309DE /* UserInfoModel.swift */; };
 		2299392D2A37357E000309DE /* ProductDetailItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2299392C2A37357E000309DE /* ProductDetailItemView.swift */; };
+		22A66A552A382D8C005E7835 /* InVivoDetectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A66A542A382D8C005E7835 /* InVivoDetectionController.swift */; };
+		22A66A572A38704F005E7835 /* UIDevice+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A66A562A38704F005E7835 /* UIDevice+Extension.swift */; };
+		22A66A5B2A388E6F005E7835 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A66A5A2A388E6F005E7835 /* LocationManager.swift */; };
 		22CE9DA72A28395F006C5153 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CE9DA62A28395F006C5153 /* R.generated.swift */; };
 		22CE9DAA2A283C03006C5153 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CE9DA92A283C03006C5153 /* Constants.swift */; };
 		22CE9DB12A2866DA006C5153 /* Prefix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CE9DB02A2866DA006C5153 /* Prefix.swift */; };
@@ -171,7 +173,6 @@
 		226209022A31B350005E1F5C /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		226209052A32E2B5005E1F5C /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		226209082A32E2D1005E1F5C /* LoginSuccessModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSuccessModel.swift; sourceTree = "<group>"; };
-		2262090A2A32E853005E1F5C /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		2262090C2A32F24D005E1F5C /* PersonalCenterHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalCenterHeaderView.swift; sourceTree = "<group>"; };
 		2262090E2A330090005E1F5C /* CertificationInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificationInfoModel.swift; sourceTree = "<group>"; };
 		226209102A33193A005E1F5C /* OSSParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSSParameters.swift; sourceTree = "<group>"; };
@@ -183,6 +184,9 @@
 		229939282A372665000309DE /* PurchaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseController.swift; sourceTree = "<group>"; };
 		2299392A2A372C8E000309DE /* UserInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoModel.swift; sourceTree = "<group>"; };
 		2299392C2A37357E000309DE /* ProductDetailItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailItemView.swift; sourceTree = "<group>"; };
+		22A66A542A382D8C005E7835 /* InVivoDetectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InVivoDetectionController.swift; sourceTree = "<group>"; };
+		22A66A562A38704F005E7835 /* UIDevice+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+Extension.swift"; sourceTree = "<group>"; };
+		22A66A5A2A388E6F005E7835 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		22CE9DA62A28395F006C5153 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		22CE9DA92A283C03006C5153 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		22CE9DB02A2866DA006C5153 /* Prefix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Prefix.swift; sourceTree = "<group>"; };
@@ -463,6 +467,7 @@
 			isa = PBXGroup;
 			children = (
 				229939282A372665000309DE /* PurchaseController.swift */,
+				22A66A542A382D8C005E7835 /* InVivoDetectionController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -490,6 +495,7 @@
 				226208782A2D8A35005E1F5C /* ActiveLabel */,
 				226208712A2D794D005E1F5C /* VerifyBoxField */,
 				22CE9DDD2A29E4DE006C5153 /* CaptchaButton.swift */,
+				22A66A5A2A388E6F005E7835 /* LocationManager.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -520,6 +526,7 @@
 				226208FA2A30A9E2005E1F5C /* String+Extension.swift */,
 				226209002A31A1E2005E1F5C /* Codable+Extension.swift */,
 				220E1A4B2A3458EE0054EEA8 /* Date+Extension.swift */,
+				22A66A562A38704F005E7835 /* UIDevice+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -586,7 +593,6 @@
 		22CE9DCA2A298A72006C5153 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				2262090A2A32E853005E1F5C /* UserModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -798,16 +804,17 @@
 				22CE9DB62A286AF0006C5153 /* HomeController.swift in Sources */,
 				226208E52A3066E0005E1F5C /* NetworkRequest.swift in Sources */,
 				226208C22A2F395B005E1F5C /* PagingContentScrollView.swift in Sources */,
+				22A66A552A382D8C005E7835 /* InVivoDetectionController.swift in Sources */,
 				2262088C2A2DBCD7005E1F5C /* FormInputView.swift in Sources */,
 				226209062A32E2B5005E1F5C /* LoginController.swift in Sources */,
 				226208A32A2EFE00005E1F5C /* OrderPagingController.swift in Sources */,
 				226208E72A306B9A005E1F5C /* API.swift in Sources */,
 				22CE9DC52A289AEC006C5153 /* HomeProductCell.swift in Sources */,
 				2262089F2A2ED8C6005E1F5C /* BankInfoController.swift in Sources */,
-				2262090B2A32E853005E1F5C /* UserModel.swift in Sources */,
 				226208972A2DE679005E1F5C /* PhotoTipSheet.swift in Sources */,
 				22CE9DB12A2866DA006C5153 /* Prefix.swift in Sources */,
 				229939292A372665000309DE /* PurchaseController.swift in Sources */,
+				22A66A572A38704F005E7835 /* UIDevice+Extension.swift in Sources */,
 				220E1A482A3440DE0054EEA8 /* EAAlertViewResponder.swift in Sources */,
 				226208CE2A303926005E1F5C /* OrderDetailController.swift in Sources */,
 				22CE9DCF2A298F8F006C5153 /* BaseTableController.swift in Sources */,
@@ -817,6 +824,7 @@
 				226208832A2D8A35005E1F5C /* ActiveBuilder.swift in Sources */,
 				226209012A31A1E2005E1F5C /* Codable+Extension.swift in Sources */,
 				226209182A332E05005E1F5C /* OCRModel.swift in Sources */,
+				22A66A5B2A388E6F005E7835 /* LocationManager.swift in Sources */,
 				226208952A2DD88A005E1F5C /* UITextView+Extension.swift in Sources */,
 				22CE9DD32A29BA21006C5153 /* Bundle+Extension.swift in Sources */,
 				220E1A462A3440DE0054EEA8 /* EAAlertView.swift in Sources */,
@@ -1015,6 +1023,8 @@
 				INFOPLIST_KEY_CFBundleDisplayName = "Cash More";
 				INFOPLIST_KEY_NSCameraUsageDescription = "CashMore App must obtain your camera permission to take photos and upload";
 				INFOPLIST_KEY_NSContactsUsageDescription = "Please allow CashMore visit your Contacts";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Please allow CashMore to use your location";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Please allow CashMore to use your location";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Please allow CashMore visit your photo library";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Please allow CashMore visit your photo library";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1054,6 +1064,8 @@
 				INFOPLIST_KEY_CFBundleDisplayName = "Cash More";
 				INFOPLIST_KEY_NSCameraUsageDescription = "CashMore App must obtain your camera permission to take photos and upload";
 				INFOPLIST_KEY_NSContactsUsageDescription = "Please allow CashMore visit your Contacts";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Please allow CashMore to use your location";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Please allow CashMore to use your location";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Please allow CashMore visit your photo library";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Please allow CashMore visit your photo library";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

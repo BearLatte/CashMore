@@ -38,7 +38,7 @@ extension TM where Base: ExpressibleByStringLiteral{
         (base as! String).trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
     }
     
-    static func sortedDictionary(with parameters: Dictionary<String, Any>) -> String {
+    static func sortedDictionary(with parameters: Dictionary<String, Any?>) -> String {
         var paramsStr = ""
         let keys = parameters.keys.sorted()
         for index in 0 ..< keys.count {

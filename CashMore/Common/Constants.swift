@@ -24,6 +24,7 @@ struct Constants {
     }
     static let IS_FIRST_LAUNCH = "kIS_FIRST_LAUNCH"
     static let UID_KEY = "kUID_KEY"
+    static let FIRST_LAUNCH_TIME_STAMP = "kFIRST_LAUNCH_TIME_STAMP"
     
     static var isLogin : Bool {
         UserDefaults.standard.bool(forKey: IS_LOGIN)
@@ -44,6 +45,7 @@ struct Constants {
     static var isFirstLaunch : Bool {
         if !UserDefaults.standard.bool(forKey: IS_FIRST_LAUNCH) {
             // first launch
+            UserDefaults.standard.setValue("\(Date.timeIntervalBetween1970AndReferenceDate)", forKey: FIRST_LAUNCH_TIME_STAMP)
             UserDefaults.standard.setValue(true, forKey: IS_FIRST_LAUNCH)
             return true
         } else {
@@ -65,12 +67,17 @@ struct Constants {
         dict["mac"] = ""
         return dict
     }
+    
+    static var firstLaunchTimeStamp : String? {
+        UserDefaults.standard.value(forKey: FIRST_LAUNCH_TIME_STAMP) as? String
+    }
 }
 
 // MARK: - Notification
 extension Constants {
     static let loginSuccessNotification  = Notification.Name("kLoginSuccessNotification")
     static let logoutSuccessNotification = Notification.Name("kLogoutSuccessNotification")
+    static let CertificationSuccessNotification = Notification.Name("kCertificationSuccessNotification")
 }
 
 

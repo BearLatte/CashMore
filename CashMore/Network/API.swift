@@ -47,6 +47,7 @@ struct API {
         static var ossParams = APIItem("/PZJqjz/RrKrKN/UHbCO", desc: "get the oss parameters")
         static var contactAuth      = APIItem("/PZJqjz/RrKrKN/zNXee", desc: "Contact auth")
         static var prosonalInfoAuth = APIItem("/PZJqjz/RrKrKN/cobZb", desc: "Personal Info auth")
+        static var faceAuth  = APIItem("/PZJqjz/RrKrKN/BPESa", desc: "Face auth")
     }
     
     struct Login {
@@ -57,6 +58,11 @@ struct API {
     
     struct Me {
         static var userInfo = APIItem("/PZJqjz/RrKrKN/OQRvo", desc: "get user info")
+    }
+    
+    struct Product {
+        static var productDetail = APIItem("/PZJqjz/RrKrKN/YUbod", desc: "Get product detail")
+        static var loan          = APIItem("/PZJqjz/RrKrKN/VyFSx", desc: "Loan now")
     }
     
     struct Feedback {

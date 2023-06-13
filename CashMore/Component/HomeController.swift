@@ -37,6 +37,7 @@ class HomeController: BaseTableController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(didReceiveLoginSuccessNotification), name: Constants.loginSuccessNotification, object: nil)
         
+        
 //        let testBtn = UIButton(type: .custom)
 //        testBtn.backgroundColor = .cyan
 //        testBtn.frame = CGRect(x: 100, y: 500, width: 200, height: 100)
@@ -69,10 +70,21 @@ class HomeController: BaseTableController {
         tableView.reloadData()
     }
     
-    @objc func testNetworkProt() {
-        APIService.standered.fetchModel(api: API.Certification.info, parameters: ["type": "2", "step" : "loanapiUserBasic"], type: CertificationPersonalInfoModel.self) { model in
-        }
-    }
+//    @objc func testNetworkProt() {
+//        if LocationManager.shared.hasLocationPermission() && LocationManager.shared.hasLocationService() {
+//            LocationManager.shared.requestLocation()
+//            LocationManager.shared.getLocationHandle = { isSuccess, langitude, longitude in
+//                Constants.debugLog("\(isSuccess), \(langitude), \(longitude)")
+//            }
+//        } else if !LocationManager.shared.hasLocationPermission() {
+//            LocationManager.shared.requestLocationAuthorizaiton()
+//            LocationManager.shared.getAuthHandle = { isPermission in
+//                Constants.debugLog(isPermission)
+//            }
+//        } else if !LocationManager.shared.hasLocationService() {
+//
+//        }
+//    }
     
     private var products : [ProductModel?] = []
     private weak var headerView : HomeHeaderView!
@@ -119,7 +131,7 @@ extension HomeController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProductCell", for: indexPath) as! HomeProductCell
         cell.product = products[indexPath.row]
         cell.loanAction = { [weak self] in
-            self?.loanAction()
+            self?.loanAction(at: indexPath.row)
         }
         return cell
     }
@@ -132,7 +144,7 @@ extension HomeController {
 }
 
 extension HomeController {
-    func loanAction() {
+    func loanAction(at index: Int) {
         if !Constants.isLogin {
             let loginView = LoginController()
             loginView.pattern = .present
@@ -141,17 +153,22 @@ extension HomeController {
             return
         }
         
-        APIService.standered.fetchModel(api: API.Certification.info, parameters: ["type" : "1"], type: CertificationInfoModel.self) { model in
-            if !model.authStatus {
+        let product = products[index]
+        
+        APIService.standered.fetchModel(api: API.Product.productDetail, parameters: ["productId" : product?.id ?? ""], type: UserInfoModel.self) { userInfo in
+            switch userInfo.userStatus {
+            case 1:
                 let kycController = KYCInfoController()
                 kycController.pattern = .present
-                kycController.certificationModel = model
                 let nav = UINavigationController(rootViewController: kycController)
                 nav.modalPresentationStyle = .fullScreen
                 self.present(nav, animated: true)
-            } else {
+            case 2:
                 let purchaseVC = PurchaseController()
+                purchaseVC.productDetail = userInfo.loanProductVo
                 self.navigationController?.pushViewController(purchaseVC, animated: true)
+            default:
+                break
             }
         }
     }

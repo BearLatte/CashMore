@@ -178,9 +178,12 @@ extension KYCInfoController {
             self.optionsModel = options
         }
         
-        if certificationModel?.loanapiUserIdentity == true {
-            APIService.standered.fetchModel(api: API.Certification.info, parameters: ["type": "2", "step" : "loanapiUserIdentity"], type: CertificationKYCModel.self) { model in
-                self.kycModel = model
+        APIService.standered.fetchModel(api: API.Certification.info, parameters: ["type" : "1"], type: CertificationInfoModel.self) { model in
+            self.certificationModel = model
+            if model.loanapiUserIdentity == true {
+                APIService.standered.fetchModel(api: API.Certification.info, parameters: ["type": "2", "step" : "loanapiUserIdentity"], type: CertificationKYCModel.self) { model in
+                    self.kycModel = model
+                }
             }
         }
     }
