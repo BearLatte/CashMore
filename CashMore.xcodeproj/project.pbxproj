@@ -85,6 +85,8 @@
 		22A66A552A382D8C005E7835 /* InVivoDetectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A66A542A382D8C005E7835 /* InVivoDetectionController.swift */; };
 		22A66A572A38704F005E7835 /* UIDevice+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A66A562A38704F005E7835 /* UIDevice+Extension.swift */; };
 		22A66A5B2A388E6F005E7835 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A66A5A2A388E6F005E7835 /* LocationManager.swift */; };
+		22A66A5D2A398796005E7835 /* PurchaseSuccessController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A66A5C2A398796005E7835 /* PurchaseSuccessController.swift */; };
+		22A66A5F2A398F56005E7835 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A66A5E2A398F56005E7835 /* UIViewController+Extension.swift */; };
 		22CE9DA72A28395F006C5153 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CE9DA62A28395F006C5153 /* R.generated.swift */; };
 		22CE9DAA2A283C03006C5153 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CE9DA92A283C03006C5153 /* Constants.swift */; };
 		22CE9DB12A2866DA006C5153 /* Prefix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CE9DB02A2866DA006C5153 /* Prefix.swift */; };
@@ -187,6 +189,8 @@
 		22A66A542A382D8C005E7835 /* InVivoDetectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InVivoDetectionController.swift; sourceTree = "<group>"; };
 		22A66A562A38704F005E7835 /* UIDevice+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+Extension.swift"; sourceTree = "<group>"; };
 		22A66A5A2A388E6F005E7835 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		22A66A5C2A398796005E7835 /* PurchaseSuccessController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseSuccessController.swift; sourceTree = "<group>"; };
+		22A66A5E2A398F56005E7835 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		22CE9DA62A28395F006C5153 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		22CE9DA92A283C03006C5153 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		22CE9DB02A2866DA006C5153 /* Prefix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Prefix.swift; sourceTree = "<group>"; };
@@ -468,6 +472,7 @@
 			children = (
 				229939282A372665000309DE /* PurchaseController.swift */,
 				22A66A542A382D8C005E7835 /* InVivoDetectionController.swift */,
+				22A66A5C2A398796005E7835 /* PurchaseSuccessController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -527,6 +532,7 @@
 				226209002A31A1E2005E1F5C /* Codable+Extension.swift */,
 				220E1A4B2A3458EE0054EEA8 /* Date+Extension.swift */,
 				22A66A562A38704F005E7835 /* UIDevice+Extension.swift */,
+				22A66A5E2A398F56005E7835 /* UIViewController+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -791,6 +797,7 @@
 			files = (
 				226208C82A2F401A005E1F5C /* PagingTitleViewConfigure.swift in Sources */,
 				220E1A472A3440DE0054EEA8 /* EASpinnerButton.swift in Sources */,
+				22A66A5D2A398796005E7835 /* PurchaseSuccessController.swift in Sources */,
 				226208B62A2F3796005E1F5C /* UIScreen+PageingView.swift in Sources */,
 				226208812A2D8A35005E1F5C /* RegexParser.swift in Sources */,
 				2299392D2A37357E000309DE /* ProductDetailItemView.swift in Sources */,
@@ -818,6 +825,7 @@
 				220E1A482A3440DE0054EEA8 /* EAAlertViewResponder.swift in Sources */,
 				226208CE2A303926005E1F5C /* OrderDetailController.swift in Sources */,
 				22CE9DCF2A298F8F006C5153 /* BaseTableController.swift in Sources */,
+				22A66A5F2A398F56005E7835 /* UIViewController+Extension.swift in Sources */,
 				22CE9DE02A29ED7D006C5153 /* UIImage+Extension.swift in Sources */,
 				22CE9DCD2A298A99006C5153 /* PersonalCenterController.swift in Sources */,
 				226208C02A2F3827005E1F5C /* PagingContentView.swift in Sources */,

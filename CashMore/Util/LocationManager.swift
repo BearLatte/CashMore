@@ -47,11 +47,11 @@ class LocationManager: NSObject {
     func locationPermission() -> CLAuthorizationStatus {
         if #available(iOS 14.0, *) {
             let status: CLAuthorizationStatus = locationManager.authorizationStatus
-            print("location authorizationStatus is \(status.rawValue)")
+            Constants.debugLog("location authorizationStatus is \(status.rawValue)")
             return status
         } else {
             let status = CLLocationManager.authorizationStatus()
-            print("location authorizationStatus is \(status.rawValue)")
+            Constants.debugLog("location authorizationStatus is \(status.rawValue)")
             return status
         }
     }
@@ -93,7 +93,7 @@ extension LocationManager: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let loction = locations.last {
             
-            print("latitude: \(loction.coordinate.latitude)   longitude:\(loction.coordinate.longitude)")
+            Constants.debugLog("latitude: \(loction.coordinate.latitude)   longitude:\(loction.coordinate.longitude)")
             
             if let block = getLocationHandle {
                 block(true, loction.coordinate.latitude, loction.coordinate.longitude)
@@ -106,6 +106,6 @@ extension LocationManager: CLLocationManagerDelegate {
         if let block = getLocationHandle {
             block(false, 0, 0)
         }
-        print("get location failed. error:\(error.localizedDescription)")
+        Constants.debugLog("get location failed. error:\(error.localizedDescription)")
     }
 }

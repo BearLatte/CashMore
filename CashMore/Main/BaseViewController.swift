@@ -69,8 +69,10 @@ class BaseViewController: UIViewController {
         lb.textColor = Constants.themeTitleColor
         return lb
     }()
-    
-    func configUI() {
+}
+
+extension BaseViewController {
+    @objc func configUI() {
         view.backgroundColor = Constants.themeBgColor
         view.addSubview(backBtn)
         backBtn.snp.makeConstraints { make in
@@ -98,10 +100,6 @@ class BaseViewController: UIViewController {
         }
     }
     
-    
-}
-
-extension BaseViewController {
     @objc func loadData() {
         
     }

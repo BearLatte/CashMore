@@ -16,7 +16,9 @@ class HomeProductHeaderView: UITableViewHeaderFooterView {
     
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
-        backgroundView = UIView()
+        let view = UIView()
+        view.backgroundColor = Constants.themeBgColor
+        backgroundView = view
         contentView.addSubview(titleLabel)
         titleLabel.snp.makeConstraints { make in
             make.top.equalTo(20)

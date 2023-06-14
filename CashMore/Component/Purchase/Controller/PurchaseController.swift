@@ -29,6 +29,17 @@ class PurchaseController : BaseScrollController {
         super.configUI()
         title = "Detail"
         view.backgroundColor = Constants.pureWhite
+        
+        checkContactStoreAuth { list in
+            self.phoneList = list
+        }
+
+        getLocationInfo { latitude, longitude in
+            self.latitude = latitude
+            self.longitude = longitude
+        }
+
+        
         let headerView = UIImageView(image: R.image.purchase_icon())
         contentView.addSubview(headerView)
         headerView.snp.makeConstraints { make in
@@ -135,6 +146,9 @@ class PurchaseController : BaseScrollController {
     private var userInfo : UserInfoModel?
     
     private lazy var contactStore: CNContactStore = CNContactStore()
+    private var phoneList : [[String : String]]?
+    private var latitude  : String?
+    private var longitude : String?
 }
 
 extension PurchaseController {
@@ -166,11 +180,12 @@ extension PurchaseController {
         }
         
         var params : [String : Any] = [:]
-        params["productId"] = model.productId
-        params["loanAmount"] = model.loanAmountStr
-        params["loanDate"] = model.loanDate
+        params["productId"] = productDetail.productId
+        params["loanAmount"] = productDetail.loanAmountStr
+        params["loanDate"] = productDetail.loanDate
         
         var data : [String : Any] = [:]
+        
         var deviceAllInfo : [String : Any] = [:]
         deviceAllInfo["idfa"]  = UIDevice.tm.idfa
         deviceAllInfo["udid"]  = UIDevice.tm.uuid
@@ -187,34 +202,45 @@ extension PurchaseController {
         deviceAllInfo["is5G"]      = UIDevice.tm.cellularType == "NETWORK_5G"
         deviceAllInfo["wifiConnected"] = UIDevice.tm.networkType == "NETWORK_WIFI"
         deviceAllInfo["sdkVersionName"] = UIDevice.current.systemVersion
-        deviceAllInfo["externalTotalSize"] = UIDevice.tm.totalDiskSpaceInGB + "GB"
-        deviceAllInfo["externalAvailableSize"] = UIDevice.tm.freeDiskSpaceInGB + "GB"
+        deviceAllInfo["externalTotalSize"] = UIDevice.tm.totalDiskSpaceInGB
+        deviceAllInfo["externalAvailableSize"] = UIDevice.tm.freeDiskSpaceInGB
         deviceAllInfo["internalTotalSize"] = UIDevice.tm.totalMemorySize
         deviceAllInfo["internalAvailableSize"] = ""
         deviceAllInfo["availableMemory"] = UIDevice.tm.totalMemorySize
         deviceAllInfo["language"] = UIDevice.tm.language
-        deviceAllInfo["brand"] = "Apple"
+        deviceAllInfo["brand"]    = "Apple"
         deviceAllInfo["mobileData"] = UIDevice.tm.networkType != "NETWORK_WIFI" && UIDevice.tm.networkType != "notReachable"
         deviceAllInfo["languageList"] = UserDefaults.standard.object(forKey: "AppleLanguages")
         deviceAllInfo["screenWidth"]  = Constants.screenWidth
         deviceAllInfo["screenHeight"] = Constants.screenHeight
         deviceAllInfo["brightness"] = UIScreen.main.brightness * 100
         deviceAllInfo["appOpenTime"] = Constants.firstLaunchTimeStamp
-        deviceAllInfo["phone"] = UIDevice.tm.phoneCode
         
-        
-        
-        
-        // 获取通讯录列表
-        self.checkContactStoreAuth { contactList in
-            data["phoneList"] = contactList
+        guard let latitude = latitude,
+              let longitude = longitude else {
+            return HUD.flash(.label("Lack of location information, please exit this page and enter again"), delay: 2.0)
         }
         
+        guard let phoneList = phoneList else {
+            return HUD.flash(.label("Lack of contact book information, please exit this page and enter again"), delay: 2.0)
+        }
+        
+        deviceAllInfo["latitude"] = latitude
+        deviceAllInfo["longitude"] = longitude
+        data["phoneList"] = phoneList
         data["deviceAllInfo"] = deviceAllInfo
-        params["data"] = data
         
+        guard let data = try? JSONSerialization.data(withJSONObject: data),
+              let dataStr = String(data: data, encoding: .utf8) else {
+            return
+        }
+        params["data"] = dataStr
         
-//        APIService.standered.
+        APIService.standered.fetchRecommend(api: API.Product.loan, parameters: params) { content in
+            let purchaseSuccessVC = PurchaseSuccessController()
+            purchaseSuccessVC.products = content.list
+            self.navigationController?.pushViewController(purchaseSuccessVC, animated: true)
+        }
     }
     
     private func getLocationInfo(success:@escaping (_ latitude: String, _ longitude: String) -> Void) {
@@ -224,22 +250,12 @@ extension PurchaseController {
                 success("\(latitude)", "\(longitude)")
             }
         } else if !LocationManager.shared.hasLocationPermission() {
-            LocationManager.shared.requestLocationAuthorizaiton()
-            LocationManager.shared.getAuthHandle = { isPermission in
-                if !isPermission {
-                    LocationManager.shared.requestLocation()
-                }
-                HUD.flash(.label("Please allow CashMore to use your location"))
-            }
+            showAlert(with: "This feature requires you to authorize this app to open the location service\nHow to set it: open phone Settings -> Privacy -> Location service")
         } else if !LocationManager.shared.hasLocationService() {
             HUD.flash(.label("Please switch location service to on"), delay: 2.0)
         }
     }
 }
-
-//                "latitude": "39.9110143",  //纬度
-//                "longitude": "139.9110143",  //经度
-
 
 // MARK: - Contact
 extension PurchaseController {

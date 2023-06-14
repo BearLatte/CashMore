@@ -61,8 +61,8 @@ struct API {
     }
     
     struct Product {
-        static var productDetail = APIItem("/PZJqjz/RrKrKN/YUbod", desc: "Get product detail")
-        static var loan          = APIItem("/PZJqjz/RrKrKN/VyFSx", desc: "Loan now")
+        static var spaceDetail = APIItem("/PZJqjz/RrKrKN/YUbod", desc: "Get Space Detail")
+        static var loan        = APIItem("/PZJqjz/RrKrKN/VyFSx", desc: "Loan now")
     }
     
     struct Feedback {

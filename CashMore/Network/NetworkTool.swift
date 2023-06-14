@@ -164,7 +164,7 @@ extension NetworkTool {
             }
             // Sent notification
             NotificationCenter.default.post(name: kNetworkStatusNotification, object: nil)
-            debugPrint("HWNetworking Network Status: \(self.networkStatus)")
+            Constants.debugLog("HWNetworking Network Status: \(self.networkStatus)")
         })
     }
 

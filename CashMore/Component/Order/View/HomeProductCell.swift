@@ -103,7 +103,7 @@ class HomeProductCell: UITableViewCell {
         }
     }
     
-    @objc func loanBtnDidClick() {
+    @objc private func loanBtnDidClick() {
         loanAction?()
     }
     

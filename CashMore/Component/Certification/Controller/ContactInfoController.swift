@@ -123,7 +123,6 @@ extension ContactInfoController {
                 readContactsFromContactStore(contactStore)
             case .denied, .restricted:
             showAlert(with: "This feature requires you to authorize this app to open the address book\nHow to set it: open phone Settings -> Privacy -> address Book")
-            Constants.debugLog("无权限")
             default: break
             }
     }

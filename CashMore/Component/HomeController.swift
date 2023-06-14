@@ -36,13 +36,6 @@ class HomeController: BaseTableController {
         }
         
         NotificationCenter.default.addObserver(self, selector: #selector(didReceiveLoginSuccessNotification), name: Constants.loginSuccessNotification, object: nil)
-        
-        
-//        let testBtn = UIButton(type: .custom)
-//        testBtn.backgroundColor = .cyan
-//        testBtn.frame = CGRect(x: 100, y: 500, width: 200, height: 100)
-//        view.addSubview(testBtn)
-//        testBtn.addTarget(self, action: #selector(testNetworkProt), for: .touchUpInside)
     }
     
     deinit {
@@ -66,25 +59,9 @@ class HomeController: BaseTableController {
     }
     
     @objc func didReceiveLoginSuccessNotification(_ not: Notification) {
+        loadData()
         headerView.reloadBanner()
-        tableView.reloadData()
     }
-    
-//    @objc func testNetworkProt() {
-//        if LocationManager.shared.hasLocationPermission() && LocationManager.shared.hasLocationService() {
-//            LocationManager.shared.requestLocation()
-//            LocationManager.shared.getLocationHandle = { isSuccess, langitude, longitude in
-//                Constants.debugLog("\(isSuccess), \(langitude), \(longitude)")
-//            }
-//        } else if !LocationManager.shared.hasLocationPermission() {
-//            LocationManager.shared.requestLocationAuthorizaiton()
-//            LocationManager.shared.getAuthHandle = { isPermission in
-//                Constants.debugLog(isPermission)
-//            }
-//        } else if !LocationManager.shared.hasLocationService() {
-//
-//        }
-//    }
     
     private var products : [ProductModel?] = []
     private weak var headerView : HomeHeaderView!
@@ -144,7 +121,7 @@ extension HomeController {
 }
 
 extension HomeController {
-    func loanAction(at index: Int) {
+    private func loanAction(at index: Int) {
         if !Constants.isLogin {
             let loginView = LoginController()
             loginView.pattern = .present
@@ -155,7 +132,7 @@ extension HomeController {
         
         let product = products[index]
         
-        APIService.standered.fetchModel(api: API.Product.productDetail, parameters: ["productId" : product?.id ?? ""], type: UserInfoModel.self) { userInfo in
+        APIService.standered.fetchModel(api: API.Product.spaceDetail, parameters: ["productId" : product?.id ?? ""], type: UserInfoModel.self) { userInfo in
             switch userInfo.userStatus {
             case 1:
                 let kycController = KYCInfoController()
@@ -167,6 +144,15 @@ extension HomeController {
                 let purchaseVC = PurchaseController()
                 purchaseVC.productDetail = userInfo.loanProductVo
                 self.navigationController?.pushViewController(purchaseVC, animated: true)
+            case 3, 4, 5:
+                let orderDetailVC = OrderDetailController()
+                if userInfo.userStatus == 5 {
+                    orderDetailVC.frozenDays = userInfo.frozenDays
+                }
+                orderDetailVC.orderType = OrderType(rawValue: userInfo.userStatus) ?? .pending
+                orderDetailVC.product = product
+                orderDetailVC.orderDetail = userInfo.loanAuditOrderVo
+                self.navigationController?.pushViewController(orderDetailVC, animated: true)
             default:
                 break
             }

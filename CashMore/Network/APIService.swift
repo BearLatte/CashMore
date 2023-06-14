@@ -17,12 +17,39 @@ enum OCRType : String {
 struct APIService {
     static let standered = APIService()
     
-    func fetchList<T: HandyJSON>(api: APIProtocol, type: T, listPath: String, parameters: [String : Any]? = nil, success: @escaping ([T?]) -> Void) {
+    func fetchRecommend(api: APIProtocol, parameters: [String : Any]? = nil, success: @escaping (BaseResponseContent) -> Void) {
         DispatchQueue.main.async {
             HUD.show(.labeledProgress(title: nil, subtitle: "loading"))
         }
         
-        NTTool.fetch(API.Home.productList, parameters: Constants.configParameters(parameters))
+        NTTool.fetch(api, parameters: Constants.configParameters(parameters))
+            .success { networkModel in
+                HUD.hide()
+                switch networkModel.code {
+                case 0:
+                    DispatchQueue.main.async {
+                        HUD.flash(.labeledError(title: "Failed", subtitle: networkModel.msg), delay: 2.0)
+                    }
+                case 1:
+                    success(networkModel.response)
+                case -1:
+                    go2login()
+                default: break
+                }
+            }
+            .failed { error in
+                DispatchQueue.main.async {
+                    HUD.flash(.labeledError(title: nil, subtitle: error.localizedDescription), delay: 2.0)
+                }
+            }
+    }
+    
+    func fetchList<T: HandyJSON>(api: APIProtocol, type: T, listPath: String, parameters: [String : Any]? = nil, success: @escaping ([T?]) -> Void) {
+        DispatchQueue.main.async {
+            HUD.show(.labeledProgress(title: nil, subtitle: "loading"))
+        }
+
+        NTTool.fetch(api, parameters: Constants.configParameters(parameters))
             .success { networkModel in
                 HUD.hide()
                 switch networkModel.code {
@@ -36,7 +63,7 @@ struct APIService {
                           let list = [T].deserialize(from: dictList) else {
                         return
                     }
-                    
+
                     success(list)
                 case -1:
                     go2login()

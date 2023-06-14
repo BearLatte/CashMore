@@ -9,6 +9,8 @@ struct UserInfoModel : HandyJSON {
     var phone            : String = ""
     /// //用户状态 1未认证   2可借款（金融产品信息）  3待审核  4待放款  5被拒绝  6待还款  7已逾期
     var userStatus       : Int = 0
+    /// 解冻天数
+    var frozenDays       : Int = 0
     var gpsContent       : String = ""
     var photoContent     : String = ""
     /// 通讯录
@@ -21,9 +23,11 @@ struct UserInfoModel : HandyJSON {
     var userPayFail      : Bool = false
     /// 失败的弹窗详情信息
     var userPayFailInfo  : PayFailInfo = PayFailInfo()
+    /// 借款单信息
+    var loanAuditOrderVo : ProductOrderDetailModel = ProductOrderDetailModel()
     /// 推荐产品详情信息
     var loanProductVo    : ProductDetailModel = ProductDetailModel()
-    ///产品列表
+    /// 产品列表
     var loanProductList  : [ProductModel] = []
     /// 是否是谷歌审核配置的手机号，1是，0不是
     var googleAuditPhone : Bool = false
@@ -85,6 +89,34 @@ struct ProductDetailModel : HandyJSON {
     /// 利息
     var interestAmountStr  : String = ""
     var verificationFeeStr : String = ""
+}
+
+struct ProductOrderDetailModel : HandyJSON {
+    /// 银行卡号码
+    var bankCardNo : String = ""
+    /// 距离还款日时间
+    var daysToRepay : Int = 0
+    /// 借款单号
+    var loanOrderNo : String = ""
+    /// 日期
+    var applyDateStr : String = ""
+    /// 金额
+    var loanAmountStr : String = ""
+    var loanDate : Int = 0
+    /// 放款时间
+    var receiveDateStr : String = ""
+    /// 放款金额
+    var receiveAmountStr : String = ""
+    /// 还款金额
+    var repayAmountStr : String = ""
+    /// 还款时间
+    var repayDateStr : String = ""
+    /// 逾期时间
+    var overDueDays : Int = 0
+    /// 逾期费用
+    var overDueFeeStr : String = ""
+    /// 审核状态 0待审核  1待放款 2待还款 5已逾期  6放款失败 7审核失败 8已还款-未逾期 9已还款-有逾期
+    var status : Int = 0
 }
 
 struct LoanGoogleAuditProduct : HandyJSON {

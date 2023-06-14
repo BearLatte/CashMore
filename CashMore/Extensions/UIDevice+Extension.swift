@@ -13,17 +13,11 @@ extension UIDevice : TMCompatible {}
 extension TM where Base: UIDevice {
     /// 广告标识
     static var idfa : String? {
-        ASIdentifierManager.shared().advertisingIdentifier.uuidString
+        UserDefaults.standard.value(forKey: "IDFA") as? String
     }
     
     static var uuid : String? {
         Base.current.identifierForVendor?.uuidString
-    }
-    
-    /// 本机号码
-    static var phoneCode : String? {
-        let networkInfo = CTTelephonyNetworkInfo()
-        return networkInfo.subscriberCellularProvider?.mobileNetworkCode
     }
     
     /// 手机型号
