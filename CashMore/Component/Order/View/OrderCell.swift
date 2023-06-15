@@ -11,32 +11,37 @@ class OrderCell: UITableViewCell {
     
     var order : OrderModel? {
         didSet {
-            orderNumLabel.text = "Order Number : \(order?.orderNumber ?? "")"
-            productNameLabel.text = order?.productName
-            switch order?.orderType {
-            case "disbursing":
-                tagLabel.backgroundColor = DynamicColor(hexString: "#31DC78")
-                tagLabel.text = "Disbursing"
-            case "unrepaid":
-                tagLabel.backgroundColor = DynamicColor(hexString: "#FFB200")
-                tagLabel.text = "To be Repaid"
-            case "denied":
-                tagLabel.backgroundColor = DynamicColor(hexString: "#F061EA")
-                tagLabel.text = "Denied"
-            case "repied":
-                tagLabel.backgroundColor = DynamicColor(hexString: "#B4B4B4")
-                tagLabel.text = "Repaid"
-            case "overdue":
-                tagLabel.backgroundColor = DynamicColor(hexString: "#FF4C00")
-                tagLabel.text = "Overdue"
-            case "pending":
+            productImgView.kf.setImage(with: URL(string: order?.logo ?? "")!)
+            orderNumLabel.text = "Order Number : \(order?.loanOrderNo ?? "")"
+            productNameLabel.text = order?.loanName
+            switch order?.status {
+            case 0:
                 tagLabel.backgroundColor = DynamicColor(hexString: "#0091FF")
                 tagLabel.text = "Pending"
+            case 1:
+                tagLabel.backgroundColor = DynamicColor(hexString: "#31DC78")
+                tagLabel.text = "Disbursing"
+            case 2:
+                tagLabel.backgroundColor = DynamicColor(hexString: "#FFB200")
+                tagLabel.text = "To be Repaid"
+            case 5:
+                tagLabel.backgroundColor = DynamicColor(hexString: "#FF4C00")
+                tagLabel.text = "Overdue"
+            case 6,7:
+                if order?.status == 6 {
+                    tagLabel.text = "Disbursing Fail"
+                } else {
+                    tagLabel.text = "Denied"
+                }
+                tagLabel.backgroundColor = DynamicColor(hexString: "#F061EA")
+            case 8, 9:
+                tagLabel.text = "Repaid"
+                tagLabel.backgroundColor = DynamicColor(hexString: "#B4B4B4")
             default:
                 break
             }
-            amountCountLabel.text = "₹\(order?.amount ?? "")"
-            dateLabel.text = "Apply date : \(order?.date ?? "")"
+            amountCountLabel.text = "₹\(order?.loanAmountStr ?? "")"
+            dateLabel.text = "Apply date : \(order?.applyDateStr ?? "")"
             layoutIfNeeded()
         }
     }

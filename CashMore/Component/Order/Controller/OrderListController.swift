@@ -19,32 +19,7 @@ enum OrderListType {
 
 class OrderListController: BaseTableController {
     
-    let orders : [OrderModel] = [
-        OrderModel(orderNumber: "JKD1232312312312312312", productName: "Freecash", date: "30-12-2020", amount: "2000", orderType: "disbursing"),
-        OrderModel(orderNumber: "JKD1232312312312312312", productName: "Freecash", date: "30-12-2020", amount: "2000", orderType: "unrepaid"),
-        OrderModel(orderNumber: "JKD1232312312312312312", productName: "Freecash", date: "30-12-2020", amount: "2000", orderType: "denied"),
-        OrderModel(orderNumber: "JKD1232312312312312312", productName: "Freecash", date: "30-12-2020", amount: "2000", orderType: "repied"),
-        OrderModel(orderNumber: "JKD1232312312312312312", productName: "Freecash", date: "30-12-2020", amount: "2000", orderType: "overdue"),
-        OrderModel(orderNumber: "JKD1232312312312312312", productName: "Freecash", date: "30-12-2020", amount: "2000", orderType: "pending"),
-        OrderModel(orderNumber: "JKD1232312312312312312", productName: "Freecash", date: "30-12-2020", amount: "2000", orderType: "disbursing"),
-        OrderModel(orderNumber: "JKD1232312312312312312", productName: "Freecash", date: "30-12-2020", amount: "2000", orderType: "unrepaid"),
-        OrderModel(orderNumber: "JKD1232312312312312312", productName: "Freecash", date: "30-12-2020", amount: "2000", orderType: "denied"),
-        OrderModel(orderNumber: "JKD1232312312312312312", productName: "Freecash", date: "30-12-2020", amount: "2000", orderType: "repied"),
-        OrderModel(orderNumber: "JKD1232312312312312312", productName: "Freecash", date: "30-12-2020", amount: "2000", orderType: "overdue"),
-        OrderModel(orderNumber: "JKD1232312312312312312", productName: "Freecash", date: "30-12-2020", amount: "2000", orderType: "pending"),
-        OrderModel(orderNumber: "JKD1232312312312312312", productName: "Freecash", date: "30-12-2020", amount: "2000", orderType: "disbursing"),
-        OrderModel(orderNumber: "JKD1232312312312312312", productName: "Freecash", date: "30-12-2020", amount: "2000", orderType: "unrepaid"),
-        OrderModel(orderNumber: "JKD1232312312312312312", productName: "Freecash", date: "30-12-2020", amount: "2000", orderType: "denied"),
-        OrderModel(orderNumber: "JKD1232312312312312312", productName: "Freecash", date: "30-12-2020", amount: "2000", orderType: "repied"),
-        OrderModel(orderNumber: "JKD1232312312312312312", productName: "Freecash", date: "30-12-2020", amount: "2000", orderType: "overdue"),
-        OrderModel(orderNumber: "JKD1232312312312312312", productName: "Freecash", date: "30-12-2020", amount: "2000", orderType: "pending"),
-        OrderModel(orderNumber: "JKD1232312312312312312", productName: "Freecash", date: "30-12-2020", amount: "2000", orderType: "disbursing"),
-        OrderModel(orderNumber: "JKD1232312312312312312", productName: "Freecash", date: "30-12-2020", amount: "2000", orderType: "unrepaid"),
-        OrderModel(orderNumber: "JKD1232312312312312312", productName: "Freecash", date: "30-12-2020", amount: "2000", orderType: "denied"),
-        OrderModel(orderNumber: "JKD1232312312312312312", productName: "Freecash", date: "30-12-2020", amount: "2000", orderType: "repied"),
-        OrderModel(orderNumber: "JKD1232312312312312312", productName: "Freecash", date: "30-12-2020", amount: "2000", orderType: "overdue"),
-        OrderModel(orderNumber: "JKD1232312312312312312", productName: "Freecash", date: "30-12-2020", amount: "2000", orderType: "pending")
-    ]
+    var orders : [OrderModel?]?
     
     init(type: OrderListType) {
         self.type = type
@@ -54,7 +29,10 @@ class OrderListController: BaseTableController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+    private var type : OrderListType
+}
+
+extension OrderListController {
     override func configUI() {
         super.configUI()
         isHiddenTitleLabel = true
@@ -66,17 +44,42 @@ class OrderListController: BaseTableController {
         }
     }
     
-    private var type : OrderListType
+    override func loadData() {
+        var params : [String : Any] = [:]
+        switch type {
+        case .pending:
+            params["status"] = "1"
+        case .disbursing:
+            params["status"] = "2"
+        case .unrepaid:
+            params["status"] = "3"
+        case .denied:
+            params["status"] = "5"
+        case .repied:
+            params["status"] = "4"
+        case .overdue:
+            params["status"] = "6"
+        default: break
+        }
+        
+        APIService.standered.fetchResponseList(api: API.Order.orderList, parameters: params) { model in
+            self.orders = [OrderModel].deserialize(from: model.list)
+            self.tableView.reloadData()
+            self.tableView.endRefreshing(at: .top)
+        }
+    }
 }
 
+
+// MARK: - Table View Data Source & Table View Delegate
 extension OrderListController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return orders.count
+        return orders?.count ?? 0
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "OrderCell", for: indexPath) as! OrderCell
-        cell.order = orders[indexPath.row]
+        cell.order = orders?[indexPath.row]
         return cell
     }
     

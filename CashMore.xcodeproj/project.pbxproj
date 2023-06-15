@@ -465,41 +465,6 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		229939242A37262B000309DE /* Purchase */ = {
-			isa = PBXGroup;
-			children = (
-				229939252A37264D000309DE /* Controller */,
-				229939272A37264D000309DE /* Model */,
-				229939262A37264D000309DE /* View */,
-			);
-			path = Purchase;
-			sourceTree = "<group>";
-		};
-		229939252A37264D000309DE /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				229939282A372665000309DE /* PurchaseController.swift */,
-				22A66A542A382D8C005E7835 /* InVivoDetectionController.swift */,
-				22A66A5C2A398796005E7835 /* PurchaseSuccessController.swift */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		229939262A37264D000309DE /* View */ = {
-			isa = PBXGroup;
-			children = (
-				2299392C2A37357E000309DE /* ProductDetailItemView.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		229939272A37264D000309DE /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		22A66A602A39D62E005E7835 /* Product */ = {
 			isa = PBXGroup;
 			children = (
@@ -513,6 +478,7 @@
 		22A66A612A39D65C005E7835 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2299392C2A37357E000309DE /* ProductDetailItemView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -520,6 +486,9 @@
 		22A66A622A39D65C005E7835 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				229939282A372665000309DE /* PurchaseController.swift */,
+				22A66A542A382D8C005E7835 /* InVivoDetectionController.swift */,
+				22A66A5C2A398796005E7835 /* PurchaseSuccessController.swift */,
 				226208CD2A303926005E1F5C /* ProductDetailController.swift */,
 				22A66A632A39D6C6005E7835 /* ProductRepaidAndOverdueController.swift */,
 				22A66A652A3ABBAD005E7835 /* RepayExtensionDetailController.swift */,
@@ -556,7 +525,6 @@
 				22CE9DD42A29BF4A006C5153 /* Login */,
 				22CE9DB42A286AC8006C5153 /* Order */,
 				22A66A602A39D62E005E7835 /* Product */,
-				229939242A37262B000309DE /* Purchase */,
 				22CE9DD72A29C602006C5153 /* Feedback */,
 				226208862A2D9E49005E1F5C /* Certification */,
 				22CE9DC82A298A57006C5153 /* PersonalCenter */,
@@ -595,8 +563,8 @@
 		22CE9DB72A2870F3006C5153 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				226208A22A2EFE00005E1F5C /* OrderPagingController.swift */,
 				226208A62A2F102B005E1F5C /* OrderListController.swift */,
+				226208A22A2EFE00005E1F5C /* OrderPagingController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";

@@ -17,7 +17,7 @@ enum OCRType : String {
 struct APIService {
     static let standered = APIService()
     
-    func fetchRecommend(api: APIProtocol, parameters: [String : Any]? = nil, success: @escaping (BaseResponseContent) -> Void) {
+    func fetchResponseList(api: APIProtocol, parameters: [String : Any]? = nil, success: @escaping (BaseResponseContent) -> Void) {
         DispatchQueue.main.async {
             HUD.show(.labeledProgress(title: nil, subtitle: "loading"))
         }

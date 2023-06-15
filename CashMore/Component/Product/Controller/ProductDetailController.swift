@@ -145,8 +145,8 @@ extension ProductDetailController {
     }
     
     override func loadData() {
-        APIService.standered.fetchRecommend(api: API.Product.spaceDetail, parameters: ["productId" : product?.id ?? ""]) { model in
-            self.recmmendProducts = model.list
+        APIService.standered.fetchResponseList(api: API.Product.spaceDetail, parameters: ["productId" : product?.id ?? ""]) { model in
+            self.recmmendProducts = [ProductModel].deserialize(from: model.list)
             self.tableView.reloadData()
             self.tableView.endRefreshing(at: .top)
         }

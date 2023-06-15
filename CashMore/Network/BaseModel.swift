@@ -15,6 +15,6 @@ struct BaseModel : HandyJSON {
 
 
 struct BaseResponseContent : HandyJSON {
-    var list : [ProductModel]?
+    var list : [[String : Any]]?
     var cont : [String : Any]?
 }

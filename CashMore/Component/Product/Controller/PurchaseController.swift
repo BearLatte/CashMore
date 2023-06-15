@@ -236,9 +236,9 @@ extension PurchaseController {
         }
         params["data"] = dataStr
         
-        APIService.standered.fetchRecommend(api: API.Product.loan, parameters: params) { content in
+        APIService.standered.fetchResponseList(api: API.Product.loan, parameters: params) { content in
             let purchaseSuccessVC = PurchaseSuccessController()
-            purchaseSuccessVC.products = content.list
+            purchaseSuccessVC.products = [ProductModel].deserialize(from: content.list)
             self.navigationController?.pushViewController(purchaseSuccessVC, animated: true)
         }
     }

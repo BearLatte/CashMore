@@ -66,6 +66,7 @@ struct API {
     }
     
     struct Order {
+        static var orderList = APIItem("/PZJqjz/RrKrKN/kVqBc", desc: "Get Order List")
         static var extensionRepayApply = APIItem("/PZJqjz/RrKrKN/qCqnU", desc: "Extension repay apply")
         static var repaymentApply = APIItem("/PZJqjz/RrKrKN/RPsWC", desc: "Apply repayment")
     }
