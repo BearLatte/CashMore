@@ -56,7 +56,7 @@
 		226208C62A2F3FEC005E1F5C /* PagingTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226208C52A2F3FEC005E1F5C /* PagingTitleView.swift */; };
 		226208C82A2F401A005E1F5C /* PagingTitleViewConfigure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226208C72A2F401A005E1F5C /* PagingTitleViewConfigure.swift */; };
 		226208CA2A302612005E1F5C /* OrderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226208C92A302612005E1F5C /* OrderModel.swift */; };
-		226208CE2A303926005E1F5C /* OrderDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226208CD2A303926005E1F5C /* OrderDetailController.swift */; };
+		226208CE2A303926005E1F5C /* ProductDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226208CD2A303926005E1F5C /* ProductDetailController.swift */; };
 		226208DD2A305C77005E1F5C /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226208DC2A305C77005E1F5C /* NetworkError.swift */; };
 		226208DF2A305CFB005E1F5C /* NetworkMultipartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226208DE2A305CFB005E1F5C /* NetworkMultipartData.swift */; };
 		226208E12A305EA7005E1F5C /* NetworkApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226208E02A305EA7005E1F5C /* NetworkApi.swift */; };
@@ -87,6 +87,10 @@
 		22A66A5B2A388E6F005E7835 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A66A5A2A388E6F005E7835 /* LocationManager.swift */; };
 		22A66A5D2A398796005E7835 /* PurchaseSuccessController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A66A5C2A398796005E7835 /* PurchaseSuccessController.swift */; };
 		22A66A5F2A398F56005E7835 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A66A5E2A398F56005E7835 /* UIViewController+Extension.swift */; };
+		22A66A642A39D6C6005E7835 /* ProductRepaidAndOverdueController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A66A632A39D6C6005E7835 /* ProductRepaidAndOverdueController.swift */; };
+		22A66A662A3ABBAD005E7835 /* RepayExtensionDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A66A652A3ABBAD005E7835 /* RepayExtensionDetailController.swift */; };
+		22A66A692A3AC638005E7835 /* ExtensionRepayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A66A682A3AC638005E7835 /* ExtensionRepayModel.swift */; };
+		22A66A6B2A3AD144005E7835 /* RepaymentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A66A6A2A3AD144005E7835 /* RepaymentModel.swift */; };
 		22CE9DA72A28395F006C5153 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CE9DA62A28395F006C5153 /* R.generated.swift */; };
 		22CE9DAA2A283C03006C5153 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CE9DA92A283C03006C5153 /* Constants.swift */; };
 		22CE9DB12A2866DA006C5153 /* Prefix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CE9DB02A2866DA006C5153 /* Prefix.swift */; };
@@ -157,7 +161,7 @@
 		226208C52A2F3FEC005E1F5C /* PagingTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingTitleView.swift; sourceTree = "<group>"; };
 		226208C72A2F401A005E1F5C /* PagingTitleViewConfigure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingTitleViewConfigure.swift; sourceTree = "<group>"; };
 		226208C92A302612005E1F5C /* OrderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderModel.swift; sourceTree = "<group>"; };
-		226208CD2A303926005E1F5C /* OrderDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailController.swift; sourceTree = "<group>"; };
+		226208CD2A303926005E1F5C /* ProductDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailController.swift; sourceTree = "<group>"; };
 		226208DC2A305C77005E1F5C /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		226208DE2A305CFB005E1F5C /* NetworkMultipartData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMultipartData.swift; sourceTree = "<group>"; };
 		226208E02A305EA7005E1F5C /* NetworkApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkApi.swift; sourceTree = "<group>"; };
@@ -191,6 +195,10 @@
 		22A66A5A2A388E6F005E7835 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		22A66A5C2A398796005E7835 /* PurchaseSuccessController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseSuccessController.swift; sourceTree = "<group>"; };
 		22A66A5E2A398F56005E7835 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		22A66A632A39D6C6005E7835 /* ProductRepaidAndOverdueController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRepaidAndOverdueController.swift; sourceTree = "<group>"; };
+		22A66A652A3ABBAD005E7835 /* RepayExtensionDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepayExtensionDetailController.swift; sourceTree = "<group>"; };
+		22A66A682A3AC638005E7835 /* ExtensionRepayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionRepayModel.swift; sourceTree = "<group>"; };
+		22A66A6A2A3AD144005E7835 /* RepaymentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepaymentModel.swift; sourceTree = "<group>"; };
 		22CE9DA62A28395F006C5153 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		22CE9DA92A283C03006C5153 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		22CE9DB02A2866DA006C5153 /* Prefix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Prefix.swift; sourceTree = "<group>"; };
@@ -492,6 +500,42 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		22A66A602A39D62E005E7835 /* Product */ = {
+			isa = PBXGroup;
+			children = (
+				22A66A612A39D65C005E7835 /* View */,
+				22A66A672A3AC614005E7835 /* Model */,
+				22A66A622A39D65C005E7835 /* Controller */,
+			);
+			path = Product;
+			sourceTree = "<group>";
+		};
+		22A66A612A39D65C005E7835 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		22A66A622A39D65C005E7835 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				226208CD2A303926005E1F5C /* ProductDetailController.swift */,
+				22A66A632A39D6C6005E7835 /* ProductRepaidAndOverdueController.swift */,
+				22A66A652A3ABBAD005E7835 /* RepayExtensionDetailController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		22A66A672A3AC614005E7835 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				22A66A682A3AC638005E7835 /* ExtensionRepayModel.swift */,
+				22A66A6A2A3AD144005E7835 /* RepaymentModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		22CE9DA82A283BE1006C5153 /* Util */ = {
 			isa = PBXGroup;
 			children = (
@@ -511,6 +555,7 @@
 				22CE9DB52A286AF0006C5153 /* HomeController.swift */,
 				22CE9DD42A29BF4A006C5153 /* Login */,
 				22CE9DB42A286AC8006C5153 /* Order */,
+				22A66A602A39D62E005E7835 /* Product */,
 				229939242A37262B000309DE /* Purchase */,
 				22CE9DD72A29C602006C5153 /* Feedback */,
 				226208862A2D9E49005E1F5C /* Certification */,
@@ -552,7 +597,6 @@
 			children = (
 				226208A22A2EFE00005E1F5C /* OrderPagingController.swift */,
 				226208A62A2F102B005E1F5C /* OrderListController.swift */,
-				226208CD2A303926005E1F5C /* OrderDetailController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -801,9 +845,12 @@
 				226208B62A2F3796005E1F5C /* UIScreen+PageingView.swift in Sources */,
 				226208812A2D8A35005E1F5C /* RegexParser.swift in Sources */,
 				2299392D2A37357E000309DE /* ProductDetailItemView.swift in Sources */,
+				22A66A6B2A3AD144005E7835 /* RepaymentModel.swift in Sources */,
 				2299392B2A372C8E000309DE /* UserInfoModel.swift in Sources */,
+				22A66A692A3AC638005E7835 /* ExtensionRepayModel.swift in Sources */,
 				226208802A2D8A35005E1F5C /* ActiveLabel.swift in Sources */,
 				226208912A2DCA25005E1F5C /* GenderChooseView.swift in Sources */,
+				22A66A642A39D6C6005E7835 /* ProductRepaidAndOverdueController.swift in Sources */,
 				2210F9372A27572F00577DC9 /* AppDelegate.swift in Sources */,
 				226208772A2D794D005E1F5C /* VerifyBoxFieldTextRange.swift in Sources */,
 				22CE9DDE2A29E4DE006C5153 /* CaptchaButton.swift in Sources */,
@@ -823,7 +870,7 @@
 				229939292A372665000309DE /* PurchaseController.swift in Sources */,
 				22A66A572A38704F005E7835 /* UIDevice+Extension.swift in Sources */,
 				220E1A482A3440DE0054EEA8 /* EAAlertViewResponder.swift in Sources */,
-				226208CE2A303926005E1F5C /* OrderDetailController.swift in Sources */,
+				226208CE2A303926005E1F5C /* ProductDetailController.swift in Sources */,
 				22CE9DCF2A298F8F006C5153 /* BaseTableController.swift in Sources */,
 				22A66A5F2A398F56005E7835 /* UIViewController+Extension.swift in Sources */,
 				22CE9DE02A29ED7D006C5153 /* UIImage+Extension.swift in Sources */,
@@ -854,6 +901,7 @@
 				2262090F2A330090005E1F5C /* CertificationInfoModel.swift in Sources */,
 				226208762A2D794D005E1F5C /* VerifyBoxFieldTextPosition.swift in Sources */,
 				220E1A522A34619E0054EEA8 /* ListSelectionView.swift in Sources */,
+				22A66A662A3ABBAD005E7835 /* RepayExtensionDetailController.swift in Sources */,
 				226208822A2D8A35005E1F5C /* StringTrimExtension.swift in Sources */,
 				220E1A492A3440DE0054EEA8 /* Extension.swift in Sources */,
 				220E1A542A3461AE0054EEA8 /* Selectionable.swift in Sources */,

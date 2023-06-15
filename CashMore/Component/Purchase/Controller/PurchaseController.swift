@@ -175,7 +175,7 @@ extension PurchaseController {
     }
     
     private func confirmLoanAction() {
-        guard let model = userInfo?.loanProductVo else {
+        guard (userInfo?.loanProductVo) != nil else {
             return HUD.flash(.label("Missing parameter"), delay: 2.0)
         }
         

@@ -145,16 +145,20 @@ extension HomeController {
                 purchaseVC.productDetail = userInfo.loanProductVo
                 self.navigationController?.pushViewController(purchaseVC, animated: true)
             case 3, 4, 5:
-                let orderDetailVC = OrderDetailController()
+                let productDetailVC = ProductDetailController()
                 if userInfo.userStatus == 5 {
-                    orderDetailVC.frozenDays = userInfo.frozenDays
+                    productDetailVC.frozenDays = userInfo.frozenDays
                 }
-                orderDetailVC.orderType = OrderType(rawValue: userInfo.userStatus) ?? .pending
-                orderDetailVC.product = product
-                orderDetailVC.orderDetail = userInfo.loanAuditOrderVo
-                self.navigationController?.pushViewController(orderDetailVC, animated: true)
+                productDetailVC.orderType = OrderType(rawValue: userInfo.userStatus) ?? .pending
+                productDetailVC.product = product
+                productDetailVC.orderDetail = userInfo.loanAuditOrderVo
+                self.navigationController?.pushViewController(productDetailVC, animated: true)
             default:
-                break
+                let vc = ProductRepaidAndOverdueController()
+                vc.orderType = OrderType(rawValue: userInfo.userStatus) ?? .repaid
+                vc.product = product
+                vc.orderDetail = userInfo.loanAuditOrderVo
+                self.navigationController?.pushViewController(vc, animated: true)
             }
         }
     }

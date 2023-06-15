@@ -112,7 +112,7 @@ struct ProductOrderDetailModel : HandyJSON {
     /// 还款时间
     var repayDateStr : String = ""
     /// 逾期时间
-    var overDueDays : Int = 0
+    var overDueDays : String = ""
     /// 逾期费用
     var overDueFeeStr : String = ""
     /// 审核状态 0待审核  1待放款 2待还款 5已逾期  6放款失败 7审核失败 8已还款-未逾期 9已还款-有逾期

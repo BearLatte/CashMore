@@ -1,5 +1,5 @@
 //
-//  OrderDetailController.swift
+//  ProductDetailController.swift
 //  CashMore
 //
 //  Created by Tim on 2023/6/7.
@@ -11,8 +11,10 @@ enum OrderType : Int {
     case pending = 3    // 待审核
     case disbursing = 4 // 待放款
     case denied = 5     // 被拒绝
+    case repaid = 6     // 待还款
+    case overdue = 7    // 已逾期
 }
-class OrderDetailController: BaseTableController {
+class ProductDetailController: BaseTableController {
     var frozenDays : Int = 0
     var orderType : OrderType = .pending {
         didSet {
@@ -26,6 +28,7 @@ class OrderDetailController: BaseTableController {
             case .denied:
                 title = "Denied"
                 desc = "The loan you applied for cannot be\napproved, please reapply for this product\nafter \(frozenDays) days. You can now also directly\napply for other products."
+            default: break
             }
         }
     }
@@ -57,7 +60,7 @@ class OrderDetailController: BaseTableController {
 }
 
 // MARK: - Config UI
-extension OrderDetailController {
+extension ProductDetailController {
     override func configUI() {
         super.configUI()
         isLightStyle = true
@@ -166,11 +169,14 @@ extension OrderDetailController {
                 purchaseVC.productDetail = userInfo.loanProductVo
                 self.navigationController?.pushViewController(purchaseVC, animated: true)
             case 3, 4, 5:
-                let detailVC = OrderDetailController()
-                detailVC.orderType = OrderType(rawValue: userInfo.userStatus) ?? .pending
-                detailVC.product = product
-                detailVC.orderDetail = userInfo.loanAuditOrderVo
-                self.navigationController?.pushViewController(detailVC, animated: true)
+                let productDetailVC = ProductDetailController()
+                if userInfo.userStatus == 5 {
+                    productDetailVC.frozenDays = userInfo.frozenDays
+                }
+                productDetailVC.orderType = OrderType(rawValue: userInfo.userStatus) ?? .pending
+                productDetailVC.product = product
+                productDetailVC.orderDetail = userInfo.loanAuditOrderVo
+                self.navigationController?.pushViewController(productDetailVC, animated: true)
             default:
                 break
             }
@@ -179,7 +185,7 @@ extension OrderDetailController {
 }
 
 // MARK: - TableView Data source And delegate
-extension OrderDetailController {
+extension ProductDetailController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return recmmendProducts?.count ?? 0
     }

@@ -9,12 +9,6 @@ import UIKit
 
 class PurchaseSuccessController: BaseTableController {
     
-//    var successObj : BaseResponseContent! {
-//        didSet {
-//            products = [ProductModel].deserialize(from: successObj.list)
-//            tableView.reloadData()
-//        }
-//    }
     var products : [ProductModel?]?
     
     override func configUI() {
@@ -96,11 +90,14 @@ extension PurchaseSuccessController {
                 purchaseVC.productDetail = userInfo.loanProductVo
                 self.navigationController?.pushViewController(purchaseVC, animated: true)
             case 3, 4, 5:
-                let pendingVC = OrderDetailController()
-                pendingVC.orderType = OrderType(rawValue: userInfo.userStatus) ?? .pending
-                pendingVC.product = product
-                pendingVC.orderDetail = userInfo.loanAuditOrderVo
-                self.navigationController?.pushViewController(pendingVC, animated: true)
+                let productDetailVC = ProductDetailController()
+                if userInfo.userStatus == 5 {
+                    productDetailVC.frozenDays = userInfo.frozenDays
+                }
+                productDetailVC.orderType = OrderType(rawValue: userInfo.userStatus) ?? .pending
+                productDetailVC.product = product
+                productDetailVC.orderDetail = userInfo.loanAuditOrderVo
+                self.navigationController?.pushViewController(productDetailVC, animated: true)
             default:
                 break
             }

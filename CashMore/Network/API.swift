@@ -65,6 +65,11 @@ struct API {
         static var loan        = APIItem("/PZJqjz/RrKrKN/VyFSx", desc: "Loan now")
     }
     
+    struct Order {
+        static var extensionRepayApply = APIItem("/PZJqjz/RrKrKN/qCqnU", desc: "Extension repay apply")
+        static var repaymentApply = APIItem("/PZJqjz/RrKrKN/RPsWC", desc: "Apply repayment")
+    }
+    
     struct Feedback {
         
     }

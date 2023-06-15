@@ -14,11 +14,12 @@ class ProductDetailItemView : UIView {
         }
     }
     
-    convenience init(title: String? = nil, subTitle: String? = nil) {
+    convenience init(title: String? = nil, subTitle: String? = nil, subtitleColor: UIColor = Constants.themeTitleColor) {
         self.init(frame: .zero)
         self.titleLabel.text = title
         self.subtitle = subTitle
         self.subtitleLabel.text = subTitle
+        self.subtitleLabel.textColor = subtitleColor
     }
     
     override init(frame: CGRect) {
@@ -59,7 +60,6 @@ class ProductDetailItemView : UIView {
     private lazy var subtitleLabel = {
         let lb = UILabel()
         lb.font = Constants.pingFangSCRegularFont(16)
-        lb.textColor = Constants.themeTitleColor
         lb.textAlignment = .right
         return lb
     }()
