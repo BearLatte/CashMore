@@ -23,9 +23,6 @@ class HomeProductCell: UITableViewCell {
         }
     }
     
-    /// loan now button click action
-    var loanAction : (() -> Void)?
-    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         selectionStyle = .none
@@ -103,9 +100,6 @@ class HomeProductCell: UITableViewCell {
         }
     }
     
-    @objc private func loanBtnDidClick() {
-        loanAction?()
-    }
     
     private lazy var container : UIView = {
         let view = UIView()
@@ -139,6 +133,7 @@ class HomeProductCell: UITableViewCell {
         btn.isEnabled = false
         btn.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 5)
         btn.titleEdgeInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 0)
+        btn.setTitle(scores[Int(arc4random()) % 3], for: .normal)
         return btn
     }()
     
@@ -163,7 +158,7 @@ class HomeProductCell: UITableViewCell {
         btn.setTitle("Loan now", for: .normal)
         btn.setTitleColor(Constants.pureWhite, for: .normal)
         btn.layer.cornerRadius = 22
-        btn.addTarget(self, action: #selector(loanBtnDidClick), for: .touchUpInside)
+        btn.isEnabled = false
         return btn
     }()
     
@@ -174,4 +169,6 @@ class HomeProductCell: UITableViewCell {
         lb.font = Constants.pingFangSCMediumFont(16)
         return lb
     }()
+    
+    private let scores = ["4.8", "4.9", "5.0"]
 }

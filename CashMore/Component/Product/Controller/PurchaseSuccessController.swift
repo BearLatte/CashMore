@@ -79,9 +79,21 @@ extension PurchaseSuccessController {
     override func goBack() {
         navigationController?.popToRootViewController(animated: true)
     }
+}
+
+extension PurchaseSuccessController {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return products?.count ?? 0
+    }
     
-    private func loanAction(at index: Int) {
-        let product = products?[index]
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "kProductCell", for: indexPath) as! HomeProductCell
+        cell.product = products?[indexPath.row]
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let product = products?[indexPath.row]
         
         APIService.standered.fetchModel(api: API.Product.spaceDetail, parameters: ["productId" : product?.id ?? ""], type: UserInfoModel.self) { userInfo in
             switch userInfo.userStatus {
@@ -102,21 +114,6 @@ extension PurchaseSuccessController {
                 break
             }
         }
-    }
-}
-
-extension PurchaseSuccessController {
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return products?.count ?? 0
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "kProductCell", for: indexPath) as! HomeProductCell
-        cell.product = products?[indexPath.row]
-        cell.loanAction = { [weak self] in
-            self?.loanAction(at: indexPath.row)
-        }
-        return cell
     }
 }
 

@@ -159,9 +159,28 @@ extension ProductDetailController {
         lb.text = text
         return lb
     }
+}
+
+// MARK: - TableView Data source And delegate
+extension ProductDetailController {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return recmmendProducts?.count ?? 0
+    }
     
-    private func loanAction(at index: Int) {
-        let product = recmmendProducts?[index]
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "RecommandCell", for: indexPath) as! HomeProductCell
+        cell.product = recmmendProducts?[indexPath.row]
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "SectionHeader") as? HomeProductHeaderView
+        header?.title = "Top recommendation"
+        return header
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let product = recmmendProducts?[indexPath.row]
         APIService.standered.fetchModel(api: API.Product.spaceDetail, parameters: ["productId" : product?.id ?? ""], type: UserInfoModel.self) { userInfo in
             switch userInfo.userStatus {
             case 2:
@@ -181,28 +200,6 @@ extension ProductDetailController {
                 break
             }
         }
-    }
-}
-
-// MARK: - TableView Data source And delegate
-extension ProductDetailController {
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return recmmendProducts?.count ?? 0
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "RecommandCell", for: indexPath) as! HomeProductCell
-        cell.product = recmmendProducts?[indexPath.row]
-        cell.loanAction = { [weak self] in
-            self?.loanAction(at: indexPath.row)
-        }
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "SectionHeader") as? HomeProductHeaderView
-        header?.title = "Top recommendation"
-        return header
     }
 }
 

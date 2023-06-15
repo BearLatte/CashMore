@@ -107,21 +107,11 @@ extension HomeController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProductCell", for: indexPath) as! HomeProductCell
         cell.product = products[indexPath.row]
-        cell.loanAction = { [weak self] in
-            self?.loanAction(at: indexPath.row)
-        }
+        
         return cell
     }
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "SectionHeader") as? HomeProductHeaderView
-        header?.title = "Top recommendation"
-        return header
-    }
-}
-
-extension HomeController {
-    private func loanAction(at index: Int) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if !Constants.isLogin {
             let loginView = LoginController()
             loginView.pattern = .present
@@ -130,7 +120,7 @@ extension HomeController {
             return
         }
         
-        let product = products[index]
+        let product = products[indexPath.row]
         
         APIService.standered.fetchModel(api: API.Product.spaceDetail, parameters: ["productId" : product?.id ?? ""], type: UserInfoModel.self) { userInfo in
             switch userInfo.userStatus {
@@ -161,5 +151,11 @@ extension HomeController {
                 self.navigationController?.pushViewController(vc, animated: true)
             }
         }
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "SectionHeader") as? HomeProductHeaderView
+        header?.title = "Top recommendation"
+        return header
     }
 }
