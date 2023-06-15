@@ -66,9 +66,10 @@ struct API {
     }
     
     struct Order {
-        static var orderList = APIItem("/PZJqjz/RrKrKN/kVqBc", desc: "Get Order List")
-        static var extensionRepayApply = APIItem("/PZJqjz/RrKrKN/qCqnU", desc: "Extension repay apply")
+        static var orderList      = APIItem("/PZJqjz/RrKrKN/kVqBc", desc: "Get Order List")
+        static var orderDetail    = APIItem("/PZJqjz/RrKrKN/jYAdR", desc: "Get Order Detil")
         static var repaymentApply = APIItem("/PZJqjz/RrKrKN/RPsWC", desc: "Apply repayment")
+        static var extensionRepayApply = APIItem("/PZJqjz/RrKrKN/qCqnU", desc: "Extension repay apply")
     }
     
     struct Feedback {

@@ -22,13 +22,14 @@ class ProductRepaidAndOverdueController: BaseViewController {
             }
         }
     }
+    
     var product   : ProductModel? {
         didSet {
             productImgView.kf.setImage(with: URL(string: product?.logo ?? "")!)
             productNameLabel.text = product?.loanName
         }
     }
-    var orderDetail : ProductOrderDetailModel? {
+    var orderDetail : OrderModel? {
         didSet {
             guard let value = orderDetail else { return }
             orderNumberView.subtitle = value.loanOrderNo

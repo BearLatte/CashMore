@@ -25,7 +25,7 @@ class RepayExtensionDetailController: BaseViewController {
         }
     }
     
-    var orderDetail : ProductOrderDetailModel!
+    var orderDetail : OrderModel!
     
     private var productImgView = UIImageView()
     private var productNameLabel = {

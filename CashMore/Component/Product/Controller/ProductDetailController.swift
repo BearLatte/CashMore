@@ -43,7 +43,7 @@ class ProductDetailController: BaseTableController {
         }
     }
     
-    var orderDetail : ProductOrderDetailModel? {
+    var orderDetail : OrderModel? {
         didSet {
             productAmountLabel.text = "₹ " + (orderDetail?.loanAmountStr ?? "")
             dateLabel.text = "Apply date : " + (orderDetail?.applyDateStr ?? "")

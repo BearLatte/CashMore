@@ -84,10 +84,46 @@ extension OrderListController {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        var detail : OrderDetailController
-//        if indexPath.row == 0 {
-//
-//        }
-//        navigationController?.pushViewController(PendingOrderDetailController(), animated: true)
+        let order = orders?[indexPath.row]
+        if order?.status == 0 || order?.status == 1 || order?.status == 7 {
+            APIService.standered.fetchModel(api: API.Order.orderDetail, parameters: ["auditOrderNo" : order?.loanOrderNo ?? ""], type: OrderDetailModel.self) { detail in
+                let product = ProductModel()
+                product.logo = detail.loanAuditOrderVo?.logo
+                product.id = detail.loanAuditOrderVo?.productId ?? ""
+                product.loanName = detail.loanAuditOrderVo?.loanName ?? ""
+                let productDetailVC = ProductDetailController()
+                if order?.status == 7 {
+                    productDetailVC.frozenDays = detail.frozenDays
+                }
+                
+                if order?.status == 0 {
+                    productDetailVC.orderType = .pending
+                } else if order?.status == 1 {
+                    productDetailVC.orderType = .disbursing
+                } else {
+                    productDetailVC.orderType = .overdue
+                }
+                productDetailVC.product = product
+                productDetailVC.orderDetail = detail.loanAuditOrderVo
+                self.navigationController?.pushViewController(productDetailVC, animated: true)
+            }
+        }
+        
+        if order?.status == 6  {
+            let detailVC = DisbursingFailDetailController()
+            detailVC.orderNumber = order?.loanOrderNo ?? ""
+            navigationController?.pushViewController(detailVC, animated: true)
+        }
+        
+        if order?.status == 5 || order?.status == 2 {
+            let controller = ProductRepaidAndOverdueController()
+            let product = ProductModel()
+            product.loanName = order?.loanName ?? ""
+            product.logo = order?.logo ?? ""
+            controller.orderType = order?.status == 2 ? .repaid : .overdue
+            controller.product = product
+            controller.orderDetail = order
+            navigationController?.pushViewController(controller, animated: true)
+        }
     }
 }
