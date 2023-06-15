@@ -8,6 +8,7 @@
 import UIKit
 
 class BankInfoController: BaseScrollController {
+    var isModify = false
     var certificationModel : CertificationInfoModel?
     override func configUI() {
         super.configUI()
@@ -93,10 +94,15 @@ extension BankInfoController {
         }
         let params = ["bankName": bankName, "bankCardNo" : bankAccount, "bankCardNoPaste" : "0", "ifscCode" : ifscCode]
         APIService.standered.normalRequest(api: API.Certification.bankAuth, parameters: params) {
-            self.navigationController?.dismiss(animated: true, completion: {
+            if self.isModify {
                 HUD.flash(.labeledSuccess(title: nil, subtitle: "Success"), delay: 2.0)
-                NotificationCenter.default.post(name: Constants.CertificationSuccessNotification, object: nil)
-            })
+                self.navigationController?.popViewController(animated: true)
+            } else {
+                self.navigationController?.dismiss(animated: true, completion: {
+                    HUD.flash(.labeledSuccess(title: nil, subtitle: "Success"), delay: 2.0)
+                    NotificationCenter.default.post(name: Constants.CertificationSuccessNotification, object: nil)
+                })
+            }
         }
     }
 }

@@ -118,11 +118,15 @@ extension PersonalCenterController {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
-        case 0: break
+        case 0:
+            let bankVC = BankInfoController()
+            bankVC.isModify = true
+            navigationController?.pushViewController(bankVC, animated: true)
         case 1:
             navigationController?.pushViewController(AboutUsController(), animated: true)
         case 2: break
-        case 3: break
+        case 3:
+            logoutAction()
         default: break
         }
     }
