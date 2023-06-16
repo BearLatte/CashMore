@@ -9,6 +9,11 @@ import UIKit
 import EmptyDataSet_Swift
 
 class FeedbackController: BaseTableController {
+    private var feedbackList : [FeedbackModel?] = []
+    private var feedbackRequireModel : FeedbackRequiredModel!
+}
+
+extension FeedbackController {
     override func configUI() {
         super.configUI()
         title = "My Feedback"
@@ -43,13 +48,20 @@ class FeedbackController: BaseTableController {
             make.centerY.equalTo(descView.snp.bottom)
             make.size.equalTo(CGSize(width: 52, height: 52))
         }
+        addBtn.addTarget(self, action: #selector(addBtnClicked), for: .touchUpInside)
         
         tableView.backgroundColor = Constants.pureWhite
         tableView.layer.cornerRadius = 10
         tableView.layer.masksToBounds = true
+        tableView.register(FeedbackCell.self, forCellReuseIdentifier: "FeedbackCell")
         tableView.emptyDataSetView { view in
-            view.detailLabelString(NSAttributedString(string: "Please describe your problems and suggestions. we will solve them in time.", attributes: [.font : Constants.pingFangSCRegularFont(16), .foregroundColor : UIColor.black]))
-                .image(R.image.empty_data_img())
+            view.detailLabelString(
+                NSAttributedString(
+                    string: "Please describe your problems and suggestions. we will solve them in time.",
+                    attributes: [.font : Constants.pingFangSCRegularFont(16), .foregroundColor : UIColor.black]
+                )
+            )
+            .image(R.image.empty_data_img())
         }
         tableView.snp.remakeConstraints { make in
             make.top.equalTo(addBtn.snp.bottom).offset(20)
@@ -57,20 +69,46 @@ class FeedbackController: BaseTableController {
             make.right.equalTo(-10)
             make.bottom.equalTo(Constants.isBangs ? -Constants.bottomSafeArea : -10)
         }
-        
+    }
+    
+    override func loadData() {
+        APIService.standered.fetchResponseList(api: API.Feedback.feedbackList) { model in
+            guard let list = model.list else {
+                return
+            }
+            self.feedbackList = [FeedbackModel].deserialize(from: list) ?? []
+            self.feedbackRequireModel = FeedbackRequiredModel.deserialize(from: model.cont)
+            self.tableView.endRefreshing(at: .top)
+            self.tableView.reloadData()
+        }
+    }
+    
+    @objc func addBtnClicked() {
+        let vc = ConfigFeedbackController()
+        vc.requireInfo = feedbackRequireModel
+        vc.saveFeedbackSuccess = {
+            self.loadData()
+        }
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 
+
 extension FeedbackController {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 0
-    }
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return feedbackList.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "FeedbackCell", for: indexPath) as! FeedbackCell
+        cell.feedback = feedbackList[indexPath.row]
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let feedback = feedbackList[indexPath.row]
+        let detailView = FeedbackDetailController()
+        detailView.feedback = feedback
+        navigationController?.pushViewController(detailView, animated: true)
     }
 }

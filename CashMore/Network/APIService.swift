@@ -203,8 +203,8 @@ struct APIService {
             }
             uploadImageWithOssParams(imgData: imgData, params: ossParams) { imgUrl in
                 semaphore.signal()
-                success(imgUrl)
                 DispatchQueue.main.async {
+                    success(imgUrl)
                     HUD.flash(.labeledSuccess(title: "Upload Success", subtitle: nil))
                 }
             }

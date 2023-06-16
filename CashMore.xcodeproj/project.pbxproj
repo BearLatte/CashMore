@@ -93,6 +93,13 @@
 		22A66A6B2A3AD144005E7835 /* RepaymentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A66A6A2A3AD144005E7835 /* RepaymentModel.swift */; };
 		22A66A6F2A3AF067005E7835 /* DisbursingFailDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A66A6E2A3AF067005E7835 /* DisbursingFailDetailController.swift */; };
 		22A66A712A3AF37A005E7835 /* OrderDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A66A702A3AF37A005E7835 /* OrderDetailModel.swift */; };
+		22A66A772A3BFB18005E7835 /* ConfigFeedbackController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A66A762A3BFB18005E7835 /* ConfigFeedbackController.swift */; };
+		22A66A7A2A3C030C005E7835 /* ProblemChooseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A66A792A3C030C005E7835 /* ProblemChooseView.swift */; };
+		22A66A7C2A3C10CF005E7835 /* ProblemPhotosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A66A7B2A3C10CF005E7835 /* ProblemPhotosView.swift */; };
+		22A66A7E2A3C1760005E7835 /* PhotoItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A66A7D2A3C1760005E7835 /* PhotoItemView.swift */; };
+		22A66A812A3C437E005E7835 /* FeedbakModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A66A802A3C437D005E7835 /* FeedbakModel.swift */; };
+		22A66A832A3C4874005E7835 /* FeedbackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A66A822A3C4874005E7835 /* FeedbackCell.swift */; };
+		22A66A852A3C5D5F005E7835 /* FeedbackDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A66A842A3C5D5F005E7835 /* FeedbackDetailController.swift */; };
 		22CE9DA72A28395F006C5153 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CE9DA62A28395F006C5153 /* R.generated.swift */; };
 		22CE9DAA2A283C03006C5153 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CE9DA92A283C03006C5153 /* Constants.swift */; };
 		22CE9DB12A2866DA006C5153 /* Prefix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CE9DB02A2866DA006C5153 /* Prefix.swift */; };
@@ -203,6 +210,13 @@
 		22A66A6A2A3AD144005E7835 /* RepaymentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepaymentModel.swift; sourceTree = "<group>"; };
 		22A66A6E2A3AF067005E7835 /* DisbursingFailDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisbursingFailDetailController.swift; sourceTree = "<group>"; };
 		22A66A702A3AF37A005E7835 /* OrderDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailModel.swift; sourceTree = "<group>"; };
+		22A66A762A3BFB18005E7835 /* ConfigFeedbackController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigFeedbackController.swift; sourceTree = "<group>"; };
+		22A66A792A3C030C005E7835 /* ProblemChooseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemChooseView.swift; sourceTree = "<group>"; };
+		22A66A7B2A3C10CF005E7835 /* ProblemPhotosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemPhotosView.swift; sourceTree = "<group>"; };
+		22A66A7D2A3C1760005E7835 /* PhotoItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoItemView.swift; sourceTree = "<group>"; };
+		22A66A802A3C437D005E7835 /* FeedbakModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbakModel.swift; sourceTree = "<group>"; };
+		22A66A822A3C4874005E7835 /* FeedbackCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackCell.swift; sourceTree = "<group>"; };
+		22A66A842A3C5D5F005E7835 /* FeedbackDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackDetailController.swift; sourceTree = "<group>"; };
 		22CE9DA62A28395F006C5153 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		22CE9DA92A283C03006C5153 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		22CE9DB02A2866DA006C5153 /* Prefix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Prefix.swift; sourceTree = "<group>"; };
@@ -510,6 +524,25 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		22A66A782A3C02E0005E7835 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				22A66A792A3C030C005E7835 /* ProblemChooseView.swift */,
+				22A66A7B2A3C10CF005E7835 /* ProblemPhotosView.swift */,
+				22A66A7D2A3C1760005E7835 /* PhotoItemView.swift */,
+				22A66A822A3C4874005E7835 /* FeedbackCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		22A66A7F2A3C4365005E7835 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				22A66A802A3C437D005E7835 /* FeedbakModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		22CE9DA82A283BE1006C5153 /* Util */ = {
 			isa = PBXGroup;
 			children = (
@@ -641,6 +674,8 @@
 		22CE9DD72A29C602006C5153 /* Feedback */ = {
 			isa = PBXGroup;
 			children = (
+				22A66A782A3C02E0005E7835 /* View */,
+				22A66A7F2A3C4365005E7835 /* Model */,
 				22CE9DD82A29C619006C5153 /* Controller */,
 			);
 			path = Feedback;
@@ -650,6 +685,8 @@
 			isa = PBXGroup;
 			children = (
 				22CE9DD92A29C631006C5153 /* FeedbackController.swift */,
+				22A66A762A3BFB18005E7835 /* ConfigFeedbackController.swift */,
+				22A66A842A3C5D5F005E7835 /* FeedbackDetailController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -813,6 +850,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22A66A812A3C437E005E7835 /* FeedbakModel.swift in Sources */,
 				226208C82A2F401A005E1F5C /* PagingTitleViewConfigure.swift in Sources */,
 				220E1A472A3440DE0054EEA8 /* EASpinnerButton.swift in Sources */,
 				22A66A5D2A398796005E7835 /* PurchaseSuccessController.swift in Sources */,
@@ -831,14 +869,17 @@
 				22CE9DDE2A29E4DE006C5153 /* CaptchaButton.swift in Sources */,
 				22CE9DB32A28670A006C5153 /* UIView+Extension.swift in Sources */,
 				22CE9DB62A286AF0006C5153 /* HomeController.swift in Sources */,
+				22A66A852A3C5D5F005E7835 /* FeedbackDetailController.swift in Sources */,
 				226208E52A3066E0005E1F5C /* NetworkRequest.swift in Sources */,
 				226208C22A2F395B005E1F5C /* PagingContentScrollView.swift in Sources */,
 				22A66A552A382D8C005E7835 /* InVivoDetectionController.swift in Sources */,
 				2262088C2A2DBCD7005E1F5C /* FormInputView.swift in Sources */,
 				226209062A32E2B5005E1F5C /* LoginController.swift in Sources */,
 				226208A32A2EFE00005E1F5C /* OrderPagingController.swift in Sources */,
+				22A66A772A3BFB18005E7835 /* ConfigFeedbackController.swift in Sources */,
 				226208E72A306B9A005E1F5C /* API.swift in Sources */,
 				22CE9DC52A289AEC006C5153 /* HomeProductCell.swift in Sources */,
+				22A66A7E2A3C1760005E7835 /* PhotoItemView.swift in Sources */,
 				2262089F2A2ED8C6005E1F5C /* BankInfoController.swift in Sources */,
 				226208972A2DE679005E1F5C /* PhotoTipSheet.swift in Sources */,
 				22CE9DB12A2866DA006C5153 /* Prefix.swift in Sources */,
@@ -850,6 +891,7 @@
 				22CE9DCF2A298F8F006C5153 /* BaseTableController.swift in Sources */,
 				22A66A5F2A398F56005E7835 /* UIViewController+Extension.swift in Sources */,
 				22CE9DE02A29ED7D006C5153 /* UIImage+Extension.swift in Sources */,
+				22A66A7A2A3C030C005E7835 /* ProblemChooseView.swift in Sources */,
 				22CE9DCD2A298A99006C5153 /* PersonalCenterController.swift in Sources */,
 				226208C02A2F3827005E1F5C /* PagingContentView.swift in Sources */,
 				226208832A2D8A35005E1F5C /* ActiveBuilder.swift in Sources */,
@@ -874,6 +916,7 @@
 				220E1A582A346FEA0054EEA8 /* SelectionCell.swift in Sources */,
 				226208A72A2F102B005E1F5C /* OrderListController.swift in Sources */,
 				226208A52A2F0AB3005E1F5C /* OrderCell.swift in Sources */,
+				22A66A832A3C4874005E7835 /* FeedbackCell.swift in Sources */,
 				2262090F2A330090005E1F5C /* CertificationInfoModel.swift in Sources */,
 				226208762A2D794D005E1F5C /* VerifyBoxFieldTextPosition.swift in Sources */,
 				220E1A522A34619E0054EEA8 /* ListSelectionView.swift in Sources */,
@@ -884,6 +927,7 @@
 				226208DF2A305CFB005E1F5C /* NetworkMultipartData.swift in Sources */,
 				226209032A31B350005E1F5C /* APIService.swift in Sources */,
 				226208CA2A302612005E1F5C /* OrderModel.swift in Sources */,
+				22A66A7C2A3C10CF005E7835 /* ProblemPhotosView.swift in Sources */,
 				226208932A2DD7CF005E1F5C /* FormMultipleTextInputView.swift in Sources */,
 				226208A12A2EDCAB005E1F5C /* TipsSheet.swift in Sources */,
 				226208842A2D8A35005E1F5C /* ActiveType.swift in Sources */,

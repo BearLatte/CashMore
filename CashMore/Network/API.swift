@@ -73,6 +73,7 @@ struct API {
     }
     
     struct Feedback {
-        
+        static var feedbackList  = APIItem("/PZJqjz/RrKrKN/yQjtM", desc: "Get feedback list")
+        static var saveFeedback  = APIItem("/PZJqjz/RrKrKN/gjIOZ", desc: "Save feedback")
     }
 }

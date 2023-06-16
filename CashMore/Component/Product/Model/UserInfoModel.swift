@@ -44,7 +44,12 @@ struct PayFailInfo { //失败的弹窗详情信息
     var loanOrderNo : String = ""
 }
 
-class ProductModel : HandyJSON {
+class ProductModel : HandyJSON, Selectionable {
+    var isSelected: Bool = false
+    
+    var displayText: String {
+        loanName
+    }
     var id            : String = ""
     var logo          : String?
     /// 7借款天数
