@@ -82,10 +82,7 @@ extension HomeController : HomeHeaderViewDelegate {
         if Constants.isLogin {
             navigationController?.pushViewController(FeedbackController(), animated: true)
         } else {
-            let login = LoginController()
-            login.pattern = .present
-            login.modalPresentationStyle = .fullScreen
-            self.present(login, animated: true)
+            Constants.toLogin()
         }
     }
     
@@ -94,10 +91,7 @@ extension HomeController : HomeHeaderViewDelegate {
         if Constants.isLogin {
             navigationController?.pushViewController(OrderPagingController(), animated: true)
         } else {
-            let login = LoginController()
-            login.pattern = .present
-            login.modalPresentationStyle = .fullScreen
-            self.present(login, animated: true)
+            Constants.toLogin()
         }
     }
     
@@ -122,10 +116,7 @@ extension HomeController {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if !Constants.isLogin {
-            let loginView = LoginController()
-            loginView.pattern = .present
-            loginView.modalPresentationStyle = .fullScreen
-            present(loginView, animated: true)
+            Constants.toLogin()
             return
         }
         

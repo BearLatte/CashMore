@@ -134,7 +134,11 @@ extension PersonalCenterController {
             }
         case 1:
             navigationController?.pushViewController(AboutUsController(), animated: true)
-        case 2: break
+        case 2:
+            let webView = CommonWebViewController()
+            webView.url = "https://www.cashmoreapp.com/privacy.html"
+            webView.title = "Privacy Policy"
+            navigationController?.pushViewController(webView, animated: true)
         case 3:
             logoutAction()
         default: break

@@ -161,8 +161,20 @@ extension LoginController {
             label.textColor = Constants.themeTitleColor
             label.font = Constants.pingFangSCRegularFont(14)
             label.customColor = [termsType: Constants.themeColor, privacyType : Constants.themeColor]
-            label.handleCustomTap(for: termsType) { _ in Constants.debugLog("Tapped the Terms & Conditions")}
-            label.handleCustomTap(for: privacyType) { _ in Constants.debugLog("Tapped the Privacy Policy") }
+            label.handleCustomTap(for: termsType) { _ in
+                let webView = CommonWebViewController()
+                webView.url = "https://www.cashmoreapp.com/privacy.html"
+                webView.title = "Terms & Conditions"
+                self.navigationController?.pushViewController(webView, animated: true)
+                Constants.debugLog("Tapped the Terms & Conditions")
+            }
+            label.handleCustomTap(for: privacyType) { _ in
+                let webView = CommonWebViewController()
+                webView.url = "https://www.cashmoreapp.com/privacy.html"
+                webView.title = "Privacy Policy"
+                self.navigationController?.pushViewController(webView, animated: true)
+                Constants.debugLog("Tapped the Privacy Policy")
+            }
         }
         card.addSubview(privacyLabel)
         privacyLabel.snp.makeConstraints { make in

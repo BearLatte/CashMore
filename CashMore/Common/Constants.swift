@@ -206,8 +206,9 @@ extension Constants {
         
         let login = LoginController()
         login.pattern = .present
-        login.modalPresentationStyle = .fullScreen
-        UIApplication.shared.keyWindow?.rootViewController?.present(login, animated: true)
+        let nav = UINavigationController(rootViewController: login)
+        nav.modalPresentationStyle = .fullScreen
+        UIApplication.shared.keyWindow?.rootViewController?.present(nav, animated: true)
     }
     
     

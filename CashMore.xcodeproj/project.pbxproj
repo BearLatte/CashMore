@@ -27,6 +27,7 @@
 		2210F94D2A275ABD00577DC9 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2210F94C2A275ABD00577DC9 /* BaseViewController.swift */; };
 		2235271A2A40481B00FBAEBE /* OverFreezonOrderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223527192A40481B00FBAEBE /* OverFreezonOrderController.swift */; };
 		2235271C2A40593C00FBAEBE /* RepaidOrderDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2235271B2A40593C00FBAEBE /* RepaidOrderDetailController.swift */; };
+		2235271E2A406B9B00FBAEBE /* CommonWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2235271D2A406B9B00FBAEBE /* CommonWebViewController.swift */; };
 		226208752A2D794D005E1F5C /* VerifyBoxField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226208722A2D794D005E1F5C /* VerifyBoxField.swift */; };
 		226208762A2D794D005E1F5C /* VerifyBoxFieldTextPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226208732A2D794D005E1F5C /* VerifyBoxFieldTextPosition.swift */; };
 		226208772A2D794D005E1F5C /* VerifyBoxFieldTextRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226208742A2D794D005E1F5C /* VerifyBoxFieldTextRange.swift */; };
@@ -162,6 +163,7 @@
 		2210F94C2A275ABD00577DC9 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		223527192A40481B00FBAEBE /* OverFreezonOrderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverFreezonOrderController.swift; sourceTree = "<group>"; };
 		2235271B2A40593C00FBAEBE /* RepaidOrderDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepaidOrderDetailController.swift; sourceTree = "<group>"; };
+		2235271D2A406B9B00FBAEBE /* CommonWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonWebViewController.swift; sourceTree = "<group>"; };
 		226208722A2D794D005E1F5C /* VerifyBoxField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerifyBoxField.swift; sourceTree = "<group>"; };
 		226208732A2D794D005E1F5C /* VerifyBoxFieldTextPosition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerifyBoxFieldTextPosition.swift; sourceTree = "<group>"; };
 		226208742A2D794D005E1F5C /* VerifyBoxFieldTextRange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerifyBoxFieldTextRange.swift; sourceTree = "<group>"; };
@@ -306,6 +308,7 @@
 				22CE9DA92A283C03006C5153 /* Constants.swift */,
 				226208A02A2EDCAB005E1F5C /* TipsSheet.swift */,
 				22A66A872A3FF835005E7835 /* ADJustTrackTool.swift */,
+				2235271D2A406B9B00FBAEBE /* CommonWebViewController.swift */,
 				220E1A502A34619E0054EEA8 /* ListSelectionView */,
 			);
 			path = Common;
@@ -929,6 +932,7 @@
 				226208972A2DE679005E1F5C /* PhotoTipSheet.swift in Sources */,
 				22CE9DB12A2866DA006C5153 /* Prefix.swift in Sources */,
 				22A66A6F2A3AF067005E7835 /* DisbursingFailDetailController.swift in Sources */,
+				2235271E2A406B9B00FBAEBE /* CommonWebViewController.swift in Sources */,
 				229939292A372665000309DE /* PurchaseController.swift in Sources */,
 				22A66A572A38704F005E7835 /* UIDevice+Extension.swift in Sources */,
 				220E1A482A3440DE0054EEA8 /* EAAlertViewResponder.swift in Sources */,
