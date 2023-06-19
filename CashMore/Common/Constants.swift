@@ -198,6 +198,18 @@ extension Constants {
         UIColor(red: CGFloat(arc4random() % 256) / 255.0, green: CGFloat(arc4random() % 256) / 255.0, blue: CGFloat(arc4random() % 256) / 255.0, alpha: 1)
     }
     
+    /// to login
+    static func toLogin() {
+        UserDefaults.standard.setValue(false, forKey: IS_LOGIN)
+        UserDefaults.standard.setValue(nil, forKey: ACCESS_TOKEN)
+        UserDefaults.standard.setValue(nil, forKey: UID_KEY)
+        
+        let login = LoginController()
+        login.pattern = .present
+        login.modalPresentationStyle = .fullScreen
+        UIApplication.shared.keyWindow?.rootViewController?.present(login, animated: true)
+    }
+    
     
     /// Create a UIButton with an image on top
     static func imageOnTopBtn(with image: UIImage?, title: String) -> UIButton {
@@ -281,13 +293,30 @@ extension Constants {
                 }
             }
         default:
-            let settingUrl = NSURL(string: UIApplication.openSettingsURLString)!
-            if UIApplication.shared.canOpenURL(settingUrl as URL)
-            {
-                UIApplication.shared.open(settingUrl as URL, options: [:], completionHandler: { (istrue) in
-                    
-                })
-            }
+            showAlert("This feature requires you to authorize this app to turn on the Camera Privacy\nHow to set it: open phone Settings -> Privacy -> Canmera")
         }
+    }
+    
+    static func showAlert(_ message: String?) {
+        let appearance = EAAlertView.EAAppearance(
+            kTitleHeight: 0,
+            kButtonHeight:44,
+            kTitleFont: Constants.pingFangSCSemiboldFont(18),
+            showCloseButton: false,
+            shouldAutoDismiss: false,
+            buttonsLayout: .horizontal)
+        let alert = EAAlertView(appearance: appearance)
+        alert.circleBG.removeFromSuperview()
+        alert.addButton(backgroundImage: UIImage.tm.createImage(Constants.themeColor), "Go To Setting") {
+            let settingUrl = NSURL(string: UIApplication.openSettingsURLString)!
+            if UIApplication.shared.canOpenURL(settingUrl as URL) {
+                UIApplication.shared.open(settingUrl as URL, options: [:], completionHandler: { (istrue) in })
+            }
+            alert.hideView()
+        }
+        alert.addButton(backgroundImage: UIImage.tm.createImage(Constants.themeDisabledColor), "Cancel") {
+            alert.hideView()
+        }
+        alert.show("", subTitle: message, animationStyle: .bottomToTop)
     }
 }

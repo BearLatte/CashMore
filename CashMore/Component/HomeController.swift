@@ -10,6 +10,19 @@ import PullToRefresh
 
 class HomeController: BaseTableController {
 
+    
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    private var products : [ProductModel?] = []
+    private weak var headerView : HomeHeaderView!
+    
+    private var userInfo : UserInfoModel?
+}
+
+extension HomeController {
     override func configUI() {
         super.configUI()
         title = "Home Page"
@@ -38,10 +51,6 @@ class HomeController: BaseTableController {
         NotificationCenter.default.addObserver(self, selector: #selector(didReceiveLoginSuccessNotification), name: Constants.loginSuccessNotification, object: nil)
     }
     
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
     override func loadData() {
         if Constants.isLogin {
             APIService.standered.fetchModel(api: API.Me.userInfo, type: UserInfoModel.self) { [weak self] userInfo in
@@ -62,9 +71,6 @@ class HomeController: BaseTableController {
         loadData()
         headerView.reloadBanner()
     }
-    
-    private var products : [ProductModel?] = []
-    private weak var headerView : HomeHeaderView!
 }
 
 extension HomeController : HomeHeaderViewDelegate {
@@ -84,6 +90,7 @@ extension HomeController : HomeHeaderViewDelegate {
     }
     
     func headerViewOdersTapAction(headerView: HomeHeaderView) {
+        ADJustTrackTool.point(name: "wu4ut2")
         if Constants.isLogin {
             navigationController?.pushViewController(OrderPagingController(), animated: true)
         } else {
@@ -95,6 +102,9 @@ extension HomeController : HomeHeaderViewDelegate {
     }
     
     func headerViewMeTapAction(headerView: HomeHeaderView) {
+        if userInfo?.userStatus == 1{
+            ADJustTrackTool.point(name: "qrf7g3")
+        }
         navigationController?.pushViewController(PersonalCenterController(), animated: true)
     }
     
@@ -107,7 +117,6 @@ extension HomeController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProductCell", for: indexPath) as! HomeProductCell
         cell.product = products[indexPath.row]
-        
         return cell
     }
     
@@ -123,8 +132,13 @@ extension HomeController {
         let product = products[indexPath.row]
         
         APIService.standered.fetchModel(api: API.Product.spaceDetail, parameters: ["productId" : product?.id ?? ""], type: UserInfoModel.self) { userInfo in
+            self.userInfo = userInfo
+            if userInfo.userStatus != 1 {
+                ADJustTrackTool.point(name: "e5out2")
+            }
             switch userInfo.userStatus {
             case 1:
+                ADJustTrackTool.point(name: "tijhtx")
                 let kycController = KYCInfoController()
                 kycController.pattern = .present
                 let nav = UINavigationController(rootViewController: kycController)

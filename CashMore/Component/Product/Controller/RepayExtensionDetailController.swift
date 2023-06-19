@@ -128,6 +128,7 @@ extension RepayExtensionDetailController {
     }
     
     @objc func applyRepayment() {
+        ADJustTrackTool.point(name: "598jqo")
         APIService.standered.fetchModel(api: API.Order.repaymentApply, parameters: ["orderNo":orderDetail.loanOrderNo, "repayType" : "extend"], type: RepaymentModel.self) { repayPath in
             let safari = SFSafariViewController(url: URL(string: repayPath.path)!)
             self.present(safari, animated: true)

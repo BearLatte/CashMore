@@ -25,6 +25,8 @@
 		2210F9402A27573000577DC9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2210F93F2A27573000577DC9 /* Assets.xcassets */; };
 		2210F9432A27573000577DC9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2210F9412A27573000577DC9 /* LaunchScreen.storyboard */; };
 		2210F94D2A275ABD00577DC9 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2210F94C2A275ABD00577DC9 /* BaseViewController.swift */; };
+		2235271A2A40481B00FBAEBE /* OverFreezonOrderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223527192A40481B00FBAEBE /* OverFreezonOrderController.swift */; };
+		2235271C2A40593C00FBAEBE /* RepaidOrderDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2235271B2A40593C00FBAEBE /* RepaidOrderDetailController.swift */; };
 		226208752A2D794D005E1F5C /* VerifyBoxField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226208722A2D794D005E1F5C /* VerifyBoxField.swift */; };
 		226208762A2D794D005E1F5C /* VerifyBoxFieldTextPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226208732A2D794D005E1F5C /* VerifyBoxFieldTextPosition.swift */; };
 		226208772A2D794D005E1F5C /* VerifyBoxFieldTextRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226208742A2D794D005E1F5C /* VerifyBoxFieldTextRange.swift */; };
@@ -78,6 +80,12 @@
 		226209142A3328FE005E1F5C /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 226209132A3328FE005E1F5C /* CoreTelephony.framework */; };
 		226209162A33290A005E1F5C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 226209152A332909005E1F5C /* SystemConfiguration.framework */; };
 		226209182A332E05005E1F5C /* OCRModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226209172A332E05005E1F5C /* OCRModel.swift */; };
+		226DAB802A4004E4004EC1D5 /* FacebookAEM in Frameworks */ = {isa = PBXBuildFile; productRef = 226DAB7F2A4004E4004EC1D5 /* FacebookAEM */; };
+		226DAB822A4004E4004EC1D5 /* FacebookBasics in Frameworks */ = {isa = PBXBuildFile; productRef = 226DAB812A4004E4004EC1D5 /* FacebookBasics */; };
+		226DAB842A4004E4004EC1D5 /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = 226DAB832A4004E4004EC1D5 /* FacebookCore */; };
+		226DAB862A4004E4004EC1D5 /* FacebookGamingServices in Frameworks */ = {isa = PBXBuildFile; productRef = 226DAB852A4004E4004EC1D5 /* FacebookGamingServices */; };
+		226DAB882A4004E4004EC1D5 /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 226DAB872A4004E4004EC1D5 /* FacebookLogin */; };
+		226DAB8A2A4004E4004EC1D5 /* FacebookShare in Frameworks */ = {isa = PBXBuildFile; productRef = 226DAB892A4004E4004EC1D5 /* FacebookShare */; };
 		229939232A36C3A3000309DE /* OptionsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229939222A36C3A3000309DE /* OptionsModel.swift */; };
 		229939292A372665000309DE /* PurchaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229939282A372665000309DE /* PurchaseController.swift */; };
 		2299392B2A372C8E000309DE /* UserInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2299392A2A372C8E000309DE /* UserInfoModel.swift */; };
@@ -100,6 +108,7 @@
 		22A66A812A3C437E005E7835 /* FeedbakModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A66A802A3C437D005E7835 /* FeedbakModel.swift */; };
 		22A66A832A3C4874005E7835 /* FeedbackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A66A822A3C4874005E7835 /* FeedbackCell.swift */; };
 		22A66A852A3C5D5F005E7835 /* FeedbackDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A66A842A3C5D5F005E7835 /* FeedbackDetailController.swift */; };
+		22A66A882A3FF835005E7835 /* ADJustTrackTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A66A872A3FF835005E7835 /* ADJustTrackTool.swift */; };
 		22CE9DA72A28395F006C5153 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CE9DA62A28395F006C5153 /* R.generated.swift */; };
 		22CE9DAA2A283C03006C5153 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CE9DA92A283C03006C5153 /* Constants.swift */; };
 		22CE9DB12A2866DA006C5153 /* Prefix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CE9DB02A2866DA006C5153 /* Prefix.swift */; };
@@ -118,6 +127,18 @@
 		22CE9DE02A29ED7D006C5153 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CE9DDF2A29ED7D006C5153 /* UIImage+Extension.swift */; };
 		22DC94442A33944700E621C8 /* OCRInputActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DC94432A33944700E621C8 /* OCRInputActionView.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		22A66A862A3FF2FB005E7835 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		220E1A3D2A3440DE0054EEA8 /* EASpinnerLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EASpinnerLayer.swift; sourceTree = "<group>"; };
@@ -139,6 +160,8 @@
 		2210F9422A27573000577DC9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2210F9442A27573000577DC9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2210F94C2A275ABD00577DC9 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		223527192A40481B00FBAEBE /* OverFreezonOrderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverFreezonOrderController.swift; sourceTree = "<group>"; };
+		2235271B2A40593C00FBAEBE /* RepaidOrderDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepaidOrderDetailController.swift; sourceTree = "<group>"; };
 		226208722A2D794D005E1F5C /* VerifyBoxField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerifyBoxField.swift; sourceTree = "<group>"; };
 		226208732A2D794D005E1F5C /* VerifyBoxFieldTextPosition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerifyBoxFieldTextPosition.swift; sourceTree = "<group>"; };
 		226208742A2D794D005E1F5C /* VerifyBoxFieldTextRange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerifyBoxFieldTextRange.swift; sourceTree = "<group>"; };
@@ -217,6 +240,7 @@
 		22A66A802A3C437D005E7835 /* FeedbakModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbakModel.swift; sourceTree = "<group>"; };
 		22A66A822A3C4874005E7835 /* FeedbackCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackCell.swift; sourceTree = "<group>"; };
 		22A66A842A3C5D5F005E7835 /* FeedbackDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackDetailController.swift; sourceTree = "<group>"; };
+		22A66A872A3FF835005E7835 /* ADJustTrackTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ADJustTrackTool.swift; sourceTree = "<group>"; };
 		22CE9DA62A28395F006C5153 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		22CE9DA92A283C03006C5153 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		22CE9DB02A2866DA006C5153 /* Prefix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Prefix.swift; sourceTree = "<group>"; };
@@ -245,10 +269,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				226208F52A3086C8005E1F5C /* AppTrackingTransparency.framework in Frameworks */,
+				226DAB802A4004E4004EC1D5 /* FacebookAEM in Frameworks */,
+				226DAB8A2A4004E4004EC1D5 /* FacebookShare in Frameworks */,
 				226209162A33290A005E1F5C /* SystemConfiguration.framework in Frameworks */,
+				226DAB862A4004E4004EC1D5 /* FacebookGamingServices in Frameworks */,
 				12F3B0B6C04D6226287B864D /* Pods_CashMore.framework in Frameworks */,
+				226DAB882A4004E4004EC1D5 /* FacebookLogin in Frameworks */,
 				226208EF2A308695005E1F5C /* AdSupport.framework in Frameworks */,
+				226DAB822A4004E4004EC1D5 /* FacebookBasics in Frameworks */,
 				226208F12A3086AA005E1F5C /* AdServices.framework in Frameworks */,
+				226DAB842A4004E4004EC1D5 /* FacebookCore in Frameworks */,
 				226209142A3328FE005E1F5C /* CoreTelephony.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -275,6 +305,7 @@
 			children = (
 				22CE9DA92A283C03006C5153 /* Constants.swift */,
 				226208A02A2EDCAB005E1F5C /* TipsSheet.swift */,
+				22A66A872A3FF835005E7835 /* ADJustTrackTool.swift */,
 				220E1A502A34619E0054EEA8 /* ListSelectionView */,
 			);
 			path = Common;
@@ -496,6 +527,9 @@
 		22A66A612A39D65C005E7835 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				22CE9DBC2A28716D006C5153 /* HomeHeaderView.swift */,
+				22CE9DC22A289624006C5153 /* HomeProductHeaderView.swift */,
+				22CE9DC42A289AEC006C5153 /* HomeProductCell.swift */,
 				2299392C2A37357E000309DE /* ProductDetailItemView.swift */,
 			);
 			path = View;
@@ -508,6 +542,7 @@
 				22A66A542A382D8C005E7835 /* InVivoDetectionController.swift */,
 				22A66A5C2A398796005E7835 /* PurchaseSuccessController.swift */,
 				226208CD2A303926005E1F5C /* ProductDetailController.swift */,
+				223527192A40481B00FBAEBE /* OverFreezonOrderController.swift */,
 				22A66A632A39D6C6005E7835 /* ProductRepaidAndOverdueController.swift */,
 				22A66A652A3ABBAD005E7835 /* RepayExtensionDetailController.swift */,
 			);
@@ -604,6 +639,7 @@
 				226208A62A2F102B005E1F5C /* OrderListController.swift */,
 				226208A22A2EFE00005E1F5C /* OrderPagingController.swift */,
 				22A66A6E2A3AF067005E7835 /* DisbursingFailDetailController.swift */,
+				2235271B2A40593C00FBAEBE /* RepaidOrderDetailController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -612,9 +648,6 @@
 			isa = PBXGroup;
 			children = (
 				226208A42A2F0AB3005E1F5C /* OrderCell.swift */,
-				22CE9DC42A289AEC006C5153 /* HomeProductCell.swift */,
-				22CE9DBC2A28716D006C5153 /* HomeHeaderView.swift */,
-				22CE9DC22A289624006C5153 /* HomeProductHeaderView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -728,12 +761,21 @@
 				2210F9302A27572F00577DC9 /* Frameworks */,
 				2210F9312A27572F00577DC9 /* Resources */,
 				5C7AB37ED3B631BFD4851C4D /* [CP] Embed Pods Frameworks */,
+				22A66A862A3FF2FB005E7835 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = CashMore;
+			packageProductDependencies = (
+				226DAB7F2A4004E4004EC1D5 /* FacebookAEM */,
+				226DAB812A4004E4004EC1D5 /* FacebookBasics */,
+				226DAB832A4004E4004EC1D5 /* FacebookCore */,
+				226DAB852A4004E4004EC1D5 /* FacebookGamingServices */,
+				226DAB872A4004E4004EC1D5 /* FacebookLogin */,
+				226DAB892A4004E4004EC1D5 /* FacebookShare */,
+			);
 			productName = CashMore;
 			productReference = 2210F9332A27572F00577DC9 /* CashMore.app */;
 			productType = "com.apple.product-type.application";
@@ -763,6 +805,9 @@
 				Base,
 			);
 			mainGroup = 2210F92A2A27572F00577DC9;
+			packageReferences = (
+				226DAB7E2A4004E4004EC1D5 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
+			);
 			productRefGroup = 2210F9342A27572F00577DC9 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -890,6 +935,7 @@
 				226208CE2A303926005E1F5C /* ProductDetailController.swift in Sources */,
 				22CE9DCF2A298F8F006C5153 /* BaseTableController.swift in Sources */,
 				22A66A5F2A398F56005E7835 /* UIViewController+Extension.swift in Sources */,
+				2235271A2A40481B00FBAEBE /* OverFreezonOrderController.swift in Sources */,
 				22CE9DE02A29ED7D006C5153 /* UIImage+Extension.swift in Sources */,
 				22A66A7A2A3C030C005E7835 /* ProblemChooseView.swift in Sources */,
 				22CE9DCD2A298A99006C5153 /* PersonalCenterController.swift in Sources */,
@@ -903,6 +949,7 @@
 				220E1A462A3440DE0054EEA8 /* EAAlertView.swift in Sources */,
 				22CE9DD12A29B58D006C5153 /* AboutUsController.swift in Sources */,
 				2210F94D2A275ABD00577DC9 /* BaseViewController.swift in Sources */,
+				2235271C2A40593C00FBAEBE /* RepaidOrderDetailController.swift in Sources */,
 				226208B42A2F365F005E1F5C /* UIButton+PagingView.swift in Sources */,
 				22DC94442A33944700E621C8 /* OCRInputActionView.swift in Sources */,
 				226208FF2A318A77005E1F5C /* BaseModel.swift in Sources */,
@@ -912,6 +959,7 @@
 				220E1A442A3440DE0054EEA8 /* EASpinnerLayer.swift in Sources */,
 				22CE9DC12A287D0A006C5153 /* UIButton+Extension.swift in Sources */,
 				226208FB2A30A9E2005E1F5C /* String+Extension.swift in Sources */,
+				22A66A882A3FF835005E7835 /* ADJustTrackTool.swift in Sources */,
 				226208E12A305EA7005E1F5C /* NetworkApi.swift in Sources */,
 				220E1A582A346FEA0054EEA8 /* SelectionCell.swift in Sources */,
 				226208A72A2F102B005E1F5C /* OrderListController.swift in Sources */,
@@ -1094,15 +1142,15 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7R9X78KKXW;
-				GENERATE_INFOPLIST_FILE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = CashMore/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Cash More";
-				INFOPLIST_KEY_NSCameraUsageDescription = "CashMore App must obtain your camera permission to take photos and upload";
-				INFOPLIST_KEY_NSContactsUsageDescription = "Please allow CashMore visit your Contacts";
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Please allow CashMore to use your location";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Please allow CashMore to use your location";
-				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Please allow CashMore visit your photo library";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Please allow CashMore visit your photo library";
+				INFOPLIST_KEY_NSCameraUsageDescription = "You did not allow us to access the camera, which will help you obtain a loan. Would you like to set up authorization.";
+				INFOPLIST_KEY_NSContactsUsageDescription = "You did not allow us to access the contacts. Allowing it will help you obtain a loan. Do you want to set up authorization.";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Please allow us to use location information, which will help you obtain a loan, otherwise you will not be able to apply for a loan.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Please allow us to use location information, which will help you obtain a loan, otherwise you will not be able to apply for a loan.";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "You did not allow us to access the Photo Library, which will help you obtain a loan. Would you like to set up authorization.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "You did not allow us to access the Photo Library, which will help you obtain a loan. Would you like to set up authorization.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
@@ -1135,15 +1183,15 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7R9X78KKXW;
-				GENERATE_INFOPLIST_FILE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = CashMore/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Cash More";
-				INFOPLIST_KEY_NSCameraUsageDescription = "CashMore App must obtain your camera permission to take photos and upload";
-				INFOPLIST_KEY_NSContactsUsageDescription = "Please allow CashMore visit your Contacts";
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Please allow CashMore to use your location";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Please allow CashMore to use your location";
-				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Please allow CashMore visit your photo library";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Please allow CashMore visit your photo library";
+				INFOPLIST_KEY_NSCameraUsageDescription = "You did not allow us to access the camera, which will help you obtain a loan. Would you like to set up authorization.";
+				INFOPLIST_KEY_NSContactsUsageDescription = "You did not allow us to access the contacts. Allowing it will help you obtain a loan. Do you want to set up authorization.";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Please allow us to use location information, which will help you obtain a loan, otherwise you will not be able to apply for a loan.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Please allow us to use location information, which will help you obtain a loan, otherwise you will not be able to apply for a loan.";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "You did not allow us to access the Photo Library, which will help you obtain a loan. Would you like to set up authorization.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "You did not allow us to access the Photo Library, which will help you obtain a loan. Would you like to set up authorization.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
@@ -1186,6 +1234,50 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		226DAB7E2A4004E4004EC1D5 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/facebook/facebook-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 16.1.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		226DAB7F2A4004E4004EC1D5 /* FacebookAEM */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 226DAB7E2A4004E4004EC1D5 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookAEM;
+		};
+		226DAB812A4004E4004EC1D5 /* FacebookBasics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 226DAB7E2A4004E4004EC1D5 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookBasics;
+		};
+		226DAB832A4004E4004EC1D5 /* FacebookCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 226DAB7E2A4004E4004EC1D5 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookCore;
+		};
+		226DAB852A4004E4004EC1D5 /* FacebookGamingServices */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 226DAB7E2A4004E4004EC1D5 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookGamingServices;
+		};
+		226DAB872A4004E4004EC1D5 /* FacebookLogin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 226DAB7E2A4004E4004EC1D5 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookLogin;
+		};
+		226DAB892A4004E4004EC1D5 /* FacebookShare */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 226DAB7E2A4004E4004EC1D5 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookShare;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2210F92B2A27572F00577DC9 /* Project object */;
 }

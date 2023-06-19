@@ -22,6 +22,7 @@ class ContactInfoInputView: UIView {
     
     convenience init(title: String, contactBookTapAction: (() -> Void)? = nil) {
         self.init(frame: .zero)
+        self.title = title
         titleLabel.text = title
         contactAction = contactBookTapAction
     }
@@ -41,43 +42,9 @@ class ContactInfoInputView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(30)
-            make.left.equalTo(10)
-        }
-        
-        contactBookBtn.snp.makeConstraints { make in
-            make.right.equalTo(-10)
-            make.size.equalTo(CGSize(width: 50, height: 50))
-            make.centerY.equalTo(titleLabel.snp.bottom)
-        }
-        
-        numIndicatLabel.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(10)
-            make.left.equalTo(titleLabel)
-        }
-        
-        numInputField.snp.makeConstraints { make in
-            make.top.equalTo(numIndicatLabel.snp.bottom).offset(10)
-            make.left.right.equalToSuperview()
-            make.height.equalTo(35)
-        }
-        numInputField.tm.bottomBorder(width: 1, borderColor: Constants.borderColor)
-        
-        nameIndicatLabel.snp.makeConstraints { make in
-            make.top.equalTo(numInputField.snp.bottom).offset(15)
-            make.left.equalTo(numIndicatLabel)
-        }
-        
-        nameInputField.snp.makeConstraints { make in
-            make.top.equalTo(nameIndicatLabel.snp.bottom).offset(10)
-            make.left.right.height.equalTo(numInputField)
-            make.bottom.equalToSuperview().priority(.high)
-        }
-        nameInputField.tm.bottomBorder(width: 1, borderColor: Constants.borderColor)
-    }
+    
+    
+    private var title : String?
     
     private lazy var titleLabel : UILabel = {
         let lb = UILabel()
@@ -125,7 +92,6 @@ class ContactInfoInputView: UIView {
         field.leftView = leftView
         field.leftViewMode = .always
         field.delegate = self
-        field.isEnabled = false
         return field
     }()
     
@@ -138,6 +104,46 @@ class ContactInfoInputView: UIView {
     private var contactAction : (() -> Void)?
     
     private var currentContact = ContactModel(name: "", phone: "")
+}
+
+extension ContactInfoInputView {
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        titleLabel.snp.makeConstraints { make in
+            make.top.equalTo(30)
+            make.left.equalTo(10)
+        }
+        
+        contactBookBtn.snp.makeConstraints { make in
+            make.right.equalTo(-10)
+            make.size.equalTo(CGSize(width: 50, height: 50))
+            make.centerY.equalTo(titleLabel.snp.bottom)
+        }
+        
+        numIndicatLabel.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom).offset(10)
+            make.left.equalTo(titleLabel)
+        }
+        
+        numInputField.snp.makeConstraints { make in
+            make.top.equalTo(numIndicatLabel.snp.bottom).offset(10)
+            make.left.right.equalToSuperview()
+            make.height.equalTo(35)
+        }
+        numInputField.tm.bottomBorder(width: 1, borderColor: Constants.borderColor)
+        
+        nameIndicatLabel.snp.makeConstraints { make in
+            make.top.equalTo(numInputField.snp.bottom).offset(15)
+            make.left.equalTo(numIndicatLabel)
+        }
+        
+        nameInputField.snp.makeConstraints { make in
+            make.top.equalTo(nameIndicatLabel.snp.bottom).offset(10)
+            make.left.right.height.equalTo(numInputField)
+            make.bottom.equalToSuperview().priority(.high)
+        }
+        nameInputField.tm.bottomBorder(width: 1, borderColor: Constants.borderColor)
+    }
     
     @objc func contactBookBtnClicked() {
         contactAction?()
@@ -145,6 +151,24 @@ class ContactInfoInputView: UIView {
 }
 
 extension ContactInfoInputView : UITextFieldDelegate {
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        if textField == nameInputField {
+            switch title {
+            case "Family Contact":
+                ADJustTrackTool.point(name: "rrch8i")
+            case "Colleague Contact":
+                ADJustTrackTool.point(name: "8jvxfr")
+            case "Parents Contact":
+                ADJustTrackTool.point(name: "tlqoz9")
+            default: break
+            }
+            
+            return true
+        } else {
+            return false
+        }
+    }
+    
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField == nameInputField {
             currentContact.name = textField.text ?? ""

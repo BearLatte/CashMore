@@ -25,6 +25,35 @@ class PurchaseController : BaseScrollController {
         }
     }
     
+    private lazy var productImgView   : UIImageView = UIImageView()
+    private lazy var productNameLabel = {
+        let lb = UILabel()
+        lb.textColor = Constants.themeTitleColor
+        lb.font = Constants.pingFangSCRegularFont(20)
+        lb.text = "Rupee Star"
+        return lb
+    }()
+    private lazy var amountView    = ProductDetailItemView(title: "Amount")
+    private lazy var termsView     = ProductDetailItemView(title: "Terms")
+    private lazy var receivedView  = ProductDetailItemView(title: "Received Amount")
+    private lazy var verifyFeeView = ProductDetailItemView(title: "Verification Fee")
+    private lazy var gstView       = ProductDetailItemView(title: "GST")
+    private lazy var interestView  = ProductDetailItemView(title: "Interest")
+    private lazy var overdueView   = ProductDetailItemView(title: "Overdue Charge")
+    private lazy var paymentAmountView = ProductDetailItemView(title: "Repayment Amount")
+    private lazy var purchaseBtn   = Constants.themeBtn(with: "Loan now")
+    
+    private var userInfo : UserInfoModel?
+    
+    private lazy var contactStore: CNContactStore = CNContactStore()
+    private var phoneList : [[String : String]]?
+    private var latitude  : String?
+    private var longitude : String?
+}
+
+
+// MARK: - Config UI
+extension PurchaseController {
     override func configUI() {
         super.configUI()
         title = "Detail"
@@ -125,34 +154,15 @@ class PurchaseController : BaseScrollController {
         purchaseBtn.addTarget(self, action: #selector(loanAction), for: .touchUpInside)
     }
     
-    private lazy var productImgView   : UIImageView = UIImageView()
-    private lazy var productNameLabel = {
-        let lb = UILabel()
-        lb.textColor = Constants.themeTitleColor
-        lb.font = Constants.pingFangSCRegularFont(20)
-        lb.text = "Rupee Star"
-        return lb
-    }()
-    private lazy var amountView    = ProductDetailItemView(title: "Amount")
-    private lazy var termsView     = ProductDetailItemView(title: "Terms")
-    private lazy var receivedView  = ProductDetailItemView(title: "Received Amount")
-    private lazy var verifyFeeView = ProductDetailItemView(title: "Verification Fee")
-    private lazy var gstView       = ProductDetailItemView(title: "GST")
-    private lazy var interestView  = ProductDetailItemView(title: "Interest")
-    private lazy var overdueView   = ProductDetailItemView(title: "Overdue Charge")
-    private lazy var paymentAmountView = ProductDetailItemView(title: "Repayment Amount")
-    private lazy var purchaseBtn   = Constants.themeBtn(with: "Loan now")
-    
-    private var userInfo : UserInfoModel?
-    
-    private lazy var contactStore: CNContactStore = CNContactStore()
-    private var phoneList : [[String : String]]?
-    private var latitude  : String?
-    private var longitude : String?
+    override func goBack() {
+        super.goBack()
+        ADJustTrackTool.point(name: "yr5726")
+    }
 }
 
 extension PurchaseController {
     @objc func loanAction() {
+        ADJustTrackTool.point(name: "db9hwk")
         APIService.standered.fetchModel(api: API.Me.userInfo, type: UserInfoModel.self) { model in
             self.userInfo = model
             if model.userLiveness {

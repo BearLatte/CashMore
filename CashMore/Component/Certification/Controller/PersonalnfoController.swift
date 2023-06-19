@@ -11,6 +11,55 @@ class PersonalnfoController: BaseScrollController {
     var certificationModel : CertificationInfoModel?
     var opstionsModel : OptionsModel!
     
+    
+    private lazy var panFrontActionView = OCRInputActionView(title: "Pan card Front", image: R.image.camera_small()) { [weak self] in
+        ADJustTrackTool.point(name: "9sb75w")
+        Constants.checkoutCameraPrivary(target: self)
+    }
+    
+    private var personalInfo : CertificationPersonalInfoModel = CertificationPersonalInfoModel() {
+        didSet {
+            panNumInputView.inputText    = personalInfo.panNumber
+            whatsAppInputView.inputText  = personalInfo.bodyImg
+            industryInputView.inputText  = personalInfo.industry
+            workTitleInputView.inputText = personalInfo.job
+            salaryInputView.inputText    = personalInfo.monthlySalary
+            emailInputView.inputText     = personalInfo.email
+            paytmInputView.inputText     = personalInfo.paytmAccount
+            panFrontModel.imageUrl      = personalInfo.panCardImg ?? ""
+            panFrontActionView.backgroundImageView.kf.setImage(with: URL(string: personalInfo.panCardImg ?? ""))
+        }
+    }
+    
+    private var panFrontModel : PanFrontModel = PanFrontModel() {
+        didSet {
+            self.panNumInputView.inputText = panFrontModel.panNumber
+        }
+    }
+    
+    private lazy var panNumInputView    = FormInputView(title: "Pan Number", placeholder: "Pan Number")
+    private lazy var whatsAppInputView  = FormInputView(title: "WhatsApp Account", placeholder: "WhatsApp Account", keyboardType: .numberPad)
+    private lazy var industryInputView  = FormInputView(title: "Industry", placeholder: "Industry", showsRightView: true) { [weak self] in
+        ADJustTrackTool.point(name: "88alyy")
+        self?.showOptionPicker(type: .industry)
+    }
+    private lazy var workTitleInputView = FormInputView(title: "Work Title", placeholder: "Work Title", showsRightView: true) { [weak self] in
+        ADJustTrackTool.point(name: "yspsyy")
+        self?.showOptionPicker(type: .workTitle)
+    }
+    private lazy var salaryInputView    = FormInputView(title: "Monthly Salary", placeholder: "Monthly Salary", showsRightView: true, keyboardType: .numberPad) { [weak self] in
+        ADJustTrackTool.point(name: "ggcpz2")
+        self?.showOptionPicker(type: .salary)
+    }
+    private lazy var emailInputView     = FormInputView(title: "E-mail", placeholder: "E-mail", keyboardType: .emailAddress)
+    private lazy var paytmInputView     = FormInputView(title: "Paytm Account(Optional)", placeholder: "Paytm Account(Optional)", keyboardType: .numberPad)
+    private lazy var nextBtn            = Constants.themeBtn(with: "Next")
+    
+    
+}
+
+// MARK: - ConfigUI
+extension PersonalnfoController {
     override func configUI() {
         super.configUI()
         title = "Personal info"
@@ -84,47 +133,6 @@ class PersonalnfoController: BaseScrollController {
             make.bottom.equalToSuperview().priority(.high)
         }
     }
-    
-    private lazy var panFrontActionView = OCRInputActionView(title: "Pan card Front", image: R.image.camera_small()) { [weak self] in
-        Constants.checkoutCameraPrivary(target: self)
-    }
-    
-    private var personalInfo : CertificationPersonalInfoModel = CertificationPersonalInfoModel() {
-        didSet {
-            panNumInputView.inputText    = personalInfo.panNumber
-            whatsAppInputView.inputText  = personalInfo.bodyImg
-            industryInputView.inputText  = personalInfo.industry
-            workTitleInputView.inputText = personalInfo.job
-            salaryInputView.inputText    = personalInfo.monthlySalary
-            emailInputView.inputText     = personalInfo.email
-            paytmInputView.inputText     = personalInfo.paytmAccount
-            panFrontModel.imageUrl      = personalInfo.panCardImg ?? ""
-            panFrontActionView.backgroundImageView.kf.setImage(with: URL(string: personalInfo.panCardImg ?? ""))
-        }
-    }
-    
-    private var panFrontModel : PanFrontModel = PanFrontModel() {
-        didSet {
-            self.panNumInputView.inputText = panFrontModel.panNumber
-        }
-    }
-    
-    private lazy var panNumInputView    = FormInputView(title: "Pan Number", placeholder: "Pan Number")
-    private lazy var whatsAppInputView  = FormInputView(title: "WhatsApp Account", placeholder: "WhatsApp Account", keyboardType: .numberPad)
-    private lazy var industryInputView  = FormInputView(title: "Industry", placeholder: "Industry", showsRightView: true) { [weak self] in
-        self?.showOptionPicker(type: .industry)
-    }
-    private lazy var workTitleInputView = FormInputView(title: "Work Title", placeholder: "Work Title", showsRightView: true) { [weak self] in
-        self?.showOptionPicker(type: .workTitle)
-    }
-    private lazy var salaryInputView    = FormInputView(title: "Monthly Salary", placeholder: "Monthly Salary", showsRightView: true, keyboardType: .numberPad) { [weak self] in
-        self?.showOptionPicker(type: .salary)
-    }
-    private lazy var emailInputView     = FormInputView(title: "E-mail", placeholder: "E-mail", keyboardType: .emailAddress)
-    private lazy var paytmInputView     = FormInputView(title: "Paytm Account(Optional)", placeholder: "Paytm Account(Optional)", keyboardType: .numberPad)
-    private lazy var nextBtn            = Constants.themeBtn(with: "Next")
-    
-    
 }
 
 extension PersonalnfoController {
@@ -176,6 +184,8 @@ extension PersonalnfoController {
     }
     
     @objc func nextBtnAction() {
+        ADJustTrackTool.point(name: "c0u61q")
+        
         guard !panFrontModel.imageUrl.tm.isBlank else {
             HUD.flash(.label("Please upload Pan card photo"), delay: 1.0)
             return

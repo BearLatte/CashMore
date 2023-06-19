@@ -10,6 +10,7 @@ import Adjust
 import AdSupport
 import AppTrackingTransparency
 import IQKeyboardManagerSwift
+import FacebookCore
 
 
 @main
@@ -28,7 +29,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // 请求位置权限
         LocationManager.shared.requestLocationAuthorizaiton()
         
+        // 初始化ADJust
         let adjustConfig = ADJConfig(appToken: Constants.ADJUST_APP_TOKEN, environment: Constants.ADJUST_ENVIROMENT)
+        adjustConfig?.logLevel = ADJLogLevelVerbose
         Adjust.appDidLaunch(adjustConfig)
         
         IQKeyboardManager.shared.enable = true
@@ -36,8 +39,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = UINavigationController(rootViewController: HomeController())
         window?.makeKeyAndVisible()
+        
+        // facebook
+        ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         return true
     }
+    
+    
+    
 }
 
 extension AppDelegate {
@@ -56,5 +65,33 @@ extension AppDelegate {
             }
         }
     }
+}
+
+// MARK: - ADJust 和 facebook
+extension AppDelegate {
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        fetchIDFA()
+        Adjust.requestTrackingAuthorization()
+    }
+    
+    
+    
+    // facebook
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        ApplicationDelegate
+            .shared
+            .application(
+                app,
+                open: url,
+                sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,
+                annotation: options[UIApplication.OpenURLOptionsKey.annotation]
+            )
+    }
+}
+
+extension AppDelegate : AdjustDelegate {
+    func adjustEventTrackingSucceeded(_ eventSuccessResponseData: ADJEventSuccess?) {}
+    func adjustEventTrackingFailed(_ eventFailureResponseData: ADJEventFailure?) {}
+    func adjustAttributionChanged(_ attribution: ADJAttribution?) {}
 }
 

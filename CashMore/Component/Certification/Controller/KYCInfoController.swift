@@ -16,6 +16,79 @@ class KYCInfoController: BaseScrollController {
 
     var certificationModel : CertificationInfoModel?
     
+    private lazy var cardFrontActionView = OCRInputActionView(title: "Aadhaar Card Front", image: R.image.camera_small()) { [weak self] in
+        ADJustTrackTool.point(name: "t5n9ey")
+        self?.ocrType = .cardFront
+        PhotoTipSheet.showTipSheet {
+            ADJustTrackTool.point(name: "nir2fu")
+            Constants.checkoutCameraPrivary(target: self)
+        }
+    }
+    
+    private lazy var cardBackActionView = OCRInputActionView(title: "Aadhaar Card Back", image: R.image.camera_small()) { [weak self] in
+        ADJustTrackTool.point(name: "lugddn")
+        self?.ocrType = .cardBack
+        Constants.checkoutCameraPrivary(target: self)
+    }
+    
+    private lazy var adhaarNameInputView  = FormInputView(title: "Aadhaar Name", placeholder: "Aadhaar Name")
+    private lazy var adhaarNumInputView   = FormInputView(title: "Aadhaar Number", placeholder: "Aadhaar Number", keyboardType: .numberPad)
+    private lazy var genderChooseView     = GenderChooseView()
+    private lazy var dateOfBirthInputView = FormInputView(title: "Date of Birth", placeholder: "Date of Birth", showsRightView: true) { [weak self] in
+        ADJustTrackTool.point(name: "6zb03w")
+        self?.showDatePicker()
+    }
+    
+    private lazy var addressInputView     = FormMultipleTextInputView(title: "Detail Address", placeholder: "Detail Address")
+    private lazy var marriageStatusInputView = FormInputView(title: "Marriage Status", placeholder: "Marriage Status",showsRightView: true) { [weak self] in
+        ADJustTrackTool.point(name: "dr16cv")
+        self?.showOptionPicker(type: .marriage)
+    }
+    private lazy var educationInputView = FormInputView(title: "Education", placeholder: "Education", showsRightView: true) {  [weak self] in
+        ADJustTrackTool.point(name: "dr16cv")
+        self?.showOptionPicker(type: .education)
+    }
+    
+    private lazy var nextBtn = Constants.themeBtn(with: "Next")
+    private var ocrType = OCRType.cardFront
+    
+    private var cardFront : CardFrontModel = CardFrontModel() {
+        didSet {
+            adhaarNameInputView.inputText   = cardFront.aadharName
+            adhaarNumInputView.inputText    = cardFront.aadharNumber
+            dateOfBirthInputView.inputText  = cardFront.dateOfBirth
+            genderChooseView.selectedGender = cardFront.gender
+        }
+    }
+    
+    private var cardBack  : CardBackModel = CardBackModel() {
+        didSet {
+            addressInputView.inputText = cardBack.addressAll
+        }
+    }
+    
+    private var optionsModel : OptionsModel = OptionsModel()
+    private var kycModel : CertificationKYCModel? {
+        didSet {
+            adhaarNameInputView.inputText = kycModel?.firstName
+            adhaarNumInputView.inputText  = kycModel?.aadharNumber
+            genderChooseView.selectedGender = kycModel?.gender
+            dateOfBirthInputView.inputText = kycModel?.dateOfBirth
+            addressInputView.inputText = kycModel?.residenceDetailAddress
+            marriageStatusInputView.inputText = kycModel?.marriageStatus
+            educationInputView.inputText = kycModel?.education
+            cardFrontActionView.backgroundImageView.kf.setImage(with: URL(string: kycModel?.frontImg ?? ""))
+            cardFront.imageUrl = kycModel?.frontImg ?? ""
+            cardBack.imageUrl  = kycModel?.backImg ?? ""
+            cardBackActionView.backgroundImageView.kf.setImage(with: URL(string: kycModel?.backImg ?? ""))
+        }
+    }
+    
+    private var optionType : OptionType = .marriage
+}
+
+// update the formdate in page
+extension KYCInfoController {
     override func configUI() {
         super.configUI()
         title = "KYC Info"
@@ -106,73 +179,6 @@ class KYCInfoController: BaseScrollController {
         nextBtn.addTarget(self, action: #selector(nextBtnTapAction), for: .touchUpInside)
     }
     
-    private lazy var cardFrontActionView = OCRInputActionView(title: "Aadhaar Card Front", image: R.image.camera_small()) { [weak self] in
-        self?.ocrType = .cardFront
-        PhotoTipSheet.showTipSheet {
-            Constants.checkoutCameraPrivary(target: self)
-        }
-    }
-    
-    private lazy var cardBackActionView = OCRInputActionView(title: "Aadhaar Card Back", image: R.image.camera_small()) { [weak self] in
-        self?.ocrType = .cardBack
-        Constants.checkoutCameraPrivary(target: self)
-    }
-    
-    private lazy var adhaarNameInputView  = FormInputView(title: "Aadhaar Name", placeholder: "Aadhaar Name")
-    private lazy var adhaarNumInputView   = FormInputView(title: "Aadhaar Number", placeholder: "Aadhaar Number", keyboardType: .numberPad)
-    private lazy var genderChooseView     = GenderChooseView()
-    private lazy var dateOfBirthInputView = FormInputView(title: "Date of Birth", placeholder: "Date of Birth", showsRightView: true) { [weak self] in
-        self?.showDatePicker()
-    }
-    
-    private lazy var addressInputView     = FormMultipleTextInputView(title: "Detail Address", placeholder: "Detail Address")
-    private lazy var marriageStatusInputView = FormInputView(title: "Marriage Status", placeholder: "Marriage Status",showsRightView: true) { [weak self] in
-        self?.showOptionPicker(type: .marriage)
-    }
-    private lazy var educationInputView = FormInputView(title: "Education", placeholder: "Education", showsRightView: true) {  [weak self] in
-        self?.showOptionPicker(type: .education)
-    }
-    
-    private lazy var nextBtn = Constants.themeBtn(with: "Next")
-    private var ocrType = OCRType.cardFront
-    
-    private var cardFront : CardFrontModel = CardFrontModel() {
-        didSet {
-            adhaarNameInputView.inputText   = cardFront.aadharName
-            adhaarNumInputView.inputText    = cardFront.aadharNumber
-            dateOfBirthInputView.inputText  = cardFront.dateOfBirth
-            genderChooseView.selectedGender = cardFront.gender
-        }
-    }
-    
-    private var cardBack  : CardBackModel = CardBackModel() {
-        didSet {
-            addressInputView.inputText = cardBack.addressAll
-        }
-    }
-    
-    private var optionsModel : OptionsModel = OptionsModel()
-    private var kycModel : CertificationKYCModel? {
-        didSet {
-            adhaarNameInputView.inputText = kycModel?.firstName
-            adhaarNumInputView.inputText  = kycModel?.aadharNumber
-            genderChooseView.selectedGender = kycModel?.gender
-            dateOfBirthInputView.inputText = kycModel?.dateOfBirth
-            addressInputView.inputText = kycModel?.residenceDetailAddress
-            marriageStatusInputView.inputText = kycModel?.marriageStatus
-            educationInputView.inputText = kycModel?.education
-            cardFrontActionView.backgroundImageView.kf.setImage(with: URL(string: kycModel?.frontImg ?? ""))
-            cardFront.imageUrl = kycModel?.frontImg ?? ""
-            cardBack.imageUrl  = kycModel?.backImg ?? ""
-            cardBackActionView.backgroundImageView.kf.setImage(with: URL(string: kycModel?.backImg ?? ""))
-        }
-    }
-    
-    private var optionType : OptionType = .marriage
-}
-
-// update the formdate in page
-extension KYCInfoController {
     override func loadData() {
         APIService.standered.fetchModel(api: API.Certification.options, type: OptionsModel.self) { options in
             self.optionsModel = options
@@ -190,6 +196,8 @@ extension KYCInfoController {
     
     
     @objc func nextBtnTapAction() {
+        ADJustTrackTool.point(name: "o8w4gv")
+        
         guard !cardFront.imageUrl.tm.isBlank else {
             HUD.flash(.label("Please upload Aadhaar card photo."), delay: 1.0)
             return

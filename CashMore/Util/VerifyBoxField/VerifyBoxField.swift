@@ -15,7 +15,7 @@ enum VerifyBoxFieldStyle {
 }
 
 extension Notification.Name {
-    fileprivate static let verifyBoxFieldDidBecomeFirstResponderNotification = Notification.Name("VerifyBoxieldDidBecomeFirstResponderNotification")
+    static let verifyBoxFieldDidBecomeFirstResponderNotification = Notification.Name("VerifyBoxieldDidBecomeFirstResponderNotification")
     fileprivate static let verifyBoxFieldDidResignFirstResponderNotification = Notification.Name("VerifyBoxFieldDidResignFirstResponderNotification")
 }
 

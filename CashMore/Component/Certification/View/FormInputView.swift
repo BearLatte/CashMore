@@ -21,6 +21,7 @@ class FormInputView: UIView {
     
     convenience init(title: String, placeholder: String, showsRightView: Bool = false, keyboardType: UIKeyboardType = .default, tapAction: (() -> Void)? = nil) {
         self.init(frame: .zero)
+        self.title = title
         self.titleLabel.text = title
         self.inputField.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [.foregroundColor : Constants.placeholderTextColor])
         self.inputField.rightViewMode = showsRightView ? .always : .never
@@ -61,6 +62,7 @@ class FormInputView: UIView {
         inputField.tm.bottomBorder(width: 1, borderColor: Constants.borderColor)
     }
     
+    private var title : String?
     
     private lazy var titleLabel : UILabel = {
         let lb = UILabel()
@@ -95,6 +97,26 @@ class FormInputView: UIView {
 
 extension FormInputView : UITextFieldDelegate {
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        switch title {
+        case "Aadhaar Name":
+            ADJustTrackTool.point(name: "e13k9a")
+        case "Aadhaar Number":
+            ADJustTrackTool.point(name: "num1jz")
+        case "E-mail":
+            ADJustTrackTool.point(name: "84twrc")
+        case "Paytm Account(Optional)":
+            ADJustTrackTool.point(name: "wbapko")
+        case "Pan Number":
+            ADJustTrackTool.point(name: "16rep2")
+        case "Bank Name":
+            ADJustTrackTool.point(name: "308m2u")
+        case "Account Number":
+            ADJustTrackTool.point(name: "8f7l5s")
+        case "IFSC Code":
+            ADJustTrackTool.point(name: "7jz5fj")
+        default:
+            break
+        }
         if tapAction != nil {
             tapAction!()
             return false

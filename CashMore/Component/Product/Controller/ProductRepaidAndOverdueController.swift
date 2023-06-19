@@ -186,6 +186,11 @@ extension ProductRepaidAndOverdueController {
     }
     
     @objc func repayAction() {
+        if orderType == .repaid {
+            ADJustTrackTool.point(name: "whisev")
+        } else {
+            ADJustTrackTool.point(name: "4djy8t")
+        }
         APIService.standered.fetchModel(api: API.Order.repaymentApply, parameters: ["orderNo":orderDetail?.loanOrderNo ?? "", "repayType":"all"], type: RepaymentModel.self) { repayPath in
             let safari = SFSafariViewController(url: URL(string: repayPath.path)!)
             self.present(safari, animated: true)
@@ -193,6 +198,11 @@ extension ProductRepaidAndOverdueController {
     }
     
     private func applyExtensionRepay() {
+        if orderType == .repaid {
+            ADJustTrackTool.point(name: "qm2i8v")
+        } else {
+            ADJustTrackTool.point(name: "dh9d6k")
+        }
         APIService.standered.fetchModel(api: API.Order.extensionRepayApply, parameters: ["orderNo":orderDetail?.loanOrderNo ?? ""], type: ExtensionRepayModel.self) { extensionRepayModel in
             let controller = RepayExtensionDetailController()
             controller.product = self.product

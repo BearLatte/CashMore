@@ -21,7 +21,8 @@ class FormMultipleTextInputView: UIView {
     
     convenience init(title: String, placeholder: String?) {
         self.init(frame: .zero)
-        titleLabel.text = title
+        self.title = title
+        self.titleLabel.text = title
         textView.setPlaceholder(text: placeholder)
     }
     
@@ -60,6 +61,12 @@ class FormMultipleTextInputView: UIView {
     }
     
 
+    private var title : String? {
+        didSet {
+            titleLabel.text = title
+        }
+    }
+    
     private lazy var titleLabel : UILabel = {
         let lb = UILabel()
         lb.font = Constants.pingFangSCMediumFont(18)
@@ -74,6 +81,7 @@ class FormMultipleTextInputView: UIView {
         tv.textContainer.lineFragmentPadding = 10
         tv.isScrollEnabled = false
         tv.backgroundColor = .clear
+        tv.delegate = self
         return tv
     }()
     
@@ -82,4 +90,14 @@ class FormMultipleTextInputView: UIView {
         line.backgroundColor = Constants.borderColor
         return line
     }()
+}
+
+extension FormMultipleTextInputView : UITextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        switch title {
+        case "Detail Address":
+            ADJustTrackTool.point(name: "dr16cv")
+        default: break
+        }
+    }
 }

@@ -8,7 +8,26 @@
 import UIKit
 
 class PersonalCenterController: BaseTableController {
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    private lazy var headerView = PersonalCenterHeaderView()
+    private lazy var logoutBtn = {
+        let btn = UIButton(type: .custom)
+        btn.isHidden = !Constants.isLogin
+        btn.setTitle("Logout", for: .normal)
+        btn.backgroundColor = Constants.darkBtnBgColor
+        btn.setTitleColor(Constants.pureWhite, for: .normal)
+        btn.titleLabel?.font = Constants.pingFangSCMediumFont(18)
+        btn.addTarget(self, action: #selector(logoutAction), for: .touchUpInside)
+        return btn
+    }()
+}
 
+
+// MARK: - Config UI
+extension PersonalCenterController {
     override func configUI() {
         super.configUI()
         view.backgroundColor = Constants.pureWhite
@@ -39,25 +58,10 @@ class PersonalCenterController: BaseTableController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(didReceiveLoginSuccessNotification), name: Constants.loginSuccessNotification, object: nil)
     }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
-    private lazy var headerView = PersonalCenterHeaderView()
-   
-    
-    private lazy var logoutBtn = {
-        let btn = UIButton(type: .custom)
-        btn.isHidden = !Constants.isLogin
-        btn.setTitle("Logout", for: .normal)
-        btn.backgroundColor = Constants.darkBtnBgColor
-        btn.setTitleColor(Constants.pureWhite, for: .normal)
-        btn.titleLabel?.font = Constants.pingFangSCMediumFont(18)
-        btn.addTarget(self, action: #selector(logoutAction), for: .touchUpInside)
-        return btn
-    }()
-    
+}
+
+// MARK: - Private
+extension PersonalCenterController {
     @objc func logoutAction() {
         APIService.standered.normalRequest(api: API.Login.logOut) {
             UserDefaults.standard.setValue(false, forKey: Constants.IS_LOGIN)
@@ -73,9 +77,10 @@ class PersonalCenterController: BaseTableController {
         headerView.reloadData()
         logoutBtn.isHidden = false
     }
-    
 }
 
+
+// MARK: - UITableViewDataSource UITableViewDelegate
 extension PersonalCenterController {
     func numberOfSections(in tableView: UITableView) -> Int { 1 }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {4}
@@ -119,9 +124,14 @@ extension PersonalCenterController {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
         case 0:
-            let bankVC = BankInfoController()
-            bankVC.isModify = true
-            navigationController?.pushViewController(bankVC, animated: true)
+            ADJustTrackTool.point(name: "h9gm4g")
+            if Constants.isLogin {
+                let bankVC = BankInfoController()
+                bankVC.isModify = true
+                navigationController?.pushViewController(bankVC, animated: true)
+            } else {
+                Constants.toLogin()
+            }
         case 1:
             navigationController?.pushViewController(AboutUsController(), animated: true)
         case 2: break

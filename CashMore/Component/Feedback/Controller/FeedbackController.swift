@@ -106,6 +106,7 @@ extension FeedbackController {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         let feedback = feedbackList[indexPath.row]
         let detailView = FeedbackDetailController()
         detailView.feedback = feedback

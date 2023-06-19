@@ -33,7 +33,7 @@ struct APIService {
                 case 1:
                     success(networkModel.response)
                 case -1:
-                    go2login()
+                    Constants.toLogin()
                 default: break
                 }
             }
@@ -66,7 +66,7 @@ struct APIService {
 
                     success(list)
                 case -1:
-                    go2login()
+                    Constants.toLogin()
                 default: break
                 }
             }
@@ -98,7 +98,7 @@ struct APIService {
                     }
                     success(model)
                 case -1:
-                    go2login()
+                    Constants.toLogin()
                 default: break
                 }
             }
@@ -125,7 +125,7 @@ struct APIService {
                 case 1:
                     success()
                 case -1:
-                    go2login()
+                    Constants.toLogin()
                 default: break
                 }
             }
@@ -248,7 +248,7 @@ extension APIService {
                     success(params)
                 case -1:
                     DispatchQueue.main.async {
-                        self.go2login()
+                        Constants.toLogin()
                     }
                 default:break
                 }
@@ -317,7 +317,7 @@ extension APIService {
                     success(model)
                 case -1:
                     DispatchQueue.main.async {
-                        self.go2login()
+                        Constants.toLogin()
                     }
                 default:break
                 }
@@ -327,12 +327,5 @@ extension APIService {
                     HUD.flash(.labeledError(title: nil, subtitle: error.localizedDescription), delay: 2.0)
                 }
             }
-    }
-    
-    private func go2login() {
-        let loginVC = LoginController()
-        loginVC.pattern = .present
-        loginVC.modalPresentationStyle = .fullScreen
-        UIApplication.shared.keyWindow?.rootViewController?.present(loginVC, animated: true)
     }
 }

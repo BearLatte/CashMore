@@ -100,6 +100,7 @@ class GenderChooseView: UIView {
     }()
     
     @objc func genderBtnClicked(_ btn: UIButton) {
+        ADJustTrackTool.point(name: "ql07ee")
         if btn == maleBtn {
             maleBtn.isSelected = true
             femaleBtn.isSelected = false

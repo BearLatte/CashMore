@@ -10,6 +10,47 @@ import Contacts
 
 class ContactInfoController : BaseScrollController {
     var certificationModel : CertificationInfoModel?
+    
+    private enum ContactType {
+        case parents, family, colleague
+    }
+    
+    private var currentContactType : ContactType = .parents
+    
+    private lazy var contactStore: CNContactStore = CNContactStore()
+    
+    private lazy var parentItem = ContactInfoInputView(title: "Parents Contact"){ [weak self] in
+        ADJustTrackTool.point(name: "41ztvs")
+        self?.currentContactType = .parents
+        self?.checkContactStoreAuth()
+    }
+    
+    private lazy var familyItem = ContactInfoInputView(title: "Family Contact") {[weak self] in
+        ADJustTrackTool.point(name: "exxsdp")
+        self?.currentContactType = .family
+        self?.checkContactStoreAuth()
+    }
+    
+    private lazy var colleagueItem = ContactInfoInputView(title: "Colleague Contact") {[weak self] in
+        ADJustTrackTool.point(name: "ahwq6s")
+        self?.currentContactType = .colleague
+        self?.checkContactStoreAuth()
+    }
+    
+    private var contactModel : CertificationContactModel = CertificationContactModel() {
+        didSet {
+            parentItem.contact = ContactModel(name: contactModel.brotherOrSisterName, phone: contactModel.brotherOrSisterNumber)
+            familyItem.contact = ContactModel(name: contactModel.familyName, phone: contactModel.familyNumber)
+            colleagueItem.contact = ContactModel(name: contactModel.colleagueName, phone: contactModel.colleagueNumber)
+        }
+    }
+    
+    private var nextBtn = Constants.themeBtn(with: "Next")
+}
+
+
+// MARK: - ConfigUI
+extension ContactInfoController {
     override func configUI() {
         super.configUI()
         title = "Contact info"
@@ -45,39 +86,6 @@ class ContactInfoController : BaseScrollController {
         }
         nextBtn.addTarget(self, action: #selector(nextBtnAction), for: .touchUpInside)
     }
-    
-    private enum ContactType {
-        case parents, family, colleague
-    }
-    
-    private var currentContactType : ContactType = .parents
-    
-    private lazy var contactStore: CNContactStore = CNContactStore()
-    
-    private lazy var parentItem = ContactInfoInputView(title: "Parents Contact"){ [weak self] in
-        self?.currentContactType = .parents
-        self?.checkContactStoreAuth()
-    }
-    
-    private lazy var familyItem = ContactInfoInputView(title: "Family Contact") {[weak self] in
-        self?.currentContactType = .family
-        self?.checkContactStoreAuth()
-    }
-    
-    private lazy var colleagueItem = ContactInfoInputView(title: "Colleague Contact") {[weak self] in
-        self?.currentContactType = .colleague
-        self?.checkContactStoreAuth()
-    }
-    
-    private var contactModel : CertificationContactModel = CertificationContactModel() {
-        didSet {
-            parentItem.contact = ContactModel(name: contactModel.brotherOrSisterName, phone: contactModel.brotherOrSisterNumber)
-            familyItem.contact = ContactModel(name: contactModel.familyName, phone: contactModel.familyNumber)
-            colleagueItem.contact = ContactModel(name: contactModel.colleagueName, phone: contactModel.colleagueNumber)
-        }
-    }
-    
-    private var nextBtn = Constants.themeBtn(with: "Next")
 }
 
 
@@ -195,6 +203,7 @@ extension ContactInfoController {
     
     
     @objc func nextBtnAction() {
+        ADJustTrackTool.point(name: "5l4qfn")
         guard let bortherContact = parentItem.contact, !bortherContact.phoneNumber.tm.isBlank, !bortherContact.name.tm.isBlank else {
             return HUD.flash(.label("Please check the Parents Contact"), delay: 1.0)
         }

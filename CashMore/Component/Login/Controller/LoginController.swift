@@ -11,6 +11,42 @@ import IQKeyboardManagerSwift
 
 
 class LoginController: BaseViewController {
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    private weak var phoneInputField : UITextField!
+    private weak var sendOtpBtn : CaptchaButton!
+    private lazy var boxField  = {
+        let field = VerifyBoxField(style: .border, allowInputCount: 4)
+        field.borderLineViews.forEach { view in
+            view.isHidden = true
+        }
+        field.itemSpace    = 10
+        field.tintColor    = Constants.borderColor
+        field.cursorColor  = Constants.borderColor
+        field.borderWidth  = 1
+        field.borderRadius = 8
+        field.textFont     = Constants.pingFangSCMediumFont(20)
+        field.textColor    = Constants.themeTitleColor
+        field.trackTintColor = Constants.themeColor
+        field.autoResignFirstResponseWhenInputFinished = true
+        return field
+    }()
+    
+    private lazy var checkBox = {
+        let btn = UIButton(type: .custom)
+        btn.setImage(R.image.check_box(), for: .normal)
+        btn.setImage(R.image.check_box_full(), for: .selected)
+        return btn
+    }()
+    
+    private lazy var loginBtn = Constants.themeBtn(with: "Login Now")
+}
+
+// MARK: - UI
+extension LoginController {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         view.endEditing(true)
@@ -144,63 +180,15 @@ class LoginController: BaseViewController {
             make.height.equalTo(50)
         }
         loginBtn.addTarget(self, action: #selector(loginAction), for: .touchUpInside)
-    }
-    
-    private weak var phoneInputField : UITextField!
-    private weak var sendOtpBtn : CaptchaButton!
-    private lazy var boxField  = {
-        let field = VerifyBoxField(style: .border, allowInputCount: 4)
-        field.borderLineViews.forEach { view in
-            view.isHidden = true
-        }
-        field.itemSpace    = 10
-        field.tintColor    = Constants.borderColor
-        field.cursorColor  = Constants.borderColor
-        field.borderWidth  = 1
-        field.borderRadius = 8
-        field.textFont     = Constants.pingFangSCMediumFont(20)
-        field.textColor    = Constants.themeTitleColor
-        field.trackTintColor = Constants.themeColor
-        field.autoResignFirstResponseWhenInputFinished = true
-        return field
-    }()
-    
-    private lazy var checkBox = {
-        let btn = UIButton(type: .custom)
-        btn.setImage(R.image.check_box(), for: .normal)
-        btn.setImage(R.image.check_box_full(), for: .selected)
-        return btn
-    }()
-    
-    private lazy var loginBtn = Constants.themeBtn(with: "Login Now")
-    
-    @objc func phoneInputTextChanged(textField: UITextField) {
-        guard let mobleNumber = textField.text else {
-            return
-        }
         
-        if mobleNumber.count > 10 {
-            phoneInputField.text = String(mobleNumber.prefix(10))
-        }
+        // 接收通知
+        NotificationCenter.default.addObserver(self, selector: #selector(verityBoxBecomeFirstNotification), name: .verifyBoxFieldDidBecomeFirstResponderNotification, object: nil)
     }
+}
+
+extension LoginController {
     
-    @objc func sendOtpAction() {
-        guard let phone = phoneInputField.text, !phone.tm.isBlank, !(phone.count < 10) else {
-            HUD.flash(.label("Please enter a 10-digit mobile number"), delay: 1.0)
-            return
-        }
-        
-        APIService.standered.normalRequest(api: API.Login.sendSMS, parameters: ["phone": phone]) {
-            self.sendOtpBtn.codeCountdown(isCodeTimer: true)
-        }
-        
-        
-    }
-    
-    @objc func changeCheckBoxState() {
-        checkBox.isSelected.toggle()
-    }
-    
+    // 登录动作
     @objc func loginAction() {
         guard let phone = phoneInputField.text, !phone.tm.isBlank, !(phone.count < 10) else {
             HUD.flash(.label("Please enter a 10-digit mobile number"), delay: 1.0)
@@ -212,6 +200,8 @@ class LoginController: BaseViewController {
             HUD.flash(.label("Please enter correct OTP"), delay: 1.0)
             return
         }
+        
+        ADJustTrackTool.point(name: "w8jlm6")
         
         if !checkBox.isSelected {
             HUD.flash(.label("Please agree with our policy to continue"), delay: 1.0)
@@ -234,5 +224,37 @@ class LoginController: BaseViewController {
             }
         }
         
+    }
+    
+    // 发送验证码
+    @objc func sendOtpAction() {
+        ADJustTrackTool.point(name: "7yrz7e")
+        
+        guard let phone = phoneInputField.text, !phone.tm.isBlank, !(phone.count < 10) else {
+            HUD.flash(.label("Please enter a 10-digit mobile number"), delay: 2.0)
+            return
+        }
+        
+        APIService.standered.normalRequest(api: API.Login.sendSMS, parameters: ["phone": phone]) {
+            self.sendOtpBtn.codeCountdown(isCodeTimer: true)
+        }
+    }
+    
+    @objc func phoneInputTextChanged(textField: UITextField) {
+        guard let mobleNumber = textField.text else {
+            return
+        }
+        
+        if mobleNumber.count > 10 {
+            phoneInputField.text = String(mobleNumber.prefix(10))
+        }
+    }
+    
+    @objc func verityBoxBecomeFirstNotification() {
+        ADJustTrackTool.point(name: "nihxhq")
+    }
+    
+    @objc func changeCheckBoxState() {
+        checkBox.isSelected.toggle()
     }
 }

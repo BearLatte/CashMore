@@ -84,6 +84,7 @@ extension OrderListController {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        ADJustTrackTool.point(name: "63kik0")
         let order = orders?[indexPath.row]
         if order?.status == 0 || order?.status == 1 || order?.status == 7 {
             APIService.standered.fetchModel(api: API.Order.orderDetail, parameters: ["auditOrderNo" : order?.loanOrderNo ?? ""], type: OrderDetailModel.self) { detail in
@@ -91,21 +92,33 @@ extension OrderListController {
                 product.logo = detail.loanAuditOrderVo?.logo
                 product.id = detail.loanAuditOrderVo?.productId ?? ""
                 product.loanName = detail.loanAuditOrderVo?.loanName ?? ""
-                let productDetailVC = ProductDetailController()
+                
                 if order?.status == 7 {
-                    productDetailVC.frozenDays = detail.frozenDays
+                    if detail.frozenDays > 0 {
+                        let productDetailVC = ProductDetailController()
+                        productDetailVC.frozenDays = detail.frozenDays
+                        productDetailVC.product = product
+                        productDetailVC.orderDetail = detail.loanAuditOrderVo
+                        self.navigationController?.pushViewController(productDetailVC, animated: true)
+                    } else {
+                        let overfreezonVC = OverFreezonOrderController()
+                        overfreezonVC.auditOrderNo = order?.loanOrderNo
+                        self.navigationController?.pushViewController(overfreezonVC, animated: true)
+                    }
+                } else {
+                    let productDetailVC = ProductDetailController()
+                    if order?.status == 0 {
+                        productDetailVC.orderType = .pending
+                    } else if order?.status == 1 {
+                        productDetailVC.orderType = .disbursing
+                    } else {
+                        productDetailVC.orderType = .overdue
+                    }
+                    productDetailVC.product = product
+                    productDetailVC.orderDetail = detail.loanAuditOrderVo
+                    self.navigationController?.pushViewController(productDetailVC, animated: true)
                 }
                 
-                if order?.status == 0 {
-                    productDetailVC.orderType = .pending
-                } else if order?.status == 1 {
-                    productDetailVC.orderType = .disbursing
-                } else {
-                    productDetailVC.orderType = .overdue
-                }
-                productDetailVC.product = product
-                productDetailVC.orderDetail = detail.loanAuditOrderVo
-                self.navigationController?.pushViewController(productDetailVC, animated: true)
             }
         }
         
@@ -124,6 +137,12 @@ extension OrderListController {
             controller.product = product
             controller.orderDetail = order
             navigationController?.pushViewController(controller, animated: true)
+        }
+        
+        if order?.status == 8 || order?.status == 9 {
+            let repaidController = RepaidOrderDetailController()
+            repaidController.order = order
+            navigationController?.pushViewController(repaidController, animated: true)
         }
     }
 }

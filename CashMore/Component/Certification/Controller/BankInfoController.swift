@@ -63,7 +63,7 @@ class BankInfoController: BaseScrollController {
 
 extension BankInfoController {
     @objc func submitBtnClicked() {
-        
+        ADJustTrackTool.point(name: "w8lxuy")
         guard let bankName = bankNameInputView.inputText, !bankName.tm.isBlank else {
             return HUD.flash(.label("Bank Name cannot be empty"), delay: 2.0)
         }
