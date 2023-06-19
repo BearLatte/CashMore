@@ -213,6 +213,10 @@ extension LoginController {
         #endif
         
         APIService.standered.fetchModel(api: API.Login.login, parameters: ["phone" : phone, "code" : passcode], type: LoginSuccessModel.self) { model in
+            if model.isLogin == 0 {
+                ADJustTrackTool.point(name: "1qr0ad")
+                FacebookTrackTool.point(name: "1qr0ad")
+            }
             HUD.flash(.labeledSuccess(title: nil, subtitle: "Login Success"), delay: 1.0) { isFinished in
                 if isFinished {
                     UserDefaults.standard.setValue(true, forKey: Constants.IS_LOGIN)

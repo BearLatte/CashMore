@@ -15,7 +15,7 @@ class ADJustTrackTool {
 }
 
 
-class FCTrackTool {
+class FacebookTrackTool {
     static func point(name: String) {
         AppEvents.shared.logEvent(AppEvents.Name(name))
     }

@@ -247,6 +247,10 @@ extension PurchaseController {
         params["data"] = dataStr
         
         APIService.standered.fetchResponseList(api: API.Product.loan, parameters: params) { content in
+            if let isFirstApply = content.cont?["isFirstApply"] as? Int, isFirstApply == 1 {
+                ADJustTrackTool.point(name: "m5rw1u")
+                FacebookTrackTool.point(name: "m5rw1u")
+            }
             let purchaseSuccessVC = PurchaseSuccessController()
             purchaseSuccessVC.products = [ProductModel].deserialize(from: content.list)
             self.navigationController?.pushViewController(purchaseSuccessVC, animated: true)
