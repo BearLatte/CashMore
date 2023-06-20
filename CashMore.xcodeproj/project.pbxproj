@@ -25,6 +25,7 @@
 		2210F9402A27573000577DC9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2210F93F2A27573000577DC9 /* Assets.xcassets */; };
 		2210F9432A27573000577DC9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2210F9412A27573000577DC9 /* LaunchScreen.storyboard */; };
 		2210F94D2A275ABD00577DC9 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2210F94C2A275ABD00577DC9 /* BaseViewController.swift */; };
+		221547EB2A417A8500B1129F /* SubmitSuccessToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221547EA2A417A8500B1129F /* SubmitSuccessToastView.swift */; };
 		2235271A2A40481B00FBAEBE /* OverFreezonOrderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223527192A40481B00FBAEBE /* OverFreezonOrderController.swift */; };
 		2235271C2A40593C00FBAEBE /* RepaidOrderDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2235271B2A40593C00FBAEBE /* RepaidOrderDetailController.swift */; };
 		2235271E2A406B9B00FBAEBE /* CommonWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2235271D2A406B9B00FBAEBE /* CommonWebViewController.swift */; };
@@ -161,6 +162,7 @@
 		2210F9422A27573000577DC9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2210F9442A27573000577DC9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2210F94C2A275ABD00577DC9 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		221547EA2A417A8500B1129F /* SubmitSuccessToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitSuccessToastView.swift; sourceTree = "<group>"; };
 		223527192A40481B00FBAEBE /* OverFreezonOrderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverFreezonOrderController.swift; sourceTree = "<group>"; };
 		2235271B2A40593C00FBAEBE /* RepaidOrderDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepaidOrderDetailController.swift; sourceTree = "<group>"; };
 		2235271D2A406B9B00FBAEBE /* CommonWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonWebViewController.swift; sourceTree = "<group>"; };
@@ -569,6 +571,7 @@
 				22A66A7B2A3C10CF005E7835 /* ProblemPhotosView.swift */,
 				22A66A7D2A3C1760005E7835 /* PhotoItemView.swift */,
 				22A66A822A3C4874005E7835 /* FeedbackCell.swift */,
+				221547EA2A417A8500B1129F /* SubmitSuccessToastView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -925,6 +928,7 @@
 				226209062A32E2B5005E1F5C /* LoginController.swift in Sources */,
 				226208A32A2EFE00005E1F5C /* OrderPagingController.swift in Sources */,
 				22A66A772A3BFB18005E7835 /* ConfigFeedbackController.swift in Sources */,
+				221547EB2A417A8500B1129F /* SubmitSuccessToastView.swift in Sources */,
 				226208E72A306B9A005E1F5C /* API.swift in Sources */,
 				22CE9DC52A289AEC006C5153 /* HomeProductCell.swift in Sources */,
 				22A66A7E2A3C1760005E7835 /* PhotoItemView.swift in Sources */,

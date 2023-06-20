@@ -161,9 +161,10 @@ extension ConfigFeedbackController {
         }
         
         APIService.standered.normalRequest(api: API.Feedback.saveFeedback, parameters: params) {
-            HUD.flash(.success, delay: 2.0)
-            self.saveFeedbackSuccess?()
-            self.navigationController?.popViewController(animated: true)
+            SubmitSuccessToastView.showToast {
+                self.saveFeedbackSuccess?()
+                self.navigationController?.popViewController(animated: true)
+            }
         }
     }
 }

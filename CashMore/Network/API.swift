@@ -32,7 +32,14 @@ struct APIItem : APIProtocol {
 }
 
 struct API {
-    static var DOMIN = "http://8.215.46.156:1060"
+//    static var DOMIN = "http://8.215.46.156:1060"
+    static var DOMIN : String {
+        #if DEBUG
+        return "http://8.215.46.156:1060"
+        #else
+        return "https://api.cashmoreapp.com/"
+        #endif
+    }
     
     struct Home {
         static var productList = APIItem("/PZJqjz/Ypleh", desc: "before login product list")
