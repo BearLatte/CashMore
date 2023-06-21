@@ -29,9 +29,10 @@ class ProblemPhotosView: UIView {
         }
     }
     
-    convenience init(type: PhotoViewType = .upload) {
+    convenience init(type: PhotoViewType = .upload, maxItem: Int = 9) {
         self.init(frame: .zero)
         self.photoViewType = type
+        self.maxItem = maxItem
         configImages()
     }
     
@@ -41,6 +42,53 @@ class ProblemPhotosView: UIView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    
+    private lazy var addBtn = {
+        let btn = UIButton(type: .custom)
+        btn.setBackgroundImage(R.image.add_picture_icon(), for: .normal)
+        btn.addTarget(self, action: #selector(addBtnClicked), for: .touchUpInside)
+        return btn
+    }()
+    
+    private var photoViewType : PhotoViewType = .upload
+    private var maxItem : Int = 9
+}
+
+extension ProblemPhotosView {
+    private func configImages() {
+        if photoViewType == .upload {
+            subviews.forEach { view in
+                view.removeFromSuperview()
+            }
+            
+            if images.count < maxItem {
+                addSubview(addBtn)
+            }
+            
+            for i in 0 ..< images.count {
+                let itemView = PhotoItemView(showsDeleteBtn: true, tag: i + 999) { tag in
+                    self.images.remove(at: tag % 999)
+                    self.imgUrls.remove(at: tag % 999)
+                    self.configImages()
+                }
+                itemView.image = images[i]
+                addSubview(itemView)
+            }
+            layoutIfNeeded()
+        } else {
+            subviews.forEach { view in
+                view.removeFromSuperview()
+            }
+            imgUrls.forEach { url in
+                let itemView = PhotoItemView(showsDeleteBtn: false)
+                itemView.imageUrl = url
+                addSubview(itemView)
+            }
+            layoutIfNeeded()
+        }
     }
     
     override func layoutSubviews() {
@@ -71,47 +119,6 @@ class ProblemPhotosView: UIView {
         
         lastView?.snp.makeConstraints { make in
             make.bottom.equalToSuperview().priority(.high)
-        }
-    }
-    
-    private lazy var addBtn = {
-        let btn = UIButton(type: .custom)
-        btn.setBackgroundImage(R.image.add_picture_icon(), for: .normal)
-        btn.addTarget(self, action: #selector(addBtnClicked), for: .touchUpInside)
-        return btn
-    }()
-    
-    private var photoViewType : PhotoViewType = .upload
-}
-
-extension ProblemPhotosView {
-    private func configImages() {
-        if photoViewType == .upload {
-            subviews.forEach { view in
-                view.removeFromSuperview()
-            }
-            addSubview(addBtn)
-            
-            for i in 0 ..< images.count {
-                let itemView = PhotoItemView(showsDeleteBtn: true, tag: i + 999) { tag in
-                    self.images.remove(at: tag % 999)
-                    self.imgUrls.remove(at: tag % 999)
-                    self.configImages()
-                }
-                itemView.image = images[i]
-                addSubview(itemView)
-            }
-            layoutIfNeeded()
-        } else {
-            subviews.forEach { view in
-                view.removeFromSuperview()
-            }
-            imgUrls.forEach { url in
-                let itemView = PhotoItemView(showsDeleteBtn: false)
-                itemView.imageUrl = url
-                addSubview(itemView)
-            }
-            layoutIfNeeded()
         }
     }
     
