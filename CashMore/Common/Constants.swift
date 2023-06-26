@@ -23,7 +23,6 @@ struct Constants {
         #endif
     }
     static let IS_FIRST_LAUNCH = "kIS_FIRST_LAUNCH"
-    static let UID_KEY = "kUID_KEY"
     static let FIRST_LAUNCH_TIME_STAMP = "kFIRST_LAUNCH_TIME_STAMP"
     
     static var isLogin : Bool {
@@ -36,10 +35,6 @@ struct Constants {
     
     static var token : String? {
         UserDefaults.standard.string(forKey: ACCESS_TOKEN)
-    }
-    
-    static var uid : String {
-        UserDefaults.standard.string(forKey: UID_KEY) ?? "Please login in"
     }
     
     static var isFirstLaunch : Bool {
@@ -202,7 +197,6 @@ extension Constants {
     static func toLogin() {
         UserDefaults.standard.setValue(false, forKey: IS_LOGIN)
         UserDefaults.standard.setValue(nil, forKey: ACCESS_TOKEN)
-        UserDefaults.standard.setValue(nil, forKey: UID_KEY)
         
         let login = LoginController()
         login.pattern = .present

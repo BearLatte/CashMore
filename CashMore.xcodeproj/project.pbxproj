@@ -91,7 +91,7 @@
 		229939232A36C3A3000309DE /* OptionsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229939222A36C3A3000309DE /* OptionsModel.swift */; };
 		229939292A372665000309DE /* PurchaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229939282A372665000309DE /* PurchaseController.swift */; };
 		2299392B2A372C8E000309DE /* UserInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2299392A2A372C8E000309DE /* UserInfoModel.swift */; };
-		2299392D2A37357E000309DE /* ProductDetailItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2299392C2A37357E000309DE /* ProductDetailItemView.swift */; };
+		2299392D2A37357E000309DE /* OrderDetailItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2299392C2A37357E000309DE /* OrderDetailItemView.swift */; };
 		22A66A552A382D8C005E7835 /* InVivoDetectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A66A542A382D8C005E7835 /* InVivoDetectionController.swift */; };
 		22A66A572A38704F005E7835 /* UIDevice+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A66A562A38704F005E7835 /* UIDevice+Extension.swift */; };
 		22A66A5B2A388E6F005E7835 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A66A5A2A388E6F005E7835 /* LocationManager.swift */; };
@@ -111,6 +111,7 @@
 		22A66A832A3C4874005E7835 /* FeedbackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A66A822A3C4874005E7835 /* FeedbackCell.swift */; };
 		22A66A852A3C5D5F005E7835 /* FeedbackDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A66A842A3C5D5F005E7835 /* FeedbackDetailController.swift */; };
 		22A66A882A3FF835005E7835 /* ADJustTrackTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A66A872A3FF835005E7835 /* ADJustTrackTool.swift */; };
+		22B813302A485508001FAA35 /* PayFailAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B8132F2A485508001FAA35 /* PayFailAlertView.swift */; };
 		22CE9DA72A28395F006C5153 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CE9DA62A28395F006C5153 /* R.generated.swift */; };
 		22CE9DAA2A283C03006C5153 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CE9DA92A283C03006C5153 /* Constants.swift */; };
 		22CE9DB12A2866DA006C5153 /* Prefix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CE9DB02A2866DA006C5153 /* Prefix.swift */; };
@@ -225,7 +226,7 @@
 		229939222A36C3A3000309DE /* OptionsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsModel.swift; sourceTree = "<group>"; };
 		229939282A372665000309DE /* PurchaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseController.swift; sourceTree = "<group>"; };
 		2299392A2A372C8E000309DE /* UserInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoModel.swift; sourceTree = "<group>"; };
-		2299392C2A37357E000309DE /* ProductDetailItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailItemView.swift; sourceTree = "<group>"; };
+		2299392C2A37357E000309DE /* OrderDetailItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailItemView.swift; sourceTree = "<group>"; };
 		22A66A542A382D8C005E7835 /* InVivoDetectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InVivoDetectionController.swift; sourceTree = "<group>"; };
 		22A66A562A38704F005E7835 /* UIDevice+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+Extension.swift"; sourceTree = "<group>"; };
 		22A66A5A2A388E6F005E7835 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
@@ -245,6 +246,7 @@
 		22A66A822A3C4874005E7835 /* FeedbackCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackCell.swift; sourceTree = "<group>"; };
 		22A66A842A3C5D5F005E7835 /* FeedbackDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackDetailController.swift; sourceTree = "<group>"; };
 		22A66A872A3FF835005E7835 /* ADJustTrackTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ADJustTrackTool.swift; sourceTree = "<group>"; };
+		22B8132F2A485508001FAA35 /* PayFailAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayFailAlertView.swift; sourceTree = "<group>"; };
 		22CE9DA62A28395F006C5153 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		22CE9DA92A283C03006C5153 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		22CE9DB02A2866DA006C5153 /* Prefix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Prefix.swift; sourceTree = "<group>"; };
@@ -532,10 +534,10 @@
 		22A66A612A39D65C005E7835 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				22CE9DC42A289AEC006C5153 /* HomeProductCell.swift */,
 				22CE9DBC2A28716D006C5153 /* HomeHeaderView.swift */,
 				22CE9DC22A289624006C5153 /* HomeProductHeaderView.swift */,
-				22CE9DC42A289AEC006C5153 /* HomeProductCell.swift */,
-				2299392C2A37357E000309DE /* ProductDetailItemView.swift */,
+				22B8132F2A485508001FAA35 /* PayFailAlertView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -653,6 +655,7 @@
 		22CE9DB82A2870F3006C5153 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2299392C2A37357E000309DE /* OrderDetailItemView.swift */,
 				226208A42A2F0AB3005E1F5C /* OrderCell.swift */,
 			);
 			path = View;
@@ -907,7 +910,8 @@
 				22A66A5D2A398796005E7835 /* PurchaseSuccessController.swift in Sources */,
 				226208B62A2F3796005E1F5C /* UIScreen+PageingView.swift in Sources */,
 				226208812A2D8A35005E1F5C /* RegexParser.swift in Sources */,
-				2299392D2A37357E000309DE /* ProductDetailItemView.swift in Sources */,
+				22B813302A485508001FAA35 /* PayFailAlertView.swift in Sources */,
+				2299392D2A37357E000309DE /* OrderDetailItemView.swift in Sources */,
 				22A66A6B2A3AD144005E7835 /* RepaymentModel.swift in Sources */,
 				2299392B2A372C8E000309DE /* UserInfoModel.swift in Sources */,
 				22A66A692A3AC638005E7835 /* ExtensionRepayModel.swift in Sources */,

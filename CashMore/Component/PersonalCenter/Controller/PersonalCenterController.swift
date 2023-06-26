@@ -40,7 +40,6 @@ extension PersonalCenterController {
             make.width.equalTo(Constants.screenWidth)
         }
         headerView.layoutIfNeeded()
-        headerView.reloadData()
 
         let footerView = UIView(frame: CGRect(x: 0, y: 0, width: Constants.screenWidth, height: 90))
         tableView.tableFooterView = footerView
@@ -62,20 +61,31 @@ extension PersonalCenterController {
 
 // MARK: - Private
 extension PersonalCenterController {
+    override func loadData() {
+        if Constants.isLogin {
+            headerView.logoViewAlpha = 1
+            APIService.standered.fetchModel(api: API.Me.userInfo, type: UserInfoModel.self) { [weak self] userInfo in
+                self?.headerView.phoneNumber = userInfo.phone
+            }
+        } else {
+            headerView.phoneNumber = "Please login in"
+            headerView.logoViewAlpha = 0.3
+        }
+    }
+    
     @objc func logoutAction() {
         APIService.standered.normalRequest(api: API.Login.logOut) {
             UserDefaults.standard.setValue(false, forKey: Constants.IS_LOGIN)
             UserDefaults.standard.setValue(nil, forKey: Constants.ACCESS_TOKEN)
-            UserDefaults.standard.setValue(nil, forKey: Constants.UID_KEY)
             NotificationCenter.default.post(name: Constants.logoutSuccessNotification, object: nil)
-            self.headerView.reloadData()
             self.logoutBtn.isHidden = true
+            self.loadData()
         }
     }
     
     @objc func didReceiveLoginSuccessNotification(_ not: Notification) {
-        headerView.reloadData()
         logoutBtn.isHidden = false
+        self.loadData()
     }
 }
 

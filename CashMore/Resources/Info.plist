@@ -68,5 +68,7 @@
 	<string>CashMore</string>
 	<key>NSUserTrackingUsageDescription</key>
 	<string></string>
+	<key>CFBundleDisplayName</key>
+	<string>Cash More</string>
 </dict>
 </plist>

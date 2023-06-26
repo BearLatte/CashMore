@@ -20,8 +20,8 @@ class RepayExtensionDetailController: BaseViewController {
             guard let value = extensionRepayDetail else { return }
             repaymentAmountView.subtitle = value.extendRepayAmount
             nextRepaymentDateView.subtitle = value.extendRepayDate
-            extensionTermView.subtitle = value.extendDate
-            extensionFeeView.subtitle  = value.extendFee
+            extensionTermView.subtitle = value.extendDate + "days"
+            extensionFeeView.subtitle  = "₹ " + value.extendFee
         }
     }
     
@@ -34,10 +34,10 @@ class RepayExtensionDetailController: BaseViewController {
         lb.textColor = Constants.themeTitleColor
         return lb
     }()
-    private lazy var repaymentAmountView   = ProductDetailItemView(title: "Repayment Amount")
-    private lazy var nextRepaymentDateView = ProductDetailItemView(title: "Next Repayment Date")
-    private lazy var extensionTermView     = ProductDetailItemView(title: "Extension Term")
-    private lazy var extensionFeeView      = ProductDetailItemView(title: "Extension Fee")
+    private lazy var repaymentAmountView   = OrderDetailItemView(title: "Repayment Amount")
+    private lazy var nextRepaymentDateView = OrderDetailItemView(title: "Next Repayment Date")
+    private lazy var extensionTermView     = OrderDetailItemView(title: "Extension Term")
+    private lazy var extensionFeeView      = OrderDetailItemView(title: "Extension Fee")
     private lazy var repayBtn = {
         let btn = UIButton(type: .custom)
         btn.setTitle("Repay Extension", for: .normal)
@@ -131,7 +131,14 @@ extension RepayExtensionDetailController {
         ADJustTrackTool.point(name: "598jqo")
         APIService.standered.fetchModel(api: API.Order.repaymentApply, parameters: ["orderNo":orderDetail.loanOrderNo, "repayType" : "extend"], type: RepaymentModel.self) { repayPath in
             let safari = SFSafariViewController(url: URL(string: repayPath.path)!)
+            safari.delegate = self
             self.present(safari, animated: true)
         }
+    }
+}
+
+extension RepayExtensionDetailController : SFSafariViewControllerDelegate {
+    func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
+        navigationController?.popViewController(animated: true)
     }
 }

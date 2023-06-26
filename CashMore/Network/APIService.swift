@@ -17,9 +17,9 @@ enum OCRType : String {
 struct APIService {
     static let standered = APIService()
     
-    func fetchResponseList(api: APIProtocol, parameters: [String : Any]? = nil, success: @escaping (BaseResponseContent) -> Void) {
+    func fetchResponseList(api: APIProtocol, parameters: [String : Any]? = nil, loadingMessage: String = "Loading", success: @escaping (BaseResponseContent) -> Void) {
         DispatchQueue.main.async {
-            HUD.show(.labeledProgress(title: nil, subtitle: "loading"))
+            HUD.show(.labeledProgress(title: nil, subtitle: loadingMessage))
         }
         
         NTTool.fetch(api, parameters: Constants.configParameters(parameters))
@@ -212,7 +212,7 @@ struct APIService {
     }
     
     // 用户人脸信息认证
-    func faceVerifyService(_ image: UIImage?, success: @escaping () -> Void) {
+    func faceVerifyService(_ image: UIImage?, success: @escaping () -> Void, failuer: (() -> Void)?) {
         let dispatchQueue = DispatchQueue(label: "serial")
         let semaphore = DispatchSemaphore(value: 0)
         dispatchQueue.async {
@@ -224,7 +224,17 @@ struct APIService {
             
             semaphore.wait()
             normalRequest(api: API.Certification.faceAuth, parameters: ["livenessImg":imgUrl]) {
-                success()
+                semaphore.signal()
+            }
+            
+            semaphore.wait()
+            fetchModel(api: API.Me.userInfo, type: UserInfoModel.self) { userModel in
+                if userModel.userLiveness {
+                    success()
+                } else {
+                    failuer?()
+                }
+                semaphore.signal()
             }
         }
     }

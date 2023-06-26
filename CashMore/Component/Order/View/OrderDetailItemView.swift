@@ -1,5 +1,5 @@
 //
-//  ProductDetailItemView.swift
+//  OrderDetailItemView.swift
 //  CashMore
 //
 //  Created by Tim on 2023/6/12.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-class ProductDetailItemView : UIView {
+class OrderDetailItemView : UIView {
     var subtitle: String? {
         didSet {
             subtitleLabel.text = subtitle

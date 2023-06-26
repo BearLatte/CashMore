@@ -33,6 +33,12 @@ class OrderListController: BaseTableController {
 }
 
 extension OrderListController {
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadData()
+    }
+    
     override func configUI() {
         super.configUI()
         isHiddenTitleLabel = true

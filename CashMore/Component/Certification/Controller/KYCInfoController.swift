@@ -184,12 +184,9 @@ extension KYCInfoController {
             self.optionsModel = options
         }
         
-        APIService.standered.fetchModel(api: API.Certification.info, parameters: ["type" : "1"], type: CertificationInfoModel.self) { model in
-            self.certificationModel = model
-            if model.loanapiUserIdentity == true {
-                APIService.standered.fetchModel(api: API.Certification.info, parameters: ["type": "2", "step" : "loanapiUserIdentity"], type: CertificationKYCModel.self) { model in
-                    self.kycModel = model
-                }
+        if certificationModel?.loanapiUserIdentity == true {
+            APIService.standered.fetchModel(api: API.Certification.info, parameters: ["type": "2", "step" : "loanapiUserIdentity"], type: CertificationKYCModel.self) { model in
+                self.kycModel = model
             }
         }
     }
@@ -257,7 +254,7 @@ extension KYCInfoController {
         params["residenceDetailAddressPaste"] = "0"
 
         APIService.standered.normalRequest(api: API.Certification.kycAuth, parameters: params) {
-            let personalInfoVC = PersonalnfoController()
+            let personalInfoVC = PersonalInfoController()
             personalInfoVC.certificationModel = self.certificationModel
             personalInfoVC.opstionsModel = self.optionsModel
             self.navigationController?.pushViewController(personalInfoVC, animated: true)

@@ -33,14 +33,14 @@ class PurchaseController : BaseScrollController {
         lb.text = "Rupee Star"
         return lb
     }()
-    private lazy var amountView    = ProductDetailItemView(title: "Amount")
-    private lazy var termsView     = ProductDetailItemView(title: "Terms")
-    private lazy var receivedView  = ProductDetailItemView(title: "Received Amount")
-    private lazy var verifyFeeView = ProductDetailItemView(title: "Verification Fee")
-    private lazy var gstView       = ProductDetailItemView(title: "GST")
-    private lazy var interestView  = ProductDetailItemView(title: "Interest")
-    private lazy var overdueView   = ProductDetailItemView(title: "Overdue Charge")
-    private lazy var paymentAmountView = ProductDetailItemView(title: "Repayment Amount")
+    private lazy var amountView    = OrderDetailItemView(title: "Amount")
+    private lazy var termsView     = OrderDetailItemView(title: "Terms")
+    private lazy var receivedView  = OrderDetailItemView(title: "Received Amount")
+    private lazy var verifyFeeView = OrderDetailItemView(title: "Verification Fee")
+    private lazy var gstView       = OrderDetailItemView(title: "GST")
+    private lazy var interestView  = OrderDetailItemView(title: "Interest")
+    private lazy var overdueView   = OrderDetailItemView(title: "Overdue Charge")
+    private lazy var paymentAmountView = OrderDetailItemView(title: "Repayment Amount")
     private lazy var purchaseBtn   = Constants.themeBtn(with: "Loan now")
     
     private var userInfo : UserInfoModel?
@@ -181,6 +181,12 @@ extension PurchaseController {
     private func selectedPhotoAction(_ image: UIImage?) {
         APIService.standered.faceVerifyService(image) {
             self.confirmLoanAction()
+        } failuer: {
+            TipsSheet.show(message: "Upload failed, please try again.", confirmAction:  {
+                let inVivoDetectionVC = InVivoDetectionController()
+                inVivoDetectionVC.selectedPhoto = self.selectedPhotoAction(_:)
+                self.navigationController?.pushViewController(inVivoDetectionVC, animated: true)
+            })
         }
     }
     
@@ -246,7 +252,7 @@ extension PurchaseController {
         }
         params["data"] = dataStr
         
-        APIService.standered.fetchResponseList(api: API.Product.loan, parameters: params) { content in
+        APIService.standered.fetchResponseList(api: API.Product.loan, parameters: params, loadingMessage: "Your application is being submitted, please do not exit or return.") { content in
             if let isFirstApply = content.cont?["isFirstApply"] as? Int, isFirstApply == 1 {
                 ADJustTrackTool.point(name: "m5rw1u")
                 FacebookTrackTool.point(name: "m5rw1u")

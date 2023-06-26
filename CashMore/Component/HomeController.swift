@@ -20,9 +20,17 @@ class HomeController: BaseTableController {
     private weak var headerView : HomeHeaderView!
     
     private var userInfo : UserInfoModel?
+    
+    private let payFailAlert = PayFailAlertView()
 }
 
 extension HomeController {
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadData()
+    }
+    
     override func configUI() {
         super.configUI()
         title = "Home Page"
@@ -57,6 +65,9 @@ extension HomeController {
                 self?.products = userInfo.loanProductList
                 self?.tableView.reloadData()
                 self?.tableView.endRefreshing(at: .top)
+                if userInfo.userPayFail {
+                    self?.showPayFailAlert(payFailModel: userInfo.userPayFailInfo)
+                }
             }
         } else {
             APIService.standered.fetchList(api: API.Home.productList, type: ProductModel(), listPath: "loanProductList") { [weak self] products in
@@ -65,6 +76,15 @@ extension HomeController {
                 self?.tableView.endRefreshing(at: .top)
             }
         }
+    }
+    
+    private func showPayFailAlert(payFailModel: PayFailInfo?) {
+        if payFailAlert.isShowing || payFailModel == nil {
+            return
+        }
+        
+        payFailAlert.payFailInfo = payFailModel
+        payFailAlert.show()
     }
     
     @objc func didReceiveLoginSuccessNotification(_ not: Notification) {
@@ -99,7 +119,8 @@ extension HomeController : HomeHeaderViewDelegate {
         if userInfo?.userStatus == 1{
             ADJustTrackTool.point(name: "qrf7g3")
         }
-        navigationController?.pushViewController(PersonalCenterController(), animated: true)
+        let vc = PersonalCenterController()
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     
@@ -122,6 +143,29 @@ extension HomeController {
         
         let product = products[indexPath.row]
         
+        // 查询认证状态
+        APIService.standered.fetchModel(api: API.Certification.info, parameters: ["type" : "1"], type: CertificationInfoModel.self) { model in
+            if model.authStatus {
+                self.loanAction(product: product)
+            } else {
+                ADJustTrackTool.point(name: "tijhtx")
+                let kycController = KYCInfoController()
+                kycController.pattern = .present
+                kycController.certificationModel = model
+                let nav = UINavigationController(rootViewController: kycController)
+                nav.modalPresentationStyle = .fullScreen
+                self.present(nav, animated: true)
+            }
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "SectionHeader") as? HomeProductHeaderView
+        header?.title = "Top recommendation"
+        return header
+    }
+    
+    private func loanAction(product: ProductModel?) {
         APIService.standered.fetchModel(api: API.Product.spaceDetail, parameters: ["productId" : product?.id ?? ""], type: UserInfoModel.self) { userInfo in
             self.userInfo = userInfo
             if userInfo.userStatus != 1 {
@@ -129,12 +173,7 @@ extension HomeController {
             }
             switch userInfo.userStatus {
             case 1:
-                ADJustTrackTool.point(name: "tijhtx")
-                let kycController = KYCInfoController()
-                kycController.pattern = .present
-                let nav = UINavigationController(rootViewController: kycController)
-                nav.modalPresentationStyle = .fullScreen
-                self.present(nav, animated: true)
+                break
             case 2:
                 let purchaseVC = PurchaseController()
                 purchaseVC.productDetail = userInfo.loanProductVo
@@ -156,11 +195,5 @@ extension HomeController {
                 self.navigationController?.pushViewController(vc, animated: true)
             }
         }
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "SectionHeader") as? HomeProductHeaderView
-        header?.title = "Top recommendation"
-        return header
     }
 }

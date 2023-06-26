@@ -39,6 +39,7 @@ class LoginController: BaseViewController {
         let btn = UIButton(type: .custom)
         btn.setImage(R.image.check_box(), for: .normal)
         btn.setImage(R.image.check_box_full(), for: .selected)
+        btn.isSelected = true
         return btn
     }()
     
@@ -233,7 +234,6 @@ extension LoginController {
                 if isFinished {
                     UserDefaults.standard.setValue(true, forKey: Constants.IS_LOGIN)
                     UserDefaults.standard.setValue(model.token, forKey: Constants.ACCESS_TOKEN)
-                    UserDefaults.standard.setValue(model.uid, forKey: Constants.UID_KEY)
                     NotificationCenter.default.post(name: Constants.loginSuccessNotification, object: nil)
                     self.goBack()
                 }

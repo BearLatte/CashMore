@@ -23,12 +23,13 @@ class ProductRepaidAndOverdueController: BaseViewController {
         }
     }
     
-    var product   : ProductModel? {
+    var product : ProductModel? {
         didSet {
             productImgView.kf.setImage(with: URL(string: product?.logo ?? "")!)
             productNameLabel.text = product?.loanName
         }
     }
+    
     var orderDetail : OrderModel? {
         didSet {
             guard let value = orderDetail else { return }
@@ -44,6 +45,11 @@ class ProductRepaidAndOverdueController: BaseViewController {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadData()
+    }
+    
     private var productImgView = UIImageView()
     private var productNameLabel = {
         let lb = UILabel()
@@ -52,17 +58,17 @@ class ProductRepaidAndOverdueController: BaseViewController {
         return lb
     }()
    
-    private lazy var orderNumberView = ProductDetailItemView(title: "Order Number")
-    private lazy var applyDateView   = ProductDetailItemView(title: "Apply date")
-    private lazy var loanAmountView  = ProductDetailItemView(title: "Loan Amount")
-    private lazy var receiveDateView = ProductDetailItemView(title: "Date of loan receive")
-    private lazy var receiveAmountView   = ProductDetailItemView(title: "Received Amount")
-    private lazy var repaymentDateView   = ProductDetailItemView(title: "Repayment Date")
-    private lazy var repaymentAmountView = ProductDetailItemView(title: "Repayment Amount", subtitleColor: Constants.themeColor)
+    private lazy var orderNumberView = OrderDetailItemView(title: "Order Number")
+    private lazy var applyDateView   = OrderDetailItemView(title: "Apply date")
+    private lazy var loanAmountView  = OrderDetailItemView(title: "Loan Amount")
+    private lazy var receiveDateView = OrderDetailItemView(title: "Date of loan receive")
+    private lazy var receiveAmountView   = OrderDetailItemView(title: "Received Amount")
+    private lazy var repaymentDateView   = OrderDetailItemView(title: "Repayment Date")
+    private lazy var repaymentAmountView = OrderDetailItemView(title: "Repayment Amount", subtitleColor: Constants.themeColor)
     
     // Overdue
-    private lazy var overdueDaysView = ProductDetailItemView(title: "Overdue Days")
-    private lazy var overdueChargeView = ProductDetailItemView(title: "Overdue Charge")
+    private lazy var overdueDaysView = OrderDetailItemView(title: "Overdue Days")
+    private lazy var overdueChargeView = OrderDetailItemView(title: "Overdue Charge")
     
     // bottom btn
     private lazy var extensionBtn = {
@@ -209,6 +215,12 @@ extension ProductRepaidAndOverdueController {
             controller.extensionRepayDetail = extensionRepayModel
             controller.orderDetail = self.orderDetail
             self.navigationController?.pushViewController(controller, animated: true)
+        }
+    }
+    
+    override func loadData() {
+        APIService.standered.fetchModel(api: API.Product.spaceDetail, parameters: ["productId" : product?.id ?? ""], type: UserInfoModel.self) { userInfo in
+            self.orderDetail = userInfo.loanAuditOrderVo
         }
     }
 }

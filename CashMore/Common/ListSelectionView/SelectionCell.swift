@@ -8,7 +8,7 @@
 class SelectionCell : UITableViewCell {
     var model : Selectionable? {
         didSet {
-            displayLabel.text = model?.displayText.capitalized
+            displayLabel.text = model?.displayText
             selectionIcon.isHidden = !(model?.isSelected ?? false)
             layoutIfNeeded()
         }

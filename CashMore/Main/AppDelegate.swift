@@ -23,6 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // 设置第一次启动的key
         _ = Constants.isFirstLaunch
         
+        launchNetwork()
+        
         // 获取IDFA
         fetchIDFA()
         
@@ -93,5 +95,13 @@ extension AppDelegate : AdjustDelegate {
     func adjustEventTrackingSucceeded(_ eventSuccessResponseData: ADJEventSuccess?) {}
     func adjustEventTrackingFailed(_ eventFailureResponseData: ADJEventFailure?) {}
     func adjustAttributionChanged(_ attribution: ADJAttribution?) {}
+}
+
+extension AppDelegate {
+    private func launchNetwork() {
+        APIService.standered.normalRequest(api: API.Common.firstLaunch) {
+            Constants.debugLog("获取channel")
+        }
+    }
 }
 

@@ -8,11 +8,24 @@
 import UIKit
 
 class PersonalCenterHeaderView : UIView {
+    
+    var phoneNumber : String = "" {
+        didSet {
+            phoneNumberLabel.text = phoneNumber
+        }
+    }
+    
+    var logoViewAlpha : CGFloat = 0.3 {
+        didSet {
+            logoView.alpha = logoViewAlpha
+        }
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(headImgView)
         addSubview(logoView)
-        addSubview(uidLabel)
+        addSubview(phoneNumberLabel)
     }
     
     required init?(coder: NSCoder) {
@@ -33,7 +46,7 @@ class PersonalCenterHeaderView : UIView {
             make.centerX.equalToSuperview()
         }
         
-        uidLabel.snp.makeConstraints { make in
+        phoneNumberLabel.snp.makeConstraints { make in
             make.top.equalTo(logoView.snp.bottom).offset(6)
             make.centerX.equalTo(logoView)
             make.bottom.equalToSuperview().offset(-25).priority(.high)
@@ -41,10 +54,10 @@ class PersonalCenterHeaderView : UIView {
     }
     
     
-    func reloadData() {
-        logoView.alpha = Constants.isLogin ? 1 : 0.3
-        uidLabel.text = Constants.uid
-    }
+//    func reloadData() {
+//        logoView.alpha = Constants.isLogin ? 1 : 0.3
+//        uidLabel.text = Constants.phoneNumber
+//    }
     
     
     private lazy var headImgView = UIImageView(image: R.image.personal_head())
@@ -56,7 +69,7 @@ class PersonalCenterHeaderView : UIView {
         return logo
     }()
     
-    private lazy var uidLabel = {
+    private lazy var phoneNumberLabel = {
         let lb = UILabel()
         lb.textColor = Constants.themeTitleColor
         lb.font = Constants.pingFangSCSemiboldFont(20)

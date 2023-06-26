@@ -12,17 +12,18 @@ class RepaidOrderDetailController: BaseTableController {
     
     var order : OrderModel? {
         didSet {
+            guard let value = order else { return }
             productIcon.kf.setImage(with: URL(string: order?.logo ?? ""))
-            productNameLabel.text = order?.loanName
-            orderNumView.subtitle = order?.loanOrderNo
-            applyDateView.subtitle = order?.applyDateStr
-            loanAmountView.subtitle = order?.loanAmountStr
-            receivedDateView.subtitle = order?.receiveDateStr
-            receivedAmountView.subtitle = order?.receiveAmountStr
-            repaymentDateView.subtitle = order?.repayDateStr
-            repaymentAmountView.subtitle = order?.repayAmountStr
-            overdueDaysView.subtitle = order?.overDueDays
-            overdueChargeView.subtitle = order?.overDueFeeStr
+            productNameLabel.text = value.loanName
+            orderNumView.subtitle = value.loanOrderNo
+            applyDateView.subtitle = value.applyDateStr
+            loanAmountView.subtitle = "₹ " + value.loanAmountStr
+            receivedDateView.subtitle = value.receiveDateStr
+            receivedAmountView.subtitle = "₹ " + value.receiveAmountStr
+            repaymentDateView.subtitle = value.repayDateStr
+            repaymentAmountView.subtitle = "₹ " + value.repayAmountStr
+            overdueDaysView.subtitle = value.overDueDays
+            overdueChargeView.subtitle = "₹ " + value.overDueFeeStr
         }
     }
     
@@ -41,15 +42,15 @@ class RepaidOrderDetailController: BaseTableController {
         return lb
     }()
     
-    private lazy var orderNumView = ProductDetailItemView(title: "Order Number")
-    private lazy var applyDateView = ProductDetailItemView(title: "Apply date")
-    private lazy var loanAmountView = ProductDetailItemView(title: "Loan Amount")
-    private lazy var receivedDateView = ProductDetailItemView(title: "Date of loan receive")
-    private lazy var receivedAmountView = ProductDetailItemView(title: "Received Amount")
-    private lazy var overdueDaysView = ProductDetailItemView(title: "Overdue Days")
-    private lazy var overdueChargeView = ProductDetailItemView(title: "Overdue Charge")
-    private lazy var repaymentDateView = ProductDetailItemView(title: "Repayment Date")
-    private lazy var repaymentAmountView = ProductDetailItemView(title: "Repayment Amount", subtitleColor: Constants.themeColor)
+    private lazy var orderNumView = OrderDetailItemView(title: "Order Number")
+    private lazy var applyDateView = OrderDetailItemView(title: "Apply date")
+    private lazy var loanAmountView = OrderDetailItemView(title: "Loan Amount")
+    private lazy var receivedDateView = OrderDetailItemView(title: "Date of loan receive")
+    private lazy var receivedAmountView = OrderDetailItemView(title: "Received Amount")
+    private lazy var overdueDaysView = OrderDetailItemView(title: "Overdue Days")
+    private lazy var overdueChargeView = OrderDetailItemView(title: "Overdue Charge")
+    private lazy var repaymentDateView = OrderDetailItemView(title: "Repayment Date")
+    private lazy var repaymentAmountView = OrderDetailItemView(title: "Repayment Amount", subtitleColor: Constants.themeColor)
     private var products : [ProductModel?]?
 }
 

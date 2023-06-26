@@ -18,9 +18,9 @@ class DisbursingFailDetailController: BaseViewController {
         lb.textColor = Constants.themeTitleColor
         return lb
     }()
-    private lazy var orderNumView   = ProductDetailItemView(title: "Order Number")
-    private lazy var applyDateView  = ProductDetailItemView(title: "Apply date")
-    private lazy var loanAmountView = ProductDetailItemView(title: "Loan Amount", subtitleColor: Constants.themeColor)
+    private lazy var orderNumView   = OrderDetailItemView(title: "Order Number")
+    private lazy var applyDateView  = OrderDetailItemView(title: "Apply date")
+    private lazy var loanAmountView = OrderDetailItemView(title: "Loan Amount", subtitleColor: Constants.themeColor)
     
     private var detailModel : OrderDetailModel! {
         didSet {

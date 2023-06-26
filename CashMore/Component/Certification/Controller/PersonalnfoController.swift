@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PersonalnfoController: BaseScrollController {
+class PersonalInfoController: BaseScrollController {
     var certificationModel : CertificationInfoModel?
     var opstionsModel : OptionsModel!
     
@@ -59,7 +59,7 @@ class PersonalnfoController: BaseScrollController {
 }
 
 // MARK: - ConfigUI
-extension PersonalnfoController {
+extension PersonalInfoController {
     override func configUI() {
         super.configUI()
         title = "Personal info"
@@ -135,7 +135,7 @@ extension PersonalnfoController {
     }
 }
 
-extension PersonalnfoController {
+extension PersonalInfoController {
     override func loadData() {
         if certificationModel?.loanapiUserBasic == true {
             APIService.standered.fetchModel(api: API.Certification.info, parameters: ["type": "2", "step" : "loanapiUserBasic"], type: CertificationPersonalInfoModel.self) { model in
@@ -251,7 +251,7 @@ extension PersonalnfoController {
     }
 }
 
-extension PersonalnfoController : UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+extension PersonalInfoController : UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         picker.dismiss(animated: true)
         guard let img = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else {

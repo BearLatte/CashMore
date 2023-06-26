@@ -22,7 +22,7 @@ struct UserInfoModel : HandyJSON {
     /// 用户是否放款失败  0否 1是 (1的时候 需要弹放款失败的弹窗)
     var userPayFail      : Bool = false
     /// 失败的弹窗详情信息
-    var userPayFailInfo  : PayFailInfo = PayFailInfo()
+    var userPayFailInfo  : PayFailInfo?
     /// 借款单信息
     var loanAuditOrderVo : OrderModel = OrderModel()
     /// 推荐产品详情信息
@@ -35,7 +35,7 @@ struct UserInfoModel : HandyJSON {
     var loanGoogleAuditProductList : [LoanGoogleAuditProduct] = []
 }
 
-struct PayFailInfo { //失败的弹窗详情信息
+struct PayFailInfo : HandyJSON { //失败的弹窗详情信息
     var logo    : String = ""
     /// 文案
     var content : String = ""

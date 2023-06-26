@@ -32,7 +32,6 @@ struct APIItem : APIProtocol {
 }
 
 struct API {
-//    static var DOMIN = "http://8.215.46.156:1060"
     static var DOMIN : String {
         #if DEBUG
         return "http://8.215.46.156:1060"
@@ -82,5 +81,9 @@ struct API {
     struct Feedback {
         static var feedbackList  = APIItem("/PZJqjz/RrKrKN/yQjtM", desc: "Get feedback list")
         static var saveFeedback  = APIItem("/PZJqjz/RrKrKN/gjIOZ", desc: "Save feedback")
+    }
+    
+    struct Common {
+        static var firstLaunch  = APIItem("/PZJqjz/ijVyu", desc: "每次启动调用")
     }
 }
