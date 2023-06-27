@@ -55,5 +55,7 @@ struct CertificationContactModel : HandyJSON {
 }
 
 struct CertificationBankInfoModel : HandyJSON {
-    
+    var bankCardNo : String = ""
+    var ifscCode   : String = ""
+    var bankName   : String = ""
 }

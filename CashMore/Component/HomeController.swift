@@ -9,18 +9,13 @@ import UIKit
 import PullToRefresh
 
 class HomeController: BaseTableController {
-
-    
     
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
-    
     private var products : [ProductModel?] = []
     private weak var headerView : HomeHeaderView!
-    
     private var userInfo : UserInfoModel?
-    
     private let payFailAlert = PayFailAlertView()
 }
 
@@ -57,6 +52,7 @@ extension HomeController {
         }
         
         NotificationCenter.default.addObserver(self, selector: #selector(didReceiveLoginSuccessNotification), name: Constants.loginSuccessNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(didReceiveCertificationSuccess), name: Constants.CertificationSuccessNotification, object: nil)
     }
     
     override func loadData() {
@@ -91,6 +87,48 @@ extension HomeController {
         loadData()
         headerView.reloadBanner()
     }
+    
+    @objc func didReceiveCertificationSuccess(_ not: Notification) {
+        APIService.standered.fetchModel(api: API.Me.userInfo, parameters: ["isRecommend" : "1"], type: UserInfoModel.self) { model in
+            self.go2purchase(product: model.loanProductVo)
+        }
+    }
+    
+    private func loanAction(product: ProductModel?) {
+        APIService.standered.fetchModel(api: API.Product.spaceDetail, parameters: ["productId" : product?.id ?? ""], type: UserInfoModel.self) { userInfo in
+            self.userInfo = userInfo
+            if userInfo.userStatus != 1 {
+                ADJustTrackTool.point(name: "e5out2")
+            }
+            switch userInfo.userStatus {
+            case 1:
+                break
+            case 2:
+                self.go2purchase(product: userInfo.loanProductVo)
+            case 3, 4, 5:
+                let productDetailVC = ProductDetailController()
+                if userInfo.userStatus == 5 {
+                    productDetailVC.frozenDays = userInfo.frozenDays
+                }
+                productDetailVC.orderType = OrderType(rawValue: userInfo.userStatus) ?? .pending
+                productDetailVC.product = product
+                productDetailVC.orderDetail = userInfo.loanAuditOrderVo
+                self.navigationController?.pushViewController(productDetailVC, animated: true)
+            default:
+                let vc = ProductRepaidAndOverdueController()
+                vc.orderType = OrderType(rawValue: userInfo.userStatus) ?? .repaid
+                vc.product = product
+                vc.orderDetail = userInfo.loanAuditOrderVo
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+        }
+    }
+    
+    private func go2purchase(product: ProductDetailModel) {
+        let purchaseVC = PurchaseController()
+        purchaseVC.productDetail = product
+        navigationController?.pushViewController(purchaseVC, animated: true)
+    }
 }
 
 extension HomeController : HomeHeaderViewDelegate {
@@ -122,8 +160,6 @@ extension HomeController : HomeHeaderViewDelegate {
         let vc = PersonalCenterController()
         navigationController?.pushViewController(vc, animated: true)
     }
-    
-    
 }
 
 extension HomeController {
@@ -163,37 +199,5 @@ extension HomeController {
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "SectionHeader") as? HomeProductHeaderView
         header?.title = "Top recommendation"
         return header
-    }
-    
-    private func loanAction(product: ProductModel?) {
-        APIService.standered.fetchModel(api: API.Product.spaceDetail, parameters: ["productId" : product?.id ?? ""], type: UserInfoModel.self) { userInfo in
-            self.userInfo = userInfo
-            if userInfo.userStatus != 1 {
-                ADJustTrackTool.point(name: "e5out2")
-            }
-            switch userInfo.userStatus {
-            case 1:
-                break
-            case 2:
-                let purchaseVC = PurchaseController()
-                purchaseVC.productDetail = userInfo.loanProductVo
-                self.navigationController?.pushViewController(purchaseVC, animated: true)
-            case 3, 4, 5:
-                let productDetailVC = ProductDetailController()
-                if userInfo.userStatus == 5 {
-                    productDetailVC.frozenDays = userInfo.frozenDays
-                }
-                productDetailVC.orderType = OrderType(rawValue: userInfo.userStatus) ?? .pending
-                productDetailVC.product = product
-                productDetailVC.orderDetail = userInfo.loanAuditOrderVo
-                self.navigationController?.pushViewController(productDetailVC, animated: true)
-            default:
-                let vc = ProductRepaidAndOverdueController()
-                vc.orderType = OrderType(rawValue: userInfo.userStatus) ?? .repaid
-                vc.product = product
-                vc.orderDetail = userInfo.loanAuditOrderVo
-                self.navigationController?.pushViewController(vc, animated: true)
-            }
-        }
     }
 }

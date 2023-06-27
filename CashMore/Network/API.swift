@@ -50,10 +50,10 @@ struct API {
         static var kycAuth   = APIItem("/PZJqjz/RrKrKN/GlgHJ", desc: "KYC Page auth")
         static var options   = APIItem("/PZJqjz/RrKrKN/iqXUn", desc: "Dropdown menu content")
         static var bankAuth  = APIItem("/PZJqjz/RrKrKN/KrzRo", desc: "Bank info auth")
+        static var faceAuth  = APIItem("/PZJqjz/RrKrKN/BPESa", desc: "Face auth")
         static var ossParams = APIItem("/PZJqjz/RrKrKN/UHbCO", desc: "get the oss parameters")
         static var contactAuth      = APIItem("/PZJqjz/RrKrKN/zNXee", desc: "Contact auth")
         static var prosonalInfoAuth = APIItem("/PZJqjz/RrKrKN/cobZb", desc: "Personal Info auth")
-        static var faceAuth  = APIItem("/PZJqjz/RrKrKN/BPESa", desc: "Face auth")
     }
     
     struct Login {

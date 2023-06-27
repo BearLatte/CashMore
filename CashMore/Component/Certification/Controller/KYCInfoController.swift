@@ -265,6 +265,7 @@ extension KYCInfoController {
     private func showDatePicker() {
         view.endEditing(true)
         let picker = UIDatePicker(frame: CGRect(x: 0, y: 0, width: Constants.screenWidth * 0.8, height: 200))
+        picker.locale = Locale(identifier: "EN")
         if #available(iOS 13.0, *) {
             picker.overrideUserInterfaceStyle = .light
         } else {

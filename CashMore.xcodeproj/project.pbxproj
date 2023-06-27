@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		12F3B0B6C04D6226287B864D /* Pods_CashMore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 885EE3408E4A382C87599EAC /* Pods_CashMore.framework */; };
+		220755A42A4AE6540017B5D9 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 226208F62A3086D1005E1F5C /* WebKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		220755A52A4AE6820017B5D9 /* AdServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 226208F02A3086A9005E1F5C /* AdServices.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		220755A92A4AE7460017B5D9 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 220755A82A4AE7460017B5D9 /* StoreKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		220E1A442A3440DE0054EEA8 /* EASpinnerLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220E1A3D2A3440DE0054EEA8 /* EASpinnerLayer.swift */; };
 		220E1A452A3440DE0054EEA8 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220E1A3E2A3440DE0054EEA8 /* Enums.swift */; };
 		220E1A462A3440DE0054EEA8 /* EAAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220E1A3F2A3440DE0054EEA8 /* EAAlertView.swift */; };
@@ -67,9 +70,8 @@
 		226208E32A305FEE005E1F5C /* NetworkTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226208E22A305FEE005E1F5C /* NetworkTool.swift */; };
 		226208E52A3066E0005E1F5C /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226208E42A3066E0005E1F5C /* NetworkRequest.swift */; };
 		226208E72A306B9A005E1F5C /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226208E62A306B9A005E1F5C /* API.swift */; };
-		226208EF2A308695005E1F5C /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 226208EE2A308695005E1F5C /* AdSupport.framework */; };
-		226208F12A3086AA005E1F5C /* AdServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 226208F02A3086A9005E1F5C /* AdServices.framework */; };
-		226208F52A3086C8005E1F5C /* AppTrackingTransparency.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 226208F42A3086C8005E1F5C /* AppTrackingTransparency.framework */; };
+		226208EF2A308695005E1F5C /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 226208EE2A308695005E1F5C /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		226208F52A3086C8005E1F5C /* AppTrackingTransparency.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 226208F42A3086C8005E1F5C /* AppTrackingTransparency.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		226208FB2A30A9E2005E1F5C /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226208FA2A30A9E2005E1F5C /* String+Extension.swift */; };
 		226208FF2A318A77005E1F5C /* BaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226208FE2A318A77005E1F5C /* BaseModel.swift */; };
 		226209012A31A1E2005E1F5C /* Codable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226209002A31A1E2005E1F5C /* Codable+Extension.swift */; };
@@ -79,7 +81,7 @@
 		2262090D2A32F24D005E1F5C /* PersonalCenterHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2262090C2A32F24D005E1F5C /* PersonalCenterHeaderView.swift */; };
 		2262090F2A330090005E1F5C /* CertificationInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2262090E2A330090005E1F5C /* CertificationInfoModel.swift */; };
 		226209112A33193A005E1F5C /* OSSParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226209102A33193A005E1F5C /* OSSParameters.swift */; };
-		226209142A3328FE005E1F5C /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 226209132A3328FE005E1F5C /* CoreTelephony.framework */; };
+		226209142A3328FE005E1F5C /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 226209132A3328FE005E1F5C /* CoreTelephony.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		226209162A33290A005E1F5C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 226209152A332909005E1F5C /* SystemConfiguration.framework */; };
 		226209182A332E05005E1F5C /* OCRModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226209172A332E05005E1F5C /* OCRModel.swift */; };
 		226DAB802A4004E4004EC1D5 /* FacebookAEM in Frameworks */ = {isa = PBXBuildFile; productRef = 226DAB7F2A4004E4004EC1D5 /* FacebookAEM */; };
@@ -144,6 +146,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		220755A82A4AE7460017B5D9 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		220E1A3D2A3440DE0054EEA8 /* EASpinnerLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EASpinnerLayer.swift; sourceTree = "<group>"; };
 		220E1A3E2A3440DE0054EEA8 /* Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		220E1A3F2A3440DE0054EEA8 /* EAAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EAAlertView.swift; sourceTree = "<group>"; };
@@ -274,6 +277,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				220755A92A4AE7460017B5D9 /* StoreKit.framework in Frameworks */,
 				226208F52A3086C8005E1F5C /* AppTrackingTransparency.framework in Frameworks */,
 				226DAB802A4004E4004EC1D5 /* FacebookAEM in Frameworks */,
 				226DAB8A2A4004E4004EC1D5 /* FacebookShare in Frameworks */,
@@ -282,9 +286,10 @@
 				12F3B0B6C04D6226287B864D /* Pods_CashMore.framework in Frameworks */,
 				226DAB882A4004E4004EC1D5 /* FacebookLogin in Frameworks */,
 				226208EF2A308695005E1F5C /* AdSupport.framework in Frameworks */,
+				220755A52A4AE6820017B5D9 /* AdServices.framework in Frameworks */,
 				226DAB822A4004E4004EC1D5 /* FacebookBasics in Frameworks */,
-				226208F12A3086AA005E1F5C /* AdServices.framework in Frameworks */,
 				226DAB842A4004E4004EC1D5 /* FacebookCore in Frameworks */,
+				220755A42A4AE6540017B5D9 /* WebKit.framework in Frameworks */,
 				226209142A3328FE005E1F5C /* CoreTelephony.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -736,6 +741,7 @@
 		72DF2B2107695A4E8A47C033 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				220755A82A4AE7460017B5D9 /* StoreKit.framework */,
 				226209152A332909005E1F5C /* SystemConfiguration.framework */,
 				226209132A3328FE005E1F5C /* CoreTelephony.framework */,
 				226209122A3328F5005E1F5C /* libresolv.tbd */,

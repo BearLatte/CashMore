@@ -18,9 +18,9 @@ class RepayExtensionDetailController: BaseViewController {
     var extensionRepayDetail : ExtensionRepayModel? {
         didSet {
             guard let value = extensionRepayDetail else { return }
-            repaymentAmountView.subtitle = value.extendRepayAmount
+            repaymentAmountView.subtitle = "₹ " + value.extendRepayAmount
             nextRepaymentDateView.subtitle = value.extendRepayDate
-            extensionTermView.subtitle = value.extendDate + "days"
+            extensionTermView.subtitle = value.extendDate + " days"
             extensionFeeView.subtitle  = "₹ " + value.extendFee
         }
     }

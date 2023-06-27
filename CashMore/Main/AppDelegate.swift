@@ -32,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         LocationManager.shared.requestLocationAuthorizaiton()
         
         // 初始化ADJust
-        let adjustConfig = ADJConfig(appToken: Constants.ADJUST_APP_TOKEN, environment: Constants.ADJUST_ENVIROMENT)
+        let adjustConfig = ADJConfig(appToken: Constants.ADJUST_APP_TOKEN, environment: ADJEnvironmentProduction)
         adjustConfig?.logLevel = ADJLogLevelVerbose
         Adjust.appDidLaunch(adjustConfig)
         

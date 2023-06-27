@@ -135,12 +135,16 @@ extension PersonalCenterController {
         switch indexPath.row {
         case 0:
             ADJustTrackTool.point(name: "h9gm4g")
-            if Constants.isLogin {
-                let bankVC = BankInfoController()
-                bankVC.isModify = true
-                navigationController?.pushViewController(bankVC, animated: true)
-            } else {
-                Constants.toLogin()
+            APIService.standered.fetchModel(api: API.Certification.info, parameters: ["type" : "1"], type: CertificationInfoModel.self) { info in
+                if !info.authStatus {
+                    DispatchQueue.main.async {
+                        HUD.flash(.label("Can not change your bank information now."), delay: 2.0)
+                    }
+                } else {
+                    let bankVC = BankInfoController()
+                    bankVC.isModify = true
+                    self.navigationController?.pushViewController(bankVC, animated: true)
+                }
             }
         case 1:
             navigationController?.pushViewController(AboutUsController(), animated: true)

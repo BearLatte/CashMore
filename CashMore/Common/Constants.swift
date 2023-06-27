@@ -15,13 +15,6 @@ struct Constants {
     static let IS_CERTIFIED = "kIS_CERTIFIED"
     static let ACCESS_TOKEN = "kACCESS_TOKEN"
     static let ADJUST_APP_TOKEN = "94ai1nsbc1ds"
-    static var ADJUST_ENVIROMENT : String {
-        #if DEBUG
-        return ADJEnvironmentSandbox
-        #else
-        return ADJEnvironmentProduction
-        #endif
-    }
     static let IS_FIRST_LAUNCH = "kIS_FIRST_LAUNCH"
     static let FIRST_LAUNCH_TIME_STAMP = "kFIRST_LAUNCH_TIME_STAMP"
     
@@ -56,7 +49,7 @@ struct Constants {
         dict["deviceModel"] = UIDevice.current.model
         dict["osVersion"] =  UIDevice.current.systemVersion
         dict["operationSys"] = UIDevice.current.systemName
-        dict["advertising_id"] = ASIdentifierManager.shared().advertisingIdentifier.uuidString
+        dict["advertising_id"] = UIDevice.tm.idfa
         dict["udid"] = UIDevice.current.identifierForVendor?.uuidString
         dict["channel"] = "AppStore"
         dict["mac"] = ""

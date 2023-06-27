@@ -164,6 +164,7 @@ class OrderCell: UITableViewCell {
         let lb = UILabel()
         lb.font = Constants.pingFangSCRegularFont(14)
         lb.textAlignment = .left
+        lb.textColor = Constants.themeTitleColor
         return lb
     }()
     

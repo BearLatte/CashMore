@@ -62,6 +62,16 @@ class BankInfoController: BaseScrollController {
 }
 
 extension BankInfoController {
+    override func loadData() {
+        if isModify {
+            APIService.standered.fetchModel(api: API.Certification.info, parameters: ["type" : "2", "step" : "loanapiUserBankCard"], type: CertificationBankInfoModel.self) { bankInfo in
+                self.bankNameInputView.inputText = bankInfo.bankName
+                self.accountInputView.inputText = bankInfo.bankCardNo
+                self.ifscInputView.inputText = bankInfo.ifscCode
+            }
+        }
+    }
+    
     @objc func submitBtnClicked() {
         ADJustTrackTool.point(name: "w8lxuy")
         guard let bankName = bankNameInputView.inputText, !bankName.tm.isBlank else {
