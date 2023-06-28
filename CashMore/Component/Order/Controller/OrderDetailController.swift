@@ -369,4 +369,10 @@ extension OrderDetailController {
             }
         }
     }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "kSectionHeaderView") as? HomeProductHeaderView
+        header?.title = "Top recommendation"
+        return header
+    }
 }
