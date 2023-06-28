@@ -11,8 +11,6 @@ enum OrderType : Int {
     case pending = 3    // 待审核
     case disbursing = 4 // 待放款
     case denied = 5     // 被拒绝
-    case repaid = 6     // 待还款
-    case overdue = 7    // 已逾期
 }
 class ProductDetailController: BaseTableController {
     var frozenDays : Int = 0
@@ -28,7 +26,6 @@ class ProductDetailController: BaseTableController {
             case .denied:
                 title = "Denied"
                 desc = "The loan you applied for cannot be\napproved, please reapply for this product\nafter \(frozenDays) days. You can now also directly\napply for other products."
-            default: break
             }
         }
     }

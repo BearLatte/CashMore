@@ -105,6 +105,7 @@ extension OrderListController {
                         productDetailVC.frozenDays = detail.frozenDays
                         productDetailVC.product = product
                         productDetailVC.orderDetail = detail.loanAuditOrderVo
+                        productDetailVC.orderType = .denied
                         self.navigationController?.pushViewController(productDetailVC, animated: true)
                     } else {
                         let overfreezonVC = OverFreezonOrderController()
@@ -115,40 +116,18 @@ extension OrderListController {
                     let productDetailVC = ProductDetailController()
                     if order?.status == 0 {
                         productDetailVC.orderType = .pending
-                    } else if order?.status == 1 {
-                        productDetailVC.orderType = .disbursing
                     } else {
-                        productDetailVC.orderType = .overdue
+                        productDetailVC.orderType = .disbursing
                     }
                     productDetailVC.product = product
                     productDetailVC.orderDetail = detail.loanAuditOrderVo
                     self.navigationController?.pushViewController(productDetailVC, animated: true)
                 }
-                
             }
-        }
-        
-        if order?.status == 6  {
-            let detailVC = DisbursingFailDetailController()
+        } else {
+            let detailVC = OrderDetailController()
             detailVC.orderNumber = order?.loanOrderNo ?? ""
             navigationController?.pushViewController(detailVC, animated: true)
-        }
-        
-        if order?.status == 5 || order?.status == 2 {
-            let controller = ProductRepaidAndOverdueController()
-            let product = ProductModel()
-            product.loanName = order?.loanName ?? ""
-            product.logo = order?.logo ?? ""
-            controller.orderType = order?.status == 2 ? .repaid : .overdue
-            controller.product = product
-            controller.orderDetail = order
-            navigationController?.pushViewController(controller, animated: true)
-        }
-        
-        if order?.status == 8 || order?.status == 9 {
-            let repaidController = RepaidOrderDetailController()
-            repaidController.order = order
-            navigationController?.pushViewController(repaidController, animated: true)
         }
     }
 }

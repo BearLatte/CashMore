@@ -9,12 +9,12 @@ import UIKit
 import SafariServices
 
 class RepayExtensionDetailController: BaseViewController {
-    var product   : ProductModel? {
-        didSet {
-            productImgView.kf.setImage(with: URL(string: product?.logo ?? "")!)
-            productNameLabel.text = product?.loanName
-        }
-    }
+//    var order   : OrderModel? {
+//        didSet {
+//            productImgView.kf.setImage(with: URL(string: order?.logo ?? "")!)
+//            productNameLabel.text = order?.loanName
+//        }
+//    }
     var extensionRepayDetail : ExtensionRepayModel? {
         didSet {
             guard let value = extensionRepayDetail else { return }
@@ -25,7 +25,12 @@ class RepayExtensionDetailController: BaseViewController {
         }
     }
     
-    var orderDetail : OrderModel!
+    var orderDetail : OrderModel! {
+        didSet {
+            productImgView.kf.setImage(with: URL(string: orderDetail?.logo ?? ""))
+            productNameLabel.text = orderDetail?.loanName
+        }
+    }
     
     private var productImgView = UIImageView()
     private var productNameLabel = {

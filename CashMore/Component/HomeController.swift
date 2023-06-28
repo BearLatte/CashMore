@@ -110,11 +110,9 @@ extension HomeController {
                 productDetailVC.orderDetail = userInfo.loanAuditOrderVo
                 self.navigationController?.pushViewController(productDetailVC, animated: true)
             default:
-                let vc = ProductRepaidAndOverdueController()
-                vc.orderType = OrderType(rawValue: userInfo.userStatus) ?? .repaid
-                vc.product = product
-                vc.orderDetail = userInfo.loanAuditOrderVo
-                self.navigationController?.pushViewController(vc, animated: true)
+                let orderDetailVC = OrderDetailController()
+                orderDetailVC.orderNumber = userInfo.loanAuditOrderVo.loanOrderNo
+                self.navigationController?.pushViewController(orderDetailVC, animated: true)
             }
         }
     }

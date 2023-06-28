@@ -14,12 +14,18 @@ class OrderDetailItemView : UIView {
         }
     }
     
+    var subtitleColor : UIColor = Constants.themeTitleColor {
+        didSet {
+            self.subtitleLabel.textColor = subtitleColor
+        }
+    }
+    
     convenience init(title: String? = nil, subTitle: String? = nil, subtitleColor: UIColor = Constants.themeTitleColor) {
         self.init(frame: .zero)
         self.titleLabel.text = title
         self.subtitle = subTitle
         self.subtitleLabel.text = subTitle
-        self.subtitleLabel.textColor = subtitleColor
+        self.subtitleColor = subtitleColor
     }
     
     override init(frame: CGRect) {

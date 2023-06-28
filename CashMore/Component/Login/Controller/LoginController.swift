@@ -209,7 +209,7 @@ extension LoginController {
         }
         
         
-        guard var passcode = boxField.text, !passcode.tm.isBlank else {
+        guard let passcode = boxField.text, !passcode.tm.isBlank else {
             HUD.flash(.label("Please enter correct OTP"), delay: 1.0)
             return
         }
@@ -220,10 +220,6 @@ extension LoginController {
             HUD.flash(.label("Please agree with our policy to continue"), delay: 1.0)
             return
         }
-        
-        #if DEBUG
-        passcode = "821350"
-        #endif
         
         APIService.standered.fetchModel(api: API.Login.login, parameters: ["phone" : phone, "code" : passcode], type: LoginSuccessModel.self) { model in
             if model.isLogin == 0 {
