@@ -11,6 +11,8 @@ class PurchaseSuccessController: BaseTableController {
     
     var products : [ProductModel?]?
     
+    var isRecommend : Bool = false
+    
     override func configUI() {
         super.configUI()
         title = "Detail"
@@ -77,7 +79,11 @@ class PurchaseSuccessController: BaseTableController {
 
 extension PurchaseSuccessController {
     override func goBack() {
-        navigationController?.popToRootViewController(animated: true)
+        if isRecommend {
+            navigationController?.dismiss(animated: true)
+        } else {
+            navigationController?.popToRootViewController(animated: true)
+        }
     }
 }
 

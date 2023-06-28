@@ -49,7 +49,7 @@ struct Constants {
         dict["deviceModel"] = UIDevice.current.model
         dict["osVersion"] =  UIDevice.current.systemVersion
         dict["operationSys"] = UIDevice.current.systemName
-        dict["advertising_id"] = UIDevice.tm.idfa
+        dict["advertising_id"] = UIDevice.tm.idfa == "00000000-0000-0000-0000-000000000000" ? "" : UIDevice.tm.idfa
         dict["udid"] = UIDevice.current.identifierForVendor?.uuidString
         dict["channel"] = "AppStore"
         dict["mac"] = ""
@@ -273,15 +273,17 @@ extension Constants {
         case .notDetermined:
             AVCaptureDevice.requestAccess(for: .video) { (res) in
                 if res {
-                    let camera = UIImagePickerController()
-                    camera.sourceType = .camera
-                    camera.allowsEditing = false
-                    camera.delegate = target
-                    (target as? UIViewController)?.present(camera, animated: true)
+                    DispatchQueue.main.async {
+                        let camera = UIImagePickerController()
+                        camera.sourceType = .camera
+                        camera.allowsEditing = false
+                        camera.delegate = target
+                        (target as? UIViewController)?.present(camera, animated: true)
+                    }
                 }
             }
         default:
-            showAlert("This feature requires you to authorize this app to turn on the Camera Privacy\nHow to set it: open phone Settings -> Privacy -> Canmera")
+            HUD.flash(.label("You did not allow us to access the camera, which will help you obtain a loan. Would you like to set up authorization."), delay: 2.0)
         }
     }
     
@@ -298,7 +300,7 @@ extension Constants {
         alert.addButton(backgroundImage: UIImage.tm.createImage(Constants.themeColor), "Go To Setting") {
             let settingUrl = NSURL(string: UIApplication.openSettingsURLString)!
             if UIApplication.shared.canOpenURL(settingUrl as URL) {
-                UIApplication.shared.open(settingUrl as URL, options: [:], completionHandler: { (istrue) in })
+                UIApplication.shared.open(settingUrl as URL, options: [:], completionHandler: nil)
             }
             alert.hideView()
         }

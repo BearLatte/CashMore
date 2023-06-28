@@ -56,16 +56,16 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fbAPP-ID</string>
+				<string>670039321809379</string>
 			</array>
 		</dict>
 	</array>
 	<key>FacebookAppID</key>
-	<string>APP-ID</string>
+	<string>670039321809379</string>
 	<key>FacebookClientToken</key>
-	<string>CLIENT-TOKEN</string>
+	<string>3f57e33457e59da28c617a78d8ea5ee4</string>
 	<key>FacebookDisplayName</key>
-	<string>CashMore</string>
+	<string>Cash More</string>
 	<key>NSUserTrackingUsageDescription</key>
 	<string></string>
 	<key>CFBundleDisplayName</key>

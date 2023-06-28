@@ -10,6 +10,9 @@ import AdSupport
 import CoreTelephony
 
 class PurchaseController : BaseScrollController {
+    
+    var isRecommend : Bool = false
+    
     var productDetail : ProductDetailModel! {
         didSet {
             productImgView.kf.setImage(with: URL(string: productDetail.logo))
@@ -30,7 +33,6 @@ class PurchaseController : BaseScrollController {
         let lb = UILabel()
         lb.textColor = Constants.themeTitleColor
         lb.font = Constants.pingFangSCRegularFont(20)
-        lb.text = "Rupee Star"
         return lb
     }()
     private lazy var amountView    = OrderDetailItemView(title: "Amount")
@@ -54,6 +56,20 @@ class PurchaseController : BaseScrollController {
 
 // MARK: - Config UI
 extension PurchaseController {
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if isRecommend {
+            popGestureClose()
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if isRecommend {
+            popGestureOpen()
+        }
+    }
+    
     override func configUI() {
         super.configUI()
         title = "Detail"
@@ -155,8 +171,12 @@ extension PurchaseController {
     }
     
     override func goBack() {
-        super.goBack()
-        ADJustTrackTool.point(name: "yr5726")
+        if isRecommend {
+            navigationController?.dismiss(animated: true)
+        } else {
+            super.goBack()
+            ADJustTrackTool.point(name: "yr5726")
+        }
     }
 }
 
@@ -258,6 +278,7 @@ extension PurchaseController {
                 FacebookTrackTool.point(name: "m5rw1u")
             }
             let purchaseSuccessVC = PurchaseSuccessController()
+            purchaseSuccessVC.isRecommend = self.isRecommend
             purchaseSuccessVC.products = [ProductModel].deserialize(from: content.list)
             self.navigationController?.pushViewController(purchaseSuccessVC, animated: true)
         }

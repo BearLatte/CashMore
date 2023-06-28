@@ -52,7 +52,6 @@ extension HomeController {
         }
         
         NotificationCenter.default.addObserver(self, selector: #selector(didReceiveLoginSuccessNotification), name: Constants.loginSuccessNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(didReceiveCertificationSuccess), name: Constants.CertificationSuccessNotification, object: nil)
     }
     
     override func loadData() {
@@ -88,12 +87,6 @@ extension HomeController {
         headerView.reloadBanner()
     }
     
-    @objc func didReceiveCertificationSuccess(_ not: Notification) {
-        APIService.standered.fetchModel(api: API.Me.userInfo, parameters: ["isRecommend" : "1"], type: UserInfoModel.self) { model in
-            self.go2purchase(product: model.loanProductVo)
-        }
-    }
-    
     private func loanAction(product: ProductModel?) {
         APIService.standered.fetchModel(api: API.Product.spaceDetail, parameters: ["productId" : product?.id ?? ""], type: UserInfoModel.self) { userInfo in
             self.userInfo = userInfo
@@ -104,7 +97,9 @@ extension HomeController {
             case 1:
                 break
             case 2:
-                self.go2purchase(product: userInfo.loanProductVo)
+                let purchaseVC = PurchaseController()
+                purchaseVC.productDetail = userInfo.loanProductVo
+                self.navigationController?.pushViewController(purchaseVC, animated: true)
             case 3, 4, 5:
                 let productDetailVC = ProductDetailController()
                 if userInfo.userStatus == 5 {
@@ -122,12 +117,6 @@ extension HomeController {
                 self.navigationController?.pushViewController(vc, animated: true)
             }
         }
-    }
-    
-    private func go2purchase(product: ProductDetailModel) {
-        let purchaseVC = PurchaseController()
-        purchaseVC.productDetail = product
-        navigationController?.pushViewController(purchaseVC, animated: true)
     }
 }
 

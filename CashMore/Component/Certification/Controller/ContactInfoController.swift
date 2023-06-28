@@ -130,7 +130,7 @@ extension ContactInfoController {
             case .authorized:
                 readContactsFromContactStore(contactStore)
             case .denied, .restricted:
-            showAlert(with: "This feature requires you to authorize this app to open the address book\nHow to set it: open phone Settings -> Privacy -> address Book")
+                HUD.flash(.label("You did not allow us to access the contacts. Allowing it will help you obtain a loan. Do you want to set up authorization."), delay: 2.0)
             default: break
             }
     }

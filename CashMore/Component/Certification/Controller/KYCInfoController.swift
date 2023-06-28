@@ -194,6 +194,11 @@ extension KYCInfoController {
     
     @objc func nextBtnTapAction() {
         ADJustTrackTool.point(name: "o8w4gv")
+                
+        if !LocationManager.shared.hasLocationPermission() {
+            Constants.showAlert("Please allow us to use location information, which will help you obtain a loan, otherwise you will not be able to apply for a loan.")
+            return
+        }
         
         guard !cardFront.imageUrl.tm.isBlank else {
             HUD.flash(.label("Please upload Aadhaar card photo."), delay: 1.0)

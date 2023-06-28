@@ -34,16 +34,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // 初始化ADJust
         let adjustConfig = ADJConfig(appToken: Constants.ADJUST_APP_TOKEN, environment: ADJEnvironmentProduction)
         adjustConfig?.logLevel = ADJLogLevelVerbose
+        adjustConfig?.delegate = self
+        adjustConfig?.defaultTracker = "AppStore"
+        adjustConfig?.allowIdfaReading = true
         Adjust.appDidLaunch(adjustConfig)
         
         IQKeyboardManager.shared.enable = true
+        
+        
         NetworkTool.shared.startMonitoring()
+        
+        
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = UINavigationController(rootViewController: HomeController())
         window?.makeKeyAndVisible()
         
         // facebook
         ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
+        Settings.shared.isAdvertiserTrackingEnabled = true
         return true
     }
     

@@ -219,8 +219,8 @@ extension ProductRepaidAndOverdueController {
     }
     
     override func loadData() {
-        APIService.standered.fetchModel(api: API.Product.spaceDetail, parameters: ["productId" : product?.id ?? ""], type: UserInfoModel.self) { userInfo in
-            self.orderDetail = userInfo.loanAuditOrderVo
+        APIService.standered.fetchModel(api: API.Order.orderDetail, parameters: ["auditOrderNo" : orderDetail?.loanOrderNo ?? ""], type: UserInfoModel.self) { detail in
+            self.orderDetail = detail.loanAuditOrderVo
         }
     }
 }

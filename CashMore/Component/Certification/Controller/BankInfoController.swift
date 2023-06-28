@@ -108,11 +108,19 @@ extension BankInfoController {
                 HUD.flash(.labeledSuccess(title: nil, subtitle: "Success"), delay: 2.0)
                 self.navigationController?.popViewController(animated: true)
             } else {
-                self.navigationController?.dismiss(animated: true, completion: {
-                    HUD.flash(.labeledSuccess(title: nil, subtitle: "Success"), delay: 2.0)
-                    NotificationCenter.default.post(name: Constants.CertificationSuccessNotification, object: nil)
-                })
+                self.getRecommendProduct()
+             
             }
+        }
+    }
+    
+    // 获取推荐产品
+    private func getRecommendProduct() {
+        APIService.standered.fetchModel(api: API.Me.userInfo, parameters: ["isRecommend" : "1"], type: UserInfoModel.self) { userInfo in
+            let purchaseVC = PurchaseController()
+            purchaseVC.isRecommend = true
+            purchaseVC.productDetail = userInfo.loanProductVo
+            self.navigationController?.pushViewController(purchaseVC, animated: true)
         }
     }
 }
