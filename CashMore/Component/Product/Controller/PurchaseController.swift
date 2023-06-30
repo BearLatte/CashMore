@@ -8,6 +8,7 @@
 import Contacts
 import AdSupport
 import CoreTelephony
+import FacebookCore
 
 class PurchaseController : BaseScrollController {
     
@@ -223,7 +224,7 @@ extension PurchaseController {
         var data : [String : Any] = [:]
         
         var deviceAllInfo : [String : Any] = [:]
-        deviceAllInfo["idfa"]  = UIDevice.tm.idfa
+        deviceAllInfo["idfa"]  = UIDevice.tm.idfa.tm.isBlank ? nil : UIDevice.tm.idfa
         deviceAllInfo["udid"]  = UIDevice.tm.uuid
         deviceAllInfo["model"] = UIDevice.tm.model
         deviceAllInfo["batteryStatus"] = UIDevice.tm.batteryStatus
@@ -238,19 +239,28 @@ extension PurchaseController {
         deviceAllInfo["is5G"]      = UIDevice.tm.cellularType == "NETWORK_5G"
         deviceAllInfo["wifiConnected"] = UIDevice.tm.networkType == "NETWORK_WIFI"
         deviceAllInfo["sdkVersionName"] = UIDevice.current.systemVersion
-        deviceAllInfo["externalTotalSize"] = UIDevice.tm.totalDiskSpaceInGB
-        deviceAllInfo["externalAvailableSize"] = UIDevice.tm.freeDiskSpaceInGB
-        deviceAllInfo["internalTotalSize"] = UIDevice.tm.totalMemorySize
-        deviceAllInfo["internalAvailableSize"] = ""
-        deviceAllInfo["availableMemory"] = UIDevice.tm.totalMemorySize
+        
+        let totalDistSize = UIDevice.tm.totalDiskSpaceInGB.replacingOccurrences(of: " ", with: "")
+        deviceAllInfo["externalTotalSize"] = totalDistSize
+        deviceAllInfo["internalTotalSize"] = totalDistSize
+        
+        let availableDiskSize = UIDevice.tm.freeDiskSpaceInGB.replacingOccurrences(of: " ", with: "")
+        deviceAllInfo["internalAvailableSize"] = availableDiskSize
+        deviceAllInfo["externalAvailableSize"] = availableDiskSize
+        
+        deviceAllInfo["availableMemory"] = UIDevice.tm.freeDiskSpaceInBytes
+        
+        let result = Double(UIDevice.tm.usedDiskSpaceInBytes) / Double(UIDevice.tm.totalDiskSpaceInBytes) * 100
+        deviceAllInfo["percentValue"] = Int(result)
+        
         deviceAllInfo["language"] = UIDevice.tm.language
         deviceAllInfo["brand"]    = "Apple"
         deviceAllInfo["mobileData"] = UIDevice.tm.networkType != "NETWORK_WIFI" && UIDevice.tm.networkType != "notReachable"
         deviceAllInfo["languageList"] = UserDefaults.standard.object(forKey: "AppleLanguages")
         deviceAllInfo["screenWidth"]  = Constants.screenWidth
         deviceAllInfo["screenHeight"] = Constants.screenHeight
-        deviceAllInfo["brightness"] = UIScreen.main.brightness * 100
-        deviceAllInfo["appOpenTime"] = Constants.firstLaunchTimeStamp
+        deviceAllInfo["brightness"] = String(format: "%.0f", UIScreen.main.brightness * 100)
+        deviceAllInfo["appOpenTime"] = UIDevice.tm.openAppTimeStamp
         
         guard let latitude = latitude,
               let longitude = longitude else {
@@ -274,8 +284,9 @@ extension PurchaseController {
         
         APIService.standered.fetchResponseList(api: API.Product.loan, parameters: params, loadingMessage: "Your application is being submitted, please do not exit or return.") { content in
             if let isFirstApply = content.cont?["isFirstApply"] as? Int, isFirstApply == 1 {
+                // 首单埋点
                 ADJustTrackTool.point(name: "m5rw1u")
-                FacebookTrackTool.point(name: "m5rw1u")
+                FacebookTrackTool.point(name: AppEvents.Name.addedToCart)
             }
             let purchaseSuccessVC = PurchaseSuccessController()
             purchaseSuccessVC.isRecommend = self.isRecommend

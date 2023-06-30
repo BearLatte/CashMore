@@ -26,7 +26,7 @@ struct UserInfoModel : HandyJSON {
     /// 借款单信息
     var loanAuditOrderVo : OrderModel = OrderModel()
     /// 推荐产品详情信息
-    var loanProductVo    : ProductDetailModel = ProductDetailModel()
+    var loanProductVo    : ProductDetailModel?
     /// 产品列表
     var loanProductList  : [ProductModel] = []
     /// 是否是谷歌审核配置的手机号，1是，0不是

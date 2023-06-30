@@ -30,16 +30,17 @@ struct Constants {
         UserDefaults.standard.string(forKey: ACCESS_TOKEN)
     }
     
-    static var isFirstLaunch : Bool {
-        if !UserDefaults.standard.bool(forKey: IS_FIRST_LAUNCH) {
-            // first launch
-            UserDefaults.standard.setValue("\(Date.timeIntervalBetween1970AndReferenceDate)", forKey: FIRST_LAUNCH_TIME_STAMP)
-            UserDefaults.standard.setValue(true, forKey: IS_FIRST_LAUNCH)
-            return true
-        } else {
-            return false
-        }
-    }
+//    static var isFirstLaunch : Bool {
+//        if !UserDefaults.standard.bool(forKey: IS_FIRST_LAUNCH) {
+//            
+//            // first launch
+//            UserDefaults.standard.setValue(String(format: "%.f", Date().timeIntervalSince1970 * 1000), forKey: FIRST_LAUNCH_TIME_STAMP)
+//            UserDefaults.standard.setValue(true, forKey: IS_FIRST_LAUNCH)
+//            return true
+//        } else {
+//            return false
+//        }
+//    }
     
     static var deviceInfo : [String : Any] {
         var dict : [String : Any] = [:]
@@ -49,7 +50,7 @@ struct Constants {
         dict["deviceModel"] = UIDevice.current.model
         dict["osVersion"] =  UIDevice.current.systemVersion
         dict["operationSys"] = UIDevice.current.systemName
-        dict["advertising_id"] = UIDevice.tm.idfa == "00000000-0000-0000-0000-000000000000" ? "" : UIDevice.tm.idfa
+        dict["advertising_id"] = UIDevice.tm.idfa
         dict["udid"] = UIDevice.current.identifierForVendor?.uuidString
         dict["channel"] = "AppStore"
         dict["mac"] = ""
@@ -241,7 +242,7 @@ extension Constants {
         #if DEBUG
         keyString = String.tm.sortedDictionary(with: body) + "&" + "indiakey=6ShEUmiNSp9sQWgBzS8N831zyJXlKEKrjqlcZBZN"
         #else
-        keyString = ""
+        keyString = String.tm.sortedDictionary(with: body) + "&" + "cashmore=8JFM0NFVA2NFVKM3MFNVK"
         #endif
         Constants.debugLog("加密前" + keyString)
         let signStr = keyString.tm.md5.uppercased()

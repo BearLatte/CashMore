@@ -7,6 +7,7 @@
 
 import UIKit
 import IQKeyboardManagerSwift
+import FacebookCore
 @_exported import PKHUD
 
 
@@ -223,8 +224,9 @@ extension LoginController {
         
         APIService.standered.fetchModel(api: API.Login.login, parameters: ["phone" : phone, "code" : passcode], type: LoginSuccessModel.self) { model in
             if model.isLogin == 0 {
+                // 注册埋点
                 ADJustTrackTool.point(name: "1qr0ad")
-                FacebookTrackTool.point(name: "1qr0ad")
+                FacebookTrackTool.point(name: AppEvents.Name.completedRegistration)
             }
             HUD.flash(.labeledSuccess(title: nil, subtitle: "Login Success"), delay: 1.0) { isFinished in
                 if isFinished {

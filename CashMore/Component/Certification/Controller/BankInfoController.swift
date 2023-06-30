@@ -109,7 +109,6 @@ extension BankInfoController {
                 self.navigationController?.popViewController(animated: true)
             } else {
                 self.getRecommendProduct()
-             
             }
         }
     }
@@ -117,10 +116,14 @@ extension BankInfoController {
     // 获取推荐产品
     private func getRecommendProduct() {
         APIService.standered.fetchModel(api: API.Me.userInfo, parameters: ["isRecommend" : "1"], type: UserInfoModel.self) { userInfo in
-            let purchaseVC = PurchaseController()
-            purchaseVC.isRecommend = true
-            purchaseVC.productDetail = userInfo.loanProductVo
-            self.navigationController?.pushViewController(purchaseVC, animated: true)
+            if (userInfo.loanProductVo?.productId ?? "").tm.isBlank {
+                self.dismiss(animated: true)
+            } else {
+                let purchaseVC = PurchaseController()
+                purchaseVC.isRecommend = true
+                purchaseVC.productDetail = userInfo.loanProductVo
+                self.navigationController?.pushViewController(purchaseVC, animated: true)
+            }
         }
     }
 }

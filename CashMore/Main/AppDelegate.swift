@@ -20,8 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
        
-        // 设置第一次启动的key
-        _ = Constants.isFirstLaunch
+        // 设置打开app时间戳
+        UIDevice.tm.setOpenAppTimeStamp()
         
         launchNetwork()
         

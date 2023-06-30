@@ -72,7 +72,7 @@ class OrderDetailController: BaseTableController {
             loanAmountView.subtitle = "₹ " + order.loanAmountStr
             receivedDateView.subtitle = order.receiveDateStr
             receivedAmountView.subtitle = "₹ " + order.receiveAmountStr
-            overdueDaysView.subtitle = "\(value.frozenDays)"
+            overdueDaysView.subtitle = order.overDueDays
             overdueChargeView.subtitle = order.overDueFeeStr
             repaymentDateView.subtitle = order.repayDateStr
             repaymentAmountView.subtitle = "₹ " + order.repayAmountStr
@@ -371,8 +371,12 @@ extension OrderDetailController {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "kSectionHeaderView") as? HomeProductHeaderView
-        header?.title = "Top recommendation"
-        return header
+        if orderType == .repaidNotOverdue || orderType == .repaidAndOverdue {
+            let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "kSectionHeaderView") as? HomeProductHeaderView
+            header?.title = "Top recommendation"
+            return header
+        } else {
+            return nil
+        }
     }
 }

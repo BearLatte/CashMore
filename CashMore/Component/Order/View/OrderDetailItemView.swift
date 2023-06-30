@@ -67,6 +67,7 @@ class OrderDetailItemView : UIView {
         let lb = UILabel()
         lb.font = Constants.pingFangSCRegularFont(16)
         lb.textAlignment = .right
+        lb.textColor = subtitleColor
         return lb
     }()
 }

@@ -9,11 +9,19 @@ import AdSupport
 import CoreTelephony
 import SystemConfiguration
 
+fileprivate let OPEN_APP_TIME_STAMP = "kOPENAPPTIMESTAMP"
+
 extension UIDevice : TMCompatible {}
 extension TM where Base: UIDevice {
+    
+    
     /// 广告标识
-    static var idfa : String? {
-        UserDefaults.standard.value(forKey: "IDFA") as? String
+    static var idfa : String {
+        guard let idfa = UserDefaults.standard.value(forKey: "IDFA") as? String else {
+            return ""
+        }
+        
+        return idfa == "00000000-0000-0000-0000-000000000000" ? "" : idfa
     }
     
     static var uuid : String? {
@@ -28,7 +36,6 @@ extension TM where Base: UIDevice {
     /// 手机充电状态
     static var batteryStatus : String {
         Base.current.isBatteryMonitoringEnabled = true
-        
         let state = Base.current.batteryState
         switch state {
         case .charging:
@@ -48,8 +55,18 @@ extension TM where Base: UIDevice {
     
     /// 手机电量
     static var batteryLevel : String {
-        Base.current.isBatteryMonitoringEnabled = true
-        return String(format: "%d", Base.current.batteryLevel * 100)
+        return "\(Int(Base.current.batteryLevel * 100))"
+    }
+    
+    /// 设置打开 App 时间
+    static func setOpenAppTimeStamp() {
+        let time = String(format: "%.f", Date().timeIntervalSince1970 * 1000)
+        UserDefaults.standard.set(time, forKey: OPEN_APP_TIME_STAMP)
+    }
+    
+    // 获取打开 app 时间
+    static var openAppTimeStamp : String {
+        return UserDefaults.standard.string(forKey: OPEN_APP_TIME_STAMP)!
     }
     
     /// ip地址
@@ -205,32 +222,29 @@ extension TM where Base: UIDevice {
     
     
     //MARK: - Get memory size
-    static var totalMemorySize : String {
-        let totalMemorySize = ProcessInfo().physicalMemory
-        return fileSizeToString(fileSize: totalMemorySize)
-    }
-    
-//    static var freeMemorySize : String {
-//
+//    static var totalMemorySize : String {
+//        let totalMemorySize = ProcessInfo().physicalMemory
+//        return fileSizeToString(fileSize: totalMemorySize)
 //    }
+//
 
-    private static func fileSizeToString(fileSize: UInt64) -> String {
-        let KB : CGFloat = 1024
-        let MB : CGFloat = KB*KB
-        let GB : CGFloat = MB * MB
-        
-        if fileSize < 10 {
-            return "0 B"
-        } else if fileSize < Int(KB) {
-            return "< 1 KB"
-        } else if fileSize < Int(MB) {
-            return String(format: "%.2f KB", CGFloat(fileSize) / KB)
-        } else if fileSize < Int(GB) {
-            return String(format: "%.2f MB", CGFloat(fileSize) / MB)
-        } else {
-            return String(format: "%.2f GB", CGFloat(fileSize) / GB)
-        }
-    }
+//    private static func fileSizeToString(fileSize: UInt64) -> String {
+//        let KB : CGFloat = 1024
+//        let MB : CGFloat = KB*KB
+//        let GB : CGFloat = MB * MB
+//
+//        if fileSize < 10 {
+//            return "0B"
+//        } else if fileSize < Int(KB) {
+//            return "< 1KB"
+//        } else if fileSize < Int(MB) {
+//            return String(format: "%.2fKB", CGFloat(fileSize) / KB)
+//        } else if fileSize < Int(GB) {
+//            return String(format: "%.2fMB", CGFloat(fileSize) / MB)
+//        } else {
+//            return String(format: "%.2fGB", CGFloat(fileSize) / GB)
+//        }
+//    }
     
     //MARK: - Get Disk size
     static var totalDiskSpaceInGB:String {
