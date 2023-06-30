@@ -36,6 +36,12 @@ class ContactInfoInputView: UIView {
         addSubview(numInputField)
         addSubview(nameIndicatLabel)
         addSubview(nameInputField)
+        
+        if Constants.userPhoneNumber == Constants.testAccountPhoneNumber {
+            numInputField.isEnabled = true
+        } else {
+            numInputField.isEnabled = false
+        }
     }
     
     required init?(coder: NSCoder) {
@@ -71,7 +77,6 @@ class ContactInfoInputView: UIView {
         field.leftViewMode = .always
         field.keyboardType = .numberPad
         field.delegate = self
-        field.isEnabled = false
         return field
     }()
     

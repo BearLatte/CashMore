@@ -52,11 +52,21 @@ extension HomeController {
         }
         
         NotificationCenter.default.addObserver(self, selector: #selector(didReceiveLoginSuccessNotification), name: Constants.loginSuccessNotification, object: nil)
+        
+//        let testBtn = UIButton(type: .custom)
+//        testBtn.frame = CGRect(x: 100, y: 100, width: 100, height: 100)
+//        testBtn.setTitle("test", for: .normal)
+//        testBtn.backgroundColor = .orange
+//        view.addSubview(testBtn)
+//        testBtn.addTarget(self, action: #selector(testBtnAction), for: .touchUpInside)
     }
     
     override func loadData() {
         if Constants.isLogin {
             APIService.standered.fetchModel(api: API.Me.userInfo, type: UserInfoModel.self) { [weak self] userInfo in
+                // save user phone number
+                UserDefaults.standard.setValue(userInfo.phone, forKey: Constants.USER_PHONE_NUMBER)
+                
                 self?.products = userInfo.loanProductList
                 self?.tableView.reloadData()
                 self?.tableView.endRefreshing(at: .top)
@@ -86,6 +96,10 @@ extension HomeController {
         loadData()
         headerView.reloadBanner()
     }
+    
+//    @objc func testBtnAction() {
+//        navigationController?.pushViewController(ContactInfoController(), animated: true)
+//    }
     
     private func loanAction(product: ProductModel?) {
         APIService.standered.fetchModel(api: API.Product.spaceDetail, parameters: ["productId" : product?.id ?? ""], type: UserInfoModel.self) { userInfo in

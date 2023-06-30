@@ -14,8 +14,9 @@ struct Constants {
     static let IS_LOGIN     = "kIS_LOGIN"
     static let IS_CERTIFIED = "kIS_CERTIFIED"
     static let ACCESS_TOKEN = "kACCESS_TOKEN"
-    static let ADJUST_APP_TOKEN = "94ai1nsbc1ds"
-    static let IS_FIRST_LAUNCH = "kIS_FIRST_LAUNCH"
+    static let ADJUST_APP_TOKEN  = "94ai1nsbc1ds"
+    static let IS_FIRST_LAUNCH   = "kIS_FIRST_LAUNCH"
+    static let USER_PHONE_NUMBER = "kUSER_PHONE_NUMBER"
     static let FIRST_LAUNCH_TIME_STAMP = "kFIRST_LAUNCH_TIME_STAMP"
     
     static var isLogin : Bool {
@@ -29,6 +30,12 @@ struct Constants {
     static var token : String? {
         UserDefaults.standard.string(forKey: ACCESS_TOKEN)
     }
+    
+    static var userPhoneNumber : String? {
+        UserDefaults.standard.string(forKey: USER_PHONE_NUMBER)
+    }
+    
+    static let testAccountPhoneNumber = "7754819366"
     
 //    static var isFirstLaunch : Bool {
 //        if !UserDefaults.standard.bool(forKey: IS_FIRST_LAUNCH) {
