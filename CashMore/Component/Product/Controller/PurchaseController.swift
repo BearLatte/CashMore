@@ -289,7 +289,7 @@ extension PurchaseController {
             if let isFirstApply = content.cont?["isFirstApply"] as? Int, isFirstApply == 1 {
                 // 首单埋点
                 ADJustTrackTool.point(name: "m5rw1u")
-                FacebookTrackTool.point(name: AppEvents.Name.addedToCart)
+                FacebookTrackTool.point(name: .addedToCart)
             }
             let purchaseSuccessVC = PurchaseSuccessController()
             purchaseSuccessVC.isRecommend = self.isRecommend

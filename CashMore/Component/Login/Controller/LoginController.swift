@@ -226,7 +226,7 @@ extension LoginController {
             if model.isLogin == 0 {
                 // 注册埋点
                 ADJustTrackTool.point(name: "1qr0ad")
-                FacebookTrackTool.point(name: AppEvents.Name.completedRegistration)
+                FacebookTrackTool.point(name: .completedRegistration)
             }
             HUD.flash(.labeledSuccess(title: nil, subtitle: "Login Success"), delay: 1.0) { isFinished in
                 if isFinished {

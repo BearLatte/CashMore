@@ -73,7 +73,7 @@ class OrderDetailController: BaseTableController {
             receivedDateView.subtitle = order.receiveDateStr
             receivedAmountView.subtitle = "₹ " + order.receiveAmountStr
             overdueDaysView.subtitle = order.overDueDays
-            overdueChargeView.subtitle = order.overDueFeeStr
+            overdueChargeView.subtitle = "₹ " + order.overDueFeeStr
             repaymentDateView.subtitle = order.repayDateStr
             repaymentAmountView.subtitle = "₹ " + order.repayAmountStr
             // 审核状态 0待审核  1待放款 2待还款 5已逾期  6放款失败 7审核失败 8已还款-未逾期 9已还款-有逾期

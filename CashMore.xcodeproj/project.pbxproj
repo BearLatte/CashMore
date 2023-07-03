@@ -245,6 +245,7 @@
 		22A66A842A3C5D5F005E7835 /* FeedbackDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackDetailController.swift; sourceTree = "<group>"; };
 		22A66A872A3FF835005E7835 /* ADJustTrackTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ADJustTrackTool.swift; sourceTree = "<group>"; };
 		22B8132F2A485508001FAA35 /* PayFailAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayFailAlertView.swift; sourceTree = "<group>"; };
+		22BF69962A52BA9B001D2819 /* CashMore.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CashMore.entitlements; sourceTree = "<group>"; };
 		22CE9DA62A28395F006C5153 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		22CE9DA92A283C03006C5153 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		22CE9DB02A2866DA006C5153 /* Prefix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Prefix.swift; sourceTree = "<group>"; };
@@ -350,6 +351,7 @@
 		2210F9352A27572F00577DC9 /* CashMore */ = {
 			isa = PBXGroup;
 			children = (
+				22BF69962A52BA9B001D2819 /* CashMore.entitlements */,
 				220E1A4D2A3460610054EEA8 /* Common */,
 				22CE9DA82A283BE1006C5153 /* Util */,
 				2210F94A2A275A3400577DC9 /* Main */,
@@ -1148,6 +1150,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = CashMore/CashMore.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1189,6 +1192,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = CashMore/CashMore.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;

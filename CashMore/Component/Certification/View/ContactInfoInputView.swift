@@ -36,12 +36,6 @@ class ContactInfoInputView: UIView {
         addSubview(numInputField)
         addSubview(nameIndicatLabel)
         addSubview(nameInputField)
-        
-        if Constants.userPhoneNumber == Constants.testAccountPhoneNumber {
-            numInputField.isEnabled = true
-        } else {
-            numInputField.isEnabled = false
-        }
     }
     
     required init?(coder: NSCoder) {
@@ -170,7 +164,12 @@ extension ContactInfoInputView : UITextFieldDelegate {
             
             return true
         } else {
-            return false
+            if Constants.userPhoneNumber == Constants.testAccountPhoneNumber {
+                return true
+            } else {
+                return false
+            }
+            
         }
     }
     

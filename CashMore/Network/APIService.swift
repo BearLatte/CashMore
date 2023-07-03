@@ -39,7 +39,7 @@ struct APIService {
             }
             .failed { error in
                 DispatchQueue.main.async {
-                    HUD.flash(.labeledError(title: nil, subtitle: error.localizedDescription), delay: 2.0)
+                    HUD.flash(.labeledError(title: nil, subtitle: "network error"), delay: 2.0)
                 }
             }
     }
@@ -72,7 +72,7 @@ struct APIService {
             }
             .failed { error in
                 DispatchQueue.main.async {
-                    HUD.flash(.labeledError(title: nil, subtitle: error.localizedDescription), delay: 2.0)
+                    HUD.flash(.labeledError(title: nil, subtitle: "network error"), delay: 2.0)
                 }
             }
     }
@@ -104,7 +104,7 @@ struct APIService {
             }
             .failed { error in
                 DispatchQueue.main.async {
-                    HUD.flash(.labeledError(title: nil, subtitle: error.localizedDescription), delay: 2.0)
+                    HUD.flash(.labeledError(title: nil, subtitle: "network error"), delay: 2.0)
                 }
                 Constants.debugLog(error.localizedDescription)
             }
@@ -131,7 +131,7 @@ struct APIService {
             }
             .failed { error in
                 DispatchQueue.main.async {
-                    HUD.flash(.labeledError(title: nil, subtitle: error.localizedDescription), delay: 2.0)
+                    HUD.flash(.labeledError(title: nil, subtitle: "network error"), delay: 2.0)
                 }
             }
     }
@@ -265,7 +265,7 @@ extension APIService {
             }
             .failed { error in
                 DispatchQueue.main.async {
-                    HUD.flash(.labeledError(title: nil, subtitle: error.localizedDescription), delay: 2.0)
+                    HUD.flash(.labeledError(title: nil, subtitle: "network error"), delay: 2.0)
                 }
             }
     }
@@ -334,7 +334,7 @@ extension APIService {
             }
             .failed { error in
                 DispatchQueue.main.async {
-                    HUD.flash(.labeledError(title: nil, subtitle: error.localizedDescription), delay: 2.0)
+                    HUD.flash(.labeledError(title: nil, subtitle: "network error"), delay: 2.0)
                 }
             }
     }

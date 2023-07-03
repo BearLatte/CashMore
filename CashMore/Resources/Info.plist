@@ -6,6 +6,8 @@
 	<true/>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>zh</string>
+	<key>CFBundleDisplayName</key>
+	<string>Cash More</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -18,8 +20,23 @@
 	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
 	<key>CFBundleShortVersionString</key>
 	<string>$(MARKETING_VERSION)</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>670039321809379</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>FacebookAppID</key>
+	<string>670039321809379</string>
+	<key>FacebookClientToken</key>
+	<string>3f57e33457e59da28c617a78d8ea5ee4</string>
+	<key>FacebookDisplayName</key>
+	<string>Cash More</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -29,14 +46,16 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>You did not allow us to access the camera, which will help you obtain a loan. Would you like to set up authorization.</string>
+	<key>NSContactsUsageDescription</key>
+	<string>Please allow us to use Contacts information, which will help you obtain a loan, otherwise you will not be able to apply for a loan.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>Please allow us to use location information, which will help you obtain a loan, otherwise you will not be able to apply for a loan.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Please allow us to use location information, which will help you obtain a loan, otherwise you will not be able to apply for a loan.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>You did not allow us to access the Photo Library, which will help you obtain a loan. Would you like to set up authorization.</string>
-	<key>NSContactsUsageDescription</key>
-	<string>Please allow us to use Contacts information, which will help you obtain a loan, otherwise you will not be able to apply for a loan.</string>
+	<key>NSUserTrackingUsageDescription</key>
+	<string></string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -51,24 +70,5 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
-	<key>CFBundleURLTypes</key>
-	<array>
-		<dict>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>670039321809379</string>
-			</array>
-		</dict>
-	</array>
-	<key>FacebookAppID</key>
-	<string>670039321809379</string>
-	<key>FacebookClientToken</key>
-	<string>3f57e33457e59da28c617a78d8ea5ee4</string>
-	<key>FacebookDisplayName</key>
-	<string>Cash More</string>
-	<key>NSUserTrackingUsageDescription</key>
-	<string></string>
-	<key>CFBundleDisplayName</key>
-	<string>Cash More</string>
 </dict>
 </plist>
