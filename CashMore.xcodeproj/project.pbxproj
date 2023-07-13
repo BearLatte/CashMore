@@ -497,13 +497,13 @@
 			isa = PBXGroup;
 			children = (
 				226208E62A306B9A005E1F5C /* API.swift */,
+				226208FE2A318A77005E1F5C /* BaseModel.swift */,
 				226209022A31B350005E1F5C /* APIService.swift */,
 				226208E02A305EA7005E1F5C /* NetworkApi.swift */,
 				226208E22A305FEE005E1F5C /* NetworkTool.swift */,
 				226208DC2A305C77005E1F5C /* NetworkError.swift */,
-				226208DE2A305CFB005E1F5C /* NetworkMultipartData.swift */,
 				226208E42A3066E0005E1F5C /* NetworkRequest.swift */,
-				226208FE2A318A77005E1F5C /* BaseModel.swift */,
+				226208DE2A305CFB005E1F5C /* NetworkMultipartData.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -1154,7 +1154,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 7R9X78KKXW;
+				DEVELOPMENT_TEAM = 7MC978XNU9;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = CashMore/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Cash More";

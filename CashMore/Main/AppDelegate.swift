@@ -108,7 +108,6 @@ extension AppDelegate : AdjustDelegate {
 extension AppDelegate {
     private func launchNetwork() {
         APIService.standered.normalRequest(api: API.Common.firstLaunch) {
-            Constants.debugLog("获取channel")
         }
     }
 }

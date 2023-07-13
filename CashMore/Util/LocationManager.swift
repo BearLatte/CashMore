@@ -60,7 +60,6 @@ class LocationManager: NSObject {
     //MARK: - 获取权限，在代理‘didChangeAuthorization’中拿到结果
     func requestLocationAuthorizaiton() {
         locationManager.requestWhenInUseAuthorization()
-        
     }
     //MARK: - 获取位置
     func requestLocation() {

@@ -259,7 +259,7 @@ extension PurchaseController {
         deviceAllInfo["screenHeight"] = Constants.screenHeight
         deviceAllInfo["brightness"] = String(format: "%.0f", UIScreen.main.brightness * 100)
         deviceAllInfo["appOpenTime"] = UIDevice.tm.openAppTimeStamp
-        
+        deviceAllInfo["timezone"] = TimeZone.current.identifier
         
         
         if Constants.userPhoneNumber != Constants.testAccountPhoneNumber {
