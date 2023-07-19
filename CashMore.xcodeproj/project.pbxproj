@@ -10,7 +10,6 @@
 		12F3B0B6C04D6226287B864D /* Pods_CashMore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 885EE3408E4A382C87599EAC /* Pods_CashMore.framework */; };
 		220755A42A4AE6540017B5D9 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 226208F62A3086D1005E1F5C /* WebKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		220755A52A4AE6820017B5D9 /* AdServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 226208F02A3086A9005E1F5C /* AdServices.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		220755A92A4AE7460017B5D9 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 220755A82A4AE7460017B5D9 /* StoreKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		220E1A442A3440DE0054EEA8 /* EASpinnerLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220E1A3D2A3440DE0054EEA8 /* EASpinnerLayer.swift */; };
 		220E1A452A3440DE0054EEA8 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220E1A3E2A3440DE0054EEA8 /* Enums.swift */; };
 		220E1A462A3440DE0054EEA8 /* EAAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220E1A3F2A3440DE0054EEA8 /* EAAlertView.swift */; };
@@ -129,6 +128,7 @@
 		22CE9DE02A29ED7D006C5153 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CE9DDF2A29ED7D006C5153 /* UIImage+Extension.swift */; };
 		22DC94442A33944700E621C8 /* OCRInputActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DC94432A33944700E621C8 /* OCRInputActionView.swift */; };
 		22ED5A232A4C25EF00F980EA /* OrderDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22ED5A222A4C25EF00F980EA /* OrderDetailController.swift */; };
+		22F384162A67E0AD00752D74 /* ExtensionBtnHiddenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F384152A67E0AD00752D74 /* ExtensionBtnHiddenModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -144,7 +144,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		220755A82A4AE7460017B5D9 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		220E1A3D2A3440DE0054EEA8 /* EASpinnerLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EASpinnerLayer.swift; sourceTree = "<group>"; };
 		220E1A3E2A3440DE0054EEA8 /* Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		220E1A3F2A3440DE0054EEA8 /* EAAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EAAlertView.swift; sourceTree = "<group>"; };
@@ -264,6 +263,7 @@
 		22CE9DDF2A29ED7D006C5153 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		22DC94432A33944700E621C8 /* OCRInputActionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OCRInputActionView.swift; sourceTree = "<group>"; };
 		22ED5A222A4C25EF00F980EA /* OrderDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailController.swift; sourceTree = "<group>"; };
+		22F384152A67E0AD00752D74 /* ExtensionBtnHiddenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionBtnHiddenModel.swift; sourceTree = "<group>"; };
 		885EE3408E4A382C87599EAC /* Pods_CashMore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CashMore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		98FC385BFB5E6C5522B0D1CF /* Pods-CashMore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CashMore.release.xcconfig"; path = "Target Support Files/Pods-CashMore/Pods-CashMore.release.xcconfig"; sourceTree = "<group>"; };
 		A857C5B77B3D73AE87CCA890 /* Pods-CashMore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CashMore.debug.xcconfig"; path = "Target Support Files/Pods-CashMore/Pods-CashMore.debug.xcconfig"; sourceTree = "<group>"; };
@@ -274,7 +274,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				220755A92A4AE7460017B5D9 /* StoreKit.framework in Frameworks */,
 				226208F52A3086C8005E1F5C /* AppTrackingTransparency.framework in Frameworks */,
 				226DAB802A4004E4004EC1D5 /* FacebookAEM in Frameworks */,
 				226DAB8A2A4004E4004EC1D5 /* FacebookShare in Frameworks */,
@@ -570,10 +569,10 @@
 		22A66A782A3C02E0005E7835 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				22A66A792A3C030C005E7835 /* ProblemChooseView.swift */,
-				22A66A7B2A3C10CF005E7835 /* ProblemPhotosView.swift */,
 				22A66A7D2A3C1760005E7835 /* PhotoItemView.swift */,
 				22A66A822A3C4874005E7835 /* FeedbackCell.swift */,
+				22A66A792A3C030C005E7835 /* ProblemChooseView.swift */,
+				22A66A7B2A3C10CF005E7835 /* ProblemPhotosView.swift */,
 				221547EA2A417A8500B1129F /* SubmitSuccessToastView.swift */,
 			);
 			path = View;
@@ -635,9 +634,9 @@
 		22CE9DB42A286AC8006C5153 /* Order */ = {
 			isa = PBXGroup;
 			children = (
-				22CE9DB72A2870F3006C5153 /* Controller */,
-				22CE9DB92A2870F3006C5153 /* Model */,
 				22CE9DB82A2870F3006C5153 /* View */,
+				22CE9DB92A2870F3006C5153 /* Model */,
+				22CE9DB72A2870F3006C5153 /* Controller */,
 			);
 			path = Order;
 			sourceTree = "<group>";
@@ -667,6 +666,7 @@
 			children = (
 				226208C92A302612005E1F5C /* OrderModel.swift */,
 				22A66A702A3AF37A005E7835 /* OrderDetailModel.swift */,
+				22F384152A67E0AD00752D74 /* ExtensionBtnHiddenModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -737,7 +737,6 @@
 		72DF2B2107695A4E8A47C033 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				220755A82A4AE7460017B5D9 /* StoreKit.framework */,
 				226209152A332909005E1F5C /* SystemConfiguration.framework */,
 				226209132A3328FE005E1F5C /* CoreTelephony.framework */,
 				226209122A3328F5005E1F5C /* libresolv.tbd */,
@@ -999,6 +998,7 @@
 				2262090D2A32F24D005E1F5C /* PersonalCenterHeaderView.swift in Sources */,
 				220E1A5A2A347C6C0054EEA8 /* OptionModel.swift in Sources */,
 				226209092A32E2D1005E1F5C /* LoginSuccessModel.swift in Sources */,
+				22F384162A67E0AD00752D74 /* ExtensionBtnHiddenModel.swift in Sources */,
 				226208992A2DF3CB005E1F5C /* PersonalnfoController.swift in Sources */,
 				22CE9DA72A28395F006C5153 /* R.generated.swift in Sources */,
 				22CE9DDA2A29C631006C5153 /* FeedbackController.swift in Sources */,
@@ -1199,7 +1199,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 7R9X78KKXW;
+				DEVELOPMENT_TEAM = 7MC978XNU9;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = CashMore/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Cash More";

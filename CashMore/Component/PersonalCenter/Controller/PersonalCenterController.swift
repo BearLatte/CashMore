@@ -154,7 +154,11 @@ extension PersonalCenterController {
             webView.title = "Privacy Policy"
             navigationController?.pushViewController(webView, animated: true)
         case 3:
-            logoutAction()
+            if(Constants.isLogin) {
+                logoutAction()
+            } else {
+                return
+            }
         default: break
         }
     }

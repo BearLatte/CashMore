@@ -73,26 +73,10 @@ extension BankInfoController {
     }
     
     @objc func submitBtnClicked() {
-        ADJustTrackTool.point(name: "w8lxuy")
-        guard let bankName = bankNameInputView.inputText, !bankName.tm.isBlank else {
-            return HUD.flash(.label("Bank Name cannot be empty"), delay: 2.0)
+        if(!isModify) {
+            ADJustTrackTool.point(name: "w8lxuy")
         }
         
-        guard let account = accountInputView.inputText, !account.tm.isBlank else {
-            return HUD.flash(.label("Account Number cannot be empty"), delay: 2.0)
-        }
-        
-        guard let ifsc = ifscInputView.inputText, !ifsc.tm.isBlank else {
-            return HUD.flash(.label("IFSC Code cannot be empty"), delay: 2.0)
-        }
-        
-        TipsSheet.show(isHiddenTitle: false, message: "The information cannot be changed after submission. Please fill in the correct information.", confirmAction:  {
-            self.authBank()
-        })
-    }
-    
-    
-    private func authBank() {
         guard let bankName = bankNameInputView.inputText, !bankName.tm.isBlank else {
             return HUD.flash(.label("Bank Name cannot be empty"), delay: 2.0)
         }
@@ -103,14 +87,20 @@ extension BankInfoController {
             return HUD.flash(.label("IFSC should be in 11 digit numbers or letters"), delay: 2.0)
         }
         let params = ["bankName": bankName, "bankCardNo" : bankAccount, "bankCardNoPaste" : "0", "ifscCode" : ifscCode]
-        APIService.standered.normalRequest(api: API.Certification.bankAuth, parameters: params) {
-            if self.isModify {
+        
+        if(isModify) {
+            APIService.standered.normalRequest(api: API.Me.changeBankCard, parameters: params) {
                 HUD.flash(.labeledSuccess(title: nil, subtitle: "Success"), delay: 2.0)
                 self.navigationController?.popViewController(animated: true)
-            } else {
-                self.getRecommendProduct()
             }
+        } else {
+            TipsSheet.show(isHiddenTitle: false, message: "The information cannot be changed after submission. Please fill in the correct information.", confirmAction:  {
+                APIService.standered.normalRequest(api: API.Certification.bankAuth, parameters: params) {
+                    self.getRecommendProduct()
+                }
+            })
         }
+        
     }
     
     // 获取推荐产品

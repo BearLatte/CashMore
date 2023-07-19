@@ -253,13 +253,13 @@ extension OrderDetailController {
             make.left.right.equalTo(orderNumView)
         }
         
+        
         repaymentAmountView.snp.makeConstraints { make in
             make.top.equalTo(repaymentDateView.snp.bottom)
             make.left.right.equalTo(orderNumView)
             make.bottom.equalToSuperview().priority(.high)
         }
         tableHeaderView.layoutIfNeeded()
-        
         
         extensionBtn.snp.makeConstraints { make in
             make.left.equalTo(20)
@@ -269,11 +269,19 @@ extension OrderDetailController {
         }
         extensionBtn.tm.setCorner(25)
         
-        
-        repayBtn.snp.makeConstraints { make in
-            make.left.equalTo(view.snp.centerX).offset(5)
-            make.right.equalTo(-20)
-            make.bottom.height.equalTo(extensionBtn)
+        if extensionBtn.isHidden {
+            repayBtn.snp.makeConstraints { make in
+                make.size.equalTo(CGSize(width: 260, height: 50));
+                make.center.equalTo(0);
+                make.bottom.equalTo(-(Constants.bottomSafeArea + 20))
+            }
+            
+        } else {
+            repayBtn.snp.makeConstraints { make in
+                make.left.equalTo(view.snp.centerX).offset(5)
+                make.right.equalTo(-20)
+                make.bottom.height.equalTo(extensionBtn)
+            }
         }
         repayBtn.tm.setCorner(25)
     }
@@ -288,6 +296,10 @@ extension OrderDetailController {
             self.recommendProducts = [ProductModel].deserialize(from: response.list) ?? []
             self.tableView.reloadData()
             self.tableView.endRefreshing(at: .top)
+            APIService.standered.fetchModel(api: API.Order.checkExtensionBtnHidden, type: ExtensionBtnHiddenModel.self) { hiddenModel in
+                self.extensionBtn.isHidden = hiddenModel.isExtend
+                self .reloadUI()
+            }
         }
     }
     

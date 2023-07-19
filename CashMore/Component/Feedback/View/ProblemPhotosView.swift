@@ -59,11 +59,11 @@ class ProblemPhotosView: UIView {
 
 extension ProblemPhotosView {
     private func configImages() {
+        subviews.forEach { view in
+            view.removeFromSuperview()
+        }
+        
         if photoViewType == .upload {
-            subviews.forEach { view in
-                view.removeFromSuperview()
-            }
-            
             if images.count < maxItem {
                 addSubview(addBtn)
             }
@@ -79,9 +79,6 @@ extension ProblemPhotosView {
             }
             layoutIfNeeded()
         } else {
-            subviews.forEach { view in
-                view.removeFromSuperview()
-            }
             imgUrls.forEach { url in
                 let itemView = PhotoItemView(showsDeleteBtn: false)
                 itemView.imageUrl = url

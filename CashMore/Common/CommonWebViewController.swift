@@ -22,6 +22,7 @@ class CommonWebViewController: BaseViewController {
 extension CommonWebViewController {
     override func configUI() {
         super.configUI()
+        webView.backgroundColor = UIColor.clear
         view.addSubview(webView)
         webView.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(10)

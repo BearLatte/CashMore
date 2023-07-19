@@ -64,6 +64,7 @@ struct API {
     
     struct Me {
         static var userInfo = APIItem("/PZJqjz/RrKrKN/OQRvo", desc: "get user info")
+        static var changeBankCard   = APIItem("/PZJqjz/RrKrKN/ntgUN", desc: "Change bank card")
     }
     
     struct Product {
@@ -76,6 +77,7 @@ struct API {
         static var orderDetail    = APIItem("/PZJqjz/RrKrKN/jYAdR", desc: "Get Order Detil")
         static var repaymentApply = APIItem("/PZJqjz/RrKrKN/RPsWC", desc: "Apply repayment")
         static var extensionRepayApply = APIItem("/PZJqjz/RrKrKN/qCqnU", desc: "Extension repay apply")
+        static var checkExtensionBtnHidden = APIItem("/PZJqjz/RrKrKN/nVegz", desc: "check extension btn hidden status")
     }
     
     struct Feedback {
