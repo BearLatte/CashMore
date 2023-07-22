@@ -17,7 +17,7 @@ extension TM where Base: UIDevice {
     
     /// 广告标识
     static var idfa : String {
-        guard let idfa = UserDefaults.standard.value(forKey: "IDFA") as? String else {
+        guard let idfa = UserDefaults.standard.value(forKey: Constants.IDFA_KEY) as? String else {
             return ""
         }
         

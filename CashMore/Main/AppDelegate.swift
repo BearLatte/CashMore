@@ -65,13 +65,13 @@ extension AppDelegate {
             ATTrackingManager.requestTrackingAuthorization { status in
                 if status == .authorized {
                     let idfa = ASIdentifierManager.shared().advertisingIdentifier.uuidString
-                    UserDefaults.standard.set(idfa, forKey: "IDFA")
+                    UserDefaults.standard.set(idfa, forKey: Constants.IDFA_KEY)
                 }
             }
         } else {
             if ASIdentifierManager.shared().isAdvertisingTrackingEnabled == true {
                 let idfa = ASIdentifierManager.shared().advertisingIdentifier.uuidString
-                UserDefaults.standard.set(idfa, forKey: "IDFA")
+                UserDefaults.standard.set(idfa, forKey: Constants.IDFA_KEY)
             }
         }
     }

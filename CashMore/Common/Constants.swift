@@ -18,6 +18,7 @@ struct Constants {
     static let IS_FIRST_LAUNCH   = "kIS_FIRST_LAUNCH"
     static let USER_PHONE_NUMBER = "kUSER_PHONE_NUMBER"
     static let FIRST_LAUNCH_TIME_STAMP = "kFIRST_LAUNCH_TIME_STAMP"
+    static let IDFA_KEY = "kIDFA_KEY"
     
     static var isLogin : Bool {
         UserDefaults.standard.bool(forKey: IS_LOGIN)
@@ -251,9 +252,7 @@ extension Constants {
         #else
         keyString = String.tm.sortedDictionary(with: body) + "&" + "cashmore=8JFM0NFVA2NFVKM3MFNVK"
         #endif
-        Constants.debugLog("加密前" + keyString)
         let signStr = keyString.tm.md5.uppercased()
-        Constants.debugLog("加密后" + signStr)
         body["sign"] = signStr
         
         return body
