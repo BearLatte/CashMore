@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		12F3B0B6C04D6226287B864D /* Pods_CashMore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 885EE3408E4A382C87599EAC /* Pods_CashMore.framework */; };
+		12F3B0B6C04D6226287B864D /* Pods_CashMore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 885EE3408E4A382C87599EAC /* Pods_CashMore.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		220755A42A4AE6540017B5D9 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 226208F62A3086D1005E1F5C /* WebKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		220755A52A4AE6820017B5D9 /* AdServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 226208F02A3086A9005E1F5C /* AdServices.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		220E1A442A3440DE0054EEA8 /* EASpinnerLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220E1A3D2A3440DE0054EEA8 /* EASpinnerLayer.swift */; };
@@ -80,14 +80,14 @@
 		2262090F2A330090005E1F5C /* CertificationInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2262090E2A330090005E1F5C /* CertificationInfoModel.swift */; };
 		226209112A33193A005E1F5C /* OSSParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226209102A33193A005E1F5C /* OSSParameters.swift */; };
 		226209142A3328FE005E1F5C /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 226209132A3328FE005E1F5C /* CoreTelephony.framework */; settings = {ATTRIBUTES = (Required, ); }; };
-		226209162A33290A005E1F5C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 226209152A332909005E1F5C /* SystemConfiguration.framework */; };
+		226209162A33290A005E1F5C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 226209152A332909005E1F5C /* SystemConfiguration.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		226209182A332E05005E1F5C /* OCRModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226209172A332E05005E1F5C /* OCRModel.swift */; };
-		226DAB802A4004E4004EC1D5 /* FacebookAEM in Frameworks */ = {isa = PBXBuildFile; productRef = 226DAB7F2A4004E4004EC1D5 /* FacebookAEM */; };
-		226DAB822A4004E4004EC1D5 /* FacebookBasics in Frameworks */ = {isa = PBXBuildFile; productRef = 226DAB812A4004E4004EC1D5 /* FacebookBasics */; };
-		226DAB842A4004E4004EC1D5 /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = 226DAB832A4004E4004EC1D5 /* FacebookCore */; };
-		226DAB862A4004E4004EC1D5 /* FacebookGamingServices in Frameworks */ = {isa = PBXBuildFile; productRef = 226DAB852A4004E4004EC1D5 /* FacebookGamingServices */; };
-		226DAB882A4004E4004EC1D5 /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 226DAB872A4004E4004EC1D5 /* FacebookLogin */; };
-		226DAB8A2A4004E4004EC1D5 /* FacebookShare in Frameworks */ = {isa = PBXBuildFile; productRef = 226DAB892A4004E4004EC1D5 /* FacebookShare */; };
+		226DAB802A4004E4004EC1D5 /* FacebookAEM in Frameworks */ = {isa = PBXBuildFile; productRef = 226DAB7F2A4004E4004EC1D5 /* FacebookAEM */; settings = {ATTRIBUTES = (Weak, ); }; };
+		226DAB822A4004E4004EC1D5 /* FacebookBasics in Frameworks */ = {isa = PBXBuildFile; productRef = 226DAB812A4004E4004EC1D5 /* FacebookBasics */; settings = {ATTRIBUTES = (Weak, ); }; };
+		226DAB842A4004E4004EC1D5 /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = 226DAB832A4004E4004EC1D5 /* FacebookCore */; settings = {ATTRIBUTES = (Weak, ); }; };
+		226DAB862A4004E4004EC1D5 /* FacebookGamingServices in Frameworks */ = {isa = PBXBuildFile; productRef = 226DAB852A4004E4004EC1D5 /* FacebookGamingServices */; settings = {ATTRIBUTES = (Weak, ); }; };
+		226DAB882A4004E4004EC1D5 /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 226DAB872A4004E4004EC1D5 /* FacebookLogin */; settings = {ATTRIBUTES = (Weak, ); }; };
+		226DAB8A2A4004E4004EC1D5 /* FacebookShare in Frameworks */ = {isa = PBXBuildFile; productRef = 226DAB892A4004E4004EC1D5 /* FacebookShare */; settings = {ATTRIBUTES = (Weak, ); }; };
 		229939232A36C3A3000309DE /* OptionsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229939222A36C3A3000309DE /* OptionsModel.swift */; };
 		229939292A372665000309DE /* PurchaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229939282A372665000309DE /* PurchaseController.swift */; };
 		2299392B2A372C8E000309DE /* UserInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2299392A2A372C8E000309DE /* UserInfoModel.swift */; };

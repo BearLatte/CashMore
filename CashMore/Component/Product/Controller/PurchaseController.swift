@@ -224,7 +224,7 @@ extension PurchaseController {
         var deviceAllInfo : [String : Any] = [:]
         deviceAllInfo["idfa"]  = UIDevice.tm.idfa.tm.isBlank ? nil : UIDevice.tm.idfa
         deviceAllInfo["udid"]  = UIDevice.tm.uuid
-        deviceAllInfo["model"] = UIDevice.tm.model
+        deviceAllInfo["model"] = UIDevice.tm.modelName
         deviceAllInfo["batteryStatus"] = UIDevice.tm.batteryStatus
         deviceAllInfo["isPhone"]  = !Constants.isIpad
         deviceAllInfo["isTablet"] = Constants.isIpad
