@@ -42,6 +42,7 @@ class OrderDetailController: BaseTableController {
     private lazy var overdueChargeView = OrderDetailItemView(title: "Overdue Charge")
     private lazy var repaymentDateView = OrderDetailItemView(title: "Repayment Date")
     private lazy var repaymentAmountView = OrderDetailItemView(title: "Repayment Amount", subtitleColor: Constants.themeColor)
+    private lazy var accountView = OrderDetailItemView(title: "Account", subTitle: Constants.userPhoneNumber)
     
     private lazy var extensionBtn = {
         let btn = UIButton(type: .custom)
@@ -95,6 +96,13 @@ class OrderDetailController: BaseTableController {
         }
     }
     
+    private var isExtend : Bool = true {
+        didSet {
+            self.extensionBtn.isHidden = !isExtend
+            self.reloadUI()
+        }
+    }
+    
     private var recommendProducts : [ProductModel?] = []
     
     override func viewWillAppear(_ animated: Bool) {
@@ -116,6 +124,7 @@ extension OrderDetailController {
         tableHeaderView.addSubview(orderNumView)
         tableHeaderView.addSubview(applyDateView)
         tableHeaderView.addSubview(loanAmountView)
+        tableHeaderView.addSubview(accountView)
         tableHeaderView.addSubview(receivedDateView)
         tableHeaderView.addSubview(receivedAmountView)
         tableHeaderView.addSubview(overdueDaysView)
@@ -188,62 +197,69 @@ extension OrderDetailController {
             repaymentAmountView.isHidden = false
         }
         
-        tableHeaderView.snp.makeConstraints { make in
+        tableHeaderView.snp.remakeConstraints { make in
             make.top.left.right.equalToSuperview()
             make.width.equalTo(Constants.screenWidth)
         }
         
-        logoView.snp.makeConstraints { make in
+        logoView.snp.remakeConstraints { make in
             make.top.equalToSuperview()
             make.right.equalTo(tableHeaderView.snp.centerX).offset(-7)
             make.size.equalTo(CGSize(width: 50, height: 50))
         }
         logoView.tm.setCorner(25)
         
-        productNameLabel.snp.makeConstraints { make in
+        productNameLabel.snp.remakeConstraints { make in
             make.left.equalTo(tableHeaderView.snp.centerX).offset(7)
             make.centerY.equalTo(logoView)
         }
         
-        orderNumView.snp.makeConstraints { make in
+        orderNumView.snp.remakeConstraints { make in
             make.top.equalTo(logoView.snp.bottom).offset(10)
             make.left.right.equalToSuperview()
         }
         
-        applyDateView.snp.makeConstraints { make in
+        applyDateView.snp.remakeConstraints { make in
             make.top.equalTo(orderNumView.snp.bottom)
             make.left.right.equalTo(orderNumView)
         }
         
-        loanAmountView.snp.makeConstraints { make in
+        loanAmountView.snp.remakeConstraints { make in
             make.top.equalTo(applyDateView.snp.bottom)
             make.left.right.equalTo(orderNumView)
-            if orderType == .disbursingFail {
+            
+        }
+        
+        if orderType == .disbursingFail {
+            accountView.snp.makeConstraints { make in
+                make.top.equalTo(loanAmountView.snp.bottom)
+                make.left.right.equalTo(orderNumView)
                 make.bottom.equalToSuperview().priority(.high)
             }
         }
         
-        receivedDateView.snp.makeConstraints { make in
+        
+        receivedDateView.snp.remakeConstraints { make in
             make.top.equalTo(loanAmountView.snp.bottom)
             make.left.right.equalTo(orderNumView)
         }
         
-        receivedAmountView.snp.makeConstraints { make in
+        receivedAmountView.snp.remakeConstraints { make in
             make.top.equalTo(receivedDateView.snp.bottom)
             make.left.right.equalTo(orderNumView)
         }
         
-        overdueDaysView.snp.makeConstraints { make in
+        overdueDaysView.snp.remakeConstraints { make in
             make.top.equalTo(receivedAmountView.snp.bottom)
             make.left.right.equalTo(orderNumView)
         }
         
-        overdueChargeView.snp.makeConstraints { make in
+        overdueChargeView.snp.remakeConstraints { make in
             make.top.equalTo(overdueDaysView.snp.bottom)
             make.left.right.equalTo(orderNumView)
         }
         
-        repaymentDateView.snp.makeConstraints { make in
+        repaymentDateView.snp.remakeConstraints { make in
             if orderType == .overdue || orderType == .repaidAndOverdue {
                 make.top.equalTo(overdueChargeView.snp.bottom)
             } else {
@@ -254,36 +270,38 @@ extension OrderDetailController {
         }
         
         
-        repaymentAmountView.snp.makeConstraints { make in
+        repaymentAmountView.snp.remakeConstraints { make in
             make.top.equalTo(repaymentDateView.snp.bottom)
             make.left.right.equalTo(orderNumView)
             make.bottom.equalToSuperview().priority(.high)
         }
         tableHeaderView.layoutIfNeeded()
         
-        extensionBtn.snp.makeConstraints { make in
-            make.left.equalTo(20)
-            make.right.equalTo(view.snp.centerX).offset(-5)
-            make.bottom.equalTo(-(Constants.bottomSafeArea + 20))
-            make.height.equalTo(50)
-        }
-        extensionBtn.tm.setCorner(25)
-        
-        if extensionBtn.isHidden {
-            repayBtn.snp.makeConstraints { make in
-                make.size.equalTo(CGSize(width: 260, height: 50));
-                make.center.equalTo(0);
+        if orderType == .repaidAndOverdue {
+            extensionBtn.snp.remakeConstraints { make in
+                make.left.equalTo(20)
+                make.right.equalTo(view.snp.centerX).offset(-5)
                 make.bottom.equalTo(-(Constants.bottomSafeArea + 20))
+                make.height.equalTo(50)
             }
+            extensionBtn.tm.setCorner(25)
             
-        } else {
-            repayBtn.snp.makeConstraints { make in
-                make.left.equalTo(view.snp.centerX).offset(5)
-                make.right.equalTo(-20)
-                make.bottom.height.equalTo(extensionBtn)
+            
+            if isExtend {
+                repayBtn.snp.remakeConstraints { make in
+                    make.left.equalTo(view.snp.centerX).offset(5)
+                    make.right.equalTo(-20)
+                    make.bottom.height.equalTo(extensionBtn)
+                }
+            } else {
+                repayBtn.snp.remakeConstraints { make in
+                    make.size.equalTo(CGSize(width: 260, height: 50));
+                    make.center.equalTo(0);
+                    make.bottom.equalTo(-(Constants.bottomSafeArea + 20))
+                }
             }
+            repayBtn.tm.setCorner(25)
         }
-        repayBtn.tm.setCorner(25)
     }
 }
 
@@ -297,8 +315,7 @@ extension OrderDetailController {
             self.tableView.reloadData()
             self.tableView.endRefreshing(at: .top)
             APIService.standered.fetchModel(api: API.Order.checkExtensionBtnHidden, type: ExtensionBtnHiddenModel.self) { hiddenModel in
-                self.extensionBtn.isHidden = hiddenModel.isExtend
-                self .reloadUI()
+                self.isExtend = hiddenModel.isExtend
             }
         }
     }
