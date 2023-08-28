@@ -15,7 +15,7 @@ protocol HomeHeaderViewDelegate {
 }
 
 class HomeHeaderView: UIView {
-
+    
     weak var delegate : AnyObject?
     
     override init(frame: CGRect) {
@@ -80,21 +80,10 @@ class HomeHeaderView: UIView {
     private lazy var meBtn       = menuBtn(title: "Me", image: R.image.me())
     
     private func menuBtn(title: String, image: UIImage?) -> UIButton {
-        var btn : UIButton = UIButton(type: .custom)
+        let btn : UIButton = UIButton(type: .custom)
         btn.setTitle(title, for: .normal)
         btn.setImage(image, for: .normal)
-        if #available(iOS 15.0, *) {
-            var btnConfig = UIButton.Configuration.borderless()
-            btnConfig.imagePadding = 6
-            btnConfig.imagePlacement = .top
-            btn = UIButton(configuration: btnConfig)
-            btn.setTitle(title, for: .normal)
-            btn.setImage(image, for: .normal)
-        } else {
-            btn.setTitle(title, for: .normal)
-            btn.setImage(image, for: .normal)
-            btn.tm.centerImageAndButton(6, imageOnTop: true)
-        }
+        btn.tm.centerImageAndButton(6, imageOnTop: true)
         
         btn.setTitleColor(Constants.themeTitleColor, for: .normal)
         btn.titleLabel?.font = Constants.pingFangSCRegularFont(16)

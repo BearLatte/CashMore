@@ -40,10 +40,10 @@ extension PersonalCenterController {
             make.width.equalTo(Constants.screenWidth)
         }
         headerView.layoutIfNeeded()
-
+        
         let footerView = UIView(frame: CGRect(x: 0, y: 0, width: Constants.screenWidth, height: 90))
         tableView.tableFooterView = footerView
-
+        
         footerView.addSubview(logoutBtn)
         logoutBtn.snp.makeConstraints { make in
             make.size.equalTo(CGSize(width: 160, height: 50))
@@ -52,7 +52,7 @@ extension PersonalCenterController {
             make.bottom.equalToSuperview().priority(.high)
         }
         logoutBtn.tm.setCorner(25)
-
+        
         tableView.layoutIfNeeded()
         
         NotificationCenter.default.addObserver(self, selector: #selector(didReceiveLoginSuccessNotification), name: Constants.loginSuccessNotification, object: nil)
@@ -132,8 +132,7 @@ extension PersonalCenterController {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch indexPath.row {
-        case 0:
+        if indexPath.row == 0{
             ADJustTrackTool.point(name: "h9gm4g")
             APIService.standered.fetchModel(api: API.Certification.info, parameters: ["type" : "1"], type: CertificationInfoModel.self) { info in
                 if !info.authStatus {
@@ -146,20 +145,19 @@ extension PersonalCenterController {
                     self.navigationController?.pushViewController(bankVC, animated: true)
                 }
             }
-        case 1:
+        } else if indexPath.row == 1 {
             navigationController?.pushViewController(AboutUsController(), animated: true)
-        case 2:
+        } else if indexPath.row == 2 {
             let webView = CommonWebViewController()
             webView.url = "https://www.cashmoreapp.com/privacy.html"
             webView.title = "Privacy Policy"
             navigationController?.pushViewController(webView, animated: true)
-        case 3:
+        } else {
             if(Constants.isLogin) {
                 logoutAction()
             } else {
                 return
             }
-        default: break
         }
     }
     
