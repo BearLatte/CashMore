@@ -36,7 +36,7 @@ struct API {
         #if DEBUG
         return "http://8.215.46.156:1060"
         #else
-        return "https://api.cashmoreapp.com/"
+        return "https://api.cashmoreapp.com"
         #endif
     }
     

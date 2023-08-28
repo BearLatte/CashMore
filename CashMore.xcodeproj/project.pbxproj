@@ -1154,7 +1154,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 7MC978XNU9;
+				DEVELOPMENT_TEAM = W2U4353W8V;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = CashMore/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Cash More";
@@ -1174,7 +1174,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = org.cocoapods.CashMore;
+				PRODUCT_BUNDLE_IDENTIFIER = com.india.upper.time.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1199,7 +1199,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 7MC978XNU9;
+				DEVELOPMENT_TEAM = W2U4353W8V;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = CashMore/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Cash More";
@@ -1219,7 +1219,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = org.cocoapods.CashMore;
+				PRODUCT_BUNDLE_IDENTIFIER = com.india.upper.time.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
