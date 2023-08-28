@@ -22,19 +22,19 @@ extension TM where Base: UIDevice {
             guard let value = element.value as? Int8, value != 0 else { return identifier }
             return identifier + String(UnicodeScalar(UInt8(value)))
         }
-
+        
         switch identifier {
         case "iPod1,1":  return "iPod Touch 1"
         case "iPod2,1":  return "iPod Touch 2"
         case "iPod3,1":  return "iPod Touch 3"
         case "iPod4,1":  return "iPod Touch 4"
         case "iPod5,1":  return "iPod Touch (5 Gen)"
-        case "iPod7,1":   return "iPod Touch 6"
-
+        case "iPod7,1":  return "iPod Touch 6"
+            
         case "iPhone3,1", "iPhone3,2", "iPhone3,3":  return "iPhone 4"
         case "iPhone4,1":  return "iPhone 4s"
-        case "iPhone5,1":   return "iPhone 5"
-        case  "iPhone5,2":  return "iPhone 5 (GSM+CDMA)"
+        case "iPhone5,1":  return "iPhone 5"
+        case "iPhone5,2":  return "iPhone 5 (GSM+CDMA)"
         case "iPhone5,3":  return "iPhone 5c (GSM)"
         case "iPhone5,4":  return "iPhone 5c (GSM+CDMA)"
         case "iPhone6,1":  return "iPhone 5s (GSM)"
@@ -44,14 +44,34 @@ extension TM where Base: UIDevice {
         case "iPhone8,1":  return "iPhone 6s"
         case "iPhone8,2":  return "iPhone 6s Plus"
         case "iPhone8,4":  return "iPhone SE"
-        case "iPhone9,1":   return "国行、日版、港行iPhone 7"
+        case "iPhone9,1":  return "国行、日版、港行iPhone 7"
         case "iPhone9,2":  return "港行、国行iPhone 7 Plus"
         case "iPhone9,3":  return "美版、台版iPhone 7"
         case "iPhone9,4":  return "美版、台版iPhone 7 Plus"
         case "iPhone10,1","iPhone10,4":   return "iPhone 8"
         case "iPhone10,2","iPhone10,5":   return "iPhone 8 Plus"
         case "iPhone10,3","iPhone10,6":   return "iPhone X"
-
+        case "iPhone11,8": return "iPhone XR"
+        case "iPhone11,2": return "iPhone XS"
+        case "iPhone11,4", "iPhone11,6": return "iPhone XS Max"
+        case "iPhone12,1": return "iPhone 11"
+        case "iPhone12,3": return "iPhone 11 Pro"
+        case "iPhone12,5": return "iPhone 11 Pro Max"
+        case "iPhone12,8": return "iPhone SE2"
+        case "iPhone13,1": return "iPhone 12 mini"
+        case "iPhone13,2": return "iPhone 12"
+        case "iPhone13,3": return "iPhone 12 Pro"
+        case "iPhone13,4": return "iPhone 12 Pro Max"
+        case "iPhone14,4": return "iPhone 13 mini"
+        case "iPhone14,5": return "iPhone 13"
+        case "iPhone14,2": return "iPhone 13 Pro"
+        case "iPhone14,3": return "iPhone 13 Pro Max"
+        case "iPhone14,6": return "iPhone SE3"
+        case "iPhone14,7": return "iPhone 14"
+        case "iPhone14,8": return "iPhone 14 Plus"
+        case "iPhone15,2": return "iPhone 14 Pro"
+        case "iPhone15,3": return "iPhone 14 Pro Max"
+            
         case "iPad1,1":   return "iPad"
         case "iPad1,2":   return "iPad 3G"
         case "iPad2,1", "iPad2,2", "iPad2,3", "iPad2,4":   return "iPad 2"
@@ -71,7 +91,9 @@ extension TM where Base: UIDevice {
         case "i386", "x86_64":   return "Simulator"
         default:  return identifier
         }
-     }
+    }
+    
+
     /// 广告标识
     static var idfa : String {
         guard let idfa = UserDefaults.standard.value(forKey: Constants.IDFA_KEY) as? String else {

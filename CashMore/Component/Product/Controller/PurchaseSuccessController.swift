@@ -68,12 +68,11 @@ class PurchaseSuccessController: BaseTableController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        popGestureClose()
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        popGestureOpen()
+        
+        // delete the detail controller
+        navigationController?.viewControllers = navigationController?
+            .viewControllers.filter({ $0.isKind(of: HomeController.self) || $0.isKind(of: PurchaseSuccessController.self)}) ?? []
+        
     }
 }
 
