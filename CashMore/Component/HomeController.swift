@@ -7,6 +7,7 @@
 
 import UIKit
 import PullToRefresh
+import CoreTelephony
 
 class HomeController: BaseTableController {
     
@@ -52,6 +53,8 @@ extension HomeController {
         }
         
         NotificationCenter.default.addObserver(self, selector: #selector(didReceiveLoginSuccessNotification), name: Constants.loginSuccessNotification, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(networkStatusChanged), name: kNetworkStatusNotification, object: nil)
     }
     
     override func loadData() {
@@ -74,6 +77,11 @@ extension HomeController {
                 self?.tableView.endRefreshing(at: .top)
             }
         }
+    }
+    
+    @objc func networkStatusChanged() {
+        Constants.debugLog("网络状态发生了改变")
+        loadData()
     }
     
     private func showPayFailAlert(payFailModel: PayFailInfo?) {

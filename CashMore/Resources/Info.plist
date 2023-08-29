@@ -7,7 +7,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>zh</string>
 	<key>CFBundleDisplayName</key>
-	<string>Cash More</string>
+	<string>Cash More Loans</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -27,7 +27,7 @@
 	<key>FacebookClientToken</key>
 	<string>3f57e33457e59da28c617a78d8ea5ee4</string>
 	<key>FacebookDisplayName</key>
-	<string>Cash More</string>
+	<string>Cash More Loans</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>

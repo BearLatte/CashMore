@@ -75,6 +75,7 @@ extension Constants {
     static let loginSuccessNotification  = Notification.Name("kLoginSuccessNotification")
     static let logoutSuccessNotification = Notification.Name("kLogoutSuccessNotification")
     static let CertificationSuccessNotification = Notification.Name("kCertificationSuccessNotification")
+    static let networkStateChangedNotification  = Notification.Name("kNetworkStateChangedNotification")
 }
 
 
@@ -247,11 +248,7 @@ extension Constants {
         body["noncestr"] = String.tm.randomString(with: 30)
         // 生成一个参数进行验签
         var  keyString : String
-        #if DEBUG
-        keyString = String.tm.sortedDictionary(with: body) + "&" + "indiakey=6ShEUmiNSp9sQWgBzS8N831zyJXlKEKrjqlcZBZN"
-        #else
         keyString = String.tm.sortedDictionary(with: body) + "&" + "cashmore=8JFM0NFVA2NFVKM3MFNVK"
-        #endif
         let signStr = keyString.tm.md5.uppercased()
         body["sign"] = signStr
         

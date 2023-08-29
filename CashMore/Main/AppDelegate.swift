@@ -11,6 +11,7 @@ import AdSupport
 import AppTrackingTransparency
 import IQKeyboardManagerSwift
 import FacebookCore
+import CoreTelephony
 
 
 @main
@@ -19,11 +20,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        networkState(application: application, didFinishLaunchingWithOptions: launchOptions)
        
         // 设置打开app时间戳
         UIDevice.tm.setOpenAppTimeStamp()
         
-        launchNetwork()
+//        launchNetwork()
         
         // 获取IDFA
         fetchIDFA()
@@ -106,6 +109,17 @@ extension AppDelegate : AdjustDelegate {
 }
 
 extension AppDelegate {
+    
+    private func networkState(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
+        let cellularData = CTCellularData()
+        cellularData.cellularDataRestrictionDidUpdateNotifier = {state in
+            if state == .restricted {
+                self.launchNetwork()
+                NotificationCenter.default.post(name: Constants.networkStateChangedNotification, object: nil)
+            }
+        }
+    }
+    
     private func launchNetwork() {
         APIService.standered.normalRequest(api: API.Common.firstLaunch) {
         }
