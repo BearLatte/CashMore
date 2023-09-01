@@ -113,7 +113,7 @@ extension AppDelegate {
     private func networkState(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
         let cellularData = CTCellularData()
         cellularData.cellularDataRestrictionDidUpdateNotifier = {state in
-            if state == .restricted {
+            if state == .notRestricted {
                 self.launchNetwork()
                 NotificationCenter.default.post(name: Constants.networkStateChangedNotification, object: nil)
             }

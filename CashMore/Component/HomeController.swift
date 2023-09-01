@@ -54,7 +54,8 @@ extension HomeController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(didReceiveLoginSuccessNotification), name: Constants.loginSuccessNotification, object: nil)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(networkStatusChanged), name: kNetworkStatusNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(loadData), name: kNetworkStatusNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(loadData), name: Constants.networkStateChangedNotification, object: nil)
     }
     
     override func loadData() {
@@ -79,10 +80,6 @@ extension HomeController {
         }
     }
     
-    @objc func networkStatusChanged() {
-        Constants.debugLog("网络状态发生了改变")
-        loadData()
-    }
     
     private func showPayFailAlert(payFailModel: PayFailInfo?) {
         if payFailAlert.isShowing || payFailModel == nil {
@@ -197,6 +194,8 @@ extension HomeController {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "SectionHeader") as? HomeProductHeaderView
         header?.title = "Top recommendation"
+        header?.refreshBtn.isHidden = Constants.isLogin
+        header?.refreshBtn.addTarget(self, action: #selector(loadData), for: .touchUpInside)
         return header
     }
 }

@@ -44,6 +44,7 @@ class PurchaseController : BaseScrollController {
     private lazy var interestView  = OrderDetailItemView(title: "Interest")
     private lazy var overdueView   = OrderDetailItemView(title: "Overdue Charge")
     private lazy var paymentAmountView = OrderDetailItemView(title: "Repayment Amount")
+    private lazy var aprView       = OrderDetailItemView(title: "APR", subTitle: "18.25%")
     private lazy var purchaseBtn   = Constants.themeBtn(with: "Loan now")
     
     private var userInfo : UserInfoModel?
@@ -121,6 +122,10 @@ extension PurchaseController {
         contentView.addSubview(interestView)
         contentView.addSubview(overdueView)
         contentView.addSubview(paymentAmountView)
+        if Constants.userPhoneNumber == Constants.testAccountPhoneNumber {
+            contentView.addSubview(aprView)
+        }
+        
         
         amountView.snp.makeConstraints { make in
             make.top.equalTo(productInfoView.snp.bottom).offset(10)
@@ -160,6 +165,13 @@ extension PurchaseController {
         paymentAmountView.snp.makeConstraints { make in
             make.top.equalTo(overdueView.snp.bottom)
             make.left.right.equalTo(amountView)
+        }
+        
+        if Constants.userPhoneNumber == Constants.testAccountPhoneNumber {
+            aprView.snp.makeConstraints { make in
+                make.top.equalTo(paymentAmountView.snp.bottom)
+                make.left.right.equalTo(amountView)
+            }
         }
         
         contentView.addSubview(purchaseBtn)

@@ -38,18 +38,6 @@ struct Constants {
     
     static let testAccountPhoneNumber = "7754819366"
     
-//    static var isFirstLaunch : Bool {
-//        if !UserDefaults.standard.bool(forKey: IS_FIRST_LAUNCH) {
-//            
-//            // first launch
-//            UserDefaults.standard.setValue(String(format: "%.f", Date().timeIntervalSince1970 * 1000), forKey: FIRST_LAUNCH_TIME_STAMP)
-//            UserDefaults.standard.setValue(true, forKey: IS_FIRST_LAUNCH)
-//            return true
-//        } else {
-//            return false
-//        }
-//    }
-    
     static var deviceInfo : [String : Any] {
         var dict : [String : Any] = [:]
         dict["appVersion"] = Bundle.tm.productVersion

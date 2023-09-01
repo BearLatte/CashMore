@@ -155,7 +155,7 @@ class HomeProductCell: UITableViewCell {
     private lazy var actionBtn = {
         let btn = UIButton(type: .custom)
         btn.backgroundColor = Constants.themeColor
-        btn.setTitle("Loan now", for: .normal)
+        btn.setTitle("View Details", for: .normal)
         btn.setTitleColor(Constants.pureWhite, for: .normal)
         btn.layer.cornerRadius = 22
         btn.isEnabled = false
