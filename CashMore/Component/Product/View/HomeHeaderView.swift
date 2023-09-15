@@ -103,6 +103,10 @@ class HomeHeaderView: UIView {
     }
     
     func reloadBanner() {
-        banerView.image = Constants.isLogin ? R.image.certified() : R.image.uncertified()
+        if !Constants.isLogin || Constants.userPhoneNumber == Constants.testAccountPhoneNumber {
+            banerView.image = R.image.uncertified()
+        } else {
+            banerView.image = R.image.certified()
+        }
     }
 }

@@ -157,7 +157,7 @@ extension OrderDetailController {
             loanAmountView.subtitleColor = Constants.themeColor
         case .unrepaid:
             title = "To be Repaid"
-            extensionBtn.isHidden = false
+            extensionBtn.isHidden = !isExtend
             repayBtn.isHidden = false
             receivedDateView.isHidden = false
             receivedAmountView.isHidden = false
@@ -167,7 +167,7 @@ extension OrderDetailController {
             repaymentAmountView.isHidden = false
         case .overdue:
             title = "Overdue"
-            extensionBtn.isHidden = false
+            extensionBtn.isHidden = !isExtend
             repayBtn.isHidden = false
             receivedDateView.isHidden = false
             receivedAmountView.isHidden = false
@@ -277,7 +277,7 @@ extension OrderDetailController {
         }
         tableHeaderView.layoutIfNeeded()
         
-        if orderType == .repaidAndOverdue {
+        if orderType == .unrepaid || orderType == .overdue {
             extensionBtn.snp.remakeConstraints { make in
                 make.left.equalTo(20)
                 make.right.equalTo(view.snp.centerX).offset(-5)
@@ -285,8 +285,8 @@ extension OrderDetailController {
                 make.height.equalTo(50)
             }
             extensionBtn.tm.setCorner(25)
-            
-            
+
+
             if isExtend {
                 repayBtn.snp.remakeConstraints { make in
                     make.left.equalTo(view.snp.centerX).offset(5)
@@ -296,7 +296,7 @@ extension OrderDetailController {
             } else {
                 repayBtn.snp.remakeConstraints { make in
                     make.size.equalTo(CGSize(width: 260, height: 50));
-                    make.center.equalTo(0);
+                    make.centerX.equalTo(self.view.snp.centerX);
                     make.bottom.equalTo(-(Constants.bottomSafeArea + 20))
                 }
             }
@@ -314,7 +314,7 @@ extension OrderDetailController {
             self.recommendProducts = [ProductModel].deserialize(from: response.list) ?? []
             self.tableView.reloadData()
             self.tableView.endRefreshing(at: .top)
-            APIService.standered.fetchModel(api: API.Order.checkExtensionBtnHidden, type: ExtensionBtnHiddenModel.self) { hiddenModel in
+            APIService.standered.fetchModel(api: API.Order.checkExtensionBtnHidden,parameters: ["orderNo": self.orderNumber, "repayType": "extend"], type: ExtensionBtnHiddenModel.self) { hiddenModel in
                 self.isExtend = hiddenModel.isExtend
             }
         }

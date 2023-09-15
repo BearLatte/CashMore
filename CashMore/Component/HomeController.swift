@@ -25,6 +25,7 @@ extension HomeController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         loadData()
+        headerView.reloadBanner()
     }
     
     override func configUI() {
@@ -53,7 +54,6 @@ extension HomeController {
         }
         
         NotificationCenter.default.addObserver(self, selector: #selector(didReceiveLoginSuccessNotification), name: Constants.loginSuccessNotification, object: nil)
-        
         NotificationCenter.default.addObserver(self, selector: #selector(loadData), name: kNetworkStatusNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(loadData), name: Constants.networkStateChangedNotification, object: nil)
     }
