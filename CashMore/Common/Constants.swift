@@ -235,8 +235,7 @@ extension Constants {
         var body = parameters ?? [:]
         body["noncestr"] = String.tm.randomString(with: 30)
         // 生成一个参数进行验签
-        var  keyString : String
-        keyString = String.tm.sortedDictionary(with: body) + "&" + "cashmore=8JFM0NFVA2NFVKM3MFNVK"
+        var  keyString : String = String.tm.sortedDictionary(with: body) + "&" + "cashmore=8JFM0NFVA2NFVKM3MFNVK"
         let signStr = keyString.tm.md5.uppercased()
         body["sign"] = signStr
         
